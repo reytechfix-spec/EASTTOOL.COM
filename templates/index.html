@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EASY TOOL | Professional MDM Bypass Tool</title>
+    <title>EASY TOOL | Professional MDM Bypass Tool - REYTECHFX</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -18,32 +18,6 @@
             background: #050505;
             color: #ffffff;
             overflow-x: hidden;
-            cursor: none;
-        }
-
-        /* Custom Cursor */
-        .cursor {
-            width: 40px;
-            height: 40px;
-            border: 2px solid #10b981;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.2s ease;
-            transform: translate(-50%, -50%);
-        }
-
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background: #10b981;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.1s ease;
-            transform: translate(-50%, -50%);
         }
 
         /* Animated Background */
@@ -77,29 +51,6 @@
         @keyframes twinkle {
             0%, 100% { opacity: 0.3; }
             50% { opacity: 1; }
-        }
-
-        /* Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(16, 185, 129, 0.3);
-            border-radius: 50%;
-            animation: float 10s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-50px) translateX(30px); }
         }
 
         /* Navigation */
@@ -137,28 +88,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: translateX(-100%);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            100% { transform: translateX(100%); }
         }
 
         .logo-icon i {
             color: white;
             font-size: 28px;
-            z-index: 1;
         }
 
         .logo-text {
@@ -218,6 +152,7 @@
             border: none;
             cursor: pointer;
             transition: all 0.3s;
+            color: white;
         }
 
         .nav-btn:hover {
@@ -250,12 +185,6 @@
             font-size: 14px;
             margin-bottom: 30px;
             backdrop-filter: blur(10px);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
-            50% { box-shadow: 0 0 0 20px rgba(16,185,129,0); }
         }
 
         .hero h1 {
@@ -307,26 +236,6 @@
             align-items: center;
             gap: 10px;
             font-size: 16px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn-primary:hover::before {
-            width: 300px;
-            height: 300px;
         }
 
         .btn-primary:hover {
@@ -347,6 +256,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
         }
 
         .btn-secondary:hover {
@@ -380,7 +290,6 @@
         .stat-card:hover {
             transform: translateY(-10px);
             border-color: #10b981;
-            background: rgba(30, 41, 59, 0.6);
         }
 
         .stat-number {
@@ -394,7 +303,6 @@
             color: #9ca3af;
             margin-top: 10px;
             font-size: 14px;
-            letter-spacing: 1px;
         }
 
         /* Features Section */
@@ -432,23 +340,6 @@
             padding: 35px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(16,185,129,0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .feature-card:hover::before {
-            left: 100%;
         }
 
         .feature-card:hover {
@@ -467,22 +358,6 @@
             justify-content: center;
             font-size: 35px;
             margin-bottom: 25px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-icon::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transform: translateX(-100%);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            100% { transform: translateX(100%); }
         }
 
         .feature-card h3 {
@@ -510,14 +385,12 @@
 
         .feature-list li i {
             color: #10b981;
-            font-size: 14px;
         }
 
         /* Pricing Section */
         .pricing {
             padding: 100px 20px;
             background: rgba(16, 185, 129, 0.03);
-            position: relative;
         }
 
         .pricing-grid {
@@ -547,7 +420,6 @@
         .pricing-card.popular {
             border: 2px solid #f59e0b;
             transform: scale(1.05);
-            background: rgba(30, 41, 59, 0.6);
         }
 
         .popular-badge {
@@ -579,7 +451,6 @@
         .price span {
             font-size: 16px;
             color: #9ca3af;
-            font-weight: normal;
         }
 
         .pricing-features {
@@ -600,21 +471,54 @@
             color: #10b981;
         }
 
-        /* CTA Section */
-        .cta {
+        /* Contact Section */
+        .contact-section {
             padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-card {
+            background: rgba(30, 41, 59, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
             text-align: center;
-            background: linear-gradient(135deg, rgba(16,185,129,0.1), transparent);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
         }
 
-        .cta h2 {
-            font-size: 48px;
-            margin-bottom: 20px;
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: #10b981;
         }
 
-        .cta p {
-            color: #9ca3af;
-            margin-bottom: 40px;
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 20px;
+        }
+
+        .contact-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .contact-card a {
+            color: #10b981;
+            text-decoration: none;
             font-size: 18px;
         }
 
@@ -647,7 +551,6 @@
         .footer-section a {
             color: #9ca3af;
             text-decoration: none;
-            transition: color 0.3s;
         }
 
         .footer-section a:hover {
@@ -714,48 +617,9 @@
 
         .scroll-top:hover {
             transform: translateY(-5px);
-            background: #059669;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
-            }
-            .nav-links {
-                display: none;
-            }
-            .hero h1 {
-                font-size: 40px;
-            }
-            .section-title {
-                font-size: 32px;
-            }
-            .pricing-card.popular {
-                transform: scale(1);
-            }
-            .stats {
-                margin-top: 0;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        /* Login Modal */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -814,22 +678,56 @@
             margin-top: 10px;
         }
 
-        .demo-credentials {
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #334155;
-            font-size: 12px;
-            color: #9ca3af;
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #10b981;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            z-index: 2001;
+            display: none;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 40px;
+            }
+            .section-title {
+                font-size: 32px;
+            }
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            .stats {
+                margin-top: 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="bg-animation"></div>
     <div class="stars" id="stars"></div>
-    <div class="particles" id="particles"></div>
-    <div class="cursor"></div>
-    <div class="cursor-dot"></div>
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -848,7 +746,7 @@
                 <a href="#features">Features</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#contact">Contact</a>
-                <button class="nav-btn" onclick="showLoginModal()">Get Started</button>
+                <button class="nav-btn" onclick="showContactModal()">Get Tool</button>
             </div>
         </div>
     </nav>
@@ -866,27 +764,27 @@
             <p>The most powerful MDM Bypass Tool for Samsung, Tecno, Infinix, Itel, Neon Ray and more.<br>Remove enterprise locks in minutes with 98% success rate.</p>
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="scrollToSection('pricing')"><i class="fas fa-shopping-cart"></i> Buy License</button>
-                <button class="btn-secondary" onclick="showLoginModal()"><i class="fas fa-user"></i> Login</button>
+                <button class="btn-secondary" onclick="showContactModal()"><i class="fab fa-whatsapp"></i> Contact Admin</button>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
     <div class="stats">
-        <div class="stat-card animate">
-            <div class="stat-number" data-count="50000">0</div>
+        <div class="stat-card">
+            <div class="stat-number">50K+</div>
             <div class="stat-label">Devices Unlocked</div>
         </div>
-        <div class="stat-card animate">
-            <div class="stat-number" data-count="98">0</div>
-            <div class="stat-label">Success Rate (%)</div>
+        <div class="stat-card">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Success Rate</div>
         </div>
-        <div class="stat-card animate">
-            <div class="stat-number" data-count="247">0</div>
+        <div class="stat-card">
+            <div class="stat-number">24/7</div>
             <div class="stat-label">Support Available</div>
         </div>
-        <div class="stat-card animate">
-            <div class="stat-number" data-count="6">0</div>
+        <div class="stat-card">
+            <div class="stat-number">6+</div>
             <div class="stat-label">Bypass Methods</div>
         </div>
     </div>
@@ -950,7 +848,6 @@
                     <li><i class="fas fa-check"></i> 3 Months License</li>
                     <li><i class="fas fa-check"></i> Email Support</li>
                     <li><i class="fas fa-times" style="color:#ef4444;"></i> Priority Support</li>
-                    <li><i class="fas fa-times" style="color:#ef4444;"></i> WhatsApp Support</li>
                 </ul>
                 <button class="btn-primary" onclick="showPayment('basic')">Get Started</button>
             </div>
@@ -964,7 +861,6 @@
                     <li><i class="fas fa-check"></i> 6 Months License</li>
                     <li><i class="fas fa-check"></i> WhatsApp Support</li>
                     <li><i class="fas fa-check"></i> Free Updates</li>
-                    <li><i class="fas fa-check"></i> 24/7 Support</li>
                 </ul>
                 <button class="btn-primary" onclick="showPayment('pro')">Get Started</button>
             </div>
@@ -977,22 +873,36 @@
                     <li><i class="fas fa-check"></i> 12 Months License</li>
                     <li><i class="fas fa-check"></i> Phone & WhatsApp</li>
                     <li><i class="fas fa-check"></i> Lifetime Updates</li>
-                    <li><i class="fas fa-check"></i> Multi-PC License</li>
                 </ul>
                 <button class="btn-primary" onclick="showPayment('enterprise')">Get Started</button>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
-        <h2>Ready to Unlock Your Device?</h2>
-        <p>Join thousands of satisfied users who have successfully bypassed MDM locks.</p>
-        <button class="btn-primary" onclick="showPayment('pro')"><i class="fas fa-download"></i> Get EASY TOOL Now</button>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Get in <span>Touch</span></h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                <h3>Call / WhatsApp</h3>
+                <a href="tel:254111457171">+254 111 457171</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <h3>Email</h3>
+                <a href="mailto:reytechfix@gmail.com">reytechfix@gmail.com</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                <h3>WhatsApp Chat</h3>
+                <a href="https://wa.me/254111457171">Click to Chat</a>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer" id="contact">
+    <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h4>EASY TOOL</h4>
@@ -1022,7 +932,6 @@
                 <p><i class="fas fa-money-bill-wave"></i> M-Pesa: 0111457171</p>
                 <p><i class="fas fa-globe"></i> SendWave: 0117219996</p>
                 <p><i class="fab fa-cc-visa"></i> Visa/MasterCard</p>
-                <p><i class="fab fa-bitcoin"></i> Cryptocurrency</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1035,19 +944,16 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
+    <!-- Contact Modal (For Getting Tool) -->
+    <div id="contactModal" class="modal">
         <div class="modal-content">
-            <h2><i class="fas fa-lock"></i> Login to EASY TOOL</h2>
-            <input type="text" id="loginUsername" placeholder="Username">
-            <input type="password" id="loginPassword" placeholder="Password">
-            <button onclick="doLogin()">Login</button>
-            <button class="close" onclick="hideLoginModal()">Cancel</button>
-            <div class="demo-credentials">
-                <p>Demo Credentials:</p>
-                <p>Username: <strong>REYTECHFX</strong> | Password: <strong>valentina241</strong></p>
-                <p style="font-size: 11px; margin-top: 10px;">After login, admin dashboard will appear for user approval</p>
+            <h2><i class="fab fa-whatsapp"></i> Get EASY TOOL</h2>
+            <p style="text-align: center; margin-bottom: 20px; color: #9ca3af;">Contact us to get the tool after payment</p>
+            <div style="background: #0f172a; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                <p><i class="fas fa-phone"></i> <strong>Phone/WhatsApp:</strong> <a href="tel:254111457171" style="color:#10b981;">254111457171</a></p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:reytechfix@gmail.com" style="color:#10b981;">reytechfix@gmail.com</a></p>
             </div>
+            <button class="close" onclick="hideContactModal()">Close</button>
         </div>
     </div>
 
@@ -1060,18 +966,10 @@
         </div>
     </div>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
     <script>
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-        });
-
         // Stars Generation
         function createStars() {
             const starsContainer = document.getElementById('stars');
@@ -1086,67 +984,7 @@
                 starsContainer.appendChild(star);
             }
         }
-
-        // Particles Generation
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.width = Math.random() * 8 + 2 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.animationDuration = Math.random() * 10 + 5 + 's';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
         createStars();
-        createParticles();
-
-        // Number Counter Animation
-        const counters = document.querySelectorAll('.stat-number');
-        const speed = 200;
-
-        counters.forEach(counter => {
-            const updateCount = () => {
-                const target = parseInt(counter.getAttribute('data-count'));
-                const count = parseInt(counter.innerText);
-                const increment = target / speed;
-                
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + increment);
-                    setTimeout(updateCount, 20);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-            updateCount();
-        });
-
-        // Scroll Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.feature-card, .pricing-card, .stat-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
 
         // Navbar Scroll Effect
         window.addEventListener('scroll', () => {
@@ -1174,15 +1012,26 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Modal Functions
-        function showLoginModal() {
-            document.getElementById('loginModal').style.display = 'flex';
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.background = isError ? '#ef4444' : '#10b981';
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
         }
 
-        function hideLoginModal() {
-            document.getElementById('loginModal').style.display = 'none';
+        // Contact Modal
+        function showContactModal() {
+            document.getElementById('contactModal').style.display = 'flex';
         }
 
+        function hideContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // Payment Modal
         function showPayment(plan) {
             let content = '';
             if (plan === 'basic') {
@@ -1197,6 +1046,7 @@
                     <div style="background:#0f172a; padding: 15px; border-radius: 12px; margin-top: 20px;">
                         <p>Reference: <strong>ET + Your Phone Number</strong></p>
                     </div>
+                    <button onclick="window.location.href='https://wa.me/254111457171'" style="background:#25D366; margin-top:15px;">📱 Contact on WhatsApp</button>
                 `;
             } else if (plan === 'pro') {
                 content = `
@@ -1210,6 +1060,7 @@
                     <div style="background:#0f172a; padding: 15px; border-radius: 12px; margin-top: 20px;">
                         <p>Reference: <strong>ET + Your Phone Number</strong></p>
                     </div>
+                    <button onclick="window.location.href='https://wa.me/254111457171'" style="background:#25D366; margin-top:15px;">📱 Contact on WhatsApp</button>
                 `;
             } else {
                 content = `
@@ -1223,6 +1074,7 @@
                     <div style="background:#0f172a; padding: 15px; border-radius: 12px; margin-top: 20px;">
                         <p>Reference: <strong>ET + Your Phone Number</strong></p>
                     </div>
+                    <button onclick="window.location.href='https://wa.me/254111457171'" style="background:#25D366; margin-top:15px;">📱 Contact on WhatsApp</button>
                 `;
             }
             document.getElementById('paymentContent').innerHTML = content;
@@ -1231,19 +1083,6 @@
 
         function hidePaymentModal() {
             document.getElementById('paymentModal').style.display = 'none';
-        }
-
-        function doLogin() {
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            if (username === 'REYTECHFX' && password === 'valentina241') {
-                alert('✅ Login successful! Welcome Admin!');
-                hideLoginModal();
-                // Redirect to admin panel or show admin features
-            } else {
-                alert('❌ Invalid credentials. Contact admin for license.');
-            }
         }
 
         // Smooth scroll for anchor links
