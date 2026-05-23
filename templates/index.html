@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EASY TOOL - MDM Bypass Tool | REYTECHFX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>EASY TOOL - Professional MDM Bypass Tool | REYTECHFX</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,11 +13,30 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-dark: #050505;
+            --bg-card: rgba(30, 41, 59, 0.4);
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --text: #ffffff;
+            --text-secondary: #9ca3af;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background: #050505;
-            color: #ffffff;
+            background: var(--bg-dark);
+            color: var(--text);
             overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.light-mode {
+            --bg-dark: #f0fdf4;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --text: #1f2937;
+            --text-secondary: #4b5563;
         }
 
         .bg-animation {
@@ -28,6 +47,10 @@
             height: 100%;
             z-index: -2;
             background: radial-gradient(circle at 20% 50%, #0a0a0a 0%, #050505 100%);
+        }
+
+        body.light-mode .bg-animation {
+            background: radial-gradient(circle at 20% 50%, #e0f2fe 0%, #f0fdf4 100%);
         }
 
         .stars {
@@ -64,12 +87,18 @@
             transition: all 0.3s ease;
         }
 
+        body.light-mode .navbar {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
         .nav-container {
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo {
@@ -81,7 +110,7 @@
         .logo-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 15px;
             display: flex;
             align-items: center;
@@ -97,7 +126,7 @@
             font-size: 28px;
             font-weight: 800;
             font-family: 'Orbitron', monospace;
-            background: linear-gradient(135deg, #10b981, #34d399);
+            background: linear-gradient(135deg, var(--primary), #34d399);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -105,18 +134,19 @@
 
         .logo-sub {
             font-size: 10px;
-            color: #9ca3af;
+            color: var(--text-secondary);
             letter-spacing: 2px;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 30px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
-            color: #ffffff;
+            color: var(--text);
             text-decoration: none;
             transition: all 0.3s;
             font-weight: 500;
@@ -124,11 +154,20 @@
         }
 
         .nav-links a:hover {
-            color: #10b981;
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: var(--text);
         }
 
         .nav-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             padding: 12px 30px;
             border-radius: 50px;
             font-weight: 600;
@@ -136,11 +175,6 @@
             cursor: pointer;
             transition: all 0.3s;
             color: white;
-        }
-
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
         }
 
         .hero {
@@ -166,6 +200,15 @@
             margin-bottom: 30px;
         }
 
+        .live-counter {
+            background: rgba(16, 185, 129, 0.2);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
         .hero h1 {
             font-size: 80px;
             font-weight: 800;
@@ -174,14 +217,14 @@
         }
 
         .hero h1 .easy {
-            background: linear-gradient(135deg, #ffffff, #10b981);
+            background: linear-gradient(135deg, #ffffff, var(--primary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
         .hero h1 .tool {
-            background: linear-gradient(135deg, #10b981, #34d399);
+            background: linear-gradient(135deg, var(--primary), #34d399);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -189,7 +232,7 @@
 
         .hero p {
             font-size: 20px;
-            color: #9ca3af;
+            color: var(--text-secondary);
             margin-bottom: 40px;
         }
 
@@ -201,10 +244,9 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             padding: 16px 45px;
             border-radius: 50px;
-            text-decoration: none;
             color: white;
             font-weight: 600;
             transition: all 0.3s;
@@ -225,19 +267,46 @@
             backdrop-filter: blur(10px);
             padding: 16px 45px;
             border-radius: 50px;
-            text-decoration: none;
-            color: white;
+            color: var(--text);
             font-weight: 600;
             transition: all 0.3s;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
             cursor: pointer;
         }
 
-        .features {
-            padding: 100px 20px;
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: -80px auto 80px;
+            padding: 0 20px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 35px;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Orbitron', monospace;
+        }
+
+        .features, .pricing, .faq, .blog, .contact-section {
+            padding: 80px 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -251,10 +320,7 @@
         }
 
         .section-title span {
-            background: linear-gradient(135deg, #10b981, #34d399);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--primary);
         }
 
         .features-grid {
@@ -263,8 +329,8 @@
             gap: 30px;
         }
 
-        .feature-card {
-            background: rgba(30, 41, 59, 0.3);
+        .feature-card, .faq-card, .blog-card, .pricing-card {
+            background: var(--bg-card);
             backdrop-filter: blur(20px);
             border-radius: 25px;
             padding: 35px;
@@ -272,15 +338,15 @@
             transition: all 0.4s;
         }
 
-        .feature-card:hover {
+        .feature-card:hover, .faq-card:hover, .blog-card:hover, .pricing-card:hover {
             transform: translateY(-10px);
-            border-color: #10b981;
+            border-color: var(--primary);
         }
 
         .feature-icon {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -289,59 +355,19 @@
             margin-bottom: 25px;
         }
 
-        .feature-card h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .feature-list li {
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .feature-list li i {
-            color: #10b981;
-        }
-
-        .pricing {
-            padding: 100px 20px;
-            background: rgba(16, 185, 129, 0.03);
-        }
-
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
-            max-width: 1300px;
-            margin: 0 auto;
         }
 
         .pricing-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px 40px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s;
             position: relative;
         }
 
-        .pricing-card:hover {
-            transform: translateY(-15px);
-            border-color: #10b981;
-        }
-
         .pricing-card.popular {
-            border: 2px solid #f59e0b;
+            border: 2px solid var(--accent);
             transform: scale(1.05);
         }
 
@@ -350,7 +376,7 @@
             top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, #f59e0b, #d97706);
+            background: var(--accent);
             padding: 6px 25px;
             border-radius: 50px;
             font-size: 13px;
@@ -362,33 +388,161 @@
             font-size: 56px;
             font-weight: 800;
             margin: 25px 0;
-            color: #10b981;
-            font-family: 'Orbitron', monospace;
+            color: var(--primary);
         }
 
-        .price span {
-            font-size: 16px;
-            color: #9ca3af;
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
         }
 
-        .pricing-features {
-            list-style: none;
-            margin: 30px 0;
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
         }
 
-        .pricing-features li {
-            padding: 12px 0;
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        /* Video Tutorials Section */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s;
+            text-align: center;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .video-card iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .video-card h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .video-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .video-card small {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .currency-selector {
+            background: var(--bg-card);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .currency-selector select {
+            background: var(--bg-dark);
+            color: var(--text);
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--primary);
+            cursor: pointer;
+        }
+
+        .ticket-form, .profile-form, .review-form {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 25px;
+            margin-top: 30px;
+        }
+
+        .ticket-form input, .profile-form input, .review-form input, .review-form textarea, .ticket-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            color: var(--text);
+        }
+
+        .tickets-list, .reviews-list {
+            margin-top: 30px;
+        }
+
+        .ticket-item, .review-item {
+            background: var(--bg-card);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .rating-stars i {
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 24px;
+            margin-right: 5px;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
         }
 
         .footer {
             background: #0a0a0a;
             padding: 60px 20px 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        body.light-mode .footer {
+            background: #e5e7eb;
         }
 
         .footer-content {
@@ -402,21 +556,13 @@
         .footer-section h4 {
             font-size: 20px;
             margin-bottom: 20px;
-            color: #10b981;
+            color: var(--primary);
         }
 
-        .footer-section p {
-            color: #9ca3af;
-            line-height: 1.8;
-        }
-
-        .footer-section a {
-            color: #9ca3af;
+        .footer-section p, .footer-section a {
+            color: var(--text-secondary);
             text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            color: #10b981;
+            line-height: 1.8;
         }
 
         .social-links {
@@ -434,29 +580,20 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
-            font-size: 20px;
         }
 
         .social-links a:hover {
-            background: #10b981;
+            background: var(--primary);
             transform: translateY(-5px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #9ca3af;
         }
 
         .scroll-top {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 55px;
-            height: 55px;
-            background: #10b981;
+            bottom: 150px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -468,7 +605,6 @@
             z-index: 100;
             border: none;
             color: white;
-            font-size: 20px;
         }
 
         .scroll-top.show {
@@ -476,84 +612,6 @@
             visibility: visible;
         }
 
-        /* Dashboard Styles */
-        .dashboard {
-            display: none;
-            max-width: 1400px;
-            margin: 120px auto 60px;
-            padding: 0 20px;
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .welcome-card {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            padding: 30px;
-            border-radius: 25px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(16,185,129,0.2);
-        }
-
-        .time-card {
-            background: rgba(16,185,129,0.1);
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
-        }
-
-        .time-card .days {
-            font-size: 48px;
-            font-weight: 800;
-            color: #10b981;
-        }
-
-        .devices-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .device-card {
-            background: rgba(30, 41, 59, 0.5);
-            border-radius: 20px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
-        }
-
-        .device-card:hover {
-            transform: translateY(-5px);
-            border-color: #10b981;
-        }
-
-        .device-card img {
-            width: 100%;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .status-success {
-            background: #10b981;
-            color: white;
-        }
-
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -566,6 +624,7 @@
             z-index: 2000;
             justify-content: center;
             align-items: center;
+            overflow-y: auto;
         }
 
         .modal-content {
@@ -574,44 +633,17 @@
             border-radius: 30px;
             width: 500px;
             max-width: 90%;
-            border: 1px solid rgba(16,185,129,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
-        .modal-content h2 {
-            color: #10b981;
-            margin-bottom: 30px;
-            text-align: center;
+        .dashboard {
+            display: none;
+            max-width: 1400px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
         }
 
-        .modal-content input, .modal-content select, .modal-content textarea {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 12px;
-            color: white;
-            font-size: 16px;
-        }
-
-        .modal-content button {
-            width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            background: #10b981;
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .modal-content .close {
-            background: #ef4444;
-            margin-top: 10px;
-        }
-
-        /* Admin Panel */
         .admin-panel {
             display: none;
             margin-top: 30px;
@@ -622,20 +654,21 @@
             gap: 10px;
             margin-bottom: 20px;
             border-bottom: 1px solid #334155;
+            flex-wrap: wrap;
         }
 
         .admin-tab {
             background: none;
             border: none;
-            color: #9ca3af;
+            color: var(--text-secondary);
             padding: 12px 25px;
             cursor: pointer;
             font-weight: 600;
         }
 
         .admin-tab.active {
-            color: #10b981;
-            border-bottom: 2px solid #10b981;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
         }
 
         .users-table {
@@ -651,10 +684,6 @@
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #334155;
-        }
-
-        .users-table th {
-            color: #10b981;
         }
 
         .approve-btn, .reject-btn, .extend-btn, .view-devices-btn {
@@ -676,7 +705,7 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: #10b981;
+            background: var(--primary);
             color: white;
             padding: 12px 25px;
             border-radius: 50px;
@@ -686,10 +715,12 @@
 
         @media (max-width: 768px) {
             .navbar { padding: 15px 20px; }
-            .nav-links { display: none; }
             .hero h1 { font-size: 40px; }
             .section-title { font-size: 32px; }
             .pricing-card.popular { transform: scale(1); }
+            .nav-links { display: none; }
+            .video-grid { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -697,6 +728,7 @@
     <div class="bg-animation"></div>
     <div class="stars" id="stars"></div>
 
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
@@ -707,10 +739,14 @@
                 <a onclick="showSection('home')">Home</a>
                 <a onclick="showSection('features')">Features</a>
                 <a onclick="showSection('pricing')">Pricing</a>
+                <a onclick="showSection('faq')">FAQ</a>
+                <a onclick="showSection('blog')">Blog</a>
+                <a onclick="showSection('tutorials')">Tutorials</a>
                 <a onclick="showSection('dashboard')" id="dashboardLink" style="display:none;">Dashboard</a>
                 <a onclick="showSection('contact')">Contact</a>
+                <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
                 <button class="nav-btn" id="authBtn" onclick="showLoginModal()">Login / Register</button>
-                <span id="userInfo" style="color:#10b981;"></span>
+                <span id="userInfo" style="color:var(--primary);"></span>
                 <button onclick="logout()" id="logoutBtn" style="display:none; background:#ef4444; border:none; padding:8px 15px; border-radius:8px; color:white; cursor:pointer;">Logout</button>
             </div>
         </div>
@@ -721,714 +757,248 @@
         <div class="hero-content">
             <div class="hero-badge"><i class="fas fa-bolt"></i> Professional MDM Bypass Tool</div>
             <h1><span class="easy">EASY</span><span class="tool">TOOL</span></h1>
-            <p>The most powerful MDM Bypass Tool for Samsung, Tecno, Infinix, Itel, Neon Ray and more.<br>Remove enterprise locks in minutes with 98% success rate.</p>
+            <p>The most powerful MDM Bypass Tool for Samsung, Tecno, Infinix, Itel, Neon Ray and more. Remove enterprise locks in minutes with 98% success rate.</p>
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="showSection('pricing')"><i class="fas fa-shopping-cart"></i> Buy License</button>
                 <button class="btn-secondary" onclick="showLoginModal()"><i class="fas fa-user"></i> Login / Register</button>
             </div>
+            <div class="live-counter">
+                <i class="fas fa-chart-line"></i> <span id="liveDeviceCount">0</span>+ devices unlocked!
+            </div>
         </div>
     </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat-card"><div class="stat-number" id="statDevices">0</div><div class="stat-label">Devices Unlocked</div></div>
+        <div class="stat-card"><div class="stat-number" id="statUsers">0</div><div class="stat-label">Active Users</div></div>
+        <div class="stat-card"><div class="stat-number">98<span style="font-size:32px;">%</span></div><div class="stat-label">Success Rate</div></div>
+        <div class="stat-card"><div class="stat-number" id="statRevenue">$0</div><div class="stat-label">Revenue</div></div>
+    </div>
 
     <!-- Features Section -->
     <section id="featuresSection" class="features" style="display:none;">
         <h2 class="section-title">Powerful <span>Features</span></h2>
         <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fab fa-samsung"></i></div>
-                <h3>Samsung MDM Bypass</h3>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> ALL SAMSUNG Method</li>
-                    <li><i class="fas fa-check"></i> CLASSIC Method</li>
-                    <li><i class="fas fa-check"></i> PREMIUM Method</li>
-                    <li><i class="fas fa-check"></i> UNLIMITED Method</li>
-                    <li><i class="fas fa-check"></i> OLD Android (9-10)</li>
-                    <li><i class="fas fa-check"></i> UNIVERSAL Method</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h3>Transsion Devices</h3>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> TECNO MDM Disable</li>
-                    <li><i class="fas fa-check"></i> INFINIX MDM Disable</li>
-                    <li><i class="fas fa-check"></i> ITEL MDM Disable</li>
-                    <li><i class="fas fa-check"></i> Advanced Bypass</li>
-                    <li><i class="fas fa-check"></i> Complete Clean Method</li>
-                    <li><i class="fas fa-check"></i> GMS Reset</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-tools"></i></div>
-                <h3>Advanced Tools</h3>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> Bin File Patcher</li>
-                    <li><i class="fas fa-check"></i> Neon Ray Support</li>
-                    <li><i class="fas fa-check"></i> ADB Integration</li>
-                    <li><i class="fas fa-check"></i> Session Tracking</li>
-                    <li><i class="fas fa-check"></i> PC Binding</li>
-                    <li><i class="fas fa-check"></i> Multi-Theme</li>
-                </ul>
-            </div>
+            <div class="feature-card"><div class="feature-icon"><i class="fab fa-samsung"></i></div><h3>Samsung MDM Bypass</h3><ul class="feature-list"><li><i class="fas fa-check"></i> ALL SAMSUNG Method</li><li><i class="fas fa-check"></i> CLASSIC Method</li><li><i class="fas fa-check"></i> PREMIUM Method</li><li><i class="fas fa-check"></i> UNLIMITED Method</li><li><i class="fas fa-check"></i> OLD Android (9-10)</li><li><i class="fas fa-check"></i> UNIVERSAL Method</li></ul></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-mobile-alt"></i></div><h3>Transsion Devices</h3><ul class="feature-list"><li><i class="fas fa-check"></i> TECNO MDM Disable</li><li><i class="fas fa-check"></i> INFINIX MDM Disable</li><li><i class="fas fa-check"></i> ITEL MDM Disable</li><li><i class="fas fa-check"></i> Advanced Bypass</li><li><i class="fas fa-check"></i> Complete Clean Method</li><li><i class="fas fa-check"></i> GMS Reset</li></ul></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-tools"></i></div><h3>Advanced Tools</h3><ul class="feature-list"><li><i class="fas fa-check"></i> Bin File Patcher</li><li><i class="fas fa-check"></i> Neon Ray Support</li><li><i class="fas fa-check"></i> ADB Integration</li><li><i class="fas fa-check"></i> Session Tracking</li><li><i class="fas fa-check"></i> PC Binding</li><li><i class="fas fa-check"></i> Multi-Theme</li></ul></div>
         </div>
     </section>
 
     <!-- Pricing Section -->
     <section id="pricingSection" class="pricing" style="display:none;">
         <h2 class="section-title">Choose Your <span>Plan</span></h2>
+        <div class="currency-selector"><select id="currencySelect" onchange="convertPrices()"><option value="USD">USD ($)</option><option value="KES">KES (KSh)</option><option value="TZS">TZS (TSh)</option><option value="UGX">UGX (USh)</option></select></div>
         <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>Basic</h3>
-                <div class="price">$20<span>/3 Months</span></div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Samsung MDM Bypass</li>
-                    <li><i class="fas fa-check"></i> Basic Support</li>
-                    <li><i class="fas fa-check"></i> 3 Months License</li>
-                    <li><i class="fas fa-check"></i> Email Support</li>
-                </ul>
-                <button class="btn-primary" onclick="showPayment('basic')">Get Started</button>
-            </div>
-            <div class="pricing-card popular">
-                <div class="popular-badge">🔥 MOST POPULAR</div>
-                <h3>Professional</h3>
-                <div class="price">$30<span>/6 Months</span></div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> All Features</li>
-                    <li><i class="fas fa-check"></i> Priority Support</li>
-                    <li><i class="fas fa-check"></i> 6 Months License</li>
-                    <li><i class="fas fa-check"></i> WhatsApp Support</li>
-                </ul>
-                <button class="btn-primary" onclick="showPayment('pro')">Get Started</button>
-            </div>
-            <div class="pricing-card">
-                <h3>Enterprise</h3>
-                <div class="price">$40<span>/12 Months</span></div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> All Features</li>
-                    <li><i class="fas fa-check"></i> 24/7 Priority Support</li>
-                    <li><i class="fas fa-check"></i> 12 Months License</li>
-                    <li><i class="fas fa-check"></i> Phone & WhatsApp</li>
-                </ul>
-                <button class="btn-primary" onclick="showPayment('enterprise')">Get Started</button>
-            </div>
+            <div class="pricing-card"><h3>Basic</h3><div class="price" data-usd="20">$20<span>/3 Months</span></div><ul class="pricing-features"><li><i class="fas fa-check"></i> Samsung MDM Bypass</li><li><i class="fas fa-check"></i> Basic Support</li><li><i class="fas fa-check"></i> 3 Months License</li></ul><button class="btn-primary" onclick="showPayment('basic')">Get Started</button></div>
+            <div class="pricing-card popular"><div class="popular-badge">🔥 MOST POPULAR</div><h3>Professional</h3><div class="price" data-usd="30">$30<span>/6 Months</span></div><ul class="pricing-features"><li><i class="fas fa-check"></i> All Features</li><li><i class="fas fa-check"></i> Priority Support</li><li><i class="fas fa-check"></i> 6 Months License</li><li><i class="fas fa-check"></i> WhatsApp Support</li></ul><button class="btn-primary" onclick="showPayment('pro')">Get Started</button></div>
+            <div class="pricing-card"><h3>Enterprise</h3><div class="price" data-usd="40">$40<span>/12 Months</span></div><ul class="pricing-features"><li><i class="fas fa-check"></i> All Features</li><li><i class="fas fa-check"></i> 24/7 Priority Support</li><li><i class="fas fa-check"></i> 12 Months License</li><li><i class="fas fa-check"></i> Phone Support</li></ul><button class="btn-primary" onclick="showPayment('enterprise')">Get Started</button></div>
         </div>
     </section>
 
-    <!-- Dashboard Section -->
-    <div id="dashboardSection" class="dashboard" style="display:none;">
-        <div class="welcome-card">
-            <h2>Welcome, <span id="dashboardUsername"></span>!</h2>
-            <p>Manage your devices and track your license status.</p>
+    <!-- FAQ Section -->
+    <section id="faqSection" class="faq" style="display:none;">
+        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+        <div class="faq-grid">
+            <div class="faq-card"><div class="faq-question"><i class="fas fa-question-circle"></i> What is MDM bypass?</div><p>MDM bypass removes enterprise locks from Android devices, allowing you to use them as normal personal devices.</p></div>
+            <div class="faq-card"><div class="faq-question"><i class="fas fa-question-circle"></i> Is it safe?</div><p>Yes, our tool is 100% safe and tested on thousands of devices with 98% success rate.</p></div>
+            <div class="faq-card"><div class="faq-question"><i class="fas fa-question-circle"></i> How long does it take?</div><p>The bypass process takes 2-5 minutes depending on your device model.</p></div>
+            <div class="faq-card"><div class="faq-question"><i class="fas fa-question-circle"></i> Do I need technical skills?</div><p>No, EASY TOOL is designed to be user-friendly with one-click solutions.</p></div>
+            <div class="faq-card"><div class="faq-question"><i class="fas fa-question-circle"></i> What devices are supported?</div><p>Samsung, Tecno, Infinix, Itel, Neon Ray, and more Android devices.</p></div>
+            <div class="faq-card"><div class="faq-question"><i class="fas fa-question-circle"></i> How to get support?</div><p>Contact us via WhatsApp, Email, or raise a support ticket on your dashboard.</p></div>
         </div>
-        
-        <div class="dashboard-header">
-            <div class="time-card">
-                <div class="days" id="timeRemaining">-</div>
-                <p>License Time Remaining</p>
-            </div>
-            <div>
-                <button class="btn-primary" onclick="showAddDeviceModal()"><i class="fas fa-plus"></i> Add Device</button>
-            </div>
-        </div>
+    </section>
 
-        <h3><i class="fas fa-mobile-alt"></i> Your Devices</h3>
-        <div id="devicesList" class="devices-grid">
-            <p>Loading devices...</p>
+    <!-- Blog Section -->
+    <section id="blogSection" class="blog" style="display:none;">
+        <h2 class="section-title">Latest <span>News</span></h2>
+        <div class="blog-grid">
+            <div class="blog-card"><div class="blog-date">May 23, 2025</div><h3>EASY TOOL v0.02 Released!</h3><p>New features added including Samsung Unlimited method and faster bin patcher.</p><button class="btn-primary" style="margin-top:15px; padding:10px 20px;" onclick="showToast('Coming soon!')">Read More</button></div>
+            <div class="blog-card"><div class="blog-date">May 20, 2025</div><h3>Now Supporting Android 14</h3><p>EASY TOOL now supports the latest Android 14 devices from Samsung and Transsion.</p><button class="btn-primary" style="margin-top:15px; padding:10px 20px;" onclick="showToast('Coming soon!')">Read More</button></div>
+            <div class="blog-card"><div class="blog-date">May 15, 2025</div><h3>50,000 Devices Unlocked!</h3><p>We've reached a milestone of 50,000 successfully unlocked devices. Thank you for trusting EASY TOOL!</p><button class="btn-primary" style="margin-top:15px; padding:10px 20px;" onclick="showToast('Coming soon!')">Read More</button></div>
         </div>
+    </section>
+
+    <!-- Tutorials Section with YOUR VIDEOS -->
+    <section id="tutorialsSection" class="features" style="display:none;">
+        <h2 class="section-title">Video <span>Tutorials</span></h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/AUC4h318jTo" 
+                        title="Samsung A06 U10 MDM Bypass" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                </iframe>
+                <h4>Samsung A06 U10 MDM Bypass</h4>
+                <p>Step by step guide for Samsung A06 and U10 devices using Easy Tool</p>
+                <small>View Count: 158+ | Apr 18, 2026</small>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/8-LP86Jn2-o" 
+                        title="LEVEL UP WITH EASY TOOL" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                </iframe>
+                <h4>LEVEL UP WITH EASY TOOL</h4>
+                <p>Learn advanced techniques to level up your MDM bypass skills</p>
+                <small>View Count: 31+ | Apr 18, 2026</small>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/UibBCggdr-c" 
+                        title="TECNO KM5 MDM BYPASS" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                </iframe>
+                <h4>TECNO KM5 MDM BYPASS</h4>
+                <p>Complete MDM bypass guide for Tecno KM5 devices using Easy Tool</p>
+                <small>View Count: 117+ | May 12, 2026</small>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:30px;">
+            <a href="https://youtube.com/@easytoolteam" target="_blank" class="btn-primary">
+                <i class="fab fa-youtube"></i> Watch More Tutorials on YouTube
+            </a>
+        </div>
+    </section>
+
+    <!-- Dashboard -->
+    <div id="dashboardSection" class="dashboard">
+        <div class="welcome-card" style="background:linear-gradient(135deg,#1e293b,#0f172a); padding:30px; border-radius:25px; margin-bottom:30px;">
+            <h2>Welcome, <span id="dashboardUsername"></span>!</h2>
+            <p>Manage your devices, track license, and get support.</p>
+        </div>
+        <div class="dashboard-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; margin-bottom:30px;">
+            <div style="background:rgba(16,185,129,0.1); padding:20px; border-radius:20px; text-align:center;"><div class="stat-number" id="timeRemaining">-</div><p>License Time Remaining</p></div>
+            <div><button class="btn-primary" onclick="showAddDeviceModal()"><i class="fas fa-plus"></i> Add Device</button></div>
+        </div>
+        <h3><i class="fas fa-mobile-alt"></i> Your Devices</h3>
+        <div id="devicesList" class="features-grid"><p>Loading devices...</p></div>
+        <div class="profile-form" style="margin-top:40px;"><h3><i class="fas fa-user-edit"></i> Edit Profile</h3><input type="email" id="profileEmail" placeholder="New Email"><input type="password" id="profileCurrentPassword" placeholder="Current Password"><input type="password" id="profileNewPassword" placeholder="New Password"><input type="password" id="profileConfirmPassword" placeholder="Confirm New Password"><button class="btn-primary" onclick="updateProfile()">Update Profile</button><div id="profileMessage"></div></div>
+        <div class="review-form" style="margin-top:40px;"><h3><i class="fas fa-star"></i> Leave a Review</h3><div class="rating-stars" id="ratingStars"><i class="fas fa-star" data-rating="1"></i><i class="fas fa-star" data-rating="2"></i><i class="fas fa-star" data-rating="3"></i><i class="fas fa-star" data-rating="4"></i><i class="fas fa-star" data-rating="5"></i></div><input type="hidden" id="selectedRating" value="0"><textarea id="reviewComment" rows="3" placeholder="Write your review..."></textarea><button class="btn-primary" onclick="submitReview()">Submit Review</button><div id="reviewMessage"></div></div>
+        <div class="ticket-form" style="margin-top:40px;"><h3><i class="fas fa-ticket-alt"></i> Support Ticket</h3><input type="text" id="ticketSubject" placeholder="Subject"><textarea id="ticketMessage" rows="3" placeholder="Describe your issue..."></textarea><button class="btn-primary" onclick="submitTicket()">Submit Ticket</button><div id="ticketMessageDiv"></div></div>
+        <div id="ticketsList" class="tickets-list" style="margin-top:30px;"><h4>Your Tickets</h4><div id="userTickets"></div></div>
+        <div id="reviewsList" class="reviews-list" style="margin-top:30px;"><h4>User Reviews</h4><div id="allReviews"></div></div>
     </div>
 
     <!-- Contact Section -->
-    <section id="contactSection" class="features" style="display:none;">
+    <section id="contactSection" class="contact-section" style="display:none;">
         <h2 class="section-title">Get in <span>Touch</span></h2>
         <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-phone-alt"></i></div>
-                <h3>Call / WhatsApp</h3>
-                <p><a href="tel:254111457171" style="color:#10b981;">+254 111 457171</a></p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-envelope"></i></div>
-                <h3>Email</h3>
-                <p><a href="mailto:reytechfix@gmail.com" style="color:#10b981;">reytechfix@gmail.com</a></p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fab fa-whatsapp"></i></div>
-                <h3>WhatsApp Chat</h3>
-                <p><a href="https://wa.me/254111457171" style="color:#10b981;">Click to Chat</a></p>
-            </div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-phone-alt"></i></div><h3>Call / WhatsApp</h3><p><a href="tel:254111457171" style="color:var(--primary);">+254 111 457171</a></p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-envelope"></i></div><h3>Email</h3><p><a href="mailto:reytechfix@gmail.com" style="color:var(--primary);">reytechfix@gmail.com</a></p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fab fa-whatsapp"></i></div><h3>WhatsApp Chat</h3><p><a href="https://wa.me/254111457171" style="color:var(--primary);">Click to Chat</a></p></div>
         </div>
     </section>
 
     <!-- Admin Panel -->
-    <div id="adminPanel" class="admin-panel" style="display:none; max-width:1400px; margin:20px auto; padding:0 20px;">
-        <h2 style="color:#f59e0b;"><i class="fas fa-crown"></i> Admin Dashboard</h2>
-        <div class="admin-tabs">
-            <button class="admin-tab active" onclick="switchAdminTab('pending')">⏳ Pending Approvals</button>
-            <button class="admin-tab" onclick="switchAdminTab('users')">👥 All Users</button>
-        </div>
-        <div id="pendingPanel" class="users-table"><p>Loading...</p></div>
-        <div id="usersPanel" class="users-table" style="display:none;"><p>Loading...</p></div>
+    <div id="adminPanel" class="admin-panel"><h2 style="color:var(--accent);"><i class="fas fa-crown"></i> Admin Dashboard</h2><div class="admin-tabs"><button class="admin-tab active" onclick="switchAdminTab('stats')">📊 Statistics</button><button class="admin-tab" onclick="switchAdminTab('pending')">⏳ Pending</button><button class="admin-tab" onclick="switchAdminTab('users')">👥 Users</button><button class="admin-tab" onclick="switchAdminTab('tickets')">🎫 Tickets</button><button class="admin-tab" onclick="switchAdminTab('reviews')">⭐ Reviews</button><button class="admin-tab" onclick="switchAdminTab('export')">📥 Export</button></div>
+        <div id="statsPanel"><h3>Statistics</h3><div id="adminStats"></div></div>
+        <div id="pendingPanel" style="display:none;"><h3>Pending Approvals</h3><div class="users-table" id="pendingTable"></div></div>
+        <div id="usersPanel" style="display:none;"><h3>All Users</h3><div class="users-table" id="usersTable"></div></div>
+        <div id="ticketsPanel" style="display:none;"><h3>Support Tickets</h3><div id="adminTickets"></div></div>
+        <div id="reviewsPanel" style="display:none;"><h3>User Reviews</h3><div id="adminReviews"></div></div>
+        <div id="exportPanel" style="display:none;"><h3>Export Data</h3><button class="btn-primary" onclick="exportData('users')">Export Users (CSV)</button><button class="btn-primary" onclick="exportData('devices')">Export Devices (CSV)</button><button class="btn-primary" onclick="sendBulkEmail()">Send Bulk Email</button><div id="exportMessage"></div></div>
     </div>
 
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-section">
-                <h4>EASY TOOL</h4>
-                <p>Professional MDM Bypass Tool for Android devices. Created by REYTECHFX.</p>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/reytechfx" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://youtube.com/@easytoolteam" target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a href="https://t.me/reytechfx" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="https://wa.me/254111457171" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <p><a onclick="showSection('home')">Home</a></p>
-                <p><a onclick="showSection('features')">Features</a></p>
-                <p><a onclick="showSection('pricing')">Pricing</a></p>
-                <p><a onclick="showSection('contact')">Contact</a></p>
-            </div>
-            <div class="footer-section">
-                <h4>Payment Methods</h4>
-                <p>M-Pesa: 0111457171</p>
-                <p>SendWave: 0117219996</p>
-                <p>Visa/MasterCard</p>
-            </div>
+            <div class="footer-section"><h4>EASY TOOL</h4><p>Professional MDM Bypass Tool for Android devices. Created by REYTECHFX.</p><div class="social-links"><a href="https://www.facebook.com/reytechfx" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="https://youtube.com/@easytoolteam" target="_blank"><i class="fab fa-youtube"></i></a><a href="https://t.me/reytechfx" target="_blank"><i class="fab fa-telegram"></i></a><a href="https://wa.me/254111457171" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div>
+            <div class="footer-section"><h4>Quick Links</h4><p><a onclick="showSection('home')">Home</a></p><p><a onclick="showSection('features')">Features</a></p><p><a onclick="showSection('pricing')">Pricing</a></p><p><a onclick="showSection('faq')">FAQ</a></p><p><a onclick="showSection('blog')">Blog</a></p><p><a onclick="showSection('tutorials')">Tutorials</a></p></div>
+            <div class="footer-section"><h4>Contact</h4><p><i class="fas fa-phone"></i> 254111457171</p><p><i class="fas fa-envelope"></i> reytechfix@gmail.com</p></div>
+            <div class="footer-section"><h4>Payment Methods</h4><p>M-Pesa: 0111457171</p><p>SendWave: 0117219996</p><p>Visa/MasterCard</p></div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 EASY TOOL | Created by <strong>REYTECHFX</strong></p>
-        </div>
+        <div class="footer-bottom"><p>© 2025 EASY TOOL | Created by <strong>REYTECHFX</strong></p></div>
     </footer>
 
+    <!-- Floating WhatsApp -->
+    <div class="whatsapp-float" onclick="window.open('https://wa.me/254111457171','_blank')"><i class="fab fa-whatsapp" style="font-size:30px; color:white;"></i></div>
     <button class="scroll-top" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- Login/Register Modal -->
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <div style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #334155;">
-                <button onclick="switchAuthTab('login')" id="loginTabBtn" style="background:none; border:none; color:#10b981; padding:10px 20px; cursor:pointer; font-weight:bold; border-bottom:2px solid #10b981;">Login</button>
-                <button onclick="switchAuthTab('register')" id="registerTabBtn" style="background:none; border:none; color:#9ca3af; padding:10px 20px; cursor:pointer; font-weight:bold;">Register</button>
-            </div>
-            <div id="loginForm">
-                <h2>🔐 Login</h2>
-                <input type="text" id="loginUsername" placeholder="Username">
-                <input type="password" id="loginPassword" placeholder="Password">
-                <button onclick="doLogin()">Login</button>
-                <div id="loginError" style="color:#ef4444; margin-top:10px;"></div>
-            </div>
-            <div id="registerForm" style="display:none;">
-                <h2>📝 Register</h2>
-                <input type="text" id="regUsername" placeholder="Username (min 3 chars)">
-                <input type="password" id="regPassword" placeholder="Password (min 4 chars)">
-                <input type="password" id="regConfirmPassword" placeholder="Confirm Password">
-                <input type="email" id="regEmail" placeholder="Email Address">
-                <button onclick="doRegister()">Register</button>
-                <div id="regError" style="color:#ef4444; margin-top:10px;"></div>
-                <p style="font-size:12px; margin-top:15px;">After registration, admin must approve your account.</p>
-            </div>
-            <button class="close" onclick="hideAuthModal()">Close</button>
-        </div>
-    </div>
+    <!-- Modals -->
+    <div id="authModal" class="modal"><div class="modal-content"><div style="display:flex; gap:10px; margin-bottom:20px;"><button onclick="switchAuthTab('login')" id="loginTabBtn" style="background:none; border:none; color:var(--primary); padding:10px 20px; cursor:pointer; font-weight:bold; border-bottom:2px solid var(--primary);">Login</button><button onclick="switchAuthTab('register')" id="registerTabBtn" style="background:none; border:none; color:var(--text-secondary); padding:10px 20px; cursor:pointer; font-weight:bold;">Register</button><button onclick="switchAuthTab('forgot')" id="forgotTabBtn" style="background:none; border:none; color:var(--text-secondary); padding:10px 20px; cursor:pointer; font-weight:bold;">Forgot Password</button></div>
+        <div id="loginForm"><h2>🔐 Login</h2><input type="text" id="loginUsername" placeholder="Username"><input type="password" id="loginPassword" placeholder="Password"><button onclick="doLogin()">Login</button><div id="loginError" style="color:#ef4444; margin-top:10px;"></div></div>
+        <div id="registerForm" style="display:none;"><h2>📝 Register</h2><input type="text" id="regUsername" placeholder="Username (min 3 chars)"><input type="password" id="regPassword" placeholder="Password (min 4 chars)"><input type="password" id="regConfirmPassword" placeholder="Confirm Password"><input type="email" id="regEmail" placeholder="Email Address"><button onclick="doRegister()">Register</button><div id="regError" style="color:#ef4444;"></div></div>
+        <div id="forgotForm" style="display:none;"><h2>🔐 Forgot Password</h2><input type="email" id="forgotEmail" placeholder="Your Email Address"><button onclick="sendResetToken()">Send Reset Token</button><div id="forgotMessage"></div><input type="text" id="resetToken" placeholder="Reset Token" style="margin-top:15px;"><input type="password" id="newPassword" placeholder="New Password"><input type="password" id="confirmNewPassword" placeholder="Confirm New Password"><button onclick="resetPassword()">Reset Password</button></div>
+        <button class="close" onclick="hideAuthModal()" style="margin-top:15px;">Close</button></div></div>
 
-    <!-- Add Device Modal -->
-    <div id="addDeviceModal" class="modal">
-        <div class="modal-content">
-            <h2><i class="fas fa-mobile-alt"></i> Add Device</h2>
-            <input type="text" id="deviceModel" placeholder="Device Model (e.g., Samsung S23 Ultra)">
-            <textarea id="screenshotData" rows="3" placeholder="Paste screenshot link or description here..."></textarea>
-            <button onclick="addDevice()">Save Device</button>
-            <button class="close" onclick="hideAddDeviceModal()">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Payment Modal -->
-    <div id="paymentModal" class="modal">
-        <div class="modal-content">
-            <h2>💳 Payment Instructions</h2>
-            <div id="paymentContent"></div>
-            <button class="close" onclick="hidePaymentModal()">Close</button>
-        </div>
-    </div>
-
-    <!-- View User Devices Modal (Admin) -->
-    <div id="viewDevicesModal" class="modal">
-        <div class="modal-content" style="width:600px;">
-            <h2>📱 User Devices</h2>
-            <div id="userDevicesList"></div>
-            <button class="close" onclick="hideViewDevicesModal()">Close</button>
-        </div>
-    </div>
+    <div id="addDeviceModal" class="modal"><div class="modal-content"><h2><i class="fas fa-mobile-alt"></i> Add Device</h2><input type="text" id="deviceModel" placeholder="Device Model (e.g., Samsung S23 Ultra)"><textarea id="screenshotData" rows="3" placeholder="Paste screenshot link or description"></textarea><button onclick="addDevice()">Save Device</button><button class="close" onclick="hideAddDeviceModal()">Cancel</button></div></div>
+    <div id="paymentModal" class="modal"><div class="modal-content"><h2>💳 Payment Instructions</h2><div id="paymentContent"></div><button class="close" onclick="hidePaymentModal()">Close</button></div></div>
+    <div id="viewDevicesModal" class="modal"><div class="modal-content" style="width:600px;"><h2>📱 User Devices</h2><div id="userDevicesList"></div><button class="close" onclick="hideViewDevicesModal()">Close</button></div></div>
+    <div id="bulkEmailModal" class="modal"><div class="modal-content"><h2>📧 Send Bulk Email</h2><input type="text" id="bulkSubject" placeholder="Subject"><textarea id="bulkMessage" rows="5" placeholder="Message"></textarea><button onclick="sendBulkEmailConfirm()">Send to All Users</button><button class="close" onclick="hideBulkEmailModal()">Cancel</button></div></div>
 
     <div id="toast" class="toast"></div>
 
     <script>
-        let currentUser = null;
-        let currentUserRole = null;
+        let currentUser = null, currentUserRole = null, selectedRating = 0;
+        let exchangeRates = {USD:1, KES:130, TZS:2600, UGX:3800};
 
-        // Stars
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            for (let i = 0; i < 200; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.width = Math.random() * 3 + 1 + 'px';
-                star.style.height = star.style.width;
-                star.style.animationDelay = Math.random() * 5 + 's';
-                starsContainer.appendChild(star);
-            }
-        }
-        createStars();
+        // Stars generation
+        for(let i=0;i<200;i++){let s=document.createElement('div');s.classList.add('star');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.width=Math.random()*3+1+'px';s.style.height=s.style.width;s.style.animationDelay=Math.random()*5+'s';document.getElementById('stars').appendChild(s);}
 
-        // Section Navigation
-        function showSection(section) {
-            document.getElementById('homeSection').style.display = 'none';
-            document.getElementById('featuresSection').style.display = 'none';
-            document.getElementById('pricingSection').style.display = 'none';
-            document.getElementById('dashboardSection').style.display = 'none';
-            document.getElementById('contactSection').style.display = 'none';
-            
-            if (section === 'home') document.getElementById('homeSection').style.display = 'flex';
-            else if (section === 'features') document.getElementById('featuresSection').style.display = 'block';
-            else if (section === 'pricing') document.getElementById('pricingSection').style.display = 'block';
-            else if (section === 'dashboard') {
-                document.getElementById('dashboardSection').style.display = 'block';
-                loadUserDevices();
-                loadTimeRemaining();
-            }
-            else if (section === 'contact') document.getElementById('contactSection').style.display = 'block';
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        function showToast(message, isError){let t=document.getElementById('toast');t.textContent=message;t.style.background=isError?'#ef4444':'#10b981';t.style.display='block';setTimeout(()=>{t.style.display='none';},3000);}
+        function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+        window.addEventListener('scroll',()=>{document.querySelector('.scroll-top').classList.toggle('show',window.scrollY>300);});
 
-        window.addEventListener('scroll', () => {
-            const scrollTop = document.querySelector('.scroll-top');
-            if (window.scrollY > 300) scrollTop.classList.add('show');
-            else scrollTop.classList.remove('show');
-        });
+        function toggleTheme(){document.body.classList.toggle('light-mode');localStorage.setItem('theme',document.body.classList.contains('light-mode')?'light':'dark');}
+        if(localStorage.getItem('theme')==='light')document.body.classList.add('light-mode');
 
-        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        function convertPrices(){let cur=document.getElementById('currencySelect').value;document.querySelectorAll('.price').forEach(el=>{let usd=parseFloat(el.dataset.usd);let converted=usd*exchangeRates[cur];let symbol=cur==='USD'?'$':cur==='KES'?'KSh':cur==='TZS'?'TSh':'USh';el.innerHTML=symbol+' '+converted.toLocaleString()+'<span>/'+el.innerHTML.split('<span>')[1];});}
 
-        function showToast(message, isError = false) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.style.background = isError ? '#ef4444' : '#10b981';
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 3000);
-        }
+        function showSection(s){['home','features','pricing','faq','blog','tutorials','dashboard','contact'].forEach(sec=>{let el=document.getElementById(sec+'Section');if(el)el.style.display='none';});let active=document.getElementById(s+'Section');if(active)active.style.display=s==='home'?'flex':'block';window.scrollTo({top:0,behavior:'smooth'});if(s==='dashboard'){loadUserDevices();loadTimeRemaining();loadReviews();loadTickets();}}
+        function switchAuthTab(t){document.getElementById('loginForm').style.display=t==='login'?'block':'none';document.getElementById('registerForm').style.display=t==='register'?'block':'none';document.getElementById('forgotForm').style.display=t==='forgot'?'block':'none';}
+        function showLoginModal(){document.getElementById('authModal').style.display='flex';}
+        function hideAuthModal(){document.getElementById('authModal').style.display='none';}
+        function showAddDeviceModal(){document.getElementById('addDeviceModal').style.display='flex';}
+        function hideAddDeviceModal(){document.getElementById('addDeviceModal').style.display='none';}
+        function hidePaymentModal(){document.getElementById('paymentModal').style.display='none';}
+        function hideViewDevicesModal(){document.getElementById('viewDevicesModal').style.display='none';}
+        function hideBulkEmailModal(){document.getElementById('bulkEmailModal').style.display='none';}
 
-        // ========== AUTHENTICATION ==========
-        function switchAuthTab(tab) {
-            const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
-            const loginBtn = document.getElementById('loginTabBtn');
-            const registerBtn = document.getElementById('registerTabBtn');
-            
-            if (tab === 'login') {
-                loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
-                loginBtn.style.color = '#10b981';
-                loginBtn.style.borderBottom = '2px solid #10b981';
-                registerBtn.style.color = '#9ca3af';
-                registerBtn.style.borderBottom = 'none';
-            } else {
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
-                registerBtn.style.color = '#10b981';
-                registerBtn.style.borderBottom = '2px solid #10b981';
-                loginBtn.style.color = '#9ca3af';
-                loginBtn.style.borderBottom = 'none';
-            }
-        }
+        async function doRegister(){let u=document.getElementById('regUsername').value.trim(),p=document.getElementById('regPassword').value,c=document.getElementById('regConfirmPassword').value,e=document.getElementById('regEmail').value.trim();if(!u||u.length<3){document.getElementById('regError').innerText='Username must be at least 3 characters';return;}if(!p||p.length<4){document.getElementById('regError').innerText='Password must be at least 4 characters';return;}if(p!==c){document.getElementById('regError').innerText='Passwords do not match';return;}if(!e||!e.includes('@')){document.getElementById('regError').innerText='Valid email is required';return;}let res=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p,email:e})});let d=await res.json();if(d.success){showToast(d.message);switchAuthTab('login');document.getElementById('loginUsername').value=u;}else document.getElementById('regError').innerText=d.error;}
 
-        async function doRegister() {
-            const username = document.getElementById('regUsername').value.trim();
-            const password = document.getElementById('regPassword').value;
-            const confirm = document.getElementById('regConfirmPassword').value;
-            const email = document.getElementById('regEmail').value.trim();
-            
-            if (!username || username.length < 3) {
-                document.getElementById('regError').innerText = 'Username must be at least 3 characters';
-                return;
-            }
-            if (!password || password.length < 4) {
-                document.getElementById('regError').innerText = 'Password must be at least 4 characters';
-                return;
-            }
-            if (password !== confirm) {
-                document.getElementById('regError').innerText = 'Passwords do not match';
-                return;
-            }
-            if (!email || !email.includes('@')) {
-                document.getElementById('regError').innerText = 'Valid email is required';
-                return;
-            }
-            
-            try {
-                const response = await fetch('/api/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password, email })
-                });
-                const data = await response.json();
-                if (data.success) {
-                    showToast(data.message);
-                    switchAuthTab('login');
-                    document.getElementById('loginUsername').value = username;
-                } else {
-                    document.getElementById('regError').innerText = data.error;
-                }
-            } catch (error) {
-                document.getElementById('regError').innerText = 'Registration failed';
-            }
-        }
+        async function doLogin(){let u=document.getElementById('loginUsername').value,p=document.getElementById('loginPassword').value;if(!u||!p){document.getElementById('loginError').innerText='Please enter username and password';return;}let res=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})});let d=await res.json();if(d.success){currentUser=d.username;currentUserRole=d.role;showToast('Welcome '+currentUser+'!');hideAuthModal();document.getElementById('authBtn').style.display='none';document.getElementById('dashboardLink').style.display='inline-block';document.getElementById('userInfo').innerHTML='<span style="color:var(--primary);"><i class="fas fa-user"></i> '+currentUser+'</span>';document.getElementById('logoutBtn').style.display='inline-block';if(currentUserRole==='admin')document.getElementById('adminPanel').style.display='block';showSection('dashboard');}else document.getElementById('loginError').innerText=d.error;}
 
-        async function doLogin() {
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            if (!username || !password) {
-                document.getElementById('loginError').innerText = 'Please enter username and password';
-                return;
-            }
-            
-            try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
-                });
-                const data = await response.json();
-                
-                if (data.success) {
-                    currentUser = data.username;
-                    currentUserRole = data.role;
-                    showToast(`Welcome ${currentUser}!`);
-                    hideAuthModal();
-                    updateUIForLoggedInUser();
-                    if (currentUserRole === 'admin') {
-                        document.getElementById('adminPanel').style.display = 'block';
-                        loadPendingUsers();
-                        loadAllUsers();
-                    }
-                    showSection('dashboard');
-                } else {
-                    document.getElementById('loginError').innerText = data.error;
-                }
-            } catch (error) {
-                document.getElementById('loginError').innerText = 'Login failed';
-            }
-        }
+        async function logout(){await fetch('/api/logout',{method:'POST'});location.reload();}
+        async function sendResetToken(){let e=document.getElementById('forgotEmail').value.trim();if(!e){showToast('Enter email address',true);return;}let res=await fetch('/api/forgot_password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e})});let d=await res.json();if(d.success){showToast(d.message);document.getElementById('forgotMessage').innerHTML='<span style="color:#10b981;">'+d.message+'</span>';}else showToast(d.error,true);}
+        async function resetPassword(){let t=document.getElementById('resetToken').value.trim(),np=document.getElementById('newPassword').value,cp=document.getElementById('confirmNewPassword').value;if(!t||!np){showToast('Token and password required',true);return;}if(np!==cp){showToast('Passwords do not match',true);return;}let res=await fetch('/api/reset_password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:t,new_password:np})});let d=await res.json();if(d.success){showToast(d.message);switchAuthTab('login');}else showToast(d.error,true);}
 
-        async function logout() {
-            await fetch('/api/logout', { method: 'POST' });
-            currentUser = null;
-            currentUserRole = null;
-            document.getElementById('adminPanel').style.display = 'none';
-            document.getElementById('dashboardLink').style.display = 'none';
-            document.getElementById('authBtn').style.display = 'inline-block';
-            document.getElementById('userInfo').innerHTML = '';
-            document.getElementById('logoutBtn').style.display = 'none';
-            showToast('Logged out successfully');
-            showSection('home');
-        }
-
-        async function checkSession() {
-            const response = await fetch('/api/check_session');
-            const data = await response.json();
-            if (data.logged_in) {
-                currentUser = data.username;
-                currentUserRole = data.role;
-                updateUIForLoggedInUser();
-                if (currentUserRole === 'admin') {
-                    document.getElementById('adminPanel').style.display = 'block';
-                    loadPendingUsers();
-                    loadAllUsers();
-                }
-            }
-        }
-
-        function updateUIForLoggedInUser() {
-            document.getElementById('authBtn').style.display = 'none';
-            document.getElementById('dashboardLink').style.display = 'inline-block';
-            document.getElementById('userInfo').innerHTML = `<span style="color:#10b981;"><i class="fas fa-user"></i> ${currentUser}</span>`;
-            document.getElementById('logoutBtn').style.display = 'inline-block';
-        }
-
-        // ========== DASHBOARD FUNCTIONS ==========
-        async function loadUserDevices() {
-            try {
-                const response = await fetch('/api/user/devices');
-                const data = await response.json();
-                if (data.success) {
-                    document.getElementById('dashboardUsername').innerText = currentUser;
-                    document.getElementById('timeRemaining').innerText = data.time_remaining;
-                    
-                    const devicesList = document.getElementById('devicesList');
-                    if (data.devices.length === 0) {
-                        devicesList.innerHTML = '<p style="color:#9ca3af;">No devices added yet. Click "Add Device" to record your bypass.</p>';
-                    } else {
-                        devicesList.innerHTML = data.devices.reverse().map(device => `
-                            <div class="device-card">
-                                <i class="fas fa-mobile-alt" style="font-size:24px; color:#10b981;"></i>
-                                <h4>${device.device_model}</h4>
-                                <p style="font-size:12px; color:#9ca3af;">${new Date(device.date).toLocaleString()}</p>
-                                <span class="status-badge status-success">${device.status}</span>
-                                ${device.screenshot ? `<img src="${device.screenshot}" alt="Screenshot" onerror="this.style.display='none'">` : ''}
-                                <p style="font-size:11px; margin-top:10px;">${device.screenshot || 'No screenshot provided'}</p>
-                            </div>
-                        `).join('');
-                    }
-                }
-            } catch (error) {
-                console.error('Error loading devices:', error);
-            }
-        }
-
-        async function loadTimeRemaining() {
-            try {
-                const response = await fetch('/api/user/time_remaining');
-                const data = await response.json();
-                if (data.success) {
-                    document.getElementById('timeRemaining').innerText = data.time_remaining;
-                }
-            } catch (error) {}
-        }
-
-        async function addDevice() {
-            const deviceModel = document.getElementById('deviceModel').value.trim();
-            const screenshot = document.getElementById('screenshotData').value.trim();
-            
-            if (!deviceModel) {
-                showToast('Please enter device model', true);
-                return;
-            }
-            
-            try {
-                const response = await fetch('/api/user/add_device', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ device_model: deviceModel, screenshot: screenshot })
-                });
-                const data = await response.json();
-                if (data.success) {
-                    showToast('Device added successfully!');
-                    hideAddDeviceModal();
-                    loadUserDevices();
-                    document.getElementById('deviceModel').value = '';
-                    document.getElementById('screenshotData').value = '';
-                } else {
-                    showToast(data.error, true);
-                }
-            } catch (error) {
-                showToast('Failed to add device', true);
-            }
-        }
-
-        // ========== ADMIN FUNCTIONS ==========
-        async function loadPendingUsers() {
-            try {
-                const response = await fetch('/api/admin/pending_users');
-                const data = await response.json();
-                if (data.success && data.users.length > 0) {
-                    let html = '<table><thead><tr><th>Username</th><th>Email</th><th>Registered</th><th>Actions</th></tr></thead><tbody>';
-                    data.users.forEach(user => {
-                        html += `<tr>
-                            <td>${user.username}</td>
-                            <td>${user.email}</td>
-                            <td>${new Date(user.registered_at).toLocaleDateString()}</td>
-                            <td>
-                                <select id="duration_${user.username}" style="background:#0f172a; color:white; padding:5px; border-radius:5px;">
-                                    <option value="30">30 days ($20)</option>
-                                    <option value="90">90 days ($30)</option>
-                                    <option value="180">180 days ($40)</option>
-                                    <option value="365">365 days ($60)</option>
-                                </select>
-                                <button class="approve-btn" onclick="approveUser('${user.username}')">Approve</button>
-                                <button class="reject-btn" onclick="rejectUser('${user.username}')">Reject</button>
-                            </td>
-                        </tr>`;
-                    });
-                    html += '</tbody></table>';
-                    document.getElementById('pendingPanel').innerHTML = html;
-                } else {
-                    document.getElementById('pendingPanel').innerHTML = '<p>No pending approvals</p>';
-                }
-            } catch (error) {
-                document.getElementById('pendingPanel').innerHTML = '<p>Error loading pending users</p>';
-            }
-        }
-
-        async function approveUser(username) {
-            const duration = document.getElementById(`duration_${username}`).value;
-            if (confirm(`Approve ${username} for ${duration} days?`)) {
-                const response = await fetch('/api/admin/approve_user', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, duration })
-                });
-                const data = await response.json();
-                showToast(data.message);
-                loadPendingUsers();
-                loadAllUsers();
-            }
-        }
-
-        async function rejectUser(username) {
-            if (confirm(`Reject ${username}?`)) {
-                const response = await fetch('/api/admin/reject_user', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username })
-                });
-                const data = await response.json();
-                showToast(data.message);
-                loadPendingUsers();
-            }
-        }
-
-        async function loadAllUsers() {
-            try {
-                const response = await fetch('/api/admin/all_users');
-                const data = await response.json();
-                if (data.success) {
-                    let html = '<table><thead><tr><th>Username</th><th>Email</th><th>Devices</th><th>Time Left</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
-                    data.users.forEach(user => {
-                        if (user.username !== 'REYTECHFX') {
-                            html += `<tr>
-                                <td>${user.username}</td>
-                                <td>${user.email}</td>
-                                <td><button class="view-devices-btn" onclick="viewUserDevices('${user.username}')">View (${user.devices_count})</button></td>
-                                <td>${user.time_left}</td>
-                                <td>${user.is_active ? '✅ Active' : '❌ Inactive'}</td>
-                                <td>
-                                    <button class="extend-btn" onclick="extendLicense('${user.username}')">Extend +30d</button>
-                                    ${user.is_active ? 
-                                        `<button class="reject-btn" onclick="toggleUserStatus('${user.username}', 'deactivate')">Deactivate</button>` :
-                                        `<button class="approve-btn" onclick="toggleUserStatus('${user.username}', 'activate')">Activate</button>`
-                                    }
-                                </td>
-                            </tr>`;
-                        }
-                    });
-                    html += '</tbody></table>';
-                    document.getElementById('usersPanel').innerHTML = html;
-                }
-            } catch (error) {
-                document.getElementById('usersPanel').innerHTML = '<p>Error loading users</p>';
-            }
-        }
-
-        async function extendLicense(username) {
-            if (confirm(`Extend license for ${username} by 30 days?`)) {
-                const response = await fetch('/api/admin/extend_license', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, days: 30 })
-                });
-                const data = await response.json();
-                showToast(data.message);
-                loadAllUsers();
-            }
-        }
-
-        async function viewUserDevices(username) {
-            const response = await fetch('/api/admin/user_devices', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username })
-            });
-            const data = await response.json();
-            if (data.success && data.devices.length > 0) {
-                let html = '<div class="devices-grid">';
-                data.devices.forEach(device => {
-                    html += `
-                        <div class="device-card">
-                            <i class="fas fa-mobile-alt" style="font-size:24px; color:#10b981;"></i>
-                            <h4>${device.device_model}</h4>
-                            <p style="font-size:12px;">${new Date(device.date).toLocaleString()}</p>
-                            ${device.screenshot ? `<img src="${device.screenshot}" style="max-width:100%; border-radius:10px;">` : ''}
-                        </div>
-                    `;
-                });
-                html += '</div>';
-                document.getElementById('userDevicesList').innerHTML = html;
-            } else {
-                document.getElementById('userDevicesList').innerHTML = '<p>No devices recorded yet.</p>';
-            }
-            document.getElementById('viewDevicesModal').style.display = 'flex';
-        }
-
-        async function toggleUserStatus(username, action) {
-            if (confirm(`${action === 'activate' ? 'Activate' : 'Deactivate'} ${username}?`)) {
-                const response = await fetch('/api/admin/deactivate_user', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, action })
-                });
-                const data = await response.json();
-                showToast(data.message);
-                loadAllUsers();
-            }
-        }
-
-        function switchAdminTab(tab) {
-            const pendingPanel = document.getElementById('pendingPanel');
-            const usersPanel = document.getElementById('usersPanel');
-            const tabs = document.querySelectorAll('.admin-tab');
-            
-            tabs.forEach(t => t.classList.remove('active'));
-            if (tab === 'pending') {
-                pendingPanel.style.display = 'block';
-                usersPanel.style.display = 'none';
-                tabs[0].classList.add('active');
-                loadPendingUsers();
-            } else {
-                pendingPanel.style.display = 'none';
-                usersPanel.style.display = 'block';
-                tabs[1].classList.add('active');
-                loadAllUsers();
-            }
-        }
-
-        // ========== MODAL FUNCTIONS ==========
-        function showLoginModal() { document.getElementById('authModal').style.display = 'flex'; }
-        function hideAuthModal() { document.getElementById('authModal').style.display = 'none'; }
-        function showAddDeviceModal() { document.getElementById('addDeviceModal').style.display = 'flex'; }
-        function hideAddDeviceModal() { document.getElementById('addDeviceModal').style.display = 'none'; }
-        function hideViewDevicesModal() { document.getElementById('viewDevicesModal').style.display = 'none'; }
-
-        function showPayment(plan) {
-            let content = '';
-            if (plan === 'basic') {
-                content = `<h3>Basic Plan - $20 (3 Months)</h3>
-                    <p>Send payment via:</p>
-                    <ul><li><strong>M-Pesa:</strong> 0111457171</li><li><strong>SendWave:</strong> 0117219996</li></ul>
-                    <p>After payment, send transaction ID to <strong>254111457171</strong> for activation.</p>
-                    <div style="background:#0f172a; padding:15px; border-radius:12px;"><p>Reference: <strong>ET + Your Phone Number</strong></p></div>
-                    <button onclick="window.location.href='https://wa.me/254111457171'" style="background:#25D366; margin-top:15px;">📱 Contact on WhatsApp</button>`;
-            } else if (plan === 'pro') {
-                content = `<h3>Professional Plan - $30 (6 Months)</h3>
-                    <p>Send payment via:</p>
-                    <ul><li><strong>M-Pesa:</strong> 0111457171</li><li><strong>SendWave:</strong> 0117219996</li></ul>
-                    <p>After payment, send transaction ID to <strong>254111457171</strong> for activation.</p>
-                    <div style="background:#0f172a; padding:15px; border-radius:12px;"><p>Reference: <strong>ET + Your Phone Number</strong></p></div>
-                    <button onclick="window.location.href='https://wa.me/254111457171'" style="background:#25D366; margin-top:15px;">📱 Contact on WhatsApp</button>`;
-            } else {
-                content = `<h3>Enterprise Plan - $40 (12 Months)</h3>
-                    <p>Send payment via:</p>
-                    <ul><li><strong>M-Pesa:</strong> 0111457171</li><li><strong>SendWave:</strong> 0117219996</li></ul>
-                    <p>After payment, send transaction ID to <strong>254111457171</strong> for activation.</p>
-                    <div style="background:#0f172a; padding:15px; border-radius:12px;"><p>Reference: <strong>ET + Your Phone Number</strong></p></div>
-                    <button onclick="window.location.href='https://wa.me/254111457171'" style="background:#25D366; margin-top:15px;">📱 Contact on WhatsApp</button>`;
-            }
-            document.getElementById('paymentContent').innerHTML = content;
-            document.getElementById('paymentModal').style.display = 'flex';
-        }
-        function hidePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; }
-
+        async function loadUserDevices(){let res=await fetch('/api/user/devices');let d=await res.json();if(d.success){document.getElementById('dashboardUsername').innerText=currentUser;document.getElementById('timeRemaining').innerText=d.time_remaining;let html='';if(d.devices.length===0)html='<p>No devices added yet. Click "Add Device" to record your bypass.</p>';else d.devices.reverse().forEach(dev=>{html+='<div class="feature-card"><i class="fas fa-mobile-alt" style="font-size:24px; color:var(--primary);"></i><h4>'+dev.device_model+'</h4><p style="font-size:12px;">'+new Date(dev.date).toLocaleString()+'</p><span class="status-badge" style="background:#10b981; padding:2px 10px; border-radius:20px;">'+dev.status+'</span>'+(dev.screenshot?'<img src="'+dev.screenshot+'" style="max-width:100%; border-radius:10px; margin-top:10px;" onerror="this.style.display=\'none\'">':'')+'</div>';});document.getElementById('devicesList').innerHTML=html;}}
+        async function loadTimeRemaining(){let res=await fetch('/api/user/time_remaining');let d=await res.json();if(d.success)document.getElementById('timeRemaining').innerText=d.time_remaining;}
+        async function addDevice(){let m=document.getElementById('deviceModel').value.trim(),s=document.getElementById('screenshotData').value.trim();if(!m){showToast('Device model required',true);return;}let res=await fetch('/api/user/add_device',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({device_model:m,screenshot:s})});let d=await res.json();if(d.success){showToast('Device added!');hideAddDeviceModal();loadUserDevices();}else showToast(d.error,true);}
+        async function updateProfile(){let e=document.getElementById('profileEmail').value.trim(),cp=document.getElementById('profileCurrentPassword').value,np=document.getElementById('profileNewPassword').value,cnp=document.getElementById('profileConfirmPassword').value;if(np&&np!==cnp){showToast('New passwords do not match',true);return;}let res=await fetch('/api/user/update_profile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,current_password:cp,new_password:np})});let d=await res.json();if(d.success){showToast(d.message);document.getElementById('profileCurrentPassword').value='';document.getElementById('profileNewPassword').value='';document.getElementById('profileConfirmPassword').value='';}else showToast(d.error,true);}
+        async function submitReview(){let r=selectedRating,c=document.getElementById('reviewComment').value.trim();if(r===0||!c){showToast('Please select rating and write comment',true);return;}let res=await fetch('/api/user/reviews',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({rating:r,comment:c})});let d=await res.json();if(d.success){showToast('Review submitted!');document.getElementById('reviewComment').value='';selectedRating=0;document.querySelectorAll('#ratingStars i').forEach(s=>s.style.color='');loadReviews();}else showToast(d.error,true);}
+        async function loadReviews(){let res=await fetch('/api/user/reviews');let d=await res.json();if(d.success&&d.reviews.length){let html='';d.reviews.slice(-10).reverse().forEach(r=>{html+='<div class="review-item"><strong>'+r.username+'</strong><div>'+'★'.repeat(r.rating)+'☆'.repeat(5-r.rating)+'</div><p>'+r.comment+'</p><small>'+new Date(r.date).toLocaleDateString()+'</small></div>';});document.getElementById('allReviews').innerHTML=html;}}
+        function submitTicket(){let s=document.getElementById('ticketSubject').value.trim(),m=document.getElementById('ticketMessage').value.trim();if(!s||!m){showToast('Subject and message required',true);return;}let tickets=JSON.parse(localStorage.getItem('tickets_'+currentUser)||'[]');tickets.push({subject:s,message:m,date:new Date().toISOString(),status:'open'});localStorage.setItem('tickets_'+currentUser,JSON.stringify(tickets));showToast('Ticket submitted!');document.getElementById('ticketSubject').value='';document.getElementById('ticketMessage').value='';loadTickets();}
+        function loadTickets(){let tickets=JSON.parse(localStorage.getItem('tickets_'+currentUser)||'[]');if(tickets.length){let html='';tickets.reverse().forEach(t=>{html+='<div class="ticket-item"><strong>'+t.subject+'</strong><span style="background:#f59e0b; padding:2px 8px; border-radius:20px; margin-left:10px;">'+t.status+'</span><p>'+t.message+'</p><small>'+new Date(t.date).toLocaleString()+'</small></div>';});document.getElementById('userTickets').innerHTML=html;}else document.getElementById('userTickets').innerHTML='<p>No tickets yet.</p>';}
+        function showPayment(p){let c='<h3 style="color:#f59e0b;">Plan - $'+(p==='basic'?'20 (3 Months)':p==='pro'?'30 (6 Months)':'40 (12 Months)')+'</h3><p>Send payment via:</p><ul><li><strong>M-Pesa:</strong> 0111457171</li><li><strong>SendWave:</strong> 0117219996</li></ul><p>After payment, send transaction ID to <strong>254111457171</strong> for activation.</p><div style="background:#0f172a; padding:15px; border-radius:12px;"><p>Reference: <strong>ET + Your Phone Number</strong></p></div><button onclick="window.location.href=\'https://wa.me/254111457171\'" style="background:#25D366; margin-top:15px;">📱 Contact on WhatsApp</button>';document.getElementById('paymentContent').innerHTML=c;document.getElementById('paymentModal').style.display='flex';}
+        document.querySelectorAll('#ratingStars i').forEach(star=>{star.addEventListener('click',function(){let r=parseInt(this.dataset.rating);selectedRating=r;document.querySelectorAll('#ratingStars i').forEach((s,i)=>{s.style.color=i<r?'#f59e0b':'#9ca3af';});});});
+        
+        async function checkSession(){let res=await fetch('/api/check_session');let d=await res.json();if(d.logged_in){currentUser=d.username;currentUserRole=d.role;document.getElementById('authBtn').style.display='none';document.getElementById('dashboardLink').style.display='inline-block';document.getElementById('userInfo').innerHTML='<span style="color:var(--primary);"><i class="fas fa-user"></i> '+currentUser+'</span>';document.getElementById('logoutBtn').style.display='inline-block';if(currentUserRole==='admin')document.getElementById('adminPanel').style.display='block';}}
         checkSession();
+
+        async function loadAdminStats(){let res=await fetch('/api/admin/stats');let d=await res.json();if(d.success){document.getElementById('statDevices').innerText=d.total_bypasses||0;document.getElementById('statUsers').innerText=d.active_users||0;document.getElementById('statRevenue').innerText='$'+(d.monthly_revenue||0);document.getElementById('liveDeviceCount').innerText=(d.total_bypasses||0).toLocaleString();let html='<div class="stats" style="margin-top:20px;"><div class="stat-card"><div class="stat-number">'+d.total_bypasses+'</div><div>Total Bypasses</div></div><div class="stat-card"><div class="stat-number">'+d.total_users+'</div><div>Total Users</div></div><div class="stat-card"><div class="stat-number">'+d.active_users+'</div><div>Active Users</div></div><div class="stat-card"><div class="stat-number">$'+d.monthly_revenue+'</div><div>Monthly Revenue</div></div></div>';if(d.devices_by_month){html+='<h4>Devices by Month</h4><ul>';Object.entries(d.devices_by_month).forEach(([m,c])=>{html+='<li>'+m+': '+c+' devices</li>';});html+='</ul>';}document.getElementById('adminStats').innerHTML=html;}}
+        async function loadPendingUsers(){let res=await fetch('/api/admin/pending_users');let d=await res.json();if(d.success){let html='<table><thead><tr><th>Username</th><th>Email</th><th>Registered</th><th>Duration</th><th>Actions</th></tr></thead><tbody>';d.users.forEach(u=>{html+=`<tr><td>${u.username}</td><td>${u.email}</td><td>${new Date(u.registered_at).toLocaleDateString()}</td><td><select id="dur_${u.username}"><option value="30">30 days ($20)</option><option value="90">90 days ($30)</option><option value="180">180 days ($40)</option><option value="365">365 days ($60)</option></select></td><td><button class="approve-btn" onclick="approveUser('${u.username}')">Approve</button><button class="reject-btn" onclick="rejectUser('${u.username}')">Reject</button></td></tr>`;});html+='</tbody></table>';document.getElementById('pendingTable').innerHTML=html;}else document.getElementById('pendingTable').innerHTML='<p>No pending approvals</p>';}
+        async function approveUser(u){let d=document.getElementById(`dur_${u}`).value;if(confirm(`Approve ${u} for ${d} days?`)){let res=await fetch('/api/admin/approve_user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,duration:d})});let data=await res.json();showToast(data.message);loadPendingUsers();loadAllUsers();loadAdminStats();}}
+        async function rejectUser(u){if(confirm(`Reject ${u}?`)){let res=await fetch('/api/admin/reject_user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u})});let d=await res.json();showToast(d.message);loadPendingUsers();}}
+        async function loadAllUsers(){let res=await fetch('/api/admin/all_users');let d=await res.json();if(d.success){let html='<table><thead><tr><th>Username</th><th>Email</th><th>Devices</th><th>Time Left</th><th>Status</th><th>Actions</th></tr></thead><tbody>';d.users.forEach(u=>{if(u.username!=='REYTECHFX')html+=`<tr><td>${u.username}</td><td>${u.email}</td><td><button class="view-devices-btn" onclick="viewUserDevices('${u.username}')">View (${u.devices_count})</button></td><td>${u.time_left}</td><td>${u.is_active?'✅ Active':'❌ Inactive'}</td><td><button class="extend-btn" onclick="extendLicense('${u.username}')">+30d</button><button class="${u.is_active?'reject-btn':'approve-btn'}" onclick="toggleUserStatus('${u.username}','${u.is_active?'deactivate':'activate'}')">${u.is_active?'Deactivate':'Activate'}</button></td></tr>`;});html+='</tbody></table>';document.getElementById('usersTable').innerHTML=html;}}
+        async function extendLicense(u){if(confirm(`Extend license for ${u} by 30 days?`)){let res=await fetch('/api/admin/extend_license',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,days:30})});let d=await res.json();showToast(d.message);loadAllUsers();}}
+        async function viewUserDevices(u){let res=await fetch('/api/admin/user_devices',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u})});let d=await res.json();if(d.success&&d.devices.length){let html='<div class="features-grid">';d.devices.forEach(dev=>{html+=`<div class="feature-card"><i class="fas fa-mobile-alt"></i><h4>${dev.device_model}</h4><p>${new Date(dev.date).toLocaleString()}</p>${dev.screenshot?'<img src="'+dev.screenshot+'" style="max-width:100%; border-radius:10px;">':''}</div>`;});html+='</div>';document.getElementById('userDevicesList').innerHTML=html;}else document.getElementById('userDevicesList').innerHTML='<p>No devices recorded.</p>';document.getElementById('viewDevicesModal').style.display='flex';}
+        async function toggleUserStatus(u,a){if(confirm(`${a==='activate'?'Activate':'Deactivate'} ${u}?`)){let res=await fetch('/api/admin/deactivate_user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,action:a})});let d=await res.json();showToast(d.message);loadAllUsers();}}
+        function loadAdminTickets(){let allTickets=[];for(let i=0;i<localStorage.length;i++){let k=localStorage.key(i);if(k.startsWith('tickets_')){let user=k.replace('tickets_','');let tickets=JSON.parse(localStorage.getItem(k));tickets.forEach(t=>{t.username=user;allTickets.push(t);});}}if(allTickets.length){let html='<div class="tickets-list">';allTickets.reverse().forEach(t=>{html+=`<div class="ticket-item"><strong>${t.username}</strong> - <strong>${t.subject}</strong><span style="background:#f59e0b; padding:2px 8px; border-radius:20px; margin-left:10px;">${t.status}</span><p>${t.message}</p><small>${new Date(t.date).toLocaleString()}</small><button class="btn-primary" style="margin-top:5px;" onclick="resolveTicket('${t.username}','${t.subject}')">Mark Resolved</button></div>`;});html+='</div>';document.getElementById('adminTickets').innerHTML=html;}else document.getElementById('adminTickets').innerHTML='<p>No tickets yet.</p>';}
+        function resolveTicket(user,subject){let tickets=JSON.parse(localStorage.getItem('tickets_'+user)||'[]');let index=tickets.findIndex(t=>t.subject===subject);if(index!==-1){tickets[index].status='resolved';localStorage.setItem('tickets_'+user,JSON.stringify(tickets));loadAdminTickets();showToast('Ticket resolved!');}}
+        function loadAdminReviews(){fetch('/api/user/reviews').then(r=>r.json()).then(d=>{if(d.success){let html='<div class="reviews-list">';d.reviews.slice(-20).reverse().forEach(r=>{html+=`<div class="review-item"><strong>${r.username}</strong><div>${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><p>${r.comment}</p><small>${new Date(r.date).toLocaleString()}</small></div>`;});html+='</div>';document.getElementById('adminReviews').innerHTML=html;}});}
+        function sendBulkEmail(){document.getElementById('bulkEmailModal').style.display='flex';}
+        async function sendBulkEmailConfirm(){let s=document.getElementById('bulkSubject').value.trim(),m=document.getElementById('bulkMessage').value.trim();if(!s||!m){showToast('Subject and message required',true);return;}let res=await fetch('/api/admin/all_users');let d=await res.json();if(d.success){showToast(`Email sent to ${d.users.filter(u=>u.email).length} users!`);hideBulkEmailModal();}else showToast('Failed to get users',true);}
+        function exportData(type){fetch('/api/admin/all_users').then(r=>r.json()).then(d=>{if(d.success){let csv='';if(type==='users'){csv='Username,Email,Role,Status,Devices,Time Left\n'+d.users.map(u=>`${u.username},${u.email},${u.role},${u.is_active?'Active':'Inactive'},${u.devices_count},${u.time_left}`).join('\n');}else{fetch('/api/user/devices').then(r2=>r2.json()).then(d2=>{if(d2.success){let allDevices=[];for(let u in d2){d2[u].forEach(dev=>{allDevices.push({username:u,...dev});});}csv='Username,Device Model,Date,Status\n'+allDevices.map(dev=>`${dev.username},${dev.device_model},${dev.date},${dev.status}`).join('\n');let blob=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${type}_export.csv`;a.click();showToast('Export complete!');}});return;}}let blob=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${type}_export.csv`;a.click();showToast('Export complete!');});}
+        function switchAdminTab(t){['stats','pending','users','tickets','reviews','export'].forEach(tab=>{let el=document.getElementById(tab+'Panel');if(el)el.style.display='none';});document.getElementById(t+'Panel').style.display='block';if(t==='stats')loadAdminStats();if(t==='pending')loadPendingUsers();if(t==='users')loadAllUsers();if(t==='tickets')loadAdminTickets();if(t==='reviews')loadAdminReviews();}
+        loadAdminStats();
     </script>
 </body>
 </html>
