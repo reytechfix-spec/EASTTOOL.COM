@@ -306,7 +306,7 @@
             font-family: 'Orbitron', monospace;
         }
 
-        .features, .pricing, .faq, .blog, .contact-section, .download-section {
+        .features, .pricing, .faq, .blog, .contact-section, .download-section, .drivers-section {
             padding: 80px 20px;
             max-width: 1400px;
             margin: 0 auto;
@@ -324,13 +324,13 @@
             color: var(--primary);
         }
 
-        .features-grid {
+        .features-grid, .drivers-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
-        .feature-card, .faq-card, .blog-card, .pricing-card {
+        .feature-card, .faq-card, .blog-card, .pricing-card, .driver-card {
             background: var(--bg-card);
             backdrop-filter: blur(20px);
             border-radius: 25px;
@@ -339,12 +339,12 @@
             transition: all 0.4s;
         }
 
-        .feature-card:hover, .faq-card:hover, .blog-card:hover, .pricing-card:hover {
+        .feature-card:hover, .faq-card:hover, .blog-card:hover, .pricing-card:hover, .driver-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
         }
 
-        .feature-icon {
+        .feature-icon, .driver-icon {
             width: 70px;
             height: 70px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -354,6 +354,55 @@
             justify-content: center;
             font-size: 35px;
             margin-bottom: 25px;
+        }
+
+        .driver-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .driver-desc {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(95deg, #3b82f6, #2563eb);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-download:hover {
+            background: linear-gradient(95deg, #2563eb, #1d4ed8);
+            transform: scale(0.98);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .driver-type {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            margin-top: 10px;
+            color: var(--primary);
         }
 
         .pricing-grid {
@@ -735,7 +784,8 @@
                 <a onclick="showSection('home')">Home</a>
                 <a onclick="showSection('features')">Features</a>
                 <a onclick="showSection('pricing')">Pricing</a>
-                <a onclick="showSection('download')">Download</a>
+                <a onclick="showSection('download')">Download Tool</a>
+                <a onclick="showSection('drivers')">📥 Drivers</a>
                 <a onclick="showSection('faq')">FAQ</a>
                 <a onclick="showSection('blog')">Blog</a>
                 <a onclick="showSection('tutorials')">Tutorials</a>
@@ -758,7 +808,7 @@
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="showSection('pricing')"><i class="fas fa-shopping-cart"></i> Buy License</button>
                 <button class="btn-primary" style="background:linear-gradient(135deg,#f59e0b,#d97706);" onclick="showSection('download')"><i class="fas fa-download"></i> Download Tool v0.05</button>
-                <button class="btn-secondary" onclick="showLoginModal()"><i class="fas fa-user"></i> Login / Register</button>
+                <button class="btn-secondary" onclick="showSection('drivers')"><i class="fas fa-plug"></i> USB Drivers</button>
             </div>
             <div class="live-counter">
                 <i class="fas fa-chart-line"></i> <span id="liveDeviceCount">0</span>+ devices unlocked!
@@ -799,7 +849,19 @@
         </div>
     </section>
 
-    <!-- DOWNLOAD SECTION -->
+    <!-- DRIVERS SECTION - WITH YOUR REAL LINKS -->
+    <section id="driversSection" class="drivers-section" style="display:none;">
+        <h2 class="section-title"><span>USB & ADB</span> Drivers</h2>
+        <p style="text-align: center; margin-bottom: 40px; color: var(--text-secondary);">Essential drivers for flashing, debugging, and device management. Click download to get drivers directly from our servers.</p>
+        <div class="drivers-grid" id="driversContainer">
+            <!-- Drivers will be loaded dynamically with your links -->
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <small><i class="fas fa-info-circle"></i> Having trouble? Contact us on WhatsApp for assistance.</small>
+        </div>
+    </section>
+
+    <!-- Download Tool Section -->
     <section id="downloadSection" class="download-section" style="display:none;">
         <h2 class="section-title">Download <span>EASY TOOL</span></h2>
         <div class="features-grid">
@@ -935,7 +997,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section"><h4>EASY TOOL</h4><p>Professional MDM Bypass Tool for Android devices. Created by REYTECHFX.</p><div class="social-links"><a href="https://www.facebook.com/reytechfx" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="https://youtube.com/@easytoolteam" target="_blank"><i class="fab fa-youtube"></i></a><a href="https://t.me/reytechfx" target="_blank"><i class="fab fa-telegram"></i></a><a href="https://wa.me/254111457171" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div>
-            <div class="footer-section"><h4>Quick Links</h4><p><a onclick="showSection('home')">Home</a></p><p><a onclick="showSection('features')">Features</a></p><p><a onclick="showSection('pricing')">Pricing</a></p><p><a onclick="showSection('download')">📥 Download Tool</a></p><p><a onclick="showSection('faq')">FAQ</a></p><p><a onclick="showSection('blog')">Blog</a></p><p><a onclick="showSection('tutorials')">Tutorials</a></p></div>
+            <div class="footer-section"><h4>Quick Links</h4><p><a onclick="showSection('home')">Home</a></p><p><a onclick="showSection('features')">Features</a></p><p><a onclick="showSection('pricing')">Pricing</a></p><p><a onclick="showSection('download')">📥 Download Tool</a></p><p><a onclick="showSection('drivers')">📥 USB Drivers</a></p><p><a onclick="showSection('faq')">FAQ</a></p><p><a onclick="showSection('blog')">Blog</a></p><p><a onclick="showSection('tutorials')">Tutorials</a></p></div>
             <div class="footer-section"><h4>Contact</h4><p><i class="fas fa-phone"></i> 254111457171</p><p><i class="fas fa-envelope"></i> reytechfix@gmail.com</p></div>
             <div class="footer-section"><h4>Payment Methods</h4><p>M-Pesa: 0111457171</p><p>SendWave: 0117219996</p><p>Visa/MasterCard</p></div>
         </div>
@@ -965,43 +1027,96 @@
         let currentUser = null, currentUserRole = null, selectedRating = 0;
         let exchangeRates = {USD:1, KES:130, TZS:2600, UGX:3800};
 
-        // Auto-increment devices unlocked by 34 every day
+        // YOUR REAL DRIVER LINKS - All organized properly
+        const driversList = [
+            { name: "ADB Drivers", desc: "Universal Android Debug Bridge drivers for all devices. Required for ADB commands and fastboot.", type: "Installer", downloadUrl: "https://www.mediafire.com/file_premium/yx9pry29zxw0rsd/UniversalAdbDriverSetup.msi/file" },
+            { name: "Universal QCOM-MTK-ADB Drivers", desc: "All-in-one Qualcomm & MediaTek ADB drivers. Works with most Android devices for flashing and debugging.", type: "ZIP Package", downloadUrl: "https://www.mediafire.com/file_premium/ko4na2ox2rcytbc/generic_usb_driver%257BQLM-MTK-ADB%257Dv1.1.0.zip/file" },
+            { name: "QCOM Drivers", desc: "Qualcomm HS-USB diagnostic & download drivers for flashing QDLoader mode on Qualcomm devices.", type: "Folder", downloadUrl: "https://www.mediafire.com/folder/oarj48sw8qzxu/QUALCOMM" },
+            { name: "Sprd Drivers", desc: "Spreadtrum / Unisoc USB drivers for flashing and debugging on Spreadtrum chipset devices.", type: "Folder", downloadUrl: "https://www.mediafire.com/folder/s9xifie15iaw4/SPRD" },
+            { name: "MTK Drivers", desc: "MediaTek USB VCOM drivers (preloader, DA) for Mediatek devices. Essential for SP Flash Tool.", type: "Folder", downloadUrl: "https://www.mediafire.com/folder/yd65rd2y4wpdp/MTK" },
+            { name: "Libusb devel Drivers", desc: "LibUSB for low-level USB access on custom tools like Odin, SP Flash Tool, and other flashing utilities.", type: "Archive", downloadUrl: "https://www.mediafire.com/file_premium/nohdqfvt2qsaks7/libusb-win32-devel-filter-1.2.6.0.7z/file" },
+            { name: "Samsung All USB", desc: "Complete Samsung USB drivers for MTP, ADB, Odin flash tool, and all Samsung device connections.", type: "Folder", downloadUrl: "https://www.mediafire.com/folder/m8ho4q2215jwd/SAMSUNG" },
+            { name: "Huawei Drivers", desc: "HiSuite USB drivers for Huawei/Honor devices. Required for flashing and ADB debugging.", type: "Folder", downloadUrl: "https://www.mediafire.com/folder/iy6bg2k6wgcmd/HUAWEI" },
+            { name: "LG Mobile Driver v4.8.0_3", desc: "Official LG mobile drivers for legacy & modern LG devices. WHQL certified.", type: "Installer", downloadUrl: "https://www.mediafire.com/file_premium/5hmylugcxq36mub/LGMobileDriver_WHQL_Ver_4.8.0_3.exe/file" },
+            { name: "ONEPLUS Drivers", desc: "OnePlus USB drivers for bootloader unlocking, ADB fastboot, and device management.", type: "Coming Soon", downloadUrl: "#" }
+        ];
+
+        // Function to get icon based on driver name
+        function getDriverIcon(name) {
+            if (name.includes("ADB")) return "🖥️";
+            if (name.includes("QCOM")) return "📡";
+            if (name.includes("MTK")) return "📱";
+            if (name.includes("Sprd")) return "🔧";
+            if (name.includes("Samsung")) return "⭐";
+            if (name.includes("Huawei")) return "📶";
+            if (name.includes("LG")) return "📟";
+            if (name.includes("ONEPLUS")) return "⚡";
+            if (name.includes("Libusb")) return "🔌";
+            return "💾";
+        }
+
+        // Load drivers into the container
+        function loadDrivers() {
+            const container = document.getElementById("driversContainer");
+            if (!container) return;
+            
+            container.innerHTML = '';
+            driversList.forEach(driver => {
+                const card = document.createElement("div");
+                card.className = "driver-card";
+                const isAvailable = driver.downloadUrl !== "#";
+                card.innerHTML = `
+                    <div class="driver-name">
+                        <span class="driver-icon" style="width:50px;height:50px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:28px;">${getDriverIcon(driver.name)}</span>
+                        ${driver.name}
+                        <span class="driver-type">${driver.type}</span>
+                    </div>
+                    <div class="driver-desc">${driver.desc}</div>
+                    ${isAvailable ? 
+                        `<a href="${driver.downloadUrl}" class="btn-download" target="_blank" onclick="trackDriverDownload('${driver.name}')">
+                            ⬇️ DOWNLOAD FROM MEDIAFIRE
+                        </a>` : 
+                        `<button class="btn-download" style="background:linear-gradient(95deg,#6b7280,#4b5563);cursor:not-allowed;" disabled>
+                            ⏳ COMING SOON
+                        </button>`
+                    }
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Track downloads
+        function trackDriverDownload(driverName) {
+            showToast(`Opening ${driverName} download page...`);
+            // You can add analytics or download counter here
+        }
+
+        // Auto-increment devices unlocked
         let devicesUnlocked = 65;
         const dailyIncrement = 34;
         const activeUsers = 6543;
 
         function updateStats() {
-            // Get last update date from localStorage
             const lastUpdate = localStorage.getItem('lastUpdateDate');
             const today = new Date().toDateString();
             
             if (lastUpdate !== today) {
-                // Get previously saved count or use default
                 let savedDevices = localStorage.getItem('devicesUnlocked');
-                if (savedDevices) {
-                    devicesUnlocked = parseInt(savedDevices);
-                }
-                
-                // Add daily increment
+                if (savedDevices) devicesUnlocked = parseInt(savedDevices);
                 devicesUnlocked += dailyIncrement;
-                
-                // Save new values
                 localStorage.setItem('devicesUnlocked', devicesUnlocked);
                 localStorage.setItem('lastUpdateDate', today);
             } else {
-                // Load saved value
                 let savedDevices = localStorage.getItem('devicesUnlocked');
-                if (savedDevices) {
-                    devicesUnlocked = parseInt(savedDevices);
-                }
+                if (savedDevices) devicesUnlocked = parseInt(savedDevices);
             }
             
-            // Update UI
             document.getElementById('statDevices').innerText = devicesUnlocked.toLocaleString();
             document.getElementById('statUsers').innerText = activeUsers.toLocaleString();
             document.getElementById('liveDeviceCount').innerText = devicesUnlocked.toLocaleString();
         }
 
+        // Stars animation
         for(let i=0;i<200;i++){let s=document.createElement('div');s.classList.add('star');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.width=Math.random()*3+1+'px';s.style.height=s.style.width;s.style.animationDelay=Math.random()*5+'s';document.getElementById('stars').appendChild(s);}
 
         function showToast(message, isError){let t=document.getElementById('toast');t.textContent=message;t.style.background=isError?'#ef4444':'#10b981';t.style.display='block';setTimeout(()=>{t.style.display='none';},3000);}
@@ -1010,7 +1125,7 @@
         function toggleTheme(){document.body.classList.toggle('light-mode');localStorage.setItem('theme',document.body.classList.contains('light-mode')?'light':'dark');}
         if(localStorage.getItem('theme')==='light')document.body.classList.add('light-mode');
         function convertPrices(){let cur=document.getElementById('currencySelect').value;document.querySelectorAll('.price').forEach(el=>{let usd=parseFloat(el.dataset.usd);let converted=usd*exchangeRates[cur];let symbol=cur==='USD'?'$':cur==='KES'?'KSh':cur==='TZS'?'TSh':'USh';el.innerHTML=symbol+' '+converted.toLocaleString()+'<span>/'+el.innerHTML.split('<span>')[1];});}
-        function showSection(s){['home','features','pricing','faq','blog','tutorials','dashboard','contact','download'].forEach(sec=>{let el=document.getElementById(sec+'Section');if(el)el.style.display='none';});let active=document.getElementById(s+'Section');if(active)active.style.display=s==='home'?'flex':'block';window.scrollTo({top:0,behavior:'smooth'});if(s==='dashboard'){loadUserDevices();loadTimeRemaining();loadReviews();loadTickets();}}
+        function showSection(s){['home','features','pricing','faq','blog','tutorials','dashboard','contact','download','drivers'].forEach(sec=>{let el=document.getElementById(sec+'Section');if(el)el.style.display='none';});let active=document.getElementById(s+'Section');if(active)active.style.display=s==='home'?'flex':'block';window.scrollTo({top:0,behavior:'smooth'});if(s==='dashboard'){loadUserDevices();loadTimeRemaining();loadReviews();loadTickets();}if(s==='drivers'){loadDrivers();}}
         function switchAuthTab(t){document.getElementById('loginForm').style.display=t==='login'?'block':'none';document.getElementById('registerForm').style.display=t==='register'?'block':'none';document.getElementById('forgotForm').style.display=t==='forgot'?'block':'none';}
         function showLoginModal(){document.getElementById('authModal').style.display='flex';}
         function hideAuthModal(){document.getElementById('authModal').style.display='none';}
@@ -1043,7 +1158,7 @@
         async function loadPendingUsers(){let res=await fetch('/api/admin/pending_users');let d=await res.json();if(d.success){let html='<table><thead><tr><th>Username</th><th>Email</th><th>Registered</th><th>Duration</th><th>Actions</th></tr></thead><tbody>';d.users.forEach(u=>{html+=`<tr><td>${u.username}</td><td>${u.email}</td><td>${new Date(u.registered_at).toLocaleDateString()}</td><td><select id="dur_${u.username}"><option value="30">30 days ($20)</option><option value="90">90 days ($30)</option><option value="180">180 days ($40)</option><option value="365">365 days ($60)</option></select></td><td><button class="approve-btn" onclick="approveUser('${u.username}')">Approve</button><button class="reject-btn" onclick="rejectUser('${u.username}')">Reject</button></td></tr>`;});html+='</tbody></table>';document.getElementById('pendingTable').innerHTML=html;}else document.getElementById('pendingTable').innerHTML='<p>No pending approvals</p>';}
         async function approveUser(u){let d=document.getElementById(`dur_${u}`).value;if(confirm(`Approve ${u} for ${d} days?`)){let res=await fetch('/api/admin/approve_user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,duration:d})});let data=await res.json();showToast(data.message);loadPendingUsers();loadAllUsers();loadAdminStats();}}
         async function rejectUser(u){if(confirm(`Reject ${u}?`)){let res=await fetch('/api/admin/reject_user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u})});let d=await res.json();showToast(d.message);loadPendingUsers();}}
-        async function loadAllUsers(){let res=await fetch('/api/admin/all_users');let d=await res.json();if(d.success){let html='<table><thead><tr><th>Username</th><th>Email</th><th>Devices</th><th>Time Left</th><th>Status</th><th>Actions</th></tr></thead><tbody>';d.users.forEach(u=>{if(u.username!=='REYTECHFX')html+=`<tr><td>${u.username}</td><td>${u.email}</td><td><button class="view-devices-btn" onclick="viewUserDevices('${u.username}')">View (${u.devices_count})</button></td><td>${u.time_left}</td><td>${u.is_active?'✅ Active':'❌ Inactive'}</td><td><button class="extend-btn" onclick="extendLicense('${u.username}')">+30d</button><button class="${u.is_active?'reject-btn':'approve-btn'}" onclick="toggleUserStatus('${u.username}','${u.is_active?'deactivate':'activate'}')">${u.is_active?'Deactivate':'Activate'}</button></td></tr>`;});html+='</tbody></table>';document.getElementById('usersTable').innerHTML=html;}}
+        async function loadAllUsers(){let res=await fetch('/api/admin/all_users');let d=await res.json();if(d.success){let html='<tr><thead><tr><th>Username</th><th>Email</th><th>Devices</th><th>Time Left</th><th>Status</th><th>Actions</th></tr></thead><tbody>';d.users.forEach(u=>{if(u.username!=='REYTECHFX')html+=`<tr><td>${u.username}</td><td>${u.email}</td><td><button class="view-devices-btn" onclick="viewUserDevices('${u.username}')">View (${u.devices_count})</button></td><td>${u.time_left}</td><td>${u.is_active?'✅ Active':'❌ Inactive'}</td><td><button class="extend-btn" onclick="extendLicense('${u.username}')">+30d</button><button class="${u.is_active?'reject-btn':'approve-btn'}" onclick="toggleUserStatus('${u.username}','${u.is_active?'deactivate':'activate'}')">${u.is_active?'Deactivate':'Activate'}</button></td></tr>`;});html+='</tbody></table>';document.getElementById('usersTable').innerHTML=html;}}
         async function extendLicense(u){if(confirm(`Extend license for ${u} by 30 days?`)){let res=await fetch('/api/admin/extend_license',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,days:30})});let d=await res.json();showToast(d.message);loadAllUsers();}}
         async function viewUserDevices(u){let res=await fetch('/api/admin/user_devices',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u})});let d=await res.json();if(d.success&&d.devices.length){let html='<div class="features-grid">';d.devices.forEach(dev=>{html+=`<div class="feature-card"><i class="fas fa-mobile-alt"></i><h4>${dev.device_model}</h4><p>${new Date(dev.date).toLocaleString()}</p>${dev.screenshot?'<img src="'+dev.screenshot+'" style="max-width:100%; border-radius:10px;">':''}</div>`;});html+='</div>';document.getElementById('userDevicesList').innerHTML=html;}else document.getElementById('userDevicesList').innerHTML='<p>No devices recorded.</p>';document.getElementById('viewDevicesModal').style.display='flex';}
         async function toggleUserStatus(u,a){if(confirm(`${a==='activate'?'Activate':'Deactivate'} ${u}?`)){let res=await fetch('/api/admin/deactivate_user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,action:a})});let d=await res.json();showToast(d.message);loadAllUsers();}}
@@ -1055,9 +1170,10 @@
         function exportData(type){fetch('/api/admin/all_users').then(r=>r.json()).then(d=>{if(d.success){let csv='';if(type==='users'){csv='Username,Email,Role,Status,Devices,Time Left\n'+d.users.map(u=>`${u.username},${u.email},${u.role},${u.is_active?'Active':'Inactive'},${u.devices_count},${u.time_left}`).join('\n');}else{fetch('/api/user/devices').then(r2=>r2.json()).then(d2=>{if(d2.success){let allDevices=[];for(let u in d2){d2[u].forEach(dev=>{allDevices.push({username:u,...dev});});}csv='Username,Device Model,Date,Status\n'+allDevices.map(dev=>`${dev.username},${dev.device_model},${dev.date},${dev.status}`).join('\n');let blob=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${type}_export.csv`;a.click();showToast('Export complete!');}});return;}}let blob=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${type}_export.csv`;a.click();showToast('Export complete!');});}
         function switchAdminTab(t){['stats','pending','users','tickets','reviews','export'].forEach(tab=>{let el=document.getElementById(tab+'Panel');if(el)el.style.display='none';});document.getElementById(t+'Panel').style.display='block';if(t==='stats')loadAdminStats();if(t==='pending')loadPendingUsers();if(t==='users')loadAllUsers();if(t==='tickets')loadAdminTickets();if(t==='reviews')loadAdminReviews();}
         
-        // Initialize stats on page load
+        // Initialize stats and drivers on page load
         updateStats();
         loadAdminStats();
+        loadDrivers();
     </script>
 </body>
 </html>
