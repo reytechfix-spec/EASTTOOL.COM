@@ -255,6 +255,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            text-decoration: none;
         }
 
         .btn-primary:hover {
@@ -305,7 +306,7 @@
             font-family: 'Orbitron', monospace;
         }
 
-        .features, .pricing, .faq, .blog, .contact-section {
+        .features, .pricing, .faq, .blog, .contact-section, .download-section {
             padding: 80px 20px;
             max-width: 1400px;
             margin: 0 auto;
@@ -415,7 +416,6 @@
             margin-bottom: 10px;
         }
 
-        /* Video Tutorials Section */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -451,15 +451,10 @@
             color: var(--primary);
         }
 
-        .video-card p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-
-        .video-card small {
-            font-size: 11px;
-            color: var(--text-secondary);
+        .download-links a {
+            display: block;
+            margin-bottom: 12px;
+            text-decoration: none;
         }
 
         .currency-selector {
@@ -563,6 +558,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             line-height: 1.8;
+            cursor: pointer;
         }
 
         .social-links {
@@ -733,12 +729,13 @@
         <div class="nav-container">
             <div class="logo">
                 <div class="logo-icon"><i class="fas fa-unlock-alt"></i></div>
-                <div><div class="logo-text">EASY TOOL</div><div class="logo-sub">by REYTECHFX | v0.02</div></div>
+                <div><div class="logo-text">EASY TOOL</div><div class="logo-sub">by REYTECHFX | v0.05</div></div>
             </div>
             <div class="nav-links">
                 <a onclick="showSection('home')">Home</a>
                 <a onclick="showSection('features')">Features</a>
                 <a onclick="showSection('pricing')">Pricing</a>
+                <a onclick="showSection('download')">Download</a>
                 <a onclick="showSection('faq')">FAQ</a>
                 <a onclick="showSection('blog')">Blog</a>
                 <a onclick="showSection('tutorials')">Tutorials</a>
@@ -760,6 +757,7 @@
             <p>The most powerful MDM Bypass Tool for Samsung, Tecno, Infinix, Itel, Neon Ray and more. Remove enterprise locks in minutes with 98% success rate.</p>
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="showSection('pricing')"><i class="fas fa-shopping-cart"></i> Buy License</button>
+                <button class="btn-primary" style="background:linear-gradient(135deg,#f59e0b,#d97706);" onclick="showSection('download')"><i class="fas fa-download"></i> Download Tool v0.05</button>
                 <button class="btn-secondary" onclick="showLoginModal()"><i class="fas fa-user"></i> Login / Register</button>
             </div>
             <div class="live-counter">
@@ -795,6 +793,51 @@
             <div class="pricing-card popular"><div class="popular-badge">🔥 MOST POPULAR</div><h3>Professional</h3><div class="price" data-usd="30">$30<span>/6 Months</span></div><ul class="pricing-features"><li><i class="fas fa-check"></i> All Features</li><li><i class="fas fa-check"></i> Priority Support</li><li><i class="fas fa-check"></i> 6 Months License</li><li><i class="fas fa-check"></i> WhatsApp Support</li></ul><button class="btn-primary" onclick="showPayment('pro')">Get Started</button></div>
             <div class="pricing-card"><h3>Enterprise</h3><div class="price" data-usd="40">$40<span>/12 Months</span></div><ul class="pricing-features"><li><i class="fas fa-check"></i> All Features</li><li><i class="fas fa-check"></i> 24/7 Priority Support</li><li><i class="fas fa-check"></i> 12 Months License</li><li><i class="fas fa-check"></i> Phone Support</li></ul><button class="btn-primary" onclick="showPayment('enterprise')">Get Started</button></div>
         </div>
+        <div style="text-align:center; margin-top:40px;">
+            <a class="btn-primary" style="background:linear-gradient(135deg,#f59e0b,#d97706); cursor:pointer;" onclick="showSection('download')"><i class="fas fa-download"></i> Download Latest Version (v0.05)</a>
+            <small style="display:block; margin-top:10px;">Available on MediaFire, Google Drive & MEGA</small>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD SECTION -->
+    <section id="downloadSection" class="download-section" style="display:none;">
+        <h2 class="section-title">Download <span>EASY TOOL</span></h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-download"></i></div>
+                <h3>EASY TOOL v0.05</h3>
+                <p>Latest version with Samsung Unlimited method, bin patcher, and Android 14 support.</p>
+                <div class="download-links" style="margin-top: 20px;">
+                    <a href="https://www.mediafire.com/file/oip45r3yg9yf04w/EASY_TOOL_Setup_v0.05.rar/file" class="btn-primary" style="display:block; text-align:center;" target="_blank"><i class="fas fa-download"></i> MediaFire</a>
+                    <a href="https://drive.google.com/file/d/11bdV0y_dth9vkUs8l45YdqjCkGrdQv_t/view?usp=drive_link" class="btn-primary" style="display:block; text-align:center; margin-top:12px; background:linear-gradient(135deg,#4285F4,#2b5797);" target="_blank"><i class="fab fa-google-drive"></i> Google Drive</a>
+                    <a href="https://mega.nz/file/7F9CGJha#4NUs5sAgwYGXBgMa25HMSSb3Fqev2J5QId5WSDVM_ac" class="btn-primary" style="display:block; text-align:center; margin-top:12px; background:linear-gradient(135deg,#D90007,#a80000);" target="_blank"><i class="fas fa-database"></i> MEGA.nz</a>
+                    <button class="btn-secondary" style="width:100%; margin-top:12px;" onclick="showDownloadModal()"><i class="fas fa-link"></i> All Download Links</button>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-info-circle"></i></div>
+                <h3>Installation Guide</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Extract using WinRAR/7-Zip</li>
+                    <li><i class="fas fa-check"></i> Run Setup as Administrator</li>
+                    <li><i class="fas fa-check"></i> Disable Antivirus temporarily</li>
+                    <li><i class="fas fa-check"></i> Login with your credentials</li>
+                    <li><i class="fas fa-check"></i> Activate license</li>
+                </ul>
+                <button class="btn-primary" onclick="showSection('tutorials')"><i class="fab fa-youtube"></i> Watch Tutorial</button>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Requirements</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Windows 7/8/10/11 (64-bit)</li>
+                    <li><i class="fas fa-check"></i> 2GB RAM minimum</li>
+                    <li><i class="fas fa-check"></i> 500MB free space</li>
+                    <li><i class="fas fa-check"></i> USB Cable (Data sync)</li>
+                    <li><i class="fas fa-check"></i> Internet connection</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <!-- FAQ Section -->
@@ -814,48 +857,30 @@
     <section id="blogSection" class="blog" style="display:none;">
         <h2 class="section-title">Latest <span>News</span></h2>
         <div class="blog-grid">
-            <div class="blog-card"><div class="blog-date">May 23, 2025</div><h3>EASY TOOL v0.02 Released!</h3><p>New features added including Samsung Unlimited method and faster bin patcher.</p><button class="btn-primary" style="margin-top:15px; padding:10px 20px;" onclick="showToast('Coming soon!')">Read More</button></div>
+            <div class="blog-card"><div class="blog-date">May 23, 2025</div><h3>EASY TOOL v0.05 Released!</h3><p>New features added including Samsung Unlimited method and faster bin patcher.</p><button class="btn-primary" style="margin-top:15px; padding:10px 20px;" onclick="showToast('Coming soon!')">Read More</button></div>
             <div class="blog-card"><div class="blog-date">May 20, 2025</div><h3>Now Supporting Android 14</h3><p>EASY TOOL now supports the latest Android 14 devices from Samsung and Transsion.</p><button class="btn-primary" style="margin-top:15px; padding:10px 20px;" onclick="showToast('Coming soon!')">Read More</button></div>
             <div class="blog-card"><div class="blog-date">May 15, 2025</div><h3>50,000 Devices Unlocked!</h3><p>We've reached a milestone of 50,000 successfully unlocked devices. Thank you for trusting EASY TOOL!</p><button class="btn-primary" style="margin-top:15px; padding:10px 20px;" onclick="showToast('Coming soon!')">Read More</button></div>
         </div>
     </section>
 
-    <!-- Tutorials Section with YOUR VIDEOS -->
+    <!-- Tutorials Section -->
     <section id="tutorialsSection" class="features" style="display:none;">
         <h2 class="section-title">Video <span>Tutorials</span></h2>
         <div class="video-grid">
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/AUC4h318jTo" 
-                        title="Samsung A06 U10 MDM Bypass" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/AUC4h318jTo" title="Samsung A06 U10 MDM Bypass" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <h4>Samsung A06 U10 MDM Bypass</h4>
                 <p>Step by step guide for Samsung A06 and U10 devices using Easy Tool</p>
                 <small>View Count: 158+ | Apr 18, 2026</small>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/8-LP86Jn2-o" 
-                        title="LEVEL UP WITH EASY TOOL" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/8-LP86Jn2-o" title="LEVEL UP WITH EASY TOOL" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <h4>LEVEL UP WITH EASY TOOL</h4>
                 <p>Learn advanced techniques to level up your MDM bypass skills</p>
                 <small>View Count: 31+ | Apr 18, 2026</small>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/UibBCggdr-c" 
-                        title="TECNO KM5 MDM BYPASS" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/UibBCggdr-c" title="TECNO KM5 MDM BYPASS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <h4>TECNO KM5 MDM BYPASS</h4>
                 <p>Complete MDM bypass guide for Tecno KM5 devices using Easy Tool</p>
                 <small>View Count: 117+ | May 12, 2026</small>
@@ -910,7 +935,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section"><h4>EASY TOOL</h4><p>Professional MDM Bypass Tool for Android devices. Created by REYTECHFX.</p><div class="social-links"><a href="https://www.facebook.com/reytechfx" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="https://youtube.com/@easytoolteam" target="_blank"><i class="fab fa-youtube"></i></a><a href="https://t.me/reytechfx" target="_blank"><i class="fab fa-telegram"></i></a><a href="https://wa.me/254111457171" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div>
-            <div class="footer-section"><h4>Quick Links</h4><p><a onclick="showSection('home')">Home</a></p><p><a onclick="showSection('features')">Features</a></p><p><a onclick="showSection('pricing')">Pricing</a></p><p><a onclick="showSection('faq')">FAQ</a></p><p><a onclick="showSection('blog')">Blog</a></p><p><a onclick="showSection('tutorials')">Tutorials</a></p></div>
+            <div class="footer-section"><h4>Quick Links</h4><p><a onclick="showSection('home')">Home</a></p><p><a onclick="showSection('features')">Features</a></p><p><a onclick="showSection('pricing')">Pricing</a></p><p><a onclick="showSection('download')">📥 Download Tool</a></p><p><a onclick="showSection('faq')">FAQ</a></p><p><a onclick="showSection('blog')">Blog</a></p><p><a onclick="showSection('tutorials')">Tutorials</a></p></div>
             <div class="footer-section"><h4>Contact</h4><p><i class="fas fa-phone"></i> 254111457171</p><p><i class="fas fa-envelope"></i> reytechfix@gmail.com</p></div>
             <div class="footer-section"><h4>Payment Methods</h4><p>M-Pesa: 0111457171</p><p>SendWave: 0117219996</p><p>Visa/MasterCard</p></div>
         </div>
@@ -932,6 +957,7 @@
     <div id="paymentModal" class="modal"><div class="modal-content"><h2>💳 Payment Instructions</h2><div id="paymentContent"></div><button class="close" onclick="hidePaymentModal()">Close</button></div></div>
     <div id="viewDevicesModal" class="modal"><div class="modal-content" style="width:600px;"><h2>📱 User Devices</h2><div id="userDevicesList"></div><button class="close" onclick="hideViewDevicesModal()">Close</button></div></div>
     <div id="bulkEmailModal" class="modal"><div class="modal-content"><h2>📧 Send Bulk Email</h2><input type="text" id="bulkSubject" placeholder="Subject"><textarea id="bulkMessage" rows="5" placeholder="Message"></textarea><button onclick="sendBulkEmailConfirm()">Send to All Users</button><button class="close" onclick="hideBulkEmailModal()">Cancel</button></div></div>
+    <div id="downloadModal" class="modal"><div class="modal-content" style="max-width:500px;"><h2><i class="fas fa-cloud-download-alt"></i> All Download Links</h2><div style="margin:20px 0;"><div style="background:#0f172a; padding:15px; border-radius:12px; margin-bottom:15px;"><h3 style="color:#10b981;">📦 MediaFire</h3><p><small>https://www.mediafire.com/file/oip45r3yg9yf04w/EASY_TOOL_Setup_v0.05.rar/file</small></p><a href="https://www.mediafire.com/file/oip45r3yg9yf04w/EASY_TOOL_Setup_v0.05.rar/file" class="btn-primary" style="display:inline-block; margin-top:10px;" target="_blank">Download</a></div><div style="background:#0f172a; padding:15px; border-radius:12px; margin-bottom:15px;"><h3 style="color:#4285F4;">📁 Google Drive</h3><p><small>https://drive.google.com/file/d/11bdV0y_dth9vkUs8l45YdqjCkGrdQv_t/view</small></p><a href="https://drive.google.com/file/d/11bdV0y_dth9vkUs8l45YdqjCkGrdQv_t/view?usp=drive_link" class="btn-primary" style="display:inline-block; margin-top:10px; background:linear-gradient(135deg,#4285F4,#2b5797);" target="_blank">Download</a></div><div style="background:#0f172a; padding:15px; border-radius:12px;"><h3 style="color:#D90007;">🗄️ MEGA.nz</h3><p><small>https://mega.nz/file/7F9CGJha#4NUs5sAgwYGXBgMa25HMSSb3Fqev2J5QId5WSDVM_ac</small></p><a href="https://mega.nz/file/7F9CGJha#4NUs5sAgwYGXBgMa25HMSSb3Fqev2J5QId5WSDVM_ac" class="btn-primary" style="display:inline-block; margin-top:10px; background:linear-gradient(135deg,#D90007,#a80000);" target="_blank">Download</a></div></div><button class="close" onclick="hideDownloadModal()">Close</button></div></div>
 
     <div id="toast" class="toast"></div>
 
@@ -939,19 +965,52 @@
         let currentUser = null, currentUserRole = null, selectedRating = 0;
         let exchangeRates = {USD:1, KES:130, TZS:2600, UGX:3800};
 
-        // Stars generation
+        // Auto-increment devices unlocked by 34 every day
+        let devicesUnlocked = 65;
+        const dailyIncrement = 34;
+        const activeUsers = 6543;
+
+        function updateStats() {
+            // Get last update date from localStorage
+            const lastUpdate = localStorage.getItem('lastUpdateDate');
+            const today = new Date().toDateString();
+            
+            if (lastUpdate !== today) {
+                // Get previously saved count or use default
+                let savedDevices = localStorage.getItem('devicesUnlocked');
+                if (savedDevices) {
+                    devicesUnlocked = parseInt(savedDevices);
+                }
+                
+                // Add daily increment
+                devicesUnlocked += dailyIncrement;
+                
+                // Save new values
+                localStorage.setItem('devicesUnlocked', devicesUnlocked);
+                localStorage.setItem('lastUpdateDate', today);
+            } else {
+                // Load saved value
+                let savedDevices = localStorage.getItem('devicesUnlocked');
+                if (savedDevices) {
+                    devicesUnlocked = parseInt(savedDevices);
+                }
+            }
+            
+            // Update UI
+            document.getElementById('statDevices').innerText = devicesUnlocked.toLocaleString();
+            document.getElementById('statUsers').innerText = activeUsers.toLocaleString();
+            document.getElementById('liveDeviceCount').innerText = devicesUnlocked.toLocaleString();
+        }
+
         for(let i=0;i<200;i++){let s=document.createElement('div');s.classList.add('star');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.width=Math.random()*3+1+'px';s.style.height=s.style.width;s.style.animationDelay=Math.random()*5+'s';document.getElementById('stars').appendChild(s);}
 
         function showToast(message, isError){let t=document.getElementById('toast');t.textContent=message;t.style.background=isError?'#ef4444':'#10b981';t.style.display='block';setTimeout(()=>{t.style.display='none';},3000);}
         function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
         window.addEventListener('scroll',()=>{document.querySelector('.scroll-top').classList.toggle('show',window.scrollY>300);});
-
         function toggleTheme(){document.body.classList.toggle('light-mode');localStorage.setItem('theme',document.body.classList.contains('light-mode')?'light':'dark');}
         if(localStorage.getItem('theme')==='light')document.body.classList.add('light-mode');
-
         function convertPrices(){let cur=document.getElementById('currencySelect').value;document.querySelectorAll('.price').forEach(el=>{let usd=parseFloat(el.dataset.usd);let converted=usd*exchangeRates[cur];let symbol=cur==='USD'?'$':cur==='KES'?'KSh':cur==='TZS'?'TSh':'USh';el.innerHTML=symbol+' '+converted.toLocaleString()+'<span>/'+el.innerHTML.split('<span>')[1];});}
-
-        function showSection(s){['home','features','pricing','faq','blog','tutorials','dashboard','contact'].forEach(sec=>{let el=document.getElementById(sec+'Section');if(el)el.style.display='none';});let active=document.getElementById(s+'Section');if(active)active.style.display=s==='home'?'flex':'block';window.scrollTo({top:0,behavior:'smooth'});if(s==='dashboard'){loadUserDevices();loadTimeRemaining();loadReviews();loadTickets();}}
+        function showSection(s){['home','features','pricing','faq','blog','tutorials','dashboard','contact','download'].forEach(sec=>{let el=document.getElementById(sec+'Section');if(el)el.style.display='none';});let active=document.getElementById(s+'Section');if(active)active.style.display=s==='home'?'flex':'block';window.scrollTo({top:0,behavior:'smooth'});if(s==='dashboard'){loadUserDevices();loadTimeRemaining();loadReviews();loadTickets();}}
         function switchAuthTab(t){document.getElementById('loginForm').style.display=t==='login'?'block':'none';document.getElementById('registerForm').style.display=t==='register'?'block':'none';document.getElementById('forgotForm').style.display=t==='forgot'?'block':'none';}
         function showLoginModal(){document.getElementById('authModal').style.display='flex';}
         function hideAuthModal(){document.getElementById('authModal').style.display='none';}
@@ -960,15 +1019,14 @@
         function hidePaymentModal(){document.getElementById('paymentModal').style.display='none';}
         function hideViewDevicesModal(){document.getElementById('viewDevicesModal').style.display='none';}
         function hideBulkEmailModal(){document.getElementById('bulkEmailModal').style.display='none';}
+        function showDownloadModal(){document.getElementById('downloadModal').style.display='flex';}
+        function hideDownloadModal(){document.getElementById('downloadModal').style.display='none';}
 
         async function doRegister(){let u=document.getElementById('regUsername').value.trim(),p=document.getElementById('regPassword').value,c=document.getElementById('regConfirmPassword').value,e=document.getElementById('regEmail').value.trim();if(!u||u.length<3){document.getElementById('regError').innerText='Username must be at least 3 characters';return;}if(!p||p.length<4){document.getElementById('regError').innerText='Password must be at least 4 characters';return;}if(p!==c){document.getElementById('regError').innerText='Passwords do not match';return;}if(!e||!e.includes('@')){document.getElementById('regError').innerText='Valid email is required';return;}let res=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p,email:e})});let d=await res.json();if(d.success){showToast(d.message);switchAuthTab('login');document.getElementById('loginUsername').value=u;}else document.getElementById('regError').innerText=d.error;}
-
         async function doLogin(){let u=document.getElementById('loginUsername').value,p=document.getElementById('loginPassword').value;if(!u||!p){document.getElementById('loginError').innerText='Please enter username and password';return;}let res=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})});let d=await res.json();if(d.success){currentUser=d.username;currentUserRole=d.role;showToast('Welcome '+currentUser+'!');hideAuthModal();document.getElementById('authBtn').style.display='none';document.getElementById('dashboardLink').style.display='inline-block';document.getElementById('userInfo').innerHTML='<span style="color:var(--primary);"><i class="fas fa-user"></i> '+currentUser+'</span>';document.getElementById('logoutBtn').style.display='inline-block';if(currentUserRole==='admin')document.getElementById('adminPanel').style.display='block';showSection('dashboard');}else document.getElementById('loginError').innerText=d.error;}
-
         async function logout(){await fetch('/api/logout',{method:'POST'});location.reload();}
         async function sendResetToken(){let e=document.getElementById('forgotEmail').value.trim();if(!e){showToast('Enter email address',true);return;}let res=await fetch('/api/forgot_password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e})});let d=await res.json();if(d.success){showToast(d.message);document.getElementById('forgotMessage').innerHTML='<span style="color:#10b981;">'+d.message+'</span>';}else showToast(d.error,true);}
         async function resetPassword(){let t=document.getElementById('resetToken').value.trim(),np=document.getElementById('newPassword').value,cp=document.getElementById('confirmNewPassword').value;if(!t||!np){showToast('Token and password required',true);return;}if(np!==cp){showToast('Passwords do not match',true);return;}let res=await fetch('/api/reset_password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:t,new_password:np})});let d=await res.json();if(d.success){showToast(d.message);switchAuthTab('login');}else showToast(d.error,true);}
-
         async function loadUserDevices(){let res=await fetch('/api/user/devices');let d=await res.json();if(d.success){document.getElementById('dashboardUsername').innerText=currentUser;document.getElementById('timeRemaining').innerText=d.time_remaining;let html='';if(d.devices.length===0)html='<p>No devices added yet. Click "Add Device" to record your bypass.</p>';else d.devices.reverse().forEach(dev=>{html+='<div class="feature-card"><i class="fas fa-mobile-alt" style="font-size:24px; color:var(--primary);"></i><h4>'+dev.device_model+'</h4><p style="font-size:12px;">'+new Date(dev.date).toLocaleString()+'</p><span class="status-badge" style="background:#10b981; padding:2px 10px; border-radius:20px;">'+dev.status+'</span>'+(dev.screenshot?'<img src="'+dev.screenshot+'" style="max-width:100%; border-radius:10px; margin-top:10px;" onerror="this.style.display=\'none\'">':'')+'</div>';});document.getElementById('devicesList').innerHTML=html;}}
         async function loadTimeRemaining(){let res=await fetch('/api/user/time_remaining');let d=await res.json();if(d.success)document.getElementById('timeRemaining').innerText=d.time_remaining;}
         async function addDevice(){let m=document.getElementById('deviceModel').value.trim(),s=document.getElementById('screenshotData').value.trim();if(!m){showToast('Device model required',true);return;}let res=await fetch('/api/user/add_device',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({device_model:m,screenshot:s})});let d=await res.json();if(d.success){showToast('Device added!');hideAddDeviceModal();loadUserDevices();}else showToast(d.error,true);}
@@ -979,11 +1037,9 @@
         function loadTickets(){let tickets=JSON.parse(localStorage.getItem('tickets_'+currentUser)||'[]');if(tickets.length){let html='';tickets.reverse().forEach(t=>{html+='<div class="ticket-item"><strong>'+t.subject+'</strong><span style="background:#f59e0b; padding:2px 8px; border-radius:20px; margin-left:10px;">'+t.status+'</span><p>'+t.message+'</p><small>'+new Date(t.date).toLocaleString()+'</small></div>';});document.getElementById('userTickets').innerHTML=html;}else document.getElementById('userTickets').innerHTML='<p>No tickets yet.</p>';}
         function showPayment(p){let c='<h3 style="color:#f59e0b;">Plan - $'+(p==='basic'?'20 (3 Months)':p==='pro'?'30 (6 Months)':'40 (12 Months)')+'</h3><p>Send payment via:</p><ul><li><strong>M-Pesa:</strong> 0111457171</li><li><strong>SendWave:</strong> 0117219996</li></ul><p>After payment, send transaction ID to <strong>254111457171</strong> for activation.</p><div style="background:#0f172a; padding:15px; border-radius:12px;"><p>Reference: <strong>ET + Your Phone Number</strong></p></div><button onclick="window.location.href=\'https://wa.me/254111457171\'" style="background:#25D366; margin-top:15px;">📱 Contact on WhatsApp</button>';document.getElementById('paymentContent').innerHTML=c;document.getElementById('paymentModal').style.display='flex';}
         document.querySelectorAll('#ratingStars i').forEach(star=>{star.addEventListener('click',function(){let r=parseInt(this.dataset.rating);selectedRating=r;document.querySelectorAll('#ratingStars i').forEach((s,i)=>{s.style.color=i<r?'#f59e0b':'#9ca3af';});});});
-        
         async function checkSession(){let res=await fetch('/api/check_session');let d=await res.json();if(d.logged_in){currentUser=d.username;currentUserRole=d.role;document.getElementById('authBtn').style.display='none';document.getElementById('dashboardLink').style.display='inline-block';document.getElementById('userInfo').innerHTML='<span style="color:var(--primary);"><i class="fas fa-user"></i> '+currentUser+'</span>';document.getElementById('logoutBtn').style.display='inline-block';if(currentUserRole==='admin')document.getElementById('adminPanel').style.display='block';}}
         checkSession();
-
-        async function loadAdminStats(){let res=await fetch('/api/admin/stats');let d=await res.json();if(d.success){document.getElementById('statDevices').innerText=d.total_bypasses||0;document.getElementById('statUsers').innerText=d.active_users||0;document.getElementById('statRevenue').innerText='$'+(d.monthly_revenue||0);document.getElementById('liveDeviceCount').innerText=(d.total_bypasses||0).toLocaleString();let html='<div class="stats" style="margin-top:20px;"><div class="stat-card"><div class="stat-number">'+d.total_bypasses+'</div><div>Total Bypasses</div></div><div class="stat-card"><div class="stat-number">'+d.total_users+'</div><div>Total Users</div></div><div class="stat-card"><div class="stat-number">'+d.active_users+'</div><div>Active Users</div></div><div class="stat-card"><div class="stat-number">$'+d.monthly_revenue+'</div><div>Monthly Revenue</div></div></div>';if(d.devices_by_month){html+='<h4>Devices by Month</h4><ul>';Object.entries(d.devices_by_month).forEach(([m,c])=>{html+='<li>'+m+': '+c+' devices</li>';});html+='</ul>';}document.getElementById('adminStats').innerHTML=html;}}
+        async function loadAdminStats(){let res=await fetch('/api/admin/stats');let d=await res.json();if(d.success){document.getElementById('statDevices').innerText=devicesUnlocked;document.getElementById('statUsers').innerText=activeUsers;document.getElementById('statRevenue').innerText='$'+(d.monthly_revenue||0);let html='<div class="stats" style="margin-top:20px;"><div class="stat-card"><div class="stat-number">'+devicesUnlocked+'</div><div>Total Bypasses</div></div><div class="stat-card"><div class="stat-number">'+d.total_users+'</div><div>Total Users</div></div><div class="stat-card"><div class="stat-number">'+activeUsers+'</div><div>Active Users</div></div><div class="stat-card"><div class="stat-number">$'+d.monthly_revenue+'</div><div>Monthly Revenue</div></div></div>';if(d.devices_by_month){html+='<h4>Devices by Month</h4><ul>';Object.entries(d.devices_by_month).forEach(([m,c])=>{html+='<li>'+m+': '+c+' devices</li>';});html+='</ul>';}document.getElementById('adminStats').innerHTML=html;}}
         async function loadPendingUsers(){let res=await fetch('/api/admin/pending_users');let d=await res.json();if(d.success){let html='<table><thead><tr><th>Username</th><th>Email</th><th>Registered</th><th>Duration</th><th>Actions</th></tr></thead><tbody>';d.users.forEach(u=>{html+=`<tr><td>${u.username}</td><td>${u.email}</td><td>${new Date(u.registered_at).toLocaleDateString()}</td><td><select id="dur_${u.username}"><option value="30">30 days ($20)</option><option value="90">90 days ($30)</option><option value="180">180 days ($40)</option><option value="365">365 days ($60)</option></select></td><td><button class="approve-btn" onclick="approveUser('${u.username}')">Approve</button><button class="reject-btn" onclick="rejectUser('${u.username}')">Reject</button></td></tr>`;});html+='</tbody></table>';document.getElementById('pendingTable').innerHTML=html;}else document.getElementById('pendingTable').innerHTML='<p>No pending approvals</p>';}
         async function approveUser(u){let d=document.getElementById(`dur_${u}`).value;if(confirm(`Approve ${u} for ${d} days?`)){let res=await fetch('/api/admin/approve_user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,duration:d})});let data=await res.json();showToast(data.message);loadPendingUsers();loadAllUsers();loadAdminStats();}}
         async function rejectUser(u){if(confirm(`Reject ${u}?`)){let res=await fetch('/api/admin/reject_user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u})});let d=await res.json();showToast(d.message);loadPendingUsers();}}
@@ -998,6 +1054,9 @@
         async function sendBulkEmailConfirm(){let s=document.getElementById('bulkSubject').value.trim(),m=document.getElementById('bulkMessage').value.trim();if(!s||!m){showToast('Subject and message required',true);return;}let res=await fetch('/api/admin/all_users');let d=await res.json();if(d.success){showToast(`Email sent to ${d.users.filter(u=>u.email).length} users!`);hideBulkEmailModal();}else showToast('Failed to get users',true);}
         function exportData(type){fetch('/api/admin/all_users').then(r=>r.json()).then(d=>{if(d.success){let csv='';if(type==='users'){csv='Username,Email,Role,Status,Devices,Time Left\n'+d.users.map(u=>`${u.username},${u.email},${u.role},${u.is_active?'Active':'Inactive'},${u.devices_count},${u.time_left}`).join('\n');}else{fetch('/api/user/devices').then(r2=>r2.json()).then(d2=>{if(d2.success){let allDevices=[];for(let u in d2){d2[u].forEach(dev=>{allDevices.push({username:u,...dev});});}csv='Username,Device Model,Date,Status\n'+allDevices.map(dev=>`${dev.username},${dev.device_model},${dev.date},${dev.status}`).join('\n');let blob=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${type}_export.csv`;a.click();showToast('Export complete!');}});return;}}let blob=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${type}_export.csv`;a.click();showToast('Export complete!');});}
         function switchAdminTab(t){['stats','pending','users','tickets','reviews','export'].forEach(tab=>{let el=document.getElementById(tab+'Panel');if(el)el.style.display='none';});document.getElementById(t+'Panel').style.display='block';if(t==='stats')loadAdminStats();if(t==='pending')loadPendingUsers();if(t==='users')loadAllUsers();if(t==='tickets')loadAdminTickets();if(t==='reviews')loadAdminReviews();}
+        
+        // Initialize stats on page load
+        updateStats();
         loadAdminStats();
     </script>
 </body>
