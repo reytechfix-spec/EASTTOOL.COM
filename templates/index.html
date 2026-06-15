@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>EASY TOOL PRO | Ultimate MDM Bypass Platform v0.0.21</title>
+    <title>EASY TOOL PRO AI | Ultimate MDM Bypass Platform v1.0.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Three.js for 3D effects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Chart.js for analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -33,7 +35,6 @@
             z-index: -2;
         }
 
-        /* Gradient Overlay */
         .gradient-overlay {
             position: fixed;
             top: 0;
@@ -57,7 +58,6 @@
             backdrop-filter: blur(4px);
             border: 1px solid #ff2a75;
         }
-
         .custom-cursor-dot {
             width: 4px;
             height: 4px;
@@ -68,16 +68,9 @@
             z-index: 10001;
         }
 
-        /* Container */
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
+        .container { max-width: 1600px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
 
-        /* Header Premium */
+        /* Header */
         .header {
             background: rgba(10, 10, 20, 0.6);
             backdrop-filter: blur(20px);
@@ -90,11 +83,10 @@
             flex-wrap: wrap;
             gap: 15px;
             border: 1px solid rgba(255, 42, 117, 0.3);
-            box-shadow: 0 0 40px rgba(255, 42, 117, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(255, 42, 117, 0.1);
             position: relative;
             overflow: hidden;
         }
-
         .header::before {
             content: '';
             position: absolute;
@@ -105,11 +97,7 @@
             background: linear-gradient(90deg, transparent, rgba(255, 42, 117, 0.1), transparent);
             animation: shine 4s ease-in-out infinite;
         }
-
-        @keyframes shine {
-            0% { left: -100%; }
-            20%, 100% { left: 100%; }
-        }
+        @keyframes shine { 0% { left: -100%; } 20%, 100% { left: 100%; } }
 
         .logo h1 {
             font-family: 'Orbitron', monospace;
@@ -123,26 +111,25 @@
             animation: gradientShift 3s ease infinite;
             letter-spacing: 3px;
         }
+        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .logo p { font-size: 10px; color: #aaccff; letter-spacing: 4px; }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .logo p {
-            font-size: 10px;
-            color: #aaccff;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        /* Device Stats */
-        .device-stats {
+        /* News Ticker */
+        .news-ticker {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50px;
+            padding: 8px 20px;
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid #ff2a75;
         }
+        .news-label { background: #ff2a75; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; }
+        .news-content { overflow: hidden; white-space: nowrap; width: 300px; }
+        .news-text { display: inline-block; animation: scrollNews 15s linear infinite; font-size: 12px; }
+        @keyframes scrollNews { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
+        .device-stats { display: flex; gap: 12px; flex-wrap: wrap; }
         .stat-card {
             background: rgba(26, 26, 46, 0.8);
             backdrop-filter: blur(10px);
@@ -152,29 +139,11 @@
             align-items: center;
             gap: 10px;
             font-size: 13px;
-            font-weight: 500;
             border: 1px solid rgba(0, 212, 255, 0.2);
             transition: all 0.3s ease;
         }
+        .stat-card:hover { border-color: #ff2a75; transform: translateY(-2px); }
 
-        .stat-card:hover {
-            border-color: #ff2a75;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 42, 117, 0.2);
-        }
-
-        .status-online {
-            color: #00ffaa;
-            text-shadow: 0 0 10px #00ffaa;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        /* Navigation Tabs Premium */
         .nav-tabs {
             display: flex;
             gap: 8px;
@@ -182,8 +151,8 @@
             padding: 6px;
             border-radius: 60px;
             backdrop-filter: blur(10px);
+            flex-wrap: wrap;
         }
-
         .nav-btn {
             padding: 10px 24px;
             background: transparent;
@@ -194,32 +163,10 @@
             cursor: pointer;
             border-radius: 50px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
+        .nav-btn.active { background: linear-gradient(135deg, #ff2a75, #cc0055); color: white; box-shadow: 0 0 20px rgba(255, 42, 117, 0.4); }
 
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .nav-btn:hover::before {
-            left: 100%;
-        }
-
-        .nav-btn.active {
-            background: linear-gradient(135deg, #ff2a75, #cc0055);
-            color: white;
-            box-shadow: 0 0 20px rgba(255, 42, 117, 0.4);
-        }
-
-        /* Sidebar Premium */
+        /* Sidebar */
         .sidebar {
             width: 280px;
             background: rgba(10, 10, 20, 0.6);
@@ -230,26 +177,8 @@
             height: fit-content;
             position: sticky;
             top: 20px;
-            transition: all 0.3s ease;
         }
-
-        .sidebar:hover {
-            border-color: #ff2a75;
-            box-shadow: 0 0 30px rgba(255, 42, 117, 0.1);
-        }
-
-        .sidebar-title {
-            padding: 0 20px 15px 20px;
-            font-size: 11px;
-            font-weight: 700;
-            color: #ff2a75;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
+        .sidebar-title { padding: 0 20px 15px 20px; font-size: 11px; font-weight: 700; color: #ff2a75; text-transform: uppercase; letter-spacing: 3px; display: flex; align-items: center; gap: 8px; }
         .brand-btn {
             display: flex;
             align-items: center;
@@ -260,33 +189,12 @@
             border: none;
             color: #c0c0e0;
             font-size: 14px;
-            font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: left;
-            position: relative;
         }
+        .brand-btn:hover, .brand-btn.active { background: linear-gradient(90deg, rgba(255, 42, 117, 0.15), transparent); border-left: 3px solid #ff2a75; color: #ff2a75; padding-left: 30px; }
 
-        .brand-btn::after {
-            content: '';
-            position: absolute;
-            right: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .brand-btn:hover::after {
-            opacity: 1;
-        }
-
-        .brand-btn:hover, .brand-btn.active {
-            background: linear-gradient(90deg, rgba(255, 42, 117, 0.15), transparent);
-            border-left: 3px solid #ff2a75;
-            color: #ff2a75;
-            padding-left: 30px;
-        }
-
-        /* Content Area Premium */
         .content-area {
             flex: 1;
             background: rgba(10, 10, 20, 0.6);
@@ -295,10 +203,9 @@
             padding: 30px;
             border: 1px solid rgba(255, 42, 117, 0.2);
             min-height: 650px;
-            transition: all 0.3s ease;
         }
 
-        /* License Card Premium */
+        /* License Card */
         .license-card {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(17, 17, 34, 0.9));
             border-radius: 25px;
@@ -313,51 +220,10 @@
             position: relative;
             overflow: hidden;
         }
+        .license-days { font-size: 42px; font-weight: 900; font-family: 'Orbitron', monospace; background: linear-gradient(135deg, #00ffaa, #00d4ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-        .license-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 42, 117, 0.1), transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .license-info h3 {
-            font-size: 22px;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #fff, #ff2a75);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .license-days {
-            font-size: 42px;
-            font-weight: 900;
-            font-family: 'Orbitron', monospace;
-            background: linear-gradient(135deg, #00ffaa, #00d4ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 20px rgba(0, 255, 170, 0.3);
-        }
-
-        /* Dashboard Cards Premium */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
+        /* Dashboard Cards */
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-bottom: 30px; }
         .dash-card {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(17, 17, 34, 0.9));
             border-radius: 25px;
@@ -365,49 +231,12 @@
             text-align: center;
             border: 1px solid rgba(0, 212, 255, 0.2);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
         }
+        .dash-card:hover { transform: translateY(-8px); border-color: #ff2a75; box-shadow: 0 20px 40px rgba(255, 42, 117, 0.2); }
+        .dash-number { font-size: 48px; font-weight: 900; font-family: 'Orbitron', monospace; background: linear-gradient(135deg, #ff2a75, #00d4ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-        .dash-card::before {
-            content: '';
-            position: absolute;
-            bottom: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 42, 117, 0.1), rgba(0, 212, 255, 0.1));
-            transition: bottom 0.4s ease;
-        }
-
-        .dash-card:hover::before {
-            bottom: 0;
-        }
-
-        .dash-card:hover {
-            transform: translateY(-8px);
-            border-color: #ff2a75;
-            box-shadow: 0 20px 40px rgba(255, 42, 117, 0.2);
-        }
-
-        .dash-number {
-            font-size: 48px;
-            font-weight: 900;
-            font-family: 'Orbitron', monospace;
-            background: linear-gradient(135deg, #ff2a75, #00d4ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        /* Shop Cards Premium */
-        .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
+        /* Shop Cards */
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-bottom: 30px; }
         .plan-card {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(17, 17, 34, 0.9));
             border-radius: 25px;
@@ -416,48 +245,12 @@
             border: 1px solid rgba(0, 212, 255, 0.2);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            position: relative;
         }
+        .plan-card:hover { transform: translateY(-8px) scale(1.02); border-color: #ff2a75; box-shadow: 0 20px 40px rgba(255, 42, 117, 0.3); }
+        .plan-price { font-size: 42px; font-weight: 900; font-family: 'Orbitron', monospace; color: #ff2a75; margin: 20px 0; }
 
-        .plan-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 25px;
-            background: linear-gradient(135deg, rgba(255, 42, 117, 0.2), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .plan-card:hover::after {
-            opacity: 1;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: #ff2a75;
-            box-shadow: 0 20px 40px rgba(255, 42, 117, 0.3);
-        }
-
-        .plan-price {
-            font-size: 42px;
-            font-weight: 900;
-            font-family: 'Orbitron', monospace;
-            color: #ff2a75;
-            margin: 20px 0;
-        }
-
-        /* Method Cards Premium */
-        .methods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
+        /* Methods Grid */
+        .methods-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
         .method-card {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(17, 17, 34, 0.8));
             border-radius: 20px;
@@ -466,38 +259,58 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(0, 212, 255, 0.15);
-            position: relative;
-            overflow: hidden;
         }
+        .method-card:hover { transform: translateY(-5px); border-color: #ff2a75; box-shadow: 0 10px 30px rgba(255, 42, 117, 0.25); }
+        .method-card i { font-size: 36px; margin-bottom: 12px; display: block; }
 
-        .method-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 42, 117, 0.2), transparent);
-            transition: left 0.5s ease;
+        /* Download Cards */
+        .downloads-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .download-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(17, 17, 34, 0.8));
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            transition: all 0.3s ease;
         }
+        .download-card:hover { transform: translateY(-3px); border-color: #ff2a75; }
+        .download-btn { background: #ff2a75; border: none; padding: 10px 20px; border-radius: 30px; color: white; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold; }
 
-        .method-card:hover::before {
-            left: 100%;
+        /* AI Chatbot */
+        .ai-chatbot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 380px;
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid #ff2a75;
+            box-shadow: 0 0 40px rgba(255, 42, 117, 0.2);
+            z-index: 2000;
+            transform: translateX(420px);
+            transition: transform 0.3s ease;
         }
-
-        .method-card:hover {
-            transform: translateY(-5px);
-            border-color: #ff2a75;
-            box-shadow: 0 10px 30px rgba(255, 42, 117, 0.25);
+        .ai-chatbot.open { transform: translateX(0); }
+        .chat-header {
+            background: linear-gradient(135deg, #ff2a75, #cc0055);
+            padding: 15px 20px;
+            border-radius: 25px 25px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
         }
+        .chat-messages { height: 350px; overflow-y: auto; padding: 15px; }
+        .message { margin-bottom: 15px; display: flex; gap: 10px; }
+        .message.user { justify-content: flex-end; }
+        .message.bot .msg-bubble { background: rgba(255, 42, 117, 0.2); border-left: 3px solid #ff2a75; }
+        .message.user .msg-bubble { background: rgba(0, 212, 255, 0.2); border-right: 3px solid #00d4ff; }
+        .msg-bubble { padding: 10px 15px; border-radius: 15px; max-width: 80%; font-size: 13px; }
+        .chat-input { display: flex; padding: 15px; gap: 10px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .chat-input input { flex: 1; padding: 12px; background: rgba(26, 26, 46, 0.8); border: 1px solid rgba(255, 42, 117, 0.3); border-radius: 30px; color: white; }
+        .chat-input button { background: #ff2a75; border: none; padding: 12px 20px; border-radius: 30px; color: white; cursor: pointer; }
 
-        .method-card i {
-            font-size: 36px;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        /* Terminal Premium */
+        /* Terminal */
         .terminal {
             background: #05050a;
             border-radius: 20px;
@@ -509,103 +322,16 @@
             margin-top: 25px;
             border: 1px solid #00ffcc;
             box-shadow: 0 0 30px rgba(0, 255, 204, 0.1);
-            position: relative;
         }
-
-        .terminal::before {
-            content: '⚡ EASY TOOL TERMINAL v0.0.21 ⚡';
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: #05050a;
-            padding: 0 15px;
-            font-size: 10px;
-            color: #00ffcc;
-            font-family: monospace;
-        }
-
-        .console-line {
-            margin-bottom: 5px;
-            line-height: 1.6;
-        }
-        .console-line.error { color: #ff4444; text-shadow: 0 0 5px #ff4444; }
+        .console-line { margin-bottom: 5px; }
+        .console-line.error { color: #ff4444; }
         .console-line.success { color: #00ffaa; text-shadow: 0 0 5px #00ffaa; }
-        .console-line.warning { color: #ffcc00; text-shadow: 0 0 5px #ffcc00; }
+        .console-line.warning { color: #ffcc00; }
         .console-line.info { color: #00d4ff; }
-        .console-line.cyan { color: #00ffcc; text-shadow: 0 0 5px #00ffcc; }
 
-        /* Progress Bar Premium */
-        .progress-section {
-            margin: 25px 0;
-        }
+        .progress-bar-container { width: 100%; height: 6px; background: rgba(26, 26, 46, 0.8); border-radius: 10px; overflow: hidden; margin: 15px 0; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #ff2a75, #00d4ff); width: 0%; transition: width 0.3s ease; }
 
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 12px;
-            color: #aaccff;
-        }
-
-        .progress-bar-container {
-            width: 100%;
-            height: 8px;
-            background: rgba(26, 26, 46, 0.8);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff2a75, #00d4ff, #aa66ff);
-            width: 0%;
-            transition: width 0.3s ease;
-            border-radius: 10px;
-            position: relative;
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 1.5s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Tables Premium */
-        .devices-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .devices-table th, .devices-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(42, 42, 78, 0.5);
-        }
-
-        .devices-table th {
-            color: #ff2a75;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .devices-table tr:hover {
-            background: rgba(255, 42, 117, 0.05);
-        }
-
-        /* Modal Premium */
         .modal {
             display: none;
             position: fixed;
@@ -615,21 +341,12 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
-            z-index: 2000;
+            z-index: 3000;
             justify-content: center;
             align-items: center;
         }
-
-        .modal.active {
-            display: flex;
-            animation: modalFadeIn 0.3s ease;
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
+        .modal.active { display: flex; animation: modalFadeIn 0.3s ease; }
+        @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
         .modal-content {
             background: linear-gradient(135deg, #111122, #0a0a18);
             border-radius: 30px;
@@ -637,17 +354,7 @@
             max-width: 520px;
             width: 90%;
             border: 1px solid #ff2a75;
-            box-shadow: 0 0 60px rgba(255, 42, 117, 0.2);
         }
-
-        .modal-content h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 26px;
-            margin-bottom: 25px;
-            color: #ff2a75;
-            text-align: center;
-        }
-
         .modal-content input, .modal-content select {
             width: 100%;
             padding: 14px;
@@ -656,23 +363,9 @@
             border: 1px solid rgba(42, 42, 78, 0.5);
             border-radius: 15px;
             color: white;
-            font-size: 14px;
-            transition: all 0.3s ease;
         }
+        .modal-buttons { display: flex; gap: 15px; margin-top: 25px; }
 
-        .modal-content input:focus, .modal-content select:focus {
-            outline: none;
-            border-color: #ff2a75;
-            box-shadow: 0 0 15px rgba(255, 42, 117, 0.3);
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        /* Buttons Premium */
         .btn {
             padding: 12px 28px;
             border: none;
@@ -680,36 +373,12 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
-            position: relative;
-            overflow: hidden;
         }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary { background: linear-gradient(135deg, #ff2a75, #cc0055); color: white; box-shadow: 0 5px 20px rgba(255, 42, 117, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255, 42, 117, 0.4); }
+        .btn-primary { background: linear-gradient(135deg, #ff2a75, #cc0055); color: white; }
         .btn-success { background: linear-gradient(135deg, #00ffaa, #00cc88); color: #0a0a0f; }
-        .btn-success:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0, 255, 170, 0.3); }
         .btn-warning { background: linear-gradient(135deg, #ffcc00, #cc9900); color: #0a0a0f; }
-        .btn-danger { background: linear-gradient(135deg, #ff4444, #cc0000); color: white; }
-        .btn-secondary { background: rgba(42, 42, 78, 0.8); color: white; border: 1px solid rgba(255, 42, 117, 0.3); }
+        .btn-secondary { background: rgba(42, 42, 78, 0.8); color: white; }
 
-        /* Toast Premium */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -718,51 +387,15 @@
             border-left: 4px solid #ff2a75;
             padding: 15px 25px;
             border-radius: 15px;
-            z-index: 3000;
+            z-index: 4000;
             animation: slideInRight 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
         }
+        @keyframes slideInRight { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        @keyframes slideInRight {
-            from { transform: translateX(100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* Badge */
-        .badge {
-            background: linear-gradient(135deg, #ff2a75, #cc0055);
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 10px;
-            font-weight: bold;
-            display: inline-block;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a1a2e;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #ff2a75, #00d4ff);
-            border-radius: 10px;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .sidebar { width: 100%; position: relative; top: 0; }
-            .license-card { flex-direction: column; text-align: center; }
-            .nav-tabs { width: 100%; justify-content: center; flex-wrap: wrap; }
+            .sidebar { width: 100%; position: relative; }
+            .ai-chatbot { width: 320px; right: 10px; bottom: 10px; }
             .methods-grid { grid-template-columns: 1fr; }
-            .shop-grid { grid-template-columns: 1fr; }
-            .dashboard-grid { grid-template-columns: 1fr; }
-            .logo h1 { font-size: 24px; }
-            .header { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -772,11 +405,37 @@
     <div class="custom-cursor"></div>
     <div class="custom-cursor-dot"></div>
 
+    <!-- AI Chatbot -->
+    <div class="ai-chatbot" id="aiChatbot">
+        <div class="chat-header" onclick="toggleChat()">
+            <span><i class="fas fa-robot"></i> EASY AI ASSISTANT</span>
+            <i class="fas fa-chevron-down" id="chatToggleIcon"></i>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="msg-bubble">👋 Hello! I'm EASY AI Assistant. How can I help you today?</div>
+            </div>
+            <div class="message bot">
+                <div class="msg-bubble">💡 You can ask me about:<br>• How to bypass MDM<br>• License activation<br>• Device compatibility<br>• Troubleshooting</div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
     <div class="container">
         <div class="header">
             <div class="logo">
-                <h1>EASY TOOL <span style="font-size: 14px;">PRO</span></h1>
-                <p>⚡ ULTIMATE MDM BYPASS PLATFORM v0.0.21 ⚡</p>
+                <h1>EASY TOOL <span style="font-size: 14px;">AI PRO</span></h1>
+                <p>⚡ ULTIMATE MDM BYPASS PLATFORM v1.0.0 ⚡</p>
+            </div>
+            <div class="news-ticker">
+                <span class="news-label"><i class="fas fa-bullhorn"></i> NEWS</span>
+                <div class="news-content">
+                    <div class="news-text" id="newsTicker">🔥 NEW: Samsung Android 14/15/16 Bypass Released! | 💰 Referral Bonus: Earn 20% Commission! | 🎉 Special Discount: 30% OFF for first 100 customers! | 📱 New: Tecno/Infinix MDM Killer v2.0!</div>
+                </div>
             </div>
             <div class="device-stats">
                 <div class="stat-card"><i class="fas fa-mobile-alt"></i> <span id="deviceStatus">🔍 ONLINE</span></div>
@@ -789,6 +448,7 @@
                 <button class="nav-btn" onclick="switchPage('shop')"><i class="fas fa-store"></i> SHOP</button>
                 <button class="nav-btn" onclick="switchPage('dashboard')"><i class="fas fa-chart-line"></i> DASHBOARD</button>
                 <button class="nav-btn" onclick="switchPage('referral')"><i class="fas fa-users"></i> REFERRAL</button>
+                <button class="nav-btn" onclick="switchPage('downloads')"><i class="fas fa-download"></i> DOWNLOADS</button>
                 <button class="nav-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> EXIT</button>
             </div>
         </div>
@@ -804,11 +464,14 @@
                 <button class="brand-btn" onclick="switchBrand('OPPO', this)"><i class="fas fa-mobile-alt"></i> OPPO</button>
                 <button class="brand-btn" onclick="switchBrand('VIVO', this)"><i class="fas fa-mobile-alt"></i> VIVO</button>
                 <button class="brand-btn" onclick="switchBrand('NEON', this)"><i class="fas fa-bolt"></i> NEON RAY</button>
+                <button class="brand-btn" onclick="switchBrand('HUAWEI', this)"><i class="fab fa-android"></i> HUAWEI</button>
+                <button class="brand-btn" onclick="switchBrand('NOKIA', this)"><i class="fas fa-mobile-alt"></i> NOKIA</button>
                 
                 <div class="sidebar-title" style="margin-top: 25px;"><i class="fas fa-tools"></i> TOOLS</div>
                 <button class="brand-btn" onclick="restartADB()"><i class="fas fa-sync-alt"></i> Restart ADB</button>
                 <button class="brand-btn" onclick="clearConsole()"><i class="fas fa-trash-alt"></i> Clear Console</button>
                 <button class="brand-btn" onclick="openLicenseModal()"><i class="fas fa-key"></i> Activate License</button>
+                <button class="brand-btn" onclick="toggleChat()"><i class="fas fa-robot"></i> AI Assistant</button>
                 
                 <div class="sidebar-title" style="margin-top: 25px;"><i class="fas fa-link"></i> CONNECT</div>
                 <button class="brand-btn" onclick="window.open('https://t.me/reytechfx', '_blank')"><i class="fab fa-telegram"></i> Telegram</button>
@@ -862,50 +525,36 @@
         </div>
     </div>
 
-    <!-- License Activation Modal -->
+    <!-- License Modal -->
     <div class="modal" id="licenseActivateModal">
         <div class="modal-content">
             <h3><i class="fas fa-key"></i> ACTIVATE LICENSE</h3>
             <input type="text" id="licenseCode" placeholder="Enter activation code" style="text-transform:uppercase; text-align:center; font-size: 24px; letter-spacing: 8px;">
             <div class="modal-buttons">
-                <button class="btn btn-primary" onclick="activateLicense()"><i class="fas fa-check-circle"></i> ACTIVATE</button>
-                <button class="btn btn-secondary" onclick="closeLicenseActivate()"><i class="fas fa-times"></i> CLOSE</button>
+                <button class="btn btn-primary" onclick="activateLicense()">ACTIVATE</button>
+                <button class="btn btn-secondary" onclick="closeLicenseActivate()">CLOSE</button>
             </div>
             <div id="licenseActivateMsg" style="margin-top: 15px; font-size: 12px; text-align: center;"></div>
         </div>
     </div>
 
-    <!-- Buy License Modal -->
+    <!-- Buy Modal -->
     <div class="modal" id="buyLicenseModal">
         <div class="modal-content">
             <h3><i class="fas fa-shopping-cart"></i> PURCHASE LICENSE</h3>
             <div id="selectedPlanInfo" style="margin-bottom: 20px; text-align: center;"></div>
-            
-            <div style="margin: 20px 0;">
-                <label style="display: block; margin-bottom: 8px;">Payment Method:</label>
-                <select id="paymentMethod" style="width: 100%; padding: 14px; background: rgba(26, 26, 46, 0.8); border: 1px solid rgba(42, 42, 78, 0.5); border-radius: 15px; color: white;">
-                    <option value="mpesa">💳 M-PESA - 0111457171</option>
-                    <option value="airtel">📱 Airtel Money - 0117219996</option>
-                    <option value="tigo">📱 Tigo Pesa - 0117219996</option>
-                    <option value="paypal">🌐 PayPal - reytechfix@gmail.com</option>
-                    <option value="bitcoin">₿ Bitcoin - bc1q... (Contact support)</option>
-                    <option value="usdt">💎 USDT (TRC20) - Contact support</option>
-                </select>
-            </div>
-            
-            <div style="background: rgba(0, 0, 0, 0.3); border-radius: 15px; padding: 20px; margin: 20px 0; border: 1px solid rgba(255, 42, 117, 0.2);">
-                <p style="font-size: 12px; color: #aaccff;"><i class="fas fa-info-circle"></i> Instructions:</p>
-                <p style="font-size: 11px; margin-top: 8px;">1. Send payment to the selected method</p>
-                <p style="font-size: 11px;">2. Copy Transaction ID from your payment app</p>
-                <p style="font-size: 11px;">3. Paste below and click VERIFY PAYMENT</p>
-                <p style="font-size: 11px;">4. License code will be sent to your email instantly</p>
-            </div>
-            
+            <select id="paymentMethod">
+                <option value="mpesa">💳 M-PESA - 0111457171</option>
+                <option value="airtel">📱 Airtel Money - 0117219996</option>
+                <option value="tigo">📱 Tigo Pesa - 0117219996</option>
+                <option value="paypal">🌐 PayPal - reytechfix@gmail.com</option>
+                <option value="bitcoin">₿ Bitcoin - Contact support</option>
+                <option value="usdt">💎 USDT (TRC20) - Contact support</option>
+            </select>
             <input type="text" id="transactionId" placeholder="Transaction ID / Reference Number">
-            
             <div class="modal-buttons">
-                <button class="btn btn-success" onclick="verifyPayment()"><i class="fas fa-check-double"></i> VERIFY PAYMENT</button>
-                <button class="btn btn-secondary" onclick="closeBuyLicense()"><i class="fas fa-times"></i> CANCEL</button>
+                <button class="btn btn-success" onclick="verifyPayment()">VERIFY PAYMENT</button>
+                <button class="btn btn-secondary" onclick="closeBuyLicense()">CANCEL</button>
             </div>
             <div id="buyMsg" style="margin-top: 15px; font-size: 12px; text-align: center;"></div>
         </div>
@@ -915,7 +564,7 @@
     <div class="modal" id="withdrawModal">
         <div class="modal-content">
             <h3><i class="fas fa-money-bill-wave"></i> WITHDRAW EARNINGS</h3>
-            <p style="text-align: center; margin: 15px 0; font-size: 18px;">Your balance: <strong id="withdrawBalance" style="color: #00ffaa;">$0</strong></p>
+            <p style="text-align: center; margin: 15px 0;">Your balance: <strong id="withdrawBalance" style="color: #00ffaa;">$0</strong></p>
             <input type="number" id="withdrawAmount" placeholder="Amount to withdraw (min $10)">
             <select id="withdrawMethod">
                 <option value="mpesa">M-PESA</option>
@@ -924,8 +573,8 @@
             </select>
             <input type="text" id="withdrawAccount" placeholder="Phone number or PayPal email">
             <div class="modal-buttons">
-                <button class="btn btn-primary" onclick="requestWithdraw()"><i class="fas fa-download"></i> REQUEST WITHDRAWAL</button>
-                <button class="btn btn-secondary" onclick="closeWithdraw()"><i class="fas fa-times"></i> CANCEL</button>
+                <button class="btn btn-primary" onclick="requestWithdraw()">REQUEST WITHDRAWAL</button>
+                <button class="btn btn-secondary" onclick="closeWithdraw()">CANCEL</button>
             </div>
             <div id="withdrawMsg" style="margin-top: 15px; font-size: 12px; text-align: center;"></div>
         </div>
@@ -940,9 +589,8 @@
         renderer.setClearColor(0x000000, 0);
         document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-        // Create particles
         const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 2000;
+        const particlesCount = 2500;
         const posArray = new Float32Array(particlesCount * 3);
         for (let i = 0; i < particlesCount * 3; i += 3) {
             posArray[i] = (Math.random() - 0.5) * 200;
@@ -950,24 +598,16 @@
             posArray[i+2] = (Math.random() - 0.5) * 100 - 50;
         }
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.2,
-            color: 0xff2a75,
-            transparent: true,
-            opacity: 0.5,
-            blending: THREE.AdditiveBlending
-        });
+        const particlesMaterial = new THREE.PointsMaterial({ size: 0.15, color: 0xff2a75, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending });
         const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particlesMesh);
 
-        // Create rotating cube wireframe
-        const cubeGeometry = new THREE.BoxGeometry(15, 15, 15);
-        const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x00d4ff, wireframe: true, transparent: true, opacity: 0.15 });
+        const cubeGeometry = new THREE.BoxGeometry(18, 18, 18);
+        const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x00d4ff, wireframe: true, transparent: true, opacity: 0.12 });
         const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
         scene.add(cube);
 
-        camera.position.z = 30;
-
+        camera.position.z = 35;
         let mouseX = 0, mouseY = 0;
         document.addEventListener('mousemove', (event) => {
             mouseX = (event.clientX / window.innerWidth) * 2 - 1;
@@ -981,22 +621,18 @@
             cube.rotation.x += 0.005;
             cube.rotation.y += 0.008;
             cube.rotation.z += 0.003;
-            
-            // Follow mouse
             cube.rotation.x += mouseY * 0.02;
             cube.rotation.y += mouseX * 0.02;
-            
             renderer.render(scene, camera);
         }
         animate();
-
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // ==================== CUSTOM CURSOR ====================
+        // Custom cursor
         const cursor = document.querySelector('.custom-cursor');
         const cursorDot = document.querySelector('.custom-cursor-dot');
         document.addEventListener('mousemove', (e) => {
@@ -1004,21 +640,10 @@
             cursorDot.style.transform = `translate(${e.clientX - 2}px, ${e.clientY - 2}px)`;
         });
 
-        document.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-            cursorDot.style.opacity = '0';
-        });
-        document.addEventListener('mouseenter', () => {
-            cursor.style.opacity = '1';
-            cursorDot.style.opacity = '1';
-        });
-
         // ==================== DATA STORAGE ====================
         let users = JSON.parse(localStorage.getItem('easytool_users')) || {};
         let licenses = JSON.parse(localStorage.getItem('easytool_licenses')) || {};
         let devices = JSON.parse(localStorage.getItem('easytool_devices')) || [];
-        let pendingPayments = JSON.parse(localStorage.getItem('easytool_pending')) || [];
-        let referrals = JSON.parse(localStorage.getItem('easytool_referrals')) || {};
         let affiliateEarnings = JSON.parse(localStorage.getItem('easytool_earnings')) || {};
         
         let currentUser = null;
@@ -1029,7 +654,7 @@
         let deviceConnected = true;
         let deviceModel = 'SM-S918B';
         let deviceAndroid = '14';
-        let deviceBattery = '87';
+        let deviceBattery = 87;
         let pcId = localStorage.getItem('pc_id') || 'PC-' + Math.random().toString(36).substr(2, 8).toUpperCase();
         if (!localStorage.getItem('pc_id')) localStorage.setItem('pc_id', pcId);
         
@@ -1045,13 +670,11 @@
                 devices: [],
                 referralCode: 'ADMIN2024',
                 referredBy: null,
-                earnings: 0,
                 totalReferrals: 0
             };
             localStorage.setItem('easytool_users', JSON.stringify(users));
         }
 
-        // Plans
         const plans = {
             '3_months': { name: '3 MONTHS', price: 20, days: 90, code: '3M' },
             '6_months': { name: '6 MONTHS', price: 30, days: 180, code: '6M' },
@@ -1061,7 +684,20 @@
         
         const COMMISSION_RATE = 0.20;
 
-        // Bypass methods
+        // Download items
+        const downloadItems = [
+            { name: 'Samsung USB Drivers', category: 'drivers', size: '15MB', icon: 'fa-usb', url: '#' },
+            { name: 'ADB & Fastboot Tools', category: 'tools', size: '8MB', icon: 'fa-terminal', url: '#' },
+            { name: 'Odin Flash Tool', category: 'tools', size: '2MB', icon: 'fa-download', url: '#' },
+            { name: 'SP Flash Tool', category: 'tools', size: '25MB', icon: 'fa-microchip', url: '#' },
+            { name: 'Samsung Firmware A14', category: 'firmware', size: '4.2GB', icon: 'fa-file-archive', url: '#' },
+            { name: 'Tecno MDM Killer Patch', category: 'patches', size: '1.2MB', icon: 'fa-patch', url: '#' },
+            { name: 'Miscdata Patcher', category: 'patches', size: '500KB', icon: 'fa-edit', url: '#' },
+            { name: 'Proinfo Editor', category: 'patches', size: '300KB', icon: 'fa-pen', url: '#' },
+            { name: 'FRP Bypass APK', category: 'apks', size: '4MB', icon: 'fa-android', url: '#' },
+            { name: 'MTK Meta Tool', category: 'tools', size: '12MB', icon: 'fa-tools', url: '#' }
+        ];
+
         const bypassMethods = {
             SAMSUNG: ['⚡ ALL IN ONE', '🎯 CLASSIC', '💎 PREMIUM', '♾️ UNLIMITED', '🔥 LATEST (A14-16)', '🌍 UNIVERSAL', '💀 ULTIMATE', '🔓 KG REMOVE'],
             TECNO: ['💀 MDM KILLER', '🥷 NINJA MODE', '💣 NUCLEAR', '⚡ LATEST MDM'],
@@ -1070,43 +706,100 @@
             XIAOMI: ['🔓 FRP BYPASS', '📱 MIUI CLEAN', '⚡ EDL MODE'],
             OPPO: ['🔓 FRP BYPASS', '📱 DEMO REMOVE'],
             VIVO: ['🔓 FRP BYPASS', '📱 DEMO REMOVE'],
-            NEON: ['🔥 NEON RAY M1', '⚡ NEON RAY M2', '💀 ULTIMATE']
+            NEON: ['🔥 NEON RAY M1', '⚡ NEON RAY M2', '💀 ULTIMATE'],
+            HUAWEI: ['🔓 FRP BYPASS', '📱 HiSuite Clean'],
+            NOKIA: ['🔓 FRP BYPASS', '⚡ OST LA Tool']
         };
 
-        const mainTools = [
-            '📊 Device Info', '🔄 Reboot to DM', '🔄 Reboot Recovery', '🗑️ Factory Reset', 
-            '🔓 Remove FRP', '📱 Enable ADB', '🛡️ Disable Knox', '🔑 Bypass Google'
-        ];
+        // ==================== AI CHATBOT ====================
+        function toggleChat() {
+            const chatbot = document.getElementById('aiChatbot');
+            chatbot.classList.toggle('open');
+            const icon = document.getElementById('chatToggleIcon');
+            if (chatbot.classList.contains('open')) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
 
-        const dlTools = [
-            '🔄 Softbrick Fix', '🔓 FRP Method 1', '🔓 FRP Method 2', '⚡ Fastboot Flash', '💾 EFS Backup'
-        ];
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            addChatMessage(message, 'user');
+            input.value = '';
+            
+            setTimeout(() => {
+                const response = getAIResponse(message);
+                addChatMessage(response, 'bot');
+            }, 500);
+        }
+
+        function addChatMessage(text, sender) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender}`;
+            msgDiv.innerHTML = `<div class="msg-bubble">${text}</div>`;
+            messagesDiv.appendChild(msgDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function getAIResponse(message) {
+            const msg = message.toLowerCase();
+            
+            if (msg.includes('bypass') || msg.includes('mdm')) {
+                return "🔓 To bypass MDM:\n1. Connect your device via USB\n2. Enable USB debugging\n3. Select your brand from sidebar\n4. Click on any bypass method\n5. Wait for completion\n6. Restart your device\n\nNeed more help? Contact support!";
+            }
+            else if (msg.includes('license') || msg.includes('activate')) {
+                return "🎫 License Activation:\n1. Go to SHOP page\n2. Select your plan\n3. Complete payment\n4. Get activation code via email\n5. Go to TOOL → Activate License\n6. Enter your code\n\n💰 Prices: 3 Months $20, 6 Months $30, 12 Months $40";
+            }
+            else if (msg.includes('price') || msg.includes('cost')) {
+                return "💰 EASY TOOL Pricing:\n• 3 Months - $20\n• 6 Months - $30\n• 12 Months - $40\n• Rent (9h 20m) - $5\n\n💳 Payment: M-PESA, Airtel, Tigo, PayPal, Crypto";
+            }
+            else if (msg.includes('referral') || msg.includes('commission')) {
+                return "🤝 Referral Program:\n• Earn 20% commission on every referral\n• Share your unique referral link\n• Minimum withdrawal $10\n• Withdraw via M-PESA, Airtel, PayPal\n\nGo to REFERRAL page to get your link!";
+            }
+            else if (msg.includes('device') || msg.includes('connect')) {
+                return "📱 Device Connection:\n1. Enable USB debugging (Developer Options)\n2. Connect USB cable\n3. Accept authorization on device\n4. Tool will detect automatically\n\nStatus shows ONLINE when connected.";
+            }
+            else if (msg.includes('frp')) {
+                return "🔓 FRP Bypass:\n• For Samsung: Use KG Remove methods\n• For Xiaomi: Use FRP Bypass tool\n• For Oppo/Vivo: Use Demo Remove\n• For older Android 5/6: Use Method 1 or 2 in DL MODE tab";
+            }
+            else if (msg.includes('knox')) {
+                return "🛡️ Knox Disable:\n1. Connect Samsung device\n2. Go to MAIN tab\n3. Click 'Disable Knox'\n4. Wait for completion\n5. Restart device";
+            }
+            else if (msg.includes('error') || msg.includes('not working')) {
+                return "⚠️ Troubleshooting:\n1. Restart ADB (Tools sidebar)\n2. Reconnect USB cable\n3. Disable antivirus temporarily\n4. Try different USB port\n5. Contact support if issue persists";
+            }
+            else if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+                return "👋 Hello! I'm EASY AI Assistant. How can I help you today? I can assist with MDM bypass, license activation, device connection, and more!";
+            }
+            else if (msg.includes('thank')) {
+                return "🙏 You're welcome! Glad to help. If you need anything else, just ask. Happy bypassing! 🔥";
+            }
+            else {
+                return "🤖 I'm here to help! You can ask me about:\n• MDM Bypass methods\n• License pricing and activation\n• Device connection issues\n• FRP removal\n• Referral program\n• Troubleshooting\n\nWhat would you like to know?";
+            }
+        }
 
         // ==================== UTILITIES ====================
         function showToast(msg, type = 'info') {
             const toast = document.createElement('div');
             toast.className = 'toast';
-            const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
-            toast.innerHTML = `<i class="fas ${icons[type] || 'fa-info-circle'}"></i> ${msg}`;
+            toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : (type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle')}"></i> ${msg}`;
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 3000);
-            playBeep(type);
-        }
-
-        function playBeep(type) {
-            if (type === 'success') {
-                try {
-                    const audio = new Audio('data:audio/wav;base64,U3RlYWx0aCBzb3VuZA==');
-                    audio.play().catch(() => {});
-                } catch(e) {}
-            }
         }
 
         function addConsoleLog(msg, type = 'info') {
             const consoleDiv = document.getElementById('activeConsole');
             if (!consoleDiv) return;
             const ts = new Date().toLocaleTimeString();
-            const icons = { error: '❌', success: '✅', warning: '⚠️', info: '➡️', cyan: '⚡' };
+            const icons = { error: '❌', success: '✅', warning: '⚠️', info: '➡️' };
             const line = document.createElement('div');
             line.className = `console-line ${type}`;
             line.innerHTML = `<span style="color:#666;">[${ts}]</span> ${icons[type] || '➡️'} ${msg}`;
@@ -1116,9 +809,8 @@
 
         function clearConsole() {
             const consoleDiv = document.getElementById('activeConsole');
-            if (consoleDiv) consoleDiv.innerHTML = '<div class="console-line success">⚡ Console cleared ⚡</div>';
+            if (consoleDiv) consoleDiv.innerHTML = '';
             addConsoleLog('Console cleared', 'info');
-            showToast('Console cleared', 'info');
         }
 
         function restartADB() {
@@ -1130,167 +822,68 @@
         }
 
         function updateDeviceStatus() {
-            const statusSpan = document.getElementById('deviceStatus');
-            const modelSpan = document.getElementById('deviceModel');
-            const androidSpan = document.getElementById('deviceAndroid');
-            const batterySpan = document.getElementById('deviceBattery');
-            
-            if (deviceConnected) {
-                statusSpan.innerHTML = '<i class="fas fa-circle" style="color:#00ffaa; font-size:8px;"></i> ONLINE';
-                modelSpan.innerHTML = deviceModel;
-                androidSpan.innerHTML = `Android ${deviceAndroid}`;
-                batterySpan.innerHTML = `${deviceBattery}%`;
-            } else {
-                statusSpan.innerHTML = '<i class="fas fa-circle" style="color:#ff4444; font-size:8px;"></i> OFFLINE';
-                modelSpan.innerHTML = '--';
-                androidSpan.innerHTML = '--';
-                batterySpan.innerHTML = '--';
-            }
+            document.getElementById('deviceStatus').innerHTML = deviceConnected ? '<i class="fas fa-circle" style="color:#00ffaa; font-size:8px;"></i> ONLINE' : 'OFFLINE';
+            document.getElementById('deviceModel').innerHTML = deviceModel;
+            document.getElementById('deviceAndroid').innerHTML = `Android ${deviceAndroid}`;
+            document.getElementById('deviceBattery').innerHTML = `${deviceBattery}%`;
         }
 
-        // Simulate battery drain
-        setInterval(() => {
-            if (deviceConnected && deviceBattery > 5) {
-                deviceBattery -= 1;
-                updateDeviceStatus();
-            }
-        }, 60000);
+        setInterval(() => { if (deviceConnected && deviceBattery > 5) { deviceBattery--; updateDeviceStatus(); } }, 60000);
 
         function registerCurrentDevice() {
             if (!currentUser) return;
-            const existingDevice = devices.find(d => d.pcId === pcId && d.username === currentUser);
-            if (!existingDevice) {
-                devices.push({
-                    pcId: pcId, username: currentUser, firstSeen: new Date().toISOString(),
-                    lastSeen: new Date().toISOString(), model: deviceModel, os: `Android ${deviceAndroid}`, isActive: true
-                });
-                localStorage.setItem('easytool_devices', JSON.stringify(devices));
-                addConsoleLog(`💻 New device registered: ${pcId}`, 'info');
-            } else {
-                existingDevice.lastSeen = new Date().toISOString();
+            if (!devices.find(d => d.pcId === pcId && d.username === currentUser)) {
+                devices.push({ pcId, username: currentUser, firstSeen: new Date().toISOString(), lastSeen: new Date().toISOString(), model: deviceModel });
                 localStorage.setItem('easytool_devices', JSON.stringify(devices));
             }
         }
 
-        function getUserDevices() {
-            return devices.filter(d => d.username === currentUser);
-        }
-
-        // ==================== REFERRAL SYSTEM ====================
-        function generateReferralCode(username) {
-            return username.toUpperCase().substring(0, 4) + Math.random().toString(36).substr(2, 4).toUpperCase();
-        }
-
-        function addReferralEarnings(username, amount) {
-            if (!affiliateEarnings[username]) {
-                affiliateEarnings[username] = { balance: 0, totalEarned: 0, withdrawals: [] };
-            }
-            const commission = amount * COMMISSION_RATE;
-            affiliateEarnings[username].balance += commission;
-            affiliateEarnings[username].totalEarned += commission;
-            localStorage.setItem('easytool_earnings', JSON.stringify(affiliateEarnings));
-            return commission;
-        }
-
-        function processReferralBonus(newUser, referrerCode) {
-            let referrer = null;
-            for (const [username, userData] of Object.entries(users)) {
-                if (userData.referralCode === referrerCode && username !== newUser) {
-                    referrer = username;
-                    break;
-                }
-            }
-            if (referrer) {
-                users[newUser].referredBy = referrer;
-                users[referrer].totalReferrals = (users[referrer].totalReferrals || 0) + 1;
-                localStorage.setItem('easytool_users', JSON.stringify(users));
-                addConsoleLog(`🎉 User ${newUser} signed up with referral from ${referrer}!`, 'success');
-                return true;
-            }
-            return false;
-        }
-
-        // ==================== LICENSE MANAGEMENT ====================
+        function generateReferralCode(username) { return username.toUpperCase().substring(0, 4) + Math.random().toString(36).substr(2, 4).toUpperCase(); }
+        
         function generateActivationCode(plan, username) {
-            const prefix = plans[plan].code;
-            const random = Math.random().toString(36).substr(2, 6).toUpperCase();
-            const code = `${prefix}${random}${Math.floor(Math.random() * 100)}`;
-            const expiryDate = new Date();
-            expiryDate.setDate(expiryDate.getDate() + plans[plan].days);
-            licenses[code] = {
-                code: code, plan: plan, username: username, expiryDate: expiryDate.toISOString(),
-                createdAt: new Date().toISOString(), used: false, price: plans[plan].price
-            };
+            const code = plans[plan].code + Math.random().toString(36).substr(2, 6).toUpperCase() + Math.floor(Math.random() * 100);
+            const expiryDate = new Date(); expiryDate.setDate(expiryDate.getDate() + plans[plan].days);
+            licenses[code] = { code, plan, username, expiryDate: expiryDate.toISOString(), used: false, price: plans[plan].price };
             localStorage.setItem('easytool_licenses', JSON.stringify(licenses));
-            addConsoleLog(`📧 License code sent to ${users[username].email}`, 'info');
             return code;
         }
 
         function activateLicense() {
             const code = document.getElementById('licenseCode').value.trim().toUpperCase();
             const msgDiv = document.getElementById('licenseActivateMsg');
-            if (!code) { msgDiv.innerHTML = '❌ Enter activation code!'; msgDiv.style.color = '#ff4444'; return; }
             const license = licenses[code];
-            if (!license) { msgDiv.innerHTML = '❌ Invalid activation code!'; msgDiv.style.color = '#ff4444'; return; }
-            if (license.used) { msgDiv.innerHTML = '❌ Code already used!'; msgDiv.style.color = '#ff4444'; return; }
-            if (license.username !== currentUser) { msgDiv.innerHTML = `❌ This code is for: ${license.username}`; msgDiv.style.color = '#ff4444'; return; }
-            if (new Date(license.expiryDate) < new Date()) { msgDiv.innerHTML = '❌ Code expired!'; msgDiv.style.color = '#ff4444'; return; }
+            if (!license) { msgDiv.innerHTML = '❌ Invalid activation code!'; return; }
+            if (license.used) { msgDiv.innerHTML = '❌ Code already used!'; return; }
+            if (license.username !== currentUser) { msgDiv.innerHTML = `❌ This code is for: ${license.username}`; return; }
+            if (new Date(license.expiryDate) < new Date()) { msgDiv.innerHTML = '❌ Code expired!'; return; }
             
             license.used = true;
-            license.usedAt = new Date().toISOString();
             localStorage.setItem('easytool_licenses', JSON.stringify(licenses));
             users[currentUser].isActive = true;
             users[currentUser].subscriptionExpiry = license.expiryDate;
             localStorage.setItem('easytool_users', JSON.stringify(users));
             
             msgDiv.innerHTML = `✅ Activated! Expires: ${new Date(license.expiryDate).toLocaleDateString()}`;
-            msgDiv.style.color = '#00ffaa';
-            addConsoleLog(`✅ License activated! Expires: ${new Date(license.expiryDate).toLocaleDateString()}`, 'success');
-            showToast('License activated successfully!', 'success');
-            
-            setTimeout(() => {
-                closeLicenseActivate();
-                if (currentPage === 'tool') loadToolContent();
-                else if (currentPage === 'dashboard') loadDashboardContent();
-            }, 1500);
-        }
-
-        function requestPurchase(plan) {
-            if (!currentUser) { showToast('Please login first', 'error'); return; }
-            document.getElementById('selectedPlanInfo').innerHTML = `
-                <div style="background: rgba(255, 42, 117, 0.1); border-radius: 15px; padding: 15px;">
-                    <div><strong>${plans[plan].name}</strong></div>
-                    <div style="font-size: 32px; color: #ff2a75; font-weight: bold;">$${plans[plan].price}</div>
-                </div>
-            `;
-            document.getElementById('buyLicenseModal').dataset.plan = plan;
-            document.getElementById('buyLicenseModal').classList.add('active');
+            addConsoleLog(`✅ License activated!`, 'success');
+            showToast('License activated!', 'success');
+            setTimeout(() => { closeLicenseActivate(); if (currentPage === 'tool') loadToolContent(); }, 1500);
         }
 
         function verifyPayment() {
             const plan = document.getElementById('buyLicenseModal').dataset.plan;
-            const paymentMethod = document.getElementById('paymentMethod').value;
             const transactionId = document.getElementById('transactionId').value.trim();
             const msgDiv = document.getElementById('buyMsg');
-            if (!transactionId) { msgDiv.innerHTML = '❌ Please enter Transaction ID!'; msgDiv.style.color = '#ff4444'; return; }
-            
-            msgDiv.innerHTML = '⏳ Processing payment... <i class="fas fa-spinner fa-pulse"></i>';
-            msgDiv.style.color = '#ffcc00';
-            
+            if (!transactionId) { msgDiv.innerHTML = '❌ Enter Transaction ID!'; return; }
+            msgDiv.innerHTML = '⏳ Processing...';
             setTimeout(() => {
-                const activationCode = generateActivationCode(plan, currentUser);
-                if (users[currentUser]?.referredBy && affiliateEarnings[users[currentUser].referredBy]) {
-                    const commission = addReferralEarnings(users[currentUser].referredBy, plans[plan].price);
-                    addConsoleLog(`💰 ${users[currentUser].referredBy} earned $${commission} commission!`, 'success');
-                }
-                addConsoleLog(`✅ Payment verified! Activation code: ${activationCode}`, 'success');
-                showToast(`License generated! Code: ${activationCode}`, 'success');
+                const code = generateActivationCode(plan, currentUser);
+                addConsoleLog(`✅ Payment verified! Code: ${code}`, 'success');
+                showToast(`License generated! Code: ${code}`, 'success');
                 closeBuyLicense();
-                alert(`✅ PAYMENT CONFIRMED!\n\nYour activation code: ${activationCode}\n\nUse this code in the ACTIVATE LICENSE section.`);
+                alert(`✅ PAYMENT CONFIRMED!\n\nActivation code: ${code}`);
             }, 2000);
         }
 
-        // ==================== BYPASS FUNCTIONS ====================
         let progressInterval = null;
         function startProgress(duration, callback) {
             const fill = document.getElementById('progressFill');
@@ -1299,55 +892,20 @@
             let width = 0;
             progressInterval = setInterval(() => {
                 width += 100 / (duration / 50);
-                if (width >= 100) {
-                    clearInterval(progressInterval);
-                    fill.style.width = '100%';
-                    if (callback) callback();
-                    setTimeout(() => fill.style.width = '0%', 500);
-                } else {
-                    fill.style.width = width + '%';
-                }
+                if (width >= 100) { clearInterval(progressInterval); fill.style.width = '100%'; if (callback) callback(); setTimeout(() => fill.style.width = '0%', 500); }
+                else { fill.style.width = width + '%'; }
             }, 50);
         }
 
         function runBypass(methodName) {
-            if (!users[currentUser]?.isActive && users[currentUser]?.role !== 'admin') {
-                showToast('Please activate your license first!', 'error');
-                return;
-            }
-            if (!deviceConnected) { addConsoleLog('❌ No device connected!', 'error'); return; }
+            if (!users[currentUser]?.isActive && users[currentUser]?.role !== 'admin') { showToast('Activate license first!', 'error'); return; }
             addConsoleLog(`🔥 Running ${methodName} on ${currentBrand}...`, 'info');
             startProgress(3000, () => {
                 addConsoleLog(`✅ ${currentBrand} ${methodName} COMPLETED!`, 'success');
-                addConsoleLog(`📱 Device: ${deviceModel} | Android: ${deviceAndroid}`, 'success');
-                addConsoleLog('🔄 Please restart your device', 'warning');
+                addConsoleLog(`📱 Device: ${deviceModel}`, 'success');
                 showToast('Bypass completed!', 'success');
             });
         }
-
-        function readDeviceInfo() {
-            addConsoleLog('📊 Reading device info...', 'info');
-            setTimeout(() => {
-                addConsoleLog(`📱 Manufacturer: ${currentBrand}`, 'success');
-                addConsoleLog(`📱 Model: ${deviceModel}`, 'success');
-                addConsoleLog(`📱 Android: ${deviceAndroid}`, 'success');
-                addConsoleLog(`💻 PC ID: ${pcId}`, 'info');
-                addConsoleLog(`🔋 Battery: ${deviceBattery}%`, 'info');
-            }, 500);
-        }
-        
-        function rebootToDownload() { addConsoleLog('🔄 Rebooting to Download Mode...', 'info'); startProgress(2000, () => addConsoleLog('📱 Device in Download Mode', 'warning')); }
-        function rebootToRecovery() { addConsoleLog('🔄 Rebooting to Recovery Mode...', 'info'); startProgress(2000, () => addConsoleLog('📱 Device in Recovery Mode', 'warning')); }
-        function factoryReset() { if(confirm('⚠️ Factory reset will erase ALL data!\nProceed?')) { addConsoleLog('🗑️ Factory reset initiated', 'warning'); startProgress(2000, () => addConsoleLog('✅ Factory reset complete', 'success')); } }
-        function removeFrp() { if(confirm('🔓 Remove FRP lock?\nProceed?')) { addConsoleLog('🔓 Removing FRP...', 'info'); startProgress(2000, () => addConsoleLog('✅ FRP removed!', 'success')); } }
-        function enableAdb() { addConsoleLog('📱 Enabling ADB...', 'info'); setTimeout(() => addConsoleLog('✅ ADB enabled', 'success'), 800); }
-        function disableKnox() { addConsoleLog('🛡️ Disabling Knox...', 'info'); startProgress(1500, () => addConsoleLog('✅ Knox disabled', 'success')); }
-        function bypassGoogle() { addConsoleLog('🔑 Bypassing Google verification...', 'info'); startProgress(2000, () => addConsoleLog('✅ Google lock bypassed!', 'success')); }
-        function softbrickFix() { addConsoleLog('🔧 SOFTBRICK FIX INSTRUCTIONS:', 'warning'); addConsoleLog('1. Download stock firmware', 'info'); addConsoleLog('2. Open Odin/SP Flash Tool', 'info'); addConsoleLog('3. Load firmware files', 'info'); addConsoleLog('4. Flash and reboot', 'info'); addConsoleLog('✅ Device should boot normally', 'success'); }
-        function frpMethod1() { addConsoleLog('🔓 FRP METHOD 1:', 'warning'); addConsoleLog('1. Download Combination File', 'info'); addConsoleLog('2. Flash via Odin', 'info'); addConsoleLog('3. Boot to Combination', 'info'); addConsoleLog('4. Factory reset', 'info'); addConsoleLog('5. Flash stock firmware', 'info'); addConsoleLog('✅ FRP removed!', 'success'); }
-        function frpMethod2() { if(!deviceConnected) { addConsoleLog('❌ No device connected!', 'error'); return; } addConsoleLog('🔓 Removing FRP via ADB...', 'info'); startProgress(2000, () => addConsoleLog('✅ FRP removed!', 'success')); }
-        function fastbootFlash() { addConsoleLog('⚡ Fastboot mode ready', 'info'); addConsoleLog('📌 Connect device in fastboot mode', 'info'); }
-        function efsBackup() { addConsoleLog('💾 Backing up EFS...', 'info'); startProgress(1500, () => addConsoleLog('✅ EFS backup saved', 'success')); }
 
         // ==================== PAGE RENDERING ====================
         function switchPage(page) {
@@ -1358,6 +916,7 @@
             else if (page === 'shop') loadShopContent();
             else if (page === 'dashboard') loadDashboardContent();
             else if (page === 'referral') loadReferralContent();
+            else if (page === 'downloads') loadDownloadsContent();
         }
 
         function switchBrand(brand, element) {
@@ -1369,254 +928,120 @@
         }
 
         function loadToolContent() {
-            const container = document.getElementById('dynamicContent');
             const methods = bypassMethods[currentBrand] || bypassMethods['SAMSUNG'];
             const user = users[currentUser] || {};
             const expiry = user.subscriptionExpiry ? new Date(user.subscriptionExpiry) : null;
-            let daysLeft = 'ACTIVE', statusColor = '#00ffaa';
-            if (user.role === 'admin') { daysLeft = '👑 ADMIN'; statusColor = '#ff2a75'; }
-            else if (expiry) {
-                const days = Math.ceil((expiry - new Date()) / (1000 * 60 * 60 * 24));
-                if (days <= 0) { daysLeft = 'EXPIRED'; statusColor = '#ff4444'; }
-                else if (days <= 7) { daysLeft = `${days} DAYS`; statusColor = '#ffcc00'; }
-                else { daysLeft = `${days} DAYS`; statusColor = '#00ffaa'; }
-            }
+            let daysLeft = 'ACTIVE';
+            if (user.role === 'admin') daysLeft = '👑 ADMIN';
+            else if (expiry) { const days = Math.ceil((expiry - new Date()) / (1000*60*60*24)); daysLeft = days > 0 ? `${days} DAYS` : 'EXPIRED'; }
             
-            container.innerHTML = `
+            document.getElementById('dynamicContent').innerHTML = `
                 <div class="license-card">
-                    <div class="license-info">
-                        <h3><i class="fas fa-user-astronaut"></i> ${currentUser}</h3>
-                        <p>${user.role === 'admin' ? 'Administrator Access' : 'License Status'}</p>
-                    </div>
-                    <div class="license-days" style="color: ${statusColor};">${daysLeft}</div>
+                    <div><h3><i class="fas fa-user-astronaut"></i> ${currentUser}</h3><p>${user.role === 'admin' ? 'Admin' : 'License Status'}</p></div>
+                    <div class="license-days">${daysLeft}</div>
                     <button class="btn btn-warning" onclick="openLicenseModal()"><i class="fas fa-key"></i> Activate</button>
                 </div>
-                
-                <div class="methods-grid">
-                    ${methods.map(m => `<div class="method-card" onclick="runBypass('${m}')"><i class="fas fa-bolt" style="color: #ff2a75; font-size: 28px;"></i><h4>${m}</h4></div>`).join('')}
-                </div>
-                
-                <div class="methods-grid">
-                    ${mainTools.map(t => `<div class="method-card" onclick="${t.replace(/ /g, '').toLowerCase()}()"><i class="fas fa-cog" style="color: #00d4ff;"></i><h4>${t}</h4></div>`).join('')}
-                </div>
-                
-                <div class="methods-grid">
-                    ${dlTools.map(t => `<div class="method-card" onclick="${t.replace(/ /g, '').toLowerCase()}()"><i class="fas fa-download" style="color: #ffcc00;"></i><h4>${t}</h4></div>`).join('')}
-                </div>
-                
-                <div class="progress-section">
-                    <div class="progress-header"><span><i class="fas fa-chart-simple"></i> OPERATION STATUS</span><span id="progressText">Ready</span></div>
-                    <div class="progress-bar-container"><div class="progress-fill" id="progressFill"></div></div>
-                </div>
-                
-                <div id="activeConsole" class="terminal">
-                    <div class="console-line success">⚡ EASY TOOL PRO v0.0.21 READY ⚡</div>
-                    <div class="console-line cyan">🔥 Welcome ${currentUser}! Ultimate MDM Bypass Platform 🔥</div>
-                    <div class="console-line info">📱 Current Brand: ${currentBrand}</div>
-                    <div class="console-line info">💻 PC ID: ${pcId}</div>
-                    <div class="console-line info">💡 Select a method to start</div>
-                </div>
+                <div class="methods-grid">${methods.map(m => `<div class="method-card" onclick="runBypass('${m}')"><i class="fas fa-bolt" style="color:#ff2a75; font-size:28px;"></i><h4>${m}</h4></div>`).join('')}</div>
+                <div class="progress-bar-container"><div class="progress-fill" id="progressFill"></div></div>
+                <div id="activeConsole" class="terminal"><div class="console-line success">⚡ EASY TOOL PRO AI READY ⚡</div><div class="console-line info">🔥 Welcome ${currentUser}!</div><div class="console-line info">💡 Select a method to start</div></div>
             `;
         }
 
         function loadShopContent() {
-            const container = document.getElementById('dynamicContent');
-            container.innerHTML = `
-                <div class="license-card">
-                    <div class="license-info"><h3><i class="fas fa-store"></i> LICENSE SHOP</h3><p>Purchase activation codes instantly</p></div>
-                    <div><i class="fas fa-shield-alt"></i> 100% Secure</div>
-                </div>
-                
-                <div class="shop-grid">
-                    ${Object.entries(plans).map(([key, plan]) => `
-                        <div class="plan-card" onclick="requestPurchase('${key}')">
-                            <i class="fas fa-gem" style="font-size: 40px; color: #ff2a75;"></i>
-                            <h3>${plan.name}</h3>
-                            <div class="plan-price">$${plan.price}</div>
-                            <div class="plan-duration">${plan.days} Days Access</div>
-                            <button class="btn btn-primary">BUY NOW</button>
-                        </div>
-                    `).join('')}
-                </div>
-                
-                <div style="background: rgba(0, 0, 0, 0.3); border-radius: 20px; padding: 25px; margin-top: 25px;">
-                    <h4><i class="fas fa-credit-card"></i> Payment Methods</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
-                        <div><i class="fas fa-mobile-alt" style="color: #00ffaa;"></i> M-PESA: 0111457171</div>
-                        <div><i class="fas fa-mobile-alt" style="color: #ffcc00;"></i> Airtel Money: 0117219996</div>
-                        <div><i class="fas fa-mobile-alt" style="color: #ff6600;"></i> Tigo Pesa: 0117219996</div>
-                        <div><i class="fab fa-paypal" style="color: #0070ba;"></i> PayPal: reytechfix@gmail.com</div>
-                        <div><i class="fab fa-bitcoin" style="color: #f7931a;"></i> Bitcoin: Contact support</div>
-                        <div><i class="fas fa-coins" style="color: #26a17b;"></i> USDT (TRC20): Contact support</div>
-                    </div>
-                </div>
-                
-                <div id="activeConsole" class="terminal" style="margin-top: 25px;">
-                    <div class="console-line success">🏪 SHOP READY</div>
-                    <div class="console-line info">💰 Select a plan and complete payment</div>
-                    <div class="console-line info">📧 License codes sent to your email instantly after verification</div>
-                    <div class="console-line info">💸 20% commission for referrals! Share your referral code</div>
-                </div>
+            document.getElementById('dynamicContent').innerHTML = `
+                <div class="license-card"><div><h3><i class="fas fa-store"></i> LICENSE SHOP</h3><p>Purchase instantly</p></div><div><i class="fas fa-shield-alt"></i> Secure</div></div>
+                <div class="shop-grid">${Object.entries(plans).map(([key, plan]) => `<div class="plan-card" onclick="requestPurchase('${key}')"><i class="fas fa-gem" style="font-size:40px;color:#ff2a75;"></i><h3>${plan.name}</h3><div class="plan-price">$${plan.price}</div><button class="btn btn-primary">BUY NOW</button></div>`).join('')}</div>
+                <div style="background:rgba(0,0,0,0.3);border-radius:20px;padding:25px;"><h4><i class="fas fa-credit-card"></i> Payment Methods</h4><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-top:15px;"><div>📱 M-PESA: 0111457171</div><div>📱 Airtel: 0117219996</div><div>🌐 PayPal: reytechfix@gmail.com</div><div>₿ Crypto: Contact support</div></div></div>
+                <div id="activeConsole" class="terminal" style="margin-top:20px;"><div class="console-line success">🏪 SHOP READY</div><div class="console-line info">💰 Select a plan and complete payment</div></div>
             `;
         }
 
         function loadDashboardContent() {
-            const container = document.getElementById('dynamicContent');
-            const userDevices = getUserDevices();
+            const userDevices = devices.filter(d => d.username === currentUser);
             const user = users[currentUser] || {};
-            const expiry = user.subscriptionExpiry ? new Date(user.subscriptionExpiry) : null;
             const totalUsers = Object.keys(users).length;
-            const activeToday = devices.filter(d => new Date(d.lastSeen) > new Date(Date.now() - 24 * 60 * 60 * 1000)).length;
             const totalSales = Object.values(licenses).filter(l => l.used).reduce((sum, l) => sum + l.price, 0);
             
-            container.innerHTML = `
+            document.getElementById('dynamicContent').innerHTML = `
                 <div class="dashboard-grid">
-                    <div class="dash-card"><i class="fas fa-license" style="font-size: 32px;"></i><div class="dash-number">${expiry ? Math.ceil((expiry - new Date()) / (1000*60*60*24)) : '0'}</div><p>Days Remaining</p></div>
-                    <div class="dash-card"><i class="fas fa-desktop" style="font-size: 32px;"></i><div class="dash-number">${userDevices.length}</div><p>Devices Used</p></div>
-                    <div class="dash-card"><i class="fas fa-calendar" style="font-size: 32px;"></i><div class="dash-number">${expiry ? expiry.toLocaleDateString() : 'N/A'}</div><p>Expiry Date</p></div>
-                    <div class="dash-card"><i class="fas fa-dollar-sign" style="font-size: 32px;"></i><div class="dash-number">$${(affiliateEarnings[currentUser]?.balance || 0).toFixed(2)}</div><p>Referral Balance</p></div>
+                    <div class="dash-card"><i class="fas fa-license" style="font-size:32px;"></i><div class="dash-number">${userDevices.length}</div><p>Devices Used</p></div>
+                    <div class="dash-card"><i class="fas fa-dollar-sign" style="font-size:32px;"></i><div class="dash-number">$${(affiliateEarnings[currentUser]?.balance || 0).toFixed(2)}</div><p>Balance</p></div>
+                    <div class="dash-card"><i class="fas fa-users" style="font-size:32px;"></i><div class="dash-number">${user.totalReferrals || 0}</div><p>Referrals</p></div>
                 </div>
-                
-                ${users[currentUser]?.role === 'admin' ? `
-                <div style="background: rgba(0, 0, 0, 0.3); border-radius: 25px; padding: 25px; margin-bottom: 25px;">
-                    <h3><i class="fas fa-chart-line"></i> ADMIN ANALYTICS</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-top: 20px;">
-                        <div><strong>Total Users:</strong> ${totalUsers}</div><div><strong>Active Today:</strong> ${activeToday}</div>
-                        <div><strong>Total Sales:</strong> $${totalSales}</div><div><strong>Total Licenses:</strong> ${Object.keys(licenses).length}</div>
-                    </div>
-                </div>
-                ` : ''}
-                
-                <div style="background: rgba(0, 0, 0, 0.3); border-radius: 25px; padding: 25px;">
-                    <h3><i class="fas fa-desktop"></i> YOUR DEVICES</h3>
-                    <table class="devices-table"><thead><tr><th>PC ID</th><th>First Seen</th><th>Last Seen</th><th>Model</th></tr></thead>
-                    <tbody>${userDevices.length === 0 ? '<tr><td colspan="4" style="text-align: center;">No devices registered yet</td></tr>' : 
-                        userDevices.map(d => `<tr><td><code>${d.pcId}</code></td><td>${new Date(d.firstSeen).toLocaleDateString()}</td><td>${new Date(d.lastSeen).toLocaleDateString()}</td><td>${d.model}</td></tr>`).join('')}
-                    </tbody></table>
-                </div>
-                
-                <div id="activeConsole" class="terminal" style="margin-top: 25px;">
-                    <div class="console-line success">📊 DASHBOARD LOADED</div>
-                    <div class="console-line info">💻 Total devices used: ${userDevices.length}</div>
-                    <div class="console-line info">🔑 License status: ${user.isActive ? 'ACTIVE' : 'INACTIVE'}</div>
-                    <div class="console-line info">🎯 Referral earnings: $${(affiliateEarnings[currentUser]?.balance || 0).toFixed(2)}</div>
-                </div>
+                ${users[currentUser]?.role === 'admin' ? `<div style="background:rgba(0,0,0,0.3);border-radius:25px;padding:25px;margin-bottom:25px;"><h3>📊 ADMIN STATS</h3><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:15px;"><div><strong>Users:</strong> ${totalUsers}</div><div><strong>Sales:</strong> $${totalSales}</div><div><strong>Licenses:</strong> ${Object.keys(licenses).length}</div><div><strong>Devices:</strong> ${devices.length}</div></div></div>` : ''}
+                <div style="background:rgba(0,0,0,0.3);border-radius:25px;padding:25px;"><h3><i class="fas fa-desktop"></i> YOUR DEVICES</h3><table class="devices-table"><thead><tr><th>PC ID</th><th>First Seen</th><th>Last Seen</th></tr></thead><tbody>${userDevices.map(d => `<tr><td><code>${d.pcId}</code></td><td>${new Date(d.firstSeen).toLocaleDateString()}</td><td>${new Date(d.lastSeen).toLocaleDateString()}</td></tr>`).join('')}</tbody></table></div>
+                <div id="activeConsole" class="terminal" style="margin-top:20px;"><div class="console-line success">📊 DASHBOARD LOADED</div><div class="console-line info">💻 Devices: ${userDevices.length}</div><div class="console-line info">💰 Balance: $${(affiliateEarnings[currentUser]?.balance || 0).toFixed(2)}</div></div>
             `;
         }
 
         function loadReferralContent() {
-            const container = document.getElementById('dynamicContent');
             const user = users[currentUser] || {};
             const earnings = affiliateEarnings[currentUser] || { balance: 0, totalEarned: 0 };
             const referralCode = user.referralCode || generateReferralCode(currentUser);
             if (!user.referralCode) { users[currentUser].referralCode = referralCode; localStorage.setItem('easytool_users', JSON.stringify(users)); }
             const referralLink = `${window.location.origin}${window.location.pathname}?ref=${referralCode}`;
             
-            container.innerHTML = `
-                <div class="license-card">
-                    <div class="license-info"><h3><i class="fas fa-users"></i> REFERRAL PROGRAM</h3><p>Earn 20% commission on every referral!</p></div>
-                    <div><i class="fas fa-gift"></i> Share & Earn</div>
-                </div>
-                
+            document.getElementById('dynamicContent').innerHTML = `
                 <div class="dashboard-grid">
-                    <div class="dash-card"><i class="fas fa-code-branch" style="font-size: 32px;"></i><div class="dash-number">${user.totalReferrals || 0}</div><p>Total Referrals</p></div>
-                    <div class="dash-card"><i class="fas fa-dollar-sign" style="font-size: 32px;"></i><div class="dash-number">$${earnings.totalEarned?.toFixed(2) || '0.00'}</div><p>Total Earned</p></div>
-                    <div class="dash-card"><i class="fas fa-wallet" style="font-size: 32px;"></i><div class="dash-number">$${earnings.balance?.toFixed(2) || '0.00'}</div><p>Available Balance</p></div>
-                    <div class="dash-card" onclick="openWithdraw()"><i class="fas fa-money-bill-wave" style="font-size: 32px;"></i><div class="dash-number">WITHDRAW</div><p>Cash out earnings</p></div>
+                    <div class="dash-card"><div class="dash-number">${user.totalReferrals || 0}</div><p>Referrals</p></div>
+                    <div class="dash-card"><div class="dash-number">$${earnings.totalEarned?.toFixed(2) || '0.00'}</div><p>Total Earned</p></div>
+                    <div class="dash-card"><div class="dash-number">$${earnings.balance?.toFixed(2) || '0.00'}</div><p>Balance</p></div>
+                    <div class="dash-card" onclick="openWithdraw()"><div class="dash-number">WITHDRAW</div><p>Cash out</p></div>
                 </div>
-                
-                <div style="background: rgba(0, 0, 0, 0.3); border-radius: 25px; padding: 25px; margin-bottom: 25px;">
-                    <h3><i class="fas fa-link"></i> YOUR REFERRAL LINK</h3>
-                    <div style="background: rgba(0, 0, 0, 0.5); border-radius: 15px; padding: 15px; margin-top: 15px;">
-                        <code style="word-break: break-all;">${referralLink}</code>
-                        <button class="btn btn-secondary" onclick="copyToClipboard('${referralLink}')" style="margin-top: 10px;"><i class="fas fa-copy"></i> Copy Link</button>
-                    </div>
-                </div>
-                
-                <div style="background: rgba(0, 0, 0, 0.3); border-radius: 25px; padding: 25px;">
-                    <h3><i class="fas fa-trophy"></i> REFERRAL RULES</h3>
-                    <ul style="margin-top: 15px; margin-left: 20px; color: #aaccff; font-size: 13px; line-height: 1.8;">
-                        <li>✅ Earn 20% commission on every license purchased by your referrals</li>
-                        <li>✅ Commission is added to your balance instantly after payment</li>
-                        <li>✅ Minimum withdrawal: $10</li>
-                        <li>✅ Withdrawals processed within 24-48 hours</li>
-                        <li>✅ Payment methods: M-PESA, Airtel Money, PayPal</li>
-                    </ul>
-                </div>
-                
-                <div id="activeConsole" class="terminal" style="margin-top: 25px;">
-                    <div class="console-line success">🎯 REFERRAL PROGRAM ACTIVE</div>
-                    <div class="console-line info">📤 Share your link and earn 20% commission!</div>
-                    <div class="console-line info">💰 Current balance: $${earnings.balance?.toFixed(2) || '0.00'}</div>
-                    <div class="console-line info">👥 Total referrals: ${user.totalReferrals || 0}</div>
-                </div>
+                <div style="background:rgba(0,0,0,0.3);border-radius:25px;padding:25px;margin-bottom:25px;"><h3>🔗 YOUR REFERRAL LINK</h3><div style="background:rgba(0,0,0,0.5);border-radius:15px;padding:15px;margin-top:15px;"><code>${referralLink}</code><button class="btn btn-secondary" onclick="copyToClipboard('${referralLink}')" style="margin-top:10px;"><i class="fas fa-copy"></i> Copy Link</button></div></div>
+                <div style="background:rgba(0,0,0,0.3);border-radius:25px;padding:25px;"><h3>🏆 REFERRAL RULES</h3><ul style="margin-top:15px;margin-left:20px;color:#aaccff;"><li>✅ Earn 20% commission on every referral</li><li>✅ Minimum withdrawal: $10</li><li>✅ Withdraw via M-PESA, Airtel, PayPal</li></ul></div>
+                <div id="activeConsole" class="terminal" style="margin-top:20px;"><div class="console-line success">🎯 REFERRAL PROGRAM ACTIVE</div><div class="console-line info">💰 Balance: $${earnings.balance?.toFixed(2) || '0.00'}</div></div>
             `;
         }
 
-        function copyToClipboard(text) { navigator.clipboard.writeText(text); showToast('Link copied to clipboard!', 'success'); }
-
-        function openWithdraw() {
-            const earnings = affiliateEarnings[currentUser] || { balance: 0 };
-            document.getElementById('withdrawBalance').innerText = `$${earnings.balance?.toFixed(2) || '0.00'}`;
-            document.getElementById('withdrawModal').classList.add('active');
+        function loadDownloadsContent() {
+            const categories = [...new Set(downloadItems.map(d => d.category))];
+            document.getElementById('dynamicContent').innerHTML = `
+                <div class="license-card"><div><h3><i class="fas fa-download"></i> DOWNLOAD CENTER</h3><p>Tools, Drivers, Firmware & Patches</p></div><div><i class="fas fa-database"></i> Free Downloads</div></div>
+                ${categories.map(cat => `
+                    <div style="margin-bottom:30px;"><h3 style="margin-bottom:15px;"><i class="fas fa-folder"></i> ${cat.toUpperCase()}</h3>
+                    <div class="downloads-grid">${downloadItems.filter(d => d.category === cat).map(item => `
+                        <div class="download-card"><i class="fas ${item.icon}" style="font-size:40px;color:#ff2a75;display:block;margin-bottom:10px;"></i>
+                        <h4>${item.name}</h4><p style="font-size:11px;color:#aaccff;">Size: ${item.size}</p>
+                        <button class="download-btn" onclick="downloadFile('${item.name}')"><i class="fas fa-download"></i> Download</button>
+                        </div>
+                    `).join('')}</div></div>
+                `).join('')}
+                <div id="activeConsole" class="terminal"><div class="console-line success">📦 DOWNLOAD CENTER READY</div><div class="console-line info">Select any file to download</div></div>
+            `;
         }
-        function closeWithdraw() { document.getElementById('withdrawModal').classList.remove('active'); document.getElementById('withdrawMsg').innerHTML = ''; }
+
+        function downloadFile(name) {
+            showToast(`Downloading ${name}...`, 'success');
+            addConsoleLog(`📥 Downloading ${name}`, 'info');
+            setTimeout(() => showToast(`${name} downloaded!`, 'success'), 1500);
+        }
+
+        function copyToClipboard(text) { navigator.clipboard.writeText(text); showToast('Copied!', 'success'); }
         
-        function requestWithdraw() {
-            const amount = parseFloat(document.getElementById('withdrawAmount').value);
-            const method = document.getElementById('withdrawMethod').value;
-            const account = document.getElementById('withdrawAccount').value;
-            const msgDiv = document.getElementById('withdrawMsg');
-            const earnings = affiliateEarnings[currentUser] || { balance: 0 };
-            if (!amount || amount < 10) { msgDiv.innerHTML = '❌ Minimum withdrawal amount is $10'; msgDiv.style.color = '#ff4444'; return; }
-            if (amount > earnings.balance) { msgDiv.innerHTML = '❌ Insufficient balance'; msgDiv.style.color = '#ff4444'; return; }
-            if (!account) { msgDiv.innerHTML = '❌ Please enter your payment account'; msgDiv.style.color = '#ff4444'; return; }
-            
-            affiliateEarnings[currentUser].balance -= amount;
-            affiliateEarnings[currentUser].withdrawals = affiliateEarnings[currentUser].withdrawals || [];
-            affiliateEarnings[currentUser].withdrawals.push({ amount, method, account, date: new Date().toISOString(), status: 'pending' });
-            localStorage.setItem('easytool_earnings', JSON.stringify(affiliateEarnings));
-            addConsoleLog(`💰 Withdrawal request: $${amount} via ${method} to ${account}`, 'success');
-            showToast(`Withdrawal request submitted!`, 'success');
-            msgDiv.innerHTML = '✅ Withdrawal request submitted! Will be processed within 24-48 hours.';
-            msgDiv.style.color = '#00ffaa';
-            setTimeout(() => { closeWithdraw(); if (currentPage === 'referral') loadReferralContent(); }, 2000);
-        }
+        function requestPurchase(plan) { document.getElementById('selectedPlanInfo').innerHTML = `<div style="background:rgba(255,42,117,0.1);border-radius:15px;padding:15px;"><strong>${plans[plan].name}</strong><div style="font-size:32px;color:#ff2a75;">$${plans[plan].price}</div></div>`; document.getElementById('buyLicenseModal').dataset.plan = plan; document.getElementById('buyLicenseModal').classList.add('active'); }
+        function openWithdraw() { const earnings = affiliateEarnings[currentUser] || { balance: 0 }; document.getElementById('withdrawBalance').innerText = `$${earnings.balance?.toFixed(2) || '0.00'}`; document.getElementById('withdrawModal').classList.add('active'); }
+        function closeWithdraw() { document.getElementById('withdrawModal').classList.remove('active'); }
+        function requestWithdraw() { const amount = parseFloat(document.getElementById('withdrawAmount').value); if(amount < 10) { alert('Minimum $10'); return; } showToast('Withdrawal request submitted!', 'success'); closeWithdraw(); }
 
-        // ==================== AUTHENTICATION ====================
+        // Auth functions
         function checkSavedSession() {
-            const savedSession = localStorage.getItem('easytool_session');
-            if (savedSession) {
-                const session = JSON.parse(savedSession);
-                if (session.expiry > Date.now()) {
-                    currentUser = session.username;
-                    isLoggedIn = true;
-                    document.getElementById('loginModal').classList.remove('active');
-                    registerCurrentDevice();
-                    loadToolContent();
-                    updateDeviceStatus();
-                    return true;
-                } else { localStorage.removeItem('easytool_session'); }
+            const session = localStorage.getItem('easytool_session');
+            if (session) {
+                const s = JSON.parse(session);
+                if (s.expiry > Date.now()) { currentUser = s.username; isLoggedIn = true; document.getElementById('loginModal').classList.remove('active'); registerCurrentDevice(); loadToolContent(); updateDeviceStatus(); return true; }
             }
-            document.getElementById('loginModal').classList.add('active');
-            return false;
+            document.getElementById('loginModal').classList.add('active'); return false;
         }
 
         function doLogin() {
             const username = document.getElementById('loginUsername').value.trim();
             const password = document.getElementById('loginPassword').value.trim();
-            const msgDiv = document.getElementById('loginMsg');
-            if (!username || !password) { msgDiv.innerHTML = '❌ Enter username and password!'; return; }
             const user = users[username];
-            if (!user) { msgDiv.innerHTML = '❌ Username not found! Create an account.'; return; }
-            if (atob(user.password) !== password) { msgDiv.innerHTML = '❌ Invalid password!'; return; }
-            if (!user.isActive && user.role !== 'admin') { msgDiv.innerHTML = '❌ Account inactive! Purchase a license.'; return; }
-            if (user.subscriptionExpiry && new Date(user.subscriptionExpiry) < new Date() && user.role !== 'admin') {
-                user.isActive = false; users[username] = user; localStorage.setItem('easytool_users', JSON.stringify(users));
-                msgDiv.innerHTML = '❌ License expired! Please renew.'; return;
-            }
+            if (!user) { document.getElementById('loginMsg').innerHTML = '❌ User not found!'; return; }
+            if (atob(user.password) !== password) { document.getElementById('loginMsg').innerHTML = '❌ Wrong password!'; return; }
             currentUser = username; isLoggedIn = true;
-            localStorage.setItem('easytool_session', JSON.stringify({ username, expiry: Date.now() + 30 * 24 * 60 * 60 * 1000 }));
+            localStorage.setItem('easytool_session', JSON.stringify({ username, expiry: Date.now() + 30*24*60*60*1000 }));
             registerCurrentDevice();
             document.getElementById('loginModal').classList.remove('active');
             loadToolContent(); updateDeviceStatus();
@@ -1624,52 +1049,34 @@
         }
 
         function showRegister() { document.getElementById('loginModal').classList.remove('active'); document.getElementById('registerModal').classList.add('active'); }
-        function closeRegister() { document.getElementById('registerModal').classList.remove('active'); document.getElementById('loginModal').classList.add('active'); document.getElementById('regMsg').innerHTML = ''; }
+        function closeRegister() { document.getElementById('registerModal').classList.remove('active'); document.getElementById('loginModal').classList.add('active'); }
         
         function doRegister() {
             const username = document.getElementById('regUser').value.trim();
             const password = document.getElementById('regPass').value.trim();
-            const confirm = document.getElementById('regConfirm').value.trim();
             const email = document.getElementById('regEmail').value.trim();
-            const question = document.getElementById('regQuestion').value.trim();
-            const answer = document.getElementById('regAnswer').value.trim();
-            const referralCode = document.getElementById('regReferral').value.trim().toUpperCase();
-            const msgDiv = document.getElementById('regMsg');
-            if (username.length < 3) { msgDiv.innerHTML = '❌ Username min 3 chars'; return; }
-            if (password.length < 4) { msgDiv.innerHTML = '❌ Password min 4 chars'; return; }
-            if (password !== confirm) { msgDiv.innerHTML = '❌ Passwords do not match'; return; }
-            if (!email || !email.includes('@')) { msgDiv.innerHTML = '❌ Valid email required'; return; }
-            if (!question) { msgDiv.innerHTML = '❌ Security question required'; return; }
-            if (!answer) { msgDiv.innerHTML = '❌ Security answer required'; return; }
-            if (users[username]) { msgDiv.innerHTML = '❌ Username already exists'; return; }
-            
+            if (username.length < 3) { alert('Username min 3 chars'); return; }
+            if (password.length < 4) { alert('Password min 4 chars'); return; }
+            if (users[username]) { alert('Username exists!'); return; }
             const expiryDate = new Date(); expiryDate.setDate(expiryDate.getDate() + 30);
-            users[username] = {
-                password: btoa(password), email: email, securityQuestion: question, securityAnswer: btoa(answer.toLowerCase()),
-                role: 'user', createdAt: new Date().toISOString(), isActive: true, subscriptionExpiry: expiryDate.toISOString(),
-                devices: [], referralCode: generateReferralCode(username), referredBy: null, totalReferrals: 0
-            };
+            users[username] = { password: btoa(password), email, role: 'user', isActive: true, subscriptionExpiry: expiryDate.toISOString(), createdAt: new Date().toISOString(), referralCode: generateReferralCode(username), totalReferrals: 0 };
             localStorage.setItem('easytool_users', JSON.stringify(users));
-            if (referralCode) processReferralBonus(username, referralCode);
-            msgDiv.innerHTML = '✅ Account created! You can now login.'; msgDiv.style.color = '#00ffaa';
-            setTimeout(() => { closeRegister(); document.getElementById('loginUsername').value = username; document.getElementById('loginPassword').value = password; }, 1500);
+            alert('Account created! You can now login.');
+            closeRegister();
         }
 
         function logout() { localStorage.removeItem('easytool_session'); currentUser = null; isLoggedIn = false; document.getElementById('loginModal').classList.add('active'); showToast('Logged out', 'info'); }
-        function openLicenseModal() { document.getElementById('licenseActivateModal').classList.add('active'); document.getElementById('licenseCode').value = ''; document.getElementById('licenseActivateMsg').innerHTML = ''; }
+        function openLicenseModal() { document.getElementById('licenseActivateModal').classList.add('active'); }
         function closeLicenseActivate() { document.getElementById('licenseActivateModal').classList.remove('active'); }
-        function closeBuyLicense() { document.getElementById('buyLicenseModal').classList.remove('active'); document.getElementById('transactionId').value = ''; document.getElementById('buyMsg').innerHTML = ''; }
+        function closeBuyLicense() { document.getElementById('buyLicenseModal').classList.remove('active'); }
 
-        function checkReferralUrl() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const refCode = urlParams.get('ref');
-            if (refCode && !currentUser) { document.getElementById('regReferral').value = refCode; showToast('Referral code detected! Create account to get bonus.', 'success'); }
-        }
+        // Check URL for referral
+        const urlParams = new URLSearchParams(window.location.search);
+        const refCode = urlParams.get('ref');
+        if (refCode && !currentUser) { setTimeout(() => { document.getElementById('regReferral').value = refCode; showToast('Referral code detected!', 'success'); }, 500); }
 
-        // Initialize
         updateDeviceStatus();
         checkSavedSession();
-        checkReferralUrl();
     </script>
 </body>
 </html>
