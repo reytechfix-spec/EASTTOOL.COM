@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* ========== SCROLLBAR ========== */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -30,20 +29,6 @@
         ::-webkit-scrollbar-thumb {
             background: #ff2a75;
             border-radius: 10px;
-        }
-
-        /* ========== GLOW EFFECTS ========== */
-        .glow-pink {
-            text-shadow: 0 0 30px rgba(255, 42, 117, 0.4);
-        }
-        .glow-blue {
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-        }
-        .glow-green {
-            text-shadow: 0 0 30px rgba(0, 255, 170, 0.3);
-        }
-        .glow-gold {
-            text-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
         }
 
         /* ========== PARTICLES ========== */
@@ -185,7 +170,7 @@
             background: linear-gradient(145deg, #111122, #0d0d1f);
             border-radius: 24px;
             padding: 40px;
-            max-width: 480px;
+            max-width: 520px;
             width: 90%;
             border: 1px solid rgba(255, 42, 117, 0.15);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -238,7 +223,8 @@
             font-weight: 600;
             margin-bottom: 4px;
         }
-        .auth-box .form-group input {
+        .auth-box .form-group input,
+        .auth-box .form-group select {
             width: 100%;
             padding: 12px 16px;
             border-radius: 10px;
@@ -249,7 +235,12 @@
             transition: 0.3s;
             outline: none;
         }
-        .auth-box .form-group input:focus {
+        .auth-box .form-group select option {
+            background: #111122;
+            color: #ffffff;
+        }
+        .auth-box .form-group input:focus,
+        .auth-box .form-group select:focus {
             border-color: #ff2a75;
             background: rgba(255, 42, 117, 0.05);
         }
@@ -288,6 +279,13 @@
             color: #0a0a1a;
         }
         .auth-box .btn-auth.reseller:hover {
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+        }
+        .auth-box .btn-auth.gold {
+            background: linear-gradient(135deg, #ffcc00, #ff8800);
+            color: #0a0a1a;
+        }
+        .auth-box .btn-auth.gold:hover {
             box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
         }
 
@@ -383,6 +381,87 @@
             color: #ff2a75;
         }
 
+        /* ========== CHANGE PASSWORD ========== */
+        .change-password-btn {
+            background: none;
+            border: none;
+            color: #00d4ff;
+            cursor: pointer;
+            font-size: 12px;
+            text-decoration: underline;
+            margin-top: 8px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .change-password-btn:hover {
+            color: #ff2a75;
+        }
+
+        .change-password-form {
+            display: none;
+            margin-top: 12px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .change-password-form.active {
+            display: block;
+        }
+
+        .change-password-form .form-group {
+            margin-bottom: 10px;
+        }
+
+        .change-password-form .form-group label {
+            font-size: 12px;
+            color: #aaccff;
+        }
+
+        .change-password-form .form-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.03);
+            color: #ffffff;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .change-password-form .form-group input:focus {
+            border-color: #ff2a75;
+        }
+
+        .change-password-form .btn-change-pass {
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            background: linear-gradient(135deg, #ff2a75, #cc0055);
+            color: white;
+            font-size: 13px;
+        }
+
+        .change-password-form .btn-change-pass:hover {
+            transform: scale(1.02);
+        }
+
+        .change-password-form .btn-change-pass.cancel {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaccff;
+            margin-left: 8px;
+        }
+
+        .change-password-form .btn-change-pass.cancel:hover {
+            border-color: #ff2a75;
+        }
+
         /* ========== RESELLER DASHBOARD ========== */
         .reseller-dashboard {
             display: none;
@@ -471,31 +550,124 @@
             background: rgba(255, 204, 0, 0.25);
         }
 
-        .reseller-dashboard .commission-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
+        /* ========== RESELLER APPROVALS ========== */
+        .reseller-approvals {
+            margin-top: 12px;
         }
 
-        .reseller-dashboard .commission-table th {
-            text-align: left;
-            color: #667799;
-            padding: 6px 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        .reseller-approvals .approval-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
         }
 
-        .reseller-dashboard .commission-table td {
-            padding: 6px 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        .reseller-approvals .approval-header h4 {
             color: #aaccff;
+            font-size: 14px;
         }
 
-        .reseller-dashboard .commission-table .status-paid {
+        .reseller-approvals .approval-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            margin-bottom: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: 0.3s;
+        }
+
+        .reseller-approvals .approval-item:hover {
+            border-color: rgba(255, 204, 0, 0.15);
+        }
+
+        .reseller-approvals .approval-item .user-info {
+            flex: 1;
+        }
+
+        .reseller-approvals .approval-item .user-info .name {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .reseller-approvals .approval-item .user-info .email {
+            color: #667799;
+            font-size: 11px;
+        }
+
+        .reseller-approvals .approval-item .user-info .plan {
+            color: #ffcc00;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .reseller-approvals .approval-item .actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .reseller-approvals .approval-item .actions .btn-approve {
+            padding: 4px 14px;
+            border-radius: 6px;
+            border: none;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #00ffaa;
+            color: #0a0a1a;
+        }
+
+        .reseller-approvals .approval-item .actions .btn-approve:hover {
+            transform: scale(1.05);
+        }
+
+        .reseller-approvals .approval-item .actions .btn-reject {
+            padding: 4px 14px;
+            border-radius: 6px;
+            border: none;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #ff4444;
+            color: white;
+        }
+
+        .reseller-approvals .approval-item .actions .btn-reject:hover {
+            transform: scale(1.05);
+        }
+
+        .reseller-approvals .approval-item .status-badge {
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .reseller-approvals .approval-item .status-badge.pending {
+            background: rgba(255, 204, 0, 0.15);
+            color: #ffcc00;
+        }
+
+        .reseller-approvals .approval-item .status-badge.approved {
+            background: rgba(0, 255, 170, 0.15);
             color: #00ffaa;
         }
 
-        .reseller-dashboard .commission-table .status-pending {
-            color: #ffcc00;
+        .reseller-approvals .approval-item .status-badge.rejected {
+            background: rgba(255, 0, 0, 0.15);
+            color: #ff4444;
+        }
+
+        .reseller-approvals .empty-state {
+            text-align: center;
+            padding: 20px;
+            color: #667799;
+            font-size: 13px;
         }
 
         /* ========== ADMIN DASHBOARD ========== */
@@ -553,8 +725,8 @@
 
         .admin-dashboard .admin-actions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 8px;
             margin-top: 12px;
         }
 
@@ -1591,6 +1763,10 @@
             .admin-dashboard .stats {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .reseller-approvals .approval-item {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1635,6 +1811,10 @@
             .reseller-dashboard .stats,
             .admin-dashboard .stats {
                 grid-template-columns: 1fr 1fr;
+            }
+            .reseller-approvals .approval-item .actions {
+                width: 100%;
+                justify-content: flex-end;
             }
         }
     </style>
@@ -1712,7 +1892,30 @@
                     <div class="name" id="userName">John Doe</div>
                     <div class="email" id="userEmail">john@example.com</div>
                     <div class="role-badge" id="userRoleBadge">👤 User</div>
+                    <div>
+                        <button class="change-password-btn" onclick="toggleChangePassword()">🔑 Change Password</button>
+                    </div>
                 </div>
+
+                <!-- Change Password Form -->
+                <div class="change-password-form" id="changePasswordForm">
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <input type="password" id="currentPassword" placeholder="Enter current password" />
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" id="newPassword" placeholder="Enter new password (min 6 chars)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" id="confirmNewPassword" placeholder="Confirm new password" />
+                    </div>
+                    <button class="btn-change-pass" onclick="changePassword()">✅ Change Password</button>
+                    <button class="btn-change-pass cancel" onclick="toggleChangePassword()">❌ Cancel</button>
+                    <div id="changePassMessage" style="margin-top: 8px; font-size: 12px;"></div>
+                </div>
+
                 <button class="btn-auth" onclick="handleLogout()" style="background: #ef4444;">🚪 Logout</button>
 
                 <!-- Reseller Dashboard -->
@@ -1744,50 +1947,20 @@
                         <input type="text" id="referralLink" value="https://easytool.com/ref/MASTA_LEE" readonly />
                         <button class="copy-btn" onclick="copyReferral()">📋 Copy</button>
                     </div>
-                    <table class="commission-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>User</th>
-                                <th>Plan</th>
-                                <th>Commission</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2025-01-15</td>
-                                <td>johndoe</td>
-                                <td>3 Months</td>
-                                <td>$4.00</td>
-                                <td class="status-paid">✅ Paid</td>
-                            </tr>
-                            <tr>
-                                <td>2025-01-14</td>
-                                <td>sarahk</td>
-                                <td>6 Months</td>
-                                <td>$6.00</td>
-                                <td class="status-paid">✅ Paid</td>
-                            </tr>
-                            <tr>
-                                <td>2025-01-13</td>
-                                <td>petero</td>
-                                <td>12 Months</td>
-                                <td>$8.00</td>
-                                <td class="status-pending">⏳ Pending</td>
-                            </tr>
-                            <tr>
-                                <td>2025-01-12</td>
-                                <td>maryj</td>
-                                <td>Rent</td>
-                                <td>$1.00</td>
-                                <td class="status-pending">⏳ Pending</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <!-- Pending Approvals -->
+                    <div class="reseller-approvals">
+                        <div class="approval-header">
+                            <h4>⏳ Pending Activations</h4>
+                            <span style="color: #667799; font-size: 11px;" id="pendingCount">3 pending</span>
+                        </div>
+                        <div id="pendingApprovals">
+                            <!-- Generated by JavaScript -->
+                        </div>
+                    </div>
                 </div>
 
-                <!-- ADMIN DASHBOARD -->
+                <!-- Admin Dashboard -->
                 <div class="admin-dashboard" id="adminDashboard">
                     <div class="header">
                         <h3>👑 Admin Dashboard</h3>
@@ -1967,6 +2140,15 @@
                     <span class="time">12 min ago</span>
                 </div>
                 <div class="activity-item">
+                    <span class="icon">✅</span>
+                    <div class="info">
+                        <div class="device">Activation Approved</div>
+                        <div class="detail">User: newuser123 approved by MASTA LEE</div>
+                    </div>
+                    <span class="status-badge">✅ Approved</span>
+                    <span class="time">15 min ago</span>
+                </div>
+                <div class="activity-item">
                     <span class="icon">📱</span>
                     <div class="info">
                         <div class="device">Infinix Zero 30</div>
@@ -1974,15 +2156,6 @@
                     </div>
                     <span class="status-badge">✅ Done</span>
                     <span class="time">18 min ago</span>
-                </div>
-                <div class="activity-item">
-                    <span class="icon">🖥️</span>
-                    <div class="info">
-                        <div class="device">PC: LAPTOP-XYZ789</div>
-                        <div class="detail">New session started • Windows 11</div>
-                    </div>
-                    <span class="status-badge">✅ Online</span>
-                    <span class="time">25 min ago</span>
                 </div>
             </div>
         </div>
@@ -2229,9 +2402,80 @@
             icon.textContent = element.classList.contains('active') ? '−' : '+';
         }
 
+        // ===== CHANGE PASSWORD =====
+        function toggleChangePassword() {
+            const form = document.getElementById('changePasswordForm');
+            form.classList.toggle('active');
+            if (form.classList.contains('active')) {
+                document.getElementById('currentPassword').value = '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmNewPassword').value = '';
+                document.getElementById('changePassMessage').textContent = '';
+            }
+        }
+
+        function changePassword() {
+            const current = document.getElementById('currentPassword').value.trim();
+            const newPass = document.getElementById('newPassword').value.trim();
+            const confirm = document.getElementById('confirmNewPassword').value.trim();
+            const msgEl = document.getElementById('changePassMessage');
+
+            if (!currentUser) {
+                msgEl.style.color = '#ff4444';
+                msgEl.textContent = '❌ Please login first!';
+                return;
+            }
+
+            if (!current || !newPass || !confirm) {
+                msgEl.style.color = '#ff4444';
+                msgEl.textContent = '❌ Please fill in all fields!';
+                return;
+            }
+
+            if (current !== currentUser.password) {
+                msgEl.style.color = '#ff4444';
+                msgEl.textContent = '❌ Current password is incorrect!';
+                return;
+            }
+
+            if (newPass.length < 6) {
+                msgEl.style.color = '#ff4444';
+                msgEl.textContent = '❌ New password must be at least 6 characters!';
+                return;
+            }
+
+            if (newPass !== confirm) {
+                msgEl.style.color = '#ff4444';
+                msgEl.textContent = '❌ Passwords do not match!';
+                return;
+            }
+
+            // Update password
+            currentUser.password = newPass;
+            users[currentUser.username] = currentUser;
+            localStorage.setItem('easyToolUsers', JSON.stringify(users));
+            localStorage.setItem('easyToolCurrentUser', JSON.stringify(currentUser));
+
+            msgEl.style.color = '#00ffaa';
+            msgEl.textContent = '✅ Password changed successfully!';
+            showToast('✅ Password changed successfully!', 'success');
+
+            // Clear form
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmNewPassword').value = '';
+
+            setTimeout(() => {
+                toggleChangePassword();
+            }, 2000);
+        }
+
         // ===== AUTH SYSTEM =====
         let users = JSON.parse(localStorage.getItem('easyToolUsers') || '{}');
         let currentUser = JSON.parse(localStorage.getItem('easyToolCurrentUser') || 'null');
+
+        // ====== PENDING REQUESTS ======
+        let pendingRequests = JSON.parse(localStorage.getItem('easyToolPending') || '[]');
 
         // ====== ADMIN CREDENTIALS ======
         const ADMIN_USER = {
@@ -2266,7 +2510,19 @@
         if (!users['MASTA_LEE']) {
             users['MASTA_LEE'] = RESELLER_USER;
         }
-        localStorage.setItem('easyToolUsers', JSON.stringify(users));
+
+        // Add some sample pending requests if none exist
+        if (pendingRequests.length === 0) {
+            pendingRequests = [
+                { id: 1, username: 'newuser123', email: 'newuser@email.com', plan: '3 Months', date: '2025-01-20',
+                    status: 'pending', referredBy: 'MASTA_LEE' },
+                { id: 2, username: 'techpro', email: 'techpro@email.com', plan: '6 Months', date: '2025-01-19',
+                    status: 'pending', referredBy: 'MASTA_LEE' },
+                { id: 3, username: 'mobiledoctor', email: 'doctor@email.com', plan: '12 Months', date: '2025-01-18',
+                    status: 'pending', referredBy: 'MASTA_LEE' }
+            ];
+            localStorage.setItem('easyToolPending', JSON.stringify(pendingRequests));
+        }
 
         function openLogin() {
             document.getElementById('authModal').classList.add('active');
@@ -2284,6 +2540,7 @@
             document.getElementById('loggedInView').style.display = 'none';
             document.getElementById('resellerDashboard').classList.remove('active');
             document.getElementById('adminDashboard').classList.remove('active');
+            document.getElementById('changePasswordForm').classList.remove('active');
             hideAllErrors();
         }
 
@@ -2293,6 +2550,7 @@
             document.getElementById('loggedInView').style.display = 'none';
             document.getElementById('resellerDashboard').classList.remove('active');
             document.getElementById('adminDashboard').classList.remove('active');
+            document.getElementById('changePasswordForm').classList.remove('active');
             hideAllErrors();
         }
 
@@ -2405,13 +2663,28 @@
             users[username] = newUser;
             localStorage.setItem('easyToolUsers', JSON.stringify(users));
 
-            document.getElementById('registerSuccess').textContent = '✅ Account created! Please login.';
+            // Add to pending requests
+            const newRequest = {
+                id: Date.now(),
+                username: username,
+                email: email,
+                plan: '3 Months',
+                date: new Date().toISOString().split('T')[0],
+                status: 'pending',
+                referredBy: 'MASTA_LEE'
+            };
+            pendingRequests.push(newRequest);
+            localStorage.setItem('easyToolPending', JSON.stringify(pendingRequests));
+
+            document.getElementById('registerSuccess').textContent = '✅ Account created! Pending approval.';
             showSuccess('registerSuccess');
             setTimeout(() => {
                 showLogin();
                 document.getElementById('loginUsername').value = username;
                 document.getElementById('loginPassword').value = '';
             }, 1500);
+
+            showToast('📱 New user pending approval! Check dashboard.', 'warning');
         }
 
         function handleLogout() {
@@ -2420,6 +2693,7 @@
             document.getElementById('authNavBtn').textContent = '👤 Login';
             document.getElementById('resellerDashboard').classList.remove('active');
             document.getElementById('adminDashboard').classList.remove('active');
+            document.getElementById('changePasswordForm').classList.remove('active');
             showLogin();
             closeAuth();
         }
@@ -2433,27 +2707,28 @@
 
                 const roleBadge = document.getElementById('userRoleBadge');
 
-                // Check if Admin (REYTECHFX)
                 if (currentUser.isAdmin || currentUser.role === 'admin' || currentUser.username === 'REYTECHFX') {
                     avatar.classList.add('admin');
                     roleBadge.textContent = '👑 Administrator';
                     roleBadge.className = 'role-badge admin';
                     document.getElementById('adminDashboard').classList.add('active');
                     document.getElementById('resellerDashboard').classList.remove('active');
-                }
-                // Check if Reseller (MASTA_LEE)
-                else if (currentUser.isReseller || currentUser.role === 'reseller' || currentUser.username === 'MASTA_LEE') {
+                } else if (currentUser.isReseller || currentUser.role === 'reseller' || currentUser.username ===
+                    'MASTA_LEE') {
                     avatar.classList.add('reseller');
                     roleBadge.textContent = `🏆 Reseller • ${currentUser.tier || 'Gold'}`;
                     roleBadge.className = 'role-badge reseller';
                     document.getElementById('resellerDashboard').classList.add('active');
                     document.getElementById('adminDashboard').classList.remove('active');
+
                     document.getElementById('totalReferrals').textContent = currentUser.referrals || 12;
                     document.getElementById('totalCommission').textContent = `$${currentUser.commission || 340}`;
                     document.getElementById('pendingPayout').textContent = `$${currentUser.pendingPayout || 120}`;
                     document.getElementById('resellerTier').textContent = currentUser.tier || 'Gold';
                     document.getElementById('referralLink').value =
                         `https://easytool.com/ref/${currentUser.username}`;
+
+                    loadPendingApprovals();
                 } else {
                     roleBadge.textContent = '👤 User';
                     roleBadge.className = 'role-badge user';
@@ -2465,6 +2740,123 @@
                 document.getElementById('registerForm').style.display = 'none';
                 document.getElementById('loggedInView').style.display = 'block';
                 document.getElementById('authNavBtn').textContent = `👤 ${currentUser.username}`;
+            }
+        }
+
+        // ===== LOAD PENDING APPROVALS =====
+        function loadPendingApprovals() {
+            const container = document.getElementById('pendingApprovals');
+            const pendingCount = document.getElementById('pendingCount');
+
+            const pending = pendingRequests.filter(r => r.status === 'pending');
+            pendingCount.textContent = `${pending.length} pending`;
+
+            if (pending.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        ✅ No pending activations! All users are approved.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = '';
+            pending.forEach(request => {
+                const div = document.createElement('div');
+                div.className = 'approval-item';
+                div.innerHTML = `
+                    <div class="user-info">
+                        <div class="name">👤 ${request.username}</div>
+                        <div class="email">📧 ${request.email}</div>
+                        <div class="plan">📅 Plan: ${request.plan}</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="status-badge pending">⏳ Pending</span>
+                        <div class="actions">
+                            <button class="btn-approve" onclick="approveUser(${request.id})">✅ Approve</button>
+                            <button class="btn-reject" onclick="rejectUser(${request.id})">❌ Reject</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // ===== APPROVE USER =====
+        function approveUser(requestId) {
+            const request = pendingRequests.find(r => r.id === requestId);
+            if (!request) return;
+
+            if (!currentUser || (!currentUser.isReseller && !currentUser.isAdmin)) {
+                showToast('⚠️ You need to be a reseller or admin to approve!', 'warning');
+                return;
+            }
+
+            request.status = 'approved';
+
+            if (users[request.username]) {
+                users[request.username].isActive = true;
+                users[request.username].subscriptionExpiry = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)
+                .toISOString();
+                localStorage.setItem('easyToolUsers', JSON.stringify(users));
+            }
+
+            if (currentUser.isReseller) {
+                currentUser.commission = (currentUser.commission || 0) + 4;
+                currentUser.referrals = (currentUser.referrals || 0) + 1;
+                users[currentUser.username] = currentUser;
+                localStorage.setItem('easyToolUsers', JSON.stringify(users));
+                localStorage.setItem('easyToolCurrentUser', JSON.stringify(currentUser));
+            }
+
+            pendingRequests = pendingRequests.filter(r => r.id !== requestId);
+            localStorage.setItem('easyToolPending', JSON.stringify(pendingRequests));
+
+            loadPendingApprovals();
+            showToast(`✅ User ${request.username} approved! Commission: $4.00`, 'success');
+
+            document.getElementById('totalReferrals').textContent = currentUser.referrals || 12;
+            document.getElementById('totalCommission').textContent = `$${currentUser.commission || 340}`;
+
+            addActivityItem(`✅ User ${request.username} approved by ${currentUser.username}`, 'success');
+        }
+
+        // ===== REJECT USER =====
+        function rejectUser(requestId) {
+            const request = pendingRequests.find(r => r.id === requestId);
+            if (!request) return;
+
+            if (!currentUser || (!currentUser.isReseller && !currentUser.isAdmin)) {
+                showToast('⚠️ You need to be a reseller or admin to reject!', 'warning');
+                return;
+            }
+
+            pendingRequests = pendingRequests.filter(r => r.id !== requestId);
+            localStorage.setItem('easyToolPending', JSON.stringify(pendingRequests));
+
+            loadPendingApprovals();
+            showToast(`❌ User ${request.username} rejected.`, 'danger');
+        }
+
+        // ===== ADD ACTIVITY ITEM =====
+        function addActivityItem(text, type = 'info') {
+            const feed = document.getElementById('activityFeed');
+            const div = document.createElement('div');
+            div.className = 'activity-item';
+            const icon = type === 'success' ? '✅' : type === 'danger' ? '❌' : '📢';
+            div.innerHTML = `
+                <span class="icon">${icon}</span>
+                <div class="info">
+                    <div class="device">Activity</div>
+                    <div class="detail">${text}</div>
+                </div>
+                <span class="status-badge">${type === 'success' ? '✅ Done' : 'ℹ️ Info'}</span>
+                <span class="time">Just now</span>
+            `;
+            feed.insertBefore(div, feed.firstChild);
+
+            while (feed.children.length > 10) {
+                feed.removeChild(feed.lastChild);
             }
         }
 
@@ -2504,7 +2896,6 @@
             showToast('🎉 You are now a reseller! Share your link and earn!', 'success');
         }
 
-        // Make reseller apply buttons work
         document.querySelectorAll('.btn-apply, .reseller-btn, .btn-download-main.reseller-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -2550,7 +2941,6 @@
             const now = new Date();
             document.getElementById('lastUpdate').textContent = now.toLocaleTimeString();
 
-            // Update Admin stats
             const adminUsers = document.getElementById('adminTotalUsers');
             const adminResellers = document.getElementById('adminResellers');
             if (adminUsers) adminUsers.textContent = usersEl.textContent;
@@ -2582,7 +2972,7 @@
                 '📲 5 new devices connected today',
                 '💰 MASTA LEE earned $4.00 commission!',
                 '🚀 New bypass record set!',
-                '👑 Admin REYTECHFX logged in'
+                '👑 Admin REYTECHFX is online'
             ];
             const types = ['success', 'info', 'warning', 'success', 'info', 'success', 'info', 'info'];
             const idx = Math.floor(Math.random() * msgs.length);
