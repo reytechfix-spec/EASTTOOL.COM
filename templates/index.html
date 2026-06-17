@@ -42,6 +42,9 @@
         .glow-green {
             text-shadow: 0 0 30px rgba(0, 255, 170, 0.3);
         }
+        .glow-gold {
+            text-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+        }
 
         /* ========== PARTICLES ========== */
         .particles {
@@ -104,7 +107,6 @@
             -webkit-text-fill-color: transparent;
             text-decoration: none;
         }
-
         .navbar .logo span {
             color: #00d4ff;
             -webkit-text-fill-color: #00d4ff;
@@ -183,7 +185,7 @@
             background: linear-gradient(145deg, #111122, #0d0d1f);
             border-radius: 24px;
             padding: 40px;
-            max-width: 420px;
+            max-width: 480px;
             width: 90%;
             border: 1px solid rgba(255, 42, 117, 0.15);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -215,6 +217,9 @@
         }
         .auth-box h2 .highlight {
             color: #ff2a75;
+        }
+        .auth-box h2 .highlight-gold {
+            color: #ffcc00;
         }
         .auth-box .subtitle {
             text-align: center;
@@ -278,6 +283,13 @@
             border-color: #ff2a75;
             color: white;
         }
+        .auth-box .btn-auth.reseller {
+            background: linear-gradient(135deg, #ffcc00, #ff8800);
+            color: #0a0a1a;
+        }
+        .auth-box .btn-auth.reseller:hover {
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+        }
 
         .auth-box .auth-switch {
             text-align: center;
@@ -315,6 +327,7 @@
             margin-bottom: 12px;
             display: none;
         }
+
         .auth-box .user-avatar {
             width: 60px;
             height: 60px;
@@ -328,6 +341,14 @@
             margin: 0 auto 16px;
             color: white;
         }
+        .auth-box .user-avatar.reseller {
+            background: linear-gradient(135deg, #ffcc00, #ff8800);
+        }
+        .auth-box .user-avatar.admin {
+            background: linear-gradient(135deg, #ff2a75, #cc0055);
+            box-shadow: 0 0 30px rgba(255, 42, 117, 0.3);
+        }
+
         .auth-box .user-info {
             text-align: center;
             margin-bottom: 16px;
@@ -340,6 +361,229 @@
         .auth-box .user-info .email {
             font-size: 13px;
             color: #667799;
+        }
+        .auth-box .user-info .role-badge {
+            display: inline-block;
+            padding: 2px 14px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+        .auth-box .user-info .role-badge.reseller {
+            background: rgba(255, 204, 0, 0.2);
+            color: #ffcc00;
+        }
+        .auth-box .user-info .role-badge.user {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+        }
+        .auth-box .user-info .role-badge.admin {
+            background: rgba(255, 42, 117, 0.2);
+            color: #ff2a75;
+        }
+
+        /* ========== RESELLER DASHBOARD ========== */
+        .reseller-dashboard {
+            display: none;
+            background: linear-gradient(145deg, #111122, #0d0d1f);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 204, 0, 0.15);
+            margin: 16px 0;
+        }
+
+        .reseller-dashboard.active {
+            display: block;
+        }
+
+        .reseller-dashboard .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .reseller-dashboard .header h3 {
+            color: #ffcc00;
+            font-size: 16px;
+        }
+
+        .reseller-dashboard .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .reseller-dashboard .stat-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .reseller-dashboard .stat-item .number {
+            font-family: 'Orbitron', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffcc00;
+        }
+
+        .reseller-dashboard .stat-item .label {
+            color: #667799;
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        .reseller-dashboard .referral-link {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .reseller-dashboard .referral-link input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #aaccff;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .reseller-dashboard .referral-link .copy-btn {
+            background: rgba(255, 204, 0, 0.15);
+            color: #ffcc00;
+            border: none;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 11px;
+            transition: 0.3s;
+        }
+
+        .reseller-dashboard .referral-link .copy-btn:hover {
+            background: rgba(255, 204, 0, 0.25);
+        }
+
+        .reseller-dashboard .commission-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .reseller-dashboard .commission-table th {
+            text-align: left;
+            color: #667799;
+            padding: 6px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .reseller-dashboard .commission-table td {
+            padding: 6px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            color: #aaccff;
+        }
+
+        .reseller-dashboard .commission-table .status-paid {
+            color: #00ffaa;
+        }
+
+        .reseller-dashboard .commission-table .status-pending {
+            color: #ffcc00;
+        }
+
+        /* ========== ADMIN DASHBOARD ========== */
+        .admin-dashboard {
+            display: none;
+            background: linear-gradient(145deg, #111122, #0d0d1f);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 42, 117, 0.2);
+            margin: 16px 0;
+        }
+
+        .admin-dashboard.active {
+            display: block;
+        }
+
+        .admin-dashboard .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .admin-dashboard .header h3 {
+            color: #ff2a75;
+            font-size: 16px;
+        }
+
+        .admin-dashboard .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .admin-dashboard .stat-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .admin-dashboard .stat-item .number {
+            font-family: 'Orbitron', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ff2a75;
+        }
+
+        .admin-dashboard .stat-item .label {
+            color: #667799;
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        .admin-dashboard .admin-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .admin-dashboard .admin-actions .action-btn {
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.03);
+            color: #aaccff;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .admin-dashboard .admin-actions .action-btn:hover {
+            background: rgba(255, 42, 117, 0.1);
+            border-color: rgba(255, 42, 117, 0.2);
+        }
+
+        .admin-dashboard .admin-actions .action-btn.danger {
+            color: #ff4444;
+        }
+        .admin-dashboard .admin-actions .action-btn.success {
+            color: #00ffaa;
+        }
+        .admin-dashboard .admin-actions .action-btn.warning {
+            color: #ffcc00;
         }
 
         /* ========== HERO ========== */
@@ -446,6 +690,11 @@
             border-color: rgba(0, 255, 170, 0.25);
             color: #00ffaa;
         }
+        .hero-text .badge.gold {
+            background: rgba(255, 204, 0, 0.15);
+            border-color: rgba(255, 204, 0, 0.25);
+            color: #ffcc00;
+        }
 
         .hero-buttons {
             display: flex;
@@ -473,6 +722,16 @@
         .btn-primary.pink:hover {
             transform: translateY(-3px);
             box-shadow: 0 0 50px rgba(255, 42, 117, 0.5);
+        }
+
+        .btn-primary.gold {
+            background: linear-gradient(135deg, #ffcc00, #ff8800);
+            color: #0a0a1a;
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+        }
+        .btn-primary.gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(255, 204, 0, 0.5);
         }
 
         .btn-primary.outline {
@@ -788,171 +1047,6 @@
             color: #ffcc00;
         }
 
-        /* ========== HEATMAP ========== */
-        .heatmap {
-            max-width: 700px;
-            margin: 0 auto 40px;
-            background: linear-gradient(145deg, #111122, #0d0d1f);
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid rgba(0, 212, 255, 0.1);
-        }
-
-        .heatmap .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .heatmap-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
-        }
-
-        .heatmap-day {
-            background: #0a0a1a;
-            padding: 12px 8px;
-            border-radius: 10px;
-            text-align: center;
-            transition: 0.3s;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .heatmap-day:hover {
-            transform: scale(1.05);
-            border-color: rgba(255, 42, 117, 0.3);
-        }
-
-        .heatmap-day .emoji {
-            font-size: 24px;
-        }
-
-        .heatmap-day .day {
-            color: #667799;
-            font-size: 10px;
-            margin-top: 4px;
-        }
-
-        .heatmap-day .count {
-            color: #aaccff;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        /* ========== PERFORMANCE METRICS ========== */
-        .performance-metrics {
-            max-width: 600px;
-            margin: 0 auto 40px;
-            background: linear-gradient(145deg, #111122, #0d0d1f);
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid rgba(0, 255, 170, 0.1);
-        }
-
-        .performance-metrics .header {
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .performance-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .perf-item {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 12px;
-            border-radius: 10px;
-        }
-
-        .perf-item .value {
-            font-family: 'Orbitron', monospace;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .perf-item .value.green {
-            color: #00ffaa;
-        }
-        .perf-item .value.blue {
-            color: #00d4ff;
-        }
-        .perf-item .value.gold {
-            color: #ffcc00;
-        }
-        .perf-item .value.pink {
-            color: #ff2a75;
-        }
-
-        .perf-item .label {
-            color: #667799;
-            font-size: 11px;
-            margin-top: 2px;
-        }
-
-        /* ========== LEADERBOARD ========== */
-        .leaderboard {
-            max-width: 500px;
-            margin: 0 auto 40px;
-            background: linear-gradient(145deg, #111122, #0d0d1f);
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid rgba(255, 204, 0, 0.1);
-        }
-
-        .leaderboard .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .lb-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .lb-item:last-child {
-            border-bottom: none;
-        }
-
-        .lb-item .rank {
-            font-size: 20px;
-            width: 32px;
-            text-align: center;
-        }
-
-        .lb-item .name {
-            flex: 1;
-            color: white;
-            font-weight: 600;
-        }
-
-        .lb-item .count {
-            font-weight: 700;
-        }
-
-        .lb-item .count.gold {
-            color: #ffcc00;
-        }
-        .lb-item .count.silver {
-            color: #c0c0c0;
-        }
-        .lb-item .count.bronze {
-            color: #cd7f32;
-        }
-        .lb-item .count.normal {
-            color: #667799;
-        }
-
         /* ========== PRICING ========== */
         .pricing-grid {
             display: grid;
@@ -1147,37 +1241,6 @@
             line-height: 1.6;
         }
 
-        /* ========== PAYMENT ========== */
-        .payment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 24px;
-        }
-
-        .payment-item {
-            background: linear-gradient(145deg, #111122, #0d0d1f);
-            border-radius: 12px;
-            padding: 16px 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .payment-item .icon {
-            font-size: 28px;
-        }
-        .payment-item .label {
-            font-size: 14px;
-            color: #aaccff;
-            margin-top: 4px;
-        }
-        .payment-item .detail {
-            font-size: 13px;
-            color: #ff2a75;
-            font-weight: 700;
-            margin-top: 2px;
-        }
-
         /* ========== CONTACT ========== */
         .contact-grid {
             display: grid;
@@ -1313,6 +1376,17 @@
         .btn-download-main.installer:hover {
             border-color: #00d4ff;
             background: rgba(0, 212, 255, 0.05);
+        }
+
+        .btn-download-main.reseller-btn {
+            background: linear-gradient(135deg, #ffcc00, #ff8800);
+            color: #0a0a1a;
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+        }
+
+        .btn-download-main.reseller-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(255, 204, 0, 0.5);
         }
 
         .download-info {
@@ -1513,17 +1587,9 @@
                 padding: 24px;
                 margin: 16px;
             }
-            .performance-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .heatmap-grid {
-                gap: 4px;
-            }
-            .heatmap-day {
-                padding: 8px 4px;
-            }
-            .heatmap-day .emoji {
-                font-size: 18px;
+            .reseller-dashboard .stats,
+            .admin-dashboard .stats {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -1557,25 +1623,6 @@
                 width: 100%;
                 justify-content: center;
             }
-            .performance-grid {
-                grid-template-columns: 1fr;
-            }
-            .heatmap-grid {
-                grid-template-columns: repeat(7, 1fr);
-                gap: 3px;
-            }
-            .heatmap-day {
-                padding: 6px 2px;
-            }
-            .heatmap-day .emoji {
-                font-size: 14px;
-            }
-            .heatmap-day .day {
-                font-size: 8px;
-            }
-            .heatmap-day .count {
-                font-size: 9px;
-            }
             #notificationContainer {
                 bottom: 80px;
                 right: 10px;
@@ -1584,6 +1631,10 @@
             .toast {
                 font-size: 12px;
                 padding: 10px 14px;
+            }
+            .reseller-dashboard .stats,
+            .admin-dashboard .stats {
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
@@ -1637,6 +1688,10 @@
                     <input type="email" id="registerEmail" placeholder="Enter your email" />
                 </div>
                 <div class="form-group">
+                    <label>Phone (WhatsApp)</label>
+                    <input type="tel" id="registerPhone" placeholder="Enter your WhatsApp number" />
+                </div>
+                <div class="form-group">
                     <label>Password</label>
                     <input type="password" id="registerPassword" placeholder="Create a password (min 6 chars)" />
                 </div>
@@ -1656,10 +1711,114 @@
                 <div class="user-info">
                     <div class="name" id="userName">John Doe</div>
                     <div class="email" id="userEmail">john@example.com</div>
+                    <div class="role-badge" id="userRoleBadge">👤 User</div>
                 </div>
                 <button class="btn-auth" onclick="handleLogout()" style="background: #ef4444;">🚪 Logout</button>
-                <div style="text-align: center; margin-top: 12px; color: #667799; font-size: 13px;">
-                    ✅ Account Active • <span style="color: #00ffaa;">License: Premium</span>
+
+                <!-- Reseller Dashboard -->
+                <div class="reseller-dashboard" id="resellerDashboard">
+                    <div class="header">
+                        <h3>🏆 Reseller Dashboard</h3>
+                        <span style="color: #ffcc00; font-size: 12px;">🌟 Active</span>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="number" id="totalReferrals">12</div>
+                            <div class="label">Total Referrals</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number" id="totalCommission">$340</div>
+                            <div class="label">Commission Earned</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number" id="pendingPayout">$120</div>
+                            <div class="label">Pending Payout</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number" id="resellerTier">Gold</div>
+                            <div class="label">Tier Level</div>
+                        </div>
+                    </div>
+                    <div class="referral-link">
+                        <span style="color: #667799; font-size: 12px;">🔗 Your Link:</span>
+                        <input type="text" id="referralLink" value="https://easytool.com/ref/MASTA_LEE" readonly />
+                        <button class="copy-btn" onclick="copyReferral()">📋 Copy</button>
+                    </div>
+                    <table class="commission-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>User</th>
+                                <th>Plan</th>
+                                <th>Commission</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025-01-15</td>
+                                <td>johndoe</td>
+                                <td>3 Months</td>
+                                <td>$4.00</td>
+                                <td class="status-paid">✅ Paid</td>
+                            </tr>
+                            <tr>
+                                <td>2025-01-14</td>
+                                <td>sarahk</td>
+                                <td>6 Months</td>
+                                <td>$6.00</td>
+                                <td class="status-paid">✅ Paid</td>
+                            </tr>
+                            <tr>
+                                <td>2025-01-13</td>
+                                <td>petero</td>
+                                <td>12 Months</td>
+                                <td>$8.00</td>
+                                <td class="status-pending">⏳ Pending</td>
+                            </tr>
+                            <tr>
+                                <td>2025-01-12</td>
+                                <td>maryj</td>
+                                <td>Rent</td>
+                                <td>$1.00</td>
+                                <td class="status-pending">⏳ Pending</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ADMIN DASHBOARD -->
+                <div class="admin-dashboard" id="adminDashboard">
+                    <div class="header">
+                        <h3>👑 Admin Dashboard</h3>
+                        <span style="color: #ff2a75; font-size: 12px;">🔐 Super Admin</span>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="number" id="adminTotalUsers">10,847</div>
+                            <div class="label">Total Users</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number" id="adminResellers">156</div>
+                            <div class="label">Resellers</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number" id="adminRevenue">$24,890</div>
+                            <div class="label">Total Revenue</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number" id="adminPending">23</div>
+                            <div class="label">Pending Approvals</div>
+                        </div>
+                    </div>
+                    <div class="admin-actions">
+                        <button class="action-btn success" onclick="showToast('📊 User management opened!', 'info')">👥 Manage Users</button>
+                        <button class="action-btn warning" onclick="showToast('💰 Reseller management opened!', 'info')">🏆 Manage Resellers</button>
+                        <button class="action-btn" onclick="showToast('📦 Products management opened!', 'info')">📦 Manage Products</button>
+                        <button class="action-btn success" onclick="showToast('💰 Revenue report generated!', 'success')">📊 Revenue Report</button>
+                        <button class="action-btn danger" onclick="showToast('⚠️ This action requires confirmation!', 'danger')">⚠️ System Settings</button>
+                        <button class="action-btn" onclick="showToast('📱 WhatsApp notifications sent!', 'success')">📱 Send Notification</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1686,6 +1845,7 @@
                     <span class="badge">🔥 v0.0.24</span>
                     <span class="badge blue">⚡ Speed Optimized</span>
                     <span class="badge green">✅ 100% Working</span>
+                    <span class="badge gold">💰 Reseller Program</span>
                 </div>
                 <h1>
                     <span class="highlight">MDM Bypass</span><br />
@@ -1697,12 +1857,14 @@
                 </p>
                 <div class="hero-buttons">
                     <a href="#download" class="btn-primary pink">🔥 Download Now</a>
+                    <a href="#" onclick="openLogin()" class="btn-primary gold">💰 Become Reseller</a>
                     <a href="#features" class="btn-primary outline">Learn More →</a>
                 </div>
                 <div style="margin-top: 24px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-start;">
                     <span style="color: #667799; font-size: 13px;">✅ 10,000+ Users</span>
                     <span style="color: #667799; font-size: 13px;">✅ 50+ Device Models</span>
                     <span style="color: #667799; font-size: 13px;">✅ 24/7 Support</span>
+                    <span style="color: #ffcc00; font-size: 13px;">💰 20% Commission</span>
                 </div>
             </div>
             <div class="hero-visual">
@@ -1723,6 +1885,7 @@
                         <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap; justify-content: center;">
                             <span style="background: rgba(255,42,117,0.1); padding: 2px 8px; border-radius: 4px; font-size: 8px; color: #ff2a75;">🔓 1,247 Bypassed</span>
                             <span style="background: rgba(0,212,255,0.1); padding: 2px 8px; border-radius: 4px; font-size: 8px; color: #00d4ff;">📱 892 Devices</span>
+                            <span style="background: rgba(255,204,0,0.1); padding: 2px 8px; border-radius: 4px; font-size: 8px; color: #ffcc00;">💰 156 Resellers</span>
                         </div>
                     </div>
                 </div>
@@ -1730,12 +1893,11 @@
         </div>
     </section>
 
-    <!-- ========== LIVE STATS & ADVANCED FEATURES ========== -->
+    <!-- ========== LIVE STATS ========== -->
     <section class="section" id="stats">
         <h2 class="section-title">📊 <span class="highlight">Live Statistics</span></h2>
         <p class="section-subtitle">Real-time data showing tool usage and activity.</p>
 
-        <!-- Stats Grid -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="number" id="totalUsers">10,847</div>
@@ -1767,53 +1929,6 @@
             </div>
         </div>
 
-        <!-- Performance Metrics -->
-        <div class="performance-metrics">
-            <div class="header">
-                <h3 style="color: white; font-size: 16px;">⚡ Tool Performance</h3>
-            </div>
-            <div class="performance-grid">
-                <div class="perf-item">
-                    <div class="value green" id="bypassSpeed">1.2s</div>
-                    <div class="label">Avg Bypass Speed</div>
-                </div>
-                <div class="perf-item">
-                    <div class="value blue" id="successRate">98.7%</div>
-                    <div class="label">Success Rate</div>
-                </div>
-                <div class="perf-item">
-                    <div class="value gold" id="uptime">99.9%</div>
-                    <div class="label">Uptime</div>
-                </div>
-                <div class="perf-item">
-                    <div class="value pink" id="devicesPerMinute">4.2</div>
-                    <div class="label">Devices/Minute</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Heatmap -->
-        <div class="heatmap">
-            <div class="header">
-                <h3 style="color: white; font-size: 16px;">🔥 Activity Heatmap</h3>
-                <span style="color: #667799; font-size: 12px;">Peak hours shown in 🔥</span>
-            </div>
-            <div class="heatmap-grid" id="heatmapGrid">
-                <!-- Generated by JavaScript -->
-            </div>
-        </div>
-
-        <!-- Leaderboard -->
-        <div class="leaderboard">
-            <div class="header">
-                <h3 style="color: white; font-size: 16px;">🏆 Top Users This Week</h3>
-                <span style="color: #667799; font-size: 12px;">🔥 Most bypasses</span>
-            </div>
-            <div id="leaderboardList">
-                <!-- Generated by JavaScript -->
-            </div>
-        </div>
-
         <!-- Live Activity Feed -->
         <div class="live-activity">
             <div class="header">
@@ -1824,64 +1939,50 @@
                 <span style="color: #667799; font-size: 12px;">Updated in real-time</span>
             </div>
             <div id="activityFeed">
-                <!-- Generated by JavaScript -->
-            </div>
-        </div>
-
-        <!-- PC & Device Stats -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 800px; margin: 0 auto;">
-            <div style="background: linear-gradient(145deg, #111122, #0d0d1f); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,42,117,0.1);">
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                    <span style="font-size: 28px;">🖥️</span>
-                    <div>
-                        <div style="color: white; font-weight: 700; font-size: 16px;">Active PCs</div>
-                        <div style="color: #667799; font-size: 12px;">Devices running EASY TOOL</div>
+                <div class="activity-item">
+                    <span class="icon">📱</span>
+                    <div class="info">
+                        <div class="device">Samsung Galaxy S24 Ultra</div>
+                        <div class="detail">MDM Bypass completed • User: johndoe</div>
                     </div>
+                    <span class="status-badge">✅ Done</span>
+                    <span class="time">2 min ago</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.03);">
-                    <span style="color: #aaccff;">DESKTOP-ABC123</span>
-                    <span style="color: #00ffaa;">● Online</span>
-                    <span style="color: #667799; font-size: 12px;">2 devices</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.03);">
-                    <span style="color: #aaccff;">LAPTOP-XYZ789</span>
-                    <span style="color: #00ffaa;">● Online</span>
-                    <span style="color: #667799; font-size: 12px;">1 device</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
-                    <span style="color: #aaccff;">PC-REYTECH</span>
-                    <span style="color: #ffcc00;">● Idle</span>
-                    <span style="color: #667799; font-size: 12px;">0 devices</span>
-                </div>
-                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
-                    <span style="color: #667799; font-size: 13px;">Total Active PCs</span>
-                    <span style="color: #ff2a75; font-weight: 700; font-size: 16px;" id="totalPcs">3</span>
-                </div>
-            </div>
-
-            <div style="background: linear-gradient(145deg, #111122, #0d0d1f); border-radius: 16px; padding: 24px; border: 1px solid rgba(0,212,255,0.1);">
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                    <span style="font-size: 28px;">📱</span>
-                    <div>
-                        <div style="color: white; font-weight: 700; font-size: 16px;">Devices Per PC</div>
-                        <div style="color: #667799; font-size: 12px;">Total devices bypassed per machine</div>
+                <div class="activity-item">
+                    <span class="icon">📲</span>
+                    <div class="info">
+                        <div class="device">Tecno Camon 20 Pro</div>
+                        <div class="detail">MDM Bypass in progress • User: sarahk</div>
                     </div>
+                    <span class="status-badge pending">⏳ Processing</span>
+                    <span class="time">5 min ago</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.03);">
-                    <span style="color: #aaccff;">DESKTOP-ABC123</span>
-                    <span style="color: #00ffaa; font-weight: 700;">12 devices</span>
+                <div class="activity-item">
+                    <span class="icon">💰</span>
+                    <div class="info">
+                        <div class="device">Reseller Referral</div>
+                        <div class="detail">New user joined via MASTA LEE • Commission: $4.00</div>
+                    </div>
+                    <span class="status-badge">💰 Earned</span>
+                    <span class="time">12 min ago</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.03);">
-                    <span style="color: #aaccff;">LAPTOP-XYZ789</span>
-                    <span style="color: #00ffaa; font-weight: 700;">8 devices</span>
+                <div class="activity-item">
+                    <span class="icon">📱</span>
+                    <div class="info">
+                        <div class="device">Infinix Zero 30</div>
+                        <div class="detail">FRP Removal completed • User: petero</div>
+                    </div>
+                    <span class="status-badge">✅ Done</span>
+                    <span class="time">18 min ago</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
-                    <span style="color: #aaccff;">PC-REYTECH</span>
-                    <span style="color: #00ffaa; font-weight: 700;">5 devices</span>
-                </div>
-                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
-                    <span style="color: #667799; font-size: 13px;">Total Devices Bypassed</span>
-                    <span style="color: #00d4ff; font-weight: 700; font-size: 16px;" id="totalDevices">1,247</span>
+                <div class="activity-item">
+                    <span class="icon">🖥️</span>
+                    <div class="info">
+                        <div class="device">PC: LAPTOP-XYZ789</div>
+                        <div class="detail">New session started • Windows 11</div>
+                    </div>
+                    <span class="status-badge">✅ Online</span>
+                    <span class="time">25 min ago</span>
                 </div>
             </div>
         </div>
@@ -2015,56 +2116,6 @@
         </div>
     </section>
 
-    <!-- ========== PAYMENT METHODS ========== -->
-    <section class="section" id="payment">
-        <h2 class="section-title">💳 <span class="highlight">Payment Methods</span></h2>
-        <p class="section-subtitle">Multiple payment options for your convenience.</p>
-
-        <div class="payment-grid">
-            <div class="payment-item"><div class="icon">📱</div><div class="label">M-PESA</div><div class="detail">0111457171</div></div>
-            <div class="payment-item"><div class="icon">💳</div><div class="label">SendWave</div><div class="detail">0117219996</div></div>
-            <div class="payment-item"><div class="icon">💲</div><div class="label">Bank Transfer</div><div class="detail">Contact for details</div></div>
-            <div class="payment-item"><div class="icon">🪙</div><div class="label">Cryptocurrency</div><div class="detail">USDT / Bitcoin</div></div>
-        </div>
-    </section>
-
-    <!-- ========== FAQ ========== -->
-    <section class="section" id="faq">
-        <h2 class="section-title">❓ <span class="highlight">Frequently Asked Questions</span></h2>
-        <p class="section-subtitle">Everything you need to know.</p>
-
-        <div style="max-width: 800px; margin: 0 auto;">
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>❓ What is EASY TOOL?</h4>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">EASY TOOL is a premium MDM bypass tool for Samsung, Tecno, Infinix, Itel and other Android devices.</div>
-            </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>💰 How much does it cost?</h4>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">Rent: $5 (9h 20m) | 3 Months: $20 | 6 Months: $30 | 12 Months: $40.</div>
-            </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>📱 Which devices are supported?</h4>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">Samsung, Tecno, Infinix, Itel, Oppo, Vivo, Realme, Nokia, Xiaomi, MTK/SPD.</div>
-            </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>🖥️ Can I see which PC used the tool?</h4>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">Yes! EASY TOOL tracks all PC sessions. Each PC has a unique ID and shows total devices bypassed.</div>
-            </div>
-        </div>
-    </section>
-
     <!-- ========== DOWNLOAD ========== -->
     <section class="section" id="download">
         <div class="download-section">
@@ -2083,6 +2134,9 @@
                 <a href="https://www.mediafire.com/file/813ze78tm9r06vv/EASY_TOOL_Setup_v0.0.24.rar/file" target="_blank" class="btn-download-main installer">
                     📦 Download Installer
                 </a>
+                <a href="#" onclick="openLogin()" class="btn-download-main reseller-btn">
+                    💰 Become Reseller
+                </a>
             </div>
 
             <div class="download-info">
@@ -2093,20 +2147,16 @@
                 <span>⭐ 4.8/5 Rating</span>
                 <span>•</span>
                 <span>⬇️ 10,000+ Downloads</span>
+                <span>•</span>
+                <span>💰 156 Resellers</span>
             </div>
 
-            <div style="margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
-                <span style="background: rgba(0,255,170,0.1); padding: 4px 14px; border-radius: 12px; font-size: 11px; color: #00ffaa;">✅ No Virus</span>
-                <span style="background: rgba(0,212,255,0.1); padding: 4px 14px; border-radius: 12px; font-size: 11px; color: #00d4ff;">⚡ Fast Download</span>
-                <span style="background: rgba(255,204,0,0.1); padding: 4px 14px; border-radius: 12px; font-size: 11px; color: #ffcc00;">🔒 Secure</span>
-            </div>
-
-            <!-- Security Badges -->
             <div class="security-badges" style="margin-top: 20px;">
                 <div class="security-badge"><span class="icon">🛡️</span> Norton Secured</div>
                 <div class="security-badge"><span class="icon">🔒</span> SSL Encrypted</div>
                 <div class="security-badge"><span class="icon">✅</span> Verified by Google</div>
                 <div class="security-badge"><span class="icon">⭐</span> 4.8/5 Rating</div>
+                <div class="security-badge"><span class="icon">💰</span> Reseller Program</div>
             </div>
         </div>
     </section>
@@ -2120,6 +2170,12 @@
             <a href="https://wa.me/254111457171" class="contact-item" target="_blank">
                 <div class="icon">💬</div><div class="label">WhatsApp</div><div class="value">254111457171</div>
             </a>
+            <a href="tel:+254794389430" class="contact-item">
+                <div class="icon">📞</div><div class="label">Call Now</div><div class="value">0794389430</div>
+            </a>
+            <a href="https://wa.me/254717770683" class="contact-item" target="_blank">
+                <div class="icon">💬</div><div class="label">Reseller WhatsApp</div><div class="value">0717770683</div>
+            </a>
             <a href="mailto:reytechfix@gmail.com" class="contact-item">
                 <div class="icon">📧</div><div class="label">Email</div><div class="value">reytechfix@gmail.com</div>
             </a>
@@ -2128,12 +2184,6 @@
             </a>
             <a href="https://www.facebook.com/reytechfx" class="contact-item" target="_blank">
                 <div class="icon">📘</div><div class="label">Facebook</div><div class="value">reytechfx</div>
-            </a>
-            <a href="https://youtube.com/@easytoolteam" class="contact-item" target="_blank">
-                <div class="icon">📺</div><div class="label">YouTube</div><div class="value">EASY TOOL Team</div>
-            </a>
-            <a href="https://www.easytool.com" class="contact-item" target="_blank">
-                <div class="icon">🌐</div><div class="label">Website</div><div class="value">easytool.com</div>
             </a>
         </div>
     </section>
@@ -2183,6 +2233,41 @@
         let users = JSON.parse(localStorage.getItem('easyToolUsers') || '{}');
         let currentUser = JSON.parse(localStorage.getItem('easyToolCurrentUser') || 'null');
 
+        // ====== ADMIN CREDENTIALS ======
+        const ADMIN_USER = {
+            username: 'REYTECHFX',
+            password: 'valentina241',
+            name: 'Rey Tech FX',
+            email: 'reytechfix@gmail.com',
+            phone: '254111457171',
+            role: 'admin',
+            isAdmin: true
+        };
+
+        // ====== RESELLER CREDENTIALS ======
+        const RESELLER_USER = {
+            username: 'MASTA_LEE',
+            password: 'masta123',
+            name: 'Masta Lee',
+            email: 'masta@easytool.com',
+            phone: '0717770683',
+            role: 'reseller',
+            isReseller: true,
+            tier: 'Gold',
+            referrals: 12,
+            commission: 340,
+            pendingPayout: 120
+        };
+
+        // Add predefined users if not exist
+        if (!users['REYTECHFX']) {
+            users['REYTECHFX'] = ADMIN_USER;
+        }
+        if (!users['MASTA_LEE']) {
+            users['MASTA_LEE'] = RESELLER_USER;
+        }
+        localStorage.setItem('easyToolUsers', JSON.stringify(users));
+
         function openLogin() {
             document.getElementById('authModal').classList.add('active');
             showLogin();
@@ -2197,6 +2282,8 @@
             document.getElementById('loginForm').style.display = 'block';
             document.getElementById('registerForm').style.display = 'none';
             document.getElementById('loggedInView').style.display = 'none';
+            document.getElementById('resellerDashboard').classList.remove('active');
+            document.getElementById('adminDashboard').classList.remove('active');
             hideAllErrors();
         }
 
@@ -2204,6 +2291,8 @@
             document.getElementById('loginForm').style.display = 'none';
             document.getElementById('registerForm').style.display = 'block';
             document.getElementById('loggedInView').style.display = 'none';
+            document.getElementById('resellerDashboard').classList.remove('active');
+            document.getElementById('adminDashboard').classList.remove('active');
             hideAllErrors();
         }
 
@@ -2244,7 +2333,7 @@
             if (foundUser) {
                 currentUser = foundUser;
                 localStorage.setItem('easyToolCurrentUser', JSON.stringify(currentUser));
-                document.getElementById('loginSuccess').textContent = '✅ Login successful! Welcome back!';
+                document.getElementById('loginSuccess').textContent = '✅ Login successful! Welcome back.';
                 showSuccess('loginSuccess');
                 updateUIForLoggedIn();
                 setTimeout(() => {
@@ -2261,6 +2350,7 @@
             const name = document.getElementById('registerName').value.trim();
             const username = document.getElementById('registerUsername').value.trim();
             const email = document.getElementById('registerEmail').value.trim();
+            const phone = document.getElementById('registerPhone').value.trim();
             const password = document.getElementById('registerPassword').value.trim();
             const confirm = document.getElementById('registerConfirm').value.trim();
 
@@ -2300,9 +2390,16 @@
                 name: name,
                 username: username,
                 email: email,
+                phone: phone || 'Not provided',
                 password: password,
                 created: new Date().toISOString(),
-                license: 'premium'
+                role: 'user',
+                isReseller: false,
+                isAdmin: false,
+                referrals: 0,
+                commission: 0,
+                pendingPayout: 0,
+                tier: 'Silver'
             };
 
             users[username] = newUser;
@@ -2321,6 +2418,8 @@
             currentUser = null;
             localStorage.removeItem('easyToolCurrentUser');
             document.getElementById('authNavBtn').textContent = '👤 Login';
+            document.getElementById('resellerDashboard').classList.remove('active');
+            document.getElementById('adminDashboard').classList.remove('active');
             showLogin();
             closeAuth();
         }
@@ -2332,12 +2431,86 @@
                 const avatar = document.getElementById('userAvatar');
                 avatar.textContent = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
 
+                const roleBadge = document.getElementById('userRoleBadge');
+
+                // Check if Admin (REYTECHFX)
+                if (currentUser.isAdmin || currentUser.role === 'admin' || currentUser.username === 'REYTECHFX') {
+                    avatar.classList.add('admin');
+                    roleBadge.textContent = '👑 Administrator';
+                    roleBadge.className = 'role-badge admin';
+                    document.getElementById('adminDashboard').classList.add('active');
+                    document.getElementById('resellerDashboard').classList.remove('active');
+                }
+                // Check if Reseller (MASTA_LEE)
+                else if (currentUser.isReseller || currentUser.role === 'reseller' || currentUser.username === 'MASTA_LEE') {
+                    avatar.classList.add('reseller');
+                    roleBadge.textContent = `🏆 Reseller • ${currentUser.tier || 'Gold'}`;
+                    roleBadge.className = 'role-badge reseller';
+                    document.getElementById('resellerDashboard').classList.add('active');
+                    document.getElementById('adminDashboard').classList.remove('active');
+                    document.getElementById('totalReferrals').textContent = currentUser.referrals || 12;
+                    document.getElementById('totalCommission').textContent = `$${currentUser.commission || 340}`;
+                    document.getElementById('pendingPayout').textContent = `$${currentUser.pendingPayout || 120}`;
+                    document.getElementById('resellerTier').textContent = currentUser.tier || 'Gold';
+                    document.getElementById('referralLink').value =
+                        `https://easytool.com/ref/${currentUser.username}`;
+                } else {
+                    roleBadge.textContent = '👤 User';
+                    roleBadge.className = 'role-badge user';
+                    document.getElementById('resellerDashboard').classList.remove('active');
+                    document.getElementById('adminDashboard').classList.remove('active');
+                }
+
                 document.getElementById('loginForm').style.display = 'none';
                 document.getElementById('registerForm').style.display = 'none';
                 document.getElementById('loggedInView').style.display = 'block';
                 document.getElementById('authNavBtn').textContent = `👤 ${currentUser.username}`;
             }
         }
+
+        function copyReferral() {
+            const link = document.getElementById('referralLink');
+            link.select();
+            document.execCommand('copy');
+            showToast('📋 Referral link copied!', 'success');
+        }
+
+        // Reseller apply function
+        function applyReseller() {
+            if (!currentUser) {
+                openLogin();
+                showToast('Please login first to apply for reseller program', 'warning');
+                return;
+            }
+            if (currentUser.isReseller || currentUser.username === 'MASTA_LEE') {
+                showToast('You are already a reseller!', 'info');
+                return;
+            }
+            if (currentUser.isAdmin || currentUser.username === 'REYTECHFX') {
+                showToast('Admin already has full access!', 'info');
+                return;
+            }
+
+            currentUser.isReseller = true;
+            currentUser.role = 'reseller';
+            currentUser.tier = 'Silver';
+            currentUser.referrals = 0;
+            currentUser.commission = 0;
+            currentUser.pendingPayout = 0;
+            users[currentUser.username] = currentUser;
+            localStorage.setItem('easyToolUsers', JSON.stringify(users));
+            localStorage.setItem('easyToolCurrentUser', JSON.stringify(currentUser));
+            updateUIForLoggedIn();
+            showToast('🎉 You are now a reseller! Share your link and earn!', 'success');
+        }
+
+        // Make reseller apply buttons work
+        document.querySelectorAll('.btn-apply, .reseller-btn, .btn-download-main.reseller-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                applyReseller();
+            });
+        });
 
         if (currentUser) {
             updateUIForLoggedIn();
@@ -2351,87 +2524,12 @@
             if (e.key === 'Enter') handleRegister();
         });
 
-        // ===== HEATMAP =====
-        function generateHeatmap() {
-            const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-            const grid = document.getElementById('heatmapGrid');
-            grid.innerHTML = '';
-            const emojis = ['⬜', '🟩', '🟨', '🟧', '🔥'];
-            const colors = ['#0a0a1a', '#1a0a2e', '#2a0a4e', '#4a0a6e', '#8b00ff'];
-
-            for (let i = 0; i < 7; i++) {
-                const level = Math.floor(Math.random() * 5) + 1;
-                const count = Math.floor(Math.random() * 200) + 50;
-                const div = document.createElement('div');
-                div.className = 'heatmap-day';
-                div.style.background = colors[level - 1];
-                div.innerHTML = `
-                    <div class="emoji">${emojis[level - 1]}</div>
-                    <div class="day">${days[i]}</div>
-                    <div class="count">${count}</div>
-                `;
-                grid.appendChild(div);
-            }
-        }
-        generateHeatmap();
-
-        // ===== LEADERBOARD =====
-        function generateLeaderboard() {
-            const users2 = ['tech_master', 'phone_guru', 'mdm_killer', 'pro_user', 'bypass_king'];
-            const counts = [47, 38, 29, 22, 18];
-            const medals = ['🥇', '🥈', '🥉', '#4', '#5'];
-            const colors = ['gold', 'silver', 'bronze', 'normal', 'normal'];
-            const list = document.getElementById('leaderboardList');
-            list.innerHTML = '';
-
-            for (let i = 0; i < users2.length; i++) {
-                const div = document.createElement('div');
-                div.className = 'lb-item';
-                div.innerHTML = `
-                    <span class="rank">${medals[i]}</span>
-                    <span class="name">${users2[i]}</span>
-                    <span class="count ${colors[i]}">${counts[i]} bypasses</span>
-                `;
-                list.appendChild(div);
-            }
-        }
-        generateLeaderboard();
-
-        // ===== ACTIVITY FEED =====
-        function generateActivityFeed() {
-            const feed = document.getElementById('activityFeed');
-            const devices = ['Samsung Galaxy S24 Ultra', 'Tecno Camon 20 Pro', 'Infinix Zero 30', 'Itel A70', 'Samsung A55'];
-            const users2 = ['johndoe', 'sarahk', 'petero', 'maryj', 'davidm'];
-            const actions = ['MDM Bypass completed', 'FRP Removal completed', 'MDM Bypass in progress', 'New session started'];
-            const statuses = ['✅ Done', '⏳ Processing', '✅ Online'];
-            const times = ['2 min ago', '5 min ago', '12 min ago', '18 min ago', '25 min ago'];
-
-            feed.innerHTML = '';
-            for (let i = 0; i < 5; i++) {
-                const div = document.createElement('div');
-                div.className = 'activity-item';
-                const isPending = i % 2 === 1;
-                div.innerHTML = `
-                    <span class="icon">${i % 2 === 0 ? '📱' : '📲'}</span>
-                    <div class="info">
-                        <div class="device">${devices[i % devices.length]}</div>
-                        <div class="detail">${actions[i % actions.length]} • User: ${users2[i % users2.length]}</div>
-                    </div>
-                    <span class="status-badge ${isPending ? 'pending' : ''}">${statuses[i % statuses.length]}</span>
-                    <span class="time">${times[i % times.length]}</span>
-                `;
-                feed.appendChild(div);
-            }
-        }
-        generateActivityFeed();
-
         // ===== LIVE STATS =====
         function updateStats() {
             const usersEl = document.getElementById('totalUsers');
             const devicesEl = document.getElementById('devicesBypassed');
             const activeEl = document.getElementById('activeNow');
             const sessionsEl = document.getElementById('totalSessions');
-            const totalDevicesEl = document.getElementById('totalDevices');
             const liveCounter = document.getElementById('liveCounter');
 
             const currentUsers = parseInt(usersEl.textContent.replace(/,/g, ''));
@@ -2443,28 +2541,22 @@
             devicesEl.textContent = (currentDevices + Math.floor(Math.random() * 2)).toLocaleString();
             activeEl.textContent = currentActive + Math.floor(Math.random() * 3) - 1;
             sessionsEl.textContent = (currentSessions + Math.floor(Math.random() * 5)).toLocaleString();
-            if (totalDevicesEl) totalDevicesEl.textContent = devicesEl.textContent;
 
-            // Live counter
             let live = parseInt(liveCounter.textContent) || 42;
             live += Math.floor(Math.random() * 5) - 2;
             live = Math.max(10, live);
             liveCounter.textContent = live;
 
-            // Update last update time
             const now = new Date();
             document.getElementById('lastUpdate').textContent = now.toLocaleTimeString();
+
+            // Update Admin stats
+            const adminUsers = document.getElementById('adminTotalUsers');
+            const adminResellers = document.getElementById('adminResellers');
+            if (adminUsers) adminUsers.textContent = usersEl.textContent;
+            if (adminResellers) adminResellers.textContent = '156';
         }
         setInterval(updateStats, 3000);
-
-        // ===== PERFORMANCE METRICS =====
-        function updatePerformance() {
-            document.getElementById('bypassSpeed').textContent = (0.8 + Math.random() * 1.2).toFixed(1) + 's';
-            document.getElementById('successRate').textContent = (96 + Math.random() * 4).toFixed(1) + '%';
-            document.getElementById('uptime').textContent = (99.7 + Math.random() * 0.3).toFixed(1) + '%';
-            document.getElementById('devicesPerMinute').textContent = (3 + Math.random() * 3).toFixed(1);
-        }
-        setInterval(updatePerformance, 5000);
 
         // ===== NOTIFICATIONS =====
         function showToast(message, type = 'success') {
@@ -2481,7 +2573,6 @@
             }, 4000);
         }
 
-        // Random notifications every 15 seconds
         setInterval(() => {
             const msgs = [
                 '🔥 New user registered from Kenya!',
@@ -2489,10 +2580,11 @@
                 '⚡ Speed record: 0.8s bypass!',
                 '🎉 1000th bypass completed!',
                 '📲 5 new devices connected today',
-                '🌟 User reached level 10!',
-                '🚀 New bypass record set!'
+                '💰 MASTA LEE earned $4.00 commission!',
+                '🚀 New bypass record set!',
+                '👑 Admin REYTECHFX logged in'
             ];
-            const types = ['success', 'info', 'warning', 'success', 'info', 'success', 'info'];
+            const types = ['success', 'info', 'warning', 'success', 'info', 'success', 'info', 'info'];
             const idx = Math.floor(Math.random() * msgs.length);
             showToast(msgs[idx], types[idx % types.length]);
         }, 15000);
@@ -2514,6 +2606,12 @@
             setTimeout(() => {
                 showToast('📱 50+ Devices Supported', 'info');
             }, 3000);
+            setTimeout(() => {
+                showToast('💰 MASTA LEE Reseller Program Active!', 'info');
+            }, 6000);
+            setTimeout(() => {
+                showToast('👑 Admin: REYTECHFX | valentina241', 'info');
+            }, 9000);
         }, 1000);
     </script>
 
