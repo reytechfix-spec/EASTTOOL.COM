@@ -3,7 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ILLUMINAT KENYA · The Order</title>
+
+    <!-- ============================================================
+         SEO & SEARCH ENGINE OPTIMIZATION
+         ============================================================ -->
+    <title>ILLUMINAT KENYA · Join the Order of Light</title>
+    <meta name="title" content="ILLUMINAT KENYA · Join the Order of Light">
+    <meta name="description" content="Join ILLUMINAT KENYA, the sacred brotherhood of light. Discover hidden knowledge, ancient wisdom, and enlightenment. Apply now to become a member.">
+    <meta name="keywords" content="ILLUMINAT KENYA, Illuminat, Illuminati Kenya, join Illuminati, Illuminati Kenya, brotherhood, secret society, enlightenment, wisdom, order of light">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="author" content="ILLUMINAT KENYA">
+    <meta name="copyright" content="ILLUMINAT KENYA">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://illuminatkenya.com/">
+    <meta property="og:title" content="ILLUMINAT KENYA · Join the Order of Light">
+    <meta property="og:description" content="Join ILLUMINAT KENYA, the sacred brotherhood of light. Discover hidden knowledge, ancient wisdom, and enlightenment.">
+    <meta property="og:image" content="https://illuminatkenya.com/images/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://illuminatkenya.com/">
+    <meta property="twitter:title" content="ILLUMINAT KENYA · Join the Order of Light">
+    <meta property="twitter:description" content="Join ILLUMINAT KENYA, the sacred brotherhood of light. Discover hidden knowledge, ancient wisdom, and enlightenment.">
+    <meta property="twitter:image" content="https://illuminatkenya.com/images/logo.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://illuminatkenya.com/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%230a0a0f' stroke='%23d4af37' stroke-width='2'/%3E%3Ctext x='50' y='65' text-anchor='middle' font-family='Orbitron,monospace' font-size='50' font-weight='bold' fill='%23d4af37'%3E✧%3C/text%3E%3C/svg%3E">
+
+    <!-- Google / Search Engine Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ILLUMINAT KENYA",
+        "description": "The sacred brotherhood of light in Kenya. Join the order to discover hidden knowledge and ancient wisdom.",
+        "url": "https://illuminatkenya.com/",
+        "logo": "https://illuminatkenya.com/images/logo.png",
+        "sameAs": [
+            "https://www.facebook.com/illuminatkenya",
+            "https://www.instagram.com/illuminatkenya",
+            "https://twitter.com/illuminatkenya"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "info@illuminatkenya.com"
+        }
+    }
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -24,7 +78,7 @@
         @keyframes spin { to { transform:rotate(360deg); } }
 
         /* ============================================================
-           MPESA PROMPT OVERLAY (FULL SCREEN PROMPT)
+           MPESA PROMPT OVERLAY
            ============================================================ */
         .mpesa-prompt-overlay {
             position:fixed;
@@ -42,11 +96,7 @@
             animation:fadeSlide 0.4s ease;
             padding:1.5rem;
         }
-
-        .mpesa-prompt-overlay.active {
-            display:flex;
-        }
-
+        .mpesa-prompt-overlay.active { display:flex; }
         .mpesa-prompt-box {
             background:rgba(10,10,20,0.95);
             border:1px solid rgba(212,175,55,0.1);
@@ -58,277 +108,43 @@
             position:relative;
             box-shadow:0 30px 80px rgba(0,0,0,0.8);
         }
-
-        body.light-mode .mpesa-prompt-box {
-            background:rgba(255,255,255,0.95);
-        }
-
-        .mpesa-prompt-box .prompt-icon {
-            font-size:3.5rem;
-            color:#d4af37;
-            margin-bottom:0.5rem;
-            display:block;
-            animation:pulse-glow 2s ease-in-out infinite;
-        }
-
-        .mpesa-prompt-box .prompt-title {
-            font-family:'Orbitron',monospace;
-            font-size:1.3rem;
-            color:#d4af37;
-            letter-spacing:2px;
-            margin-bottom:0.3rem;
-        }
-
-        .mpesa-prompt-box .prompt-subtitle {
-            color:rgba(255,255,255,0.2);
-            font-size:0.85rem;
-            margin-bottom:1.2rem;
-        }
-
-        body.light-mode .mpesa-prompt-box .prompt-subtitle {
-            color:rgba(0,0,0,0.2);
-        }
-
-        .mpesa-prompt-box .prompt-amount {
-            font-size:2.8rem;
-            font-weight:900;
-            color:#d4af37;
-            font-family:'Orbitron',monospace;
-            display:block;
-            margin:0.3rem 0 0.8rem;
-            text-shadow:0 0 30px rgba(212,175,55,0.1);
-        }
-
-        .mpesa-prompt-box .prompt-destination {
-            color:rgba(255,255,255,0.15);
-            font-size:0.7rem;
-            letter-spacing:1px;
-            margin-bottom:0.5rem;
-            padding:0.5rem;
-            background:rgba(255,255,255,0.02);
-            border-radius:8px;
-            border:1px dashed rgba(255,255,255,0.03);
-        }
-
-        body.light-mode .mpesa-prompt-box .prompt-destination {
-            color:rgba(0,0,0,0.15);
-            background:rgba(0,0,0,0.02);
-            border-color:rgba(0,0,0,0.03);
-        }
-
-        .mpesa-prompt-box .prompt-destination i {
-            color:#d4af37;
-            opacity:0.3;
-            margin-right:6px;
-        }
-
-        .mpesa-prompt-box .prompt-account {
-            color:rgba(255,255,255,0.08);
-            font-size:0.55rem;
-            letter-spacing:1px;
-            margin-top:-0.3rem;
-            margin-bottom:0.8rem;
-            padding:0.2rem;
-            background:rgba(255,255,255,0.01);
-            border-radius:4px;
-            user-select:none;
-        }
-
-        body.light-mode .mpesa-prompt-box .prompt-account {
-            color:rgba(0,0,0,0.08);
-        }
-
-        .mpesa-prompt-box .prompt-account i {
-            color:#d4af37;
-            opacity:0.1;
-            margin-right:4px;
-        }
-
-        /* Phone number input - only field now */
-        .mpesa-prompt-box .prompt-input-group {
-            display:flex;
-            flex-direction:column;
-            gap:0.8rem;
-            margin:1rem 0;
-        }
-
-        .mpesa-prompt-box .prompt-input-group .input-label {
-            color:rgba(255,255,255,0.15);
-            font-size:0.65rem;
-            text-transform:uppercase;
-            letter-spacing:2px;
-            text-align:left;
-            padding-left:0.5rem;
-        }
-
-        body.light-mode .mpesa-prompt-box .prompt-input-group .input-label {
-            color:rgba(0,0,0,0.15);
-        }
-
-        .mpesa-prompt-box .prompt-input-group input {
-            padding:0.9rem 1rem;
-            background:rgba(255,255,255,0.03);
-            border:1px solid rgba(255,255,255,0.06);
-            border-radius:14px;
-            color:rgba(255,255,255,0.7);
-            font-family:'Rajdhani',sans-serif;
-            font-size:1rem;
-            outline:none;
-            transition:all 0.3s ease;
-            text-align:center;
-            letter-spacing:2px;
-            width:100%;
-        }
-
-        body.light-mode .mpesa-prompt-box .prompt-input-group input {
-            background:rgba(0,0,0,0.03);
-            border-color:rgba(0,0,0,0.06);
-            color:rgba(0,0,0,0.7);
-        }
-
-        .mpesa-prompt-box .prompt-input-group input:focus {
-            border-color:rgba(212,175,55,0.2);
-            background:rgba(255,255,255,0.05);
-        }
-
-        .mpesa-prompt-box .prompt-input-group input::placeholder {
-            color:rgba(255,255,255,0.15);
-            letter-spacing:1px;
-            font-size:0.85rem;
-        }
-
-        body.light-mode .mpesa-prompt-box .prompt-input-group input::placeholder {
-            color:rgba(0,0,0,0.15);
-        }
-
-        /* PIN info - itaombwa kwenye simu */
-        .mpesa-prompt-box .prompt-pin-info {
-            color:rgba(255,255,255,0.08);
-            font-size:0.6rem;
-            letter-spacing:1px;
-            padding:0.3rem;
-            background:rgba(255,255,255,0.02);
-            border-radius:6px;
-            border:1px solid rgba(255,255,255,0.02);
-            margin-bottom:0.5rem;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap:6px;
-        }
-
-        body.light-mode .mpesa-prompt-box .prompt-pin-info {
-            color:rgba(0,0,0,0.08);
-            background:rgba(0,0,0,0.02);
-            border-color:rgba(0,0,0,0.02);
-        }
-
-        .mpesa-prompt-box .prompt-pin-info i {
-            color:#d4af37;
-            opacity:0.15;
-        }
-
-        .mpesa-prompt-box .prompt-btn {
-            background:linear-gradient(135deg, #1a8a3a, #0d6b2a);
-            border:none;
-            padding:0.9rem 2rem;
-            border-radius:14px;
-            font-weight:700;
-            font-size:0.95rem;
-            color:#fff;
-            cursor:pointer;
-            transition:all 0.3s ease;
-            font-family:'Rajdhani',sans-serif;
-            letter-spacing:1px;
-            text-transform:uppercase;
-            width:100%;
-            margin-top:0.3rem;
-        }
-
-        .mpesa-prompt-box .prompt-btn:hover {
-            transform:translateY(-2px);
-            box-shadow:0 8px 30px rgba(26,138,58,0.2);
-            background:linear-gradient(135deg, #1e9e44, #0f7a2e);
-        }
-
-        .mpesa-prompt-box .prompt-btn:disabled {
-            opacity:0.4;
-            cursor:not-allowed;
-            transform:none!important;
-        }
-
-        .mpesa-prompt-box .prompt-cancel {
-            background:transparent;
-            border:none;
-            color:rgba(255,255,255,0.1);
-            padding:0.5rem;
-            cursor:pointer;
-            font-family:'Rajdhani',sans-serif;
-            font-size:0.7rem;
-            margin-top:0.5rem;
-            transition:color 0.3s ease;
-        }
-
-        body.light-mode .mpesa-prompt-box .prompt-cancel {
-            color:rgba(0,0,0,0.1);
-        }
-
-        .mpesa-prompt-box .prompt-cancel:hover {
-            color:rgba(255,255,255,0.3);
-        }
-
-        body.light-mode .mpesa-prompt-box .prompt-cancel:hover {
-            color:rgba(0,0,0,0.3);
-        }
-
-        .mpesa-prompt-box .prompt-status {
-            margin-top:0.5rem;
-            padding:0.6rem;
-            border-radius:10px;
-            font-size:0.8rem;
-            display:none;
-            animation:fadeSlide 0.3s ease;
-        }
-
-        .mpesa-prompt-box .prompt-status.error {
-            display:block;
-            background:rgba(255,50,50,0.08);
-            border:1px solid rgba(255,50,50,0.12);
-            color:#ff6b6b;
-        }
-
-        .mpesa-prompt-box .prompt-status.success {
-            display:block;
-            background:rgba(50,255,50,0.06);
-            border:1px solid rgba(50,255,50,0.1);
-            color:#51cf66;
-        }
-
-        .mpesa-prompt-box .prompt-status.info {
-            display:block;
-            background:rgba(212,175,55,0.06);
-            border:1px solid rgba(212,175,55,0.1);
-            color:#d4af37;
-        }
-
-        .mpesa-prompt-box .prompt-secure {
-            color:rgba(255,255,255,0.05);
-            font-size:0.5rem;
-            letter-spacing:2px;
-            margin-top:0.8rem;
-            border-top:1px solid rgba(255,255,255,0.02);
-            padding-top:0.8rem;
-        }
-
-        body.light-mode .mpesa-prompt-box .prompt-secure {
-            color:rgba(0,0,0,0.05);
-            border-color:rgba(0,0,0,0.02);
-        }
-
-        .mpesa-prompt-box .prompt-secure i {
-            color:#d4af37;
-            opacity:0.1;
-        }
+        body.light-mode .mpesa-prompt-box { background:rgba(255,255,255,0.95); }
+        .mpesa-prompt-box .prompt-icon { font-size:3.5rem; color:#d4af37; margin-bottom:0.5rem; display:block; animation:pulse-glow 2s ease-in-out infinite; }
+        .mpesa-prompt-box .prompt-title { font-family:'Orbitron',monospace; font-size:1.3rem; color:#d4af37; letter-spacing:2px; margin-bottom:0.3rem; }
+        .mpesa-prompt-box .prompt-subtitle { color:rgba(255,255,255,0.2); font-size:0.85rem; margin-bottom:1.2rem; }
+        body.light-mode .mpesa-prompt-box .prompt-subtitle { color:rgba(0,0,0,0.2); }
+        .mpesa-prompt-box .prompt-amount { font-size:2.8rem; font-weight:900; color:#d4af37; font-family:'Orbitron',monospace; display:block; margin:0.3rem 0 0.8rem; text-shadow:0 0 30px rgba(212,175,55,0.1); }
+        .mpesa-prompt-box .prompt-destination { color:rgba(255,255,255,0.15); font-size:0.7rem; letter-spacing:1px; margin-bottom:0.5rem; padding:0.5rem; background:rgba(255,255,255,0.02); border-radius:8px; border:1px dashed rgba(255,255,255,0.03); }
+        body.light-mode .mpesa-prompt-box .prompt-destination { color:rgba(0,0,0,0.15); background:rgba(0,0,0,0.02); border-color:rgba(0,0,0,0.03); }
+        .mpesa-prompt-box .prompt-destination i { color:#d4af37; opacity:0.3; margin-right:6px; }
+        .mpesa-prompt-box .prompt-account { color:rgba(255,255,255,0.08); font-size:0.55rem; letter-spacing:1px; margin-top:-0.3rem; margin-bottom:0.8rem; padding:0.2rem; background:rgba(255,255,255,0.01); border-radius:4px; user-select:none; }
+        body.light-mode .mpesa-prompt-box .prompt-account { color:rgba(0,0,0,0.08); }
+        .mpesa-prompt-box .prompt-account i { color:#d4af37; opacity:0.1; margin-right:4px; }
+        .mpesa-prompt-box .prompt-pin-info { color:rgba(255,255,255,0.08); font-size:0.6rem; letter-spacing:1px; padding:0.3rem; background:rgba(255,255,255,0.02); border-radius:6px; border:1px solid rgba(255,255,255,0.02); margin-bottom:0.5rem; display:flex; align-items:center; justify-content:center; gap:6px; }
+        body.light-mode .mpesa-prompt-box .prompt-pin-info { color:rgba(0,0,0,0.08); background:rgba(0,0,0,0.02); border-color:rgba(0,0,0,0.02); }
+        .mpesa-prompt-box .prompt-pin-info i { color:#d4af37; opacity:0.15; }
+        .mpesa-prompt-box .prompt-input-group { display:flex; flex-direction:column; gap:0.8rem; margin:1rem 0; }
+        .mpesa-prompt-box .prompt-input-group .input-label { color:rgba(255,255,255,0.15); font-size:0.65rem; text-transform:uppercase; letter-spacing:2px; text-align:left; padding-left:0.5rem; }
+        body.light-mode .mpesa-prompt-box .prompt-input-group .input-label { color:rgba(0,0,0,0.15); }
+        .mpesa-prompt-box .prompt-input-group input { padding:0.9rem 1rem; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:14px; color:rgba(255,255,255,0.7); font-family:'Rajdhani',sans-serif; font-size:1rem; outline:none; transition:all 0.3s ease; text-align:center; letter-spacing:2px; width:100%; }
+        body.light-mode .mpesa-prompt-box .prompt-input-group input { background:rgba(0,0,0,0.03); border-color:rgba(0,0,0,0.06); color:rgba(0,0,0,0.7); }
+        .mpesa-prompt-box .prompt-input-group input:focus { border-color:rgba(212,175,55,0.2); background:rgba(255,255,255,0.05); }
+        .mpesa-prompt-box .prompt-input-group input::placeholder { color:rgba(255,255,255,0.15); letter-spacing:1px; font-size:0.85rem; }
+        body.light-mode .mpesa-prompt-box .prompt-input-group input::placeholder { color:rgba(0,0,0,0.15); }
+        .mpesa-prompt-box .prompt-btn { background:linear-gradient(135deg, #1a8a3a, #0d6b2a); border:none; padding:0.9rem 2rem; border-radius:14px; font-weight:700; font-size:0.95rem; color:#fff; cursor:pointer; transition:all 0.3s ease; font-family:'Rajdhani',sans-serif; letter-spacing:1px; text-transform:uppercase; width:100%; margin-top:0.3rem; }
+        .mpesa-prompt-box .prompt-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(26,138,58,0.2); background:linear-gradient(135deg, #1e9e44, #0f7a2e); }
+        .mpesa-prompt-box .prompt-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none!important; }
+        .mpesa-prompt-box .prompt-cancel { background:transparent; border:none; color:rgba(255,255,255,0.1); padding:0.5rem; cursor:pointer; font-family:'Rajdhani',sans-serif; font-size:0.7rem; margin-top:0.5rem; transition:color 0.3s ease; }
+        body.light-mode .mpesa-prompt-box .prompt-cancel { color:rgba(0,0,0,0.1); }
+        .mpesa-prompt-box .prompt-cancel:hover { color:rgba(255,255,255,0.3); }
+        body.light-mode .mpesa-prompt-box .prompt-cancel:hover { color:rgba(0,0,0,0.3); }
+        .mpesa-prompt-box .prompt-status { margin-top:0.5rem; padding:0.6rem; border-radius:10px; font-size:0.8rem; display:none; animation:fadeSlide 0.3s ease; }
+        .mpesa-prompt-box .prompt-status.error { display:block; background:rgba(255,50,50,0.08); border:1px solid rgba(255,50,50,0.12); color:#ff6b6b; }
+        .mpesa-prompt-box .prompt-status.success { display:block; background:rgba(50,255,50,0.06); border:1px solid rgba(50,255,50,0.1); color:#51cf66; }
+        .mpesa-prompt-box .prompt-status.info { display:block; background:rgba(212,175,55,0.06); border:1px solid rgba(212,175,55,0.1); color:#d4af37; }
+        .mpesa-prompt-box .prompt-secure { color:rgba(255,255,255,0.05); font-size:0.5rem; letter-spacing:2px; margin-top:0.8rem; border-top:1px solid rgba(255,255,255,0.02); padding-top:0.8rem; }
+        body.light-mode .mpesa-prompt-box .prompt-secure { color:rgba(0,0,0,0.05); border-color:rgba(0,0,0,0.02); }
+        .mpesa-prompt-box .prompt-secure i { color:#d4af37; opacity:0.1; }
 
         /* ============================================================
            MPESA SUCCESS OVERLAY
@@ -349,84 +165,27 @@
             animation:fadeSlide 0.4s ease;
             padding:1.5rem;
         }
-
-        .mpesa-success-overlay.active {
-            display:flex;
-        }
-
-        .mpesa-success-overlay .success-icon {
-            font-size:5rem;
-            color:#51cf66;
-            margin-bottom:1rem;
-            animation:pulse-glow 2s ease-in-out infinite;
-        }
-
-        .mpesa-success-overlay .success-title {
-            font-family:'Orbitron',monospace;
-            font-size:1.8rem;
-            color:#d4af37;
-            letter-spacing:4px;
-            margin-bottom:0.5rem;
-            text-align:center;
-        }
-
-        .mpesa-success-overlay .success-subtitle {
-            color:rgba(255,255,255,0.3);
-            font-size:1.1rem;
-            letter-spacing:2px;
-        }
-
-        .mpesa-success-overlay .success-details {
-            margin-top:1.5rem;
-            padding:1rem 2rem;
-            background:rgba(255,255,255,0.03);
-            border-radius:12px;
-            border:1px solid rgba(255,255,255,0.05);
-            text-align:center;
-            max-width:400px;
-            width:100%;
-        }
-
-        .mpesa-success-overlay .success-details .detail-row {
-            color:rgba(255,255,255,0.2);
-            font-size:0.8rem;
-            padding:0.3rem 0;
-        }
-
-        .mpesa-success-overlay .success-details .detail-row strong {
-            color:#d4af37;
-        }
-
-        .mpesa-success-overlay .success-details .detail-row .highlight {
-            color:#51cf66;
-        }
-
-        .mpesa-success-overlay .btn-close-success {
-            margin-top:2rem;
-            padding:0.8rem 2.5rem;
-            border-radius:12px;
-            border:1px solid rgba(212,175,55,0.2);
-            background:transparent;
-            color:#d4af37;
-            cursor:pointer;
-            font-family:'Rajdhani',sans-serif;
-            font-size:0.9rem;
-            transition:all 0.3s ease;
-            letter-spacing:1px;
-        }
-
-        .mpesa-success-overlay .btn-close-success:hover {
-            background:rgba(212,175,55,0.05);
-            border-color:rgba(212,175,55,0.3);
-        }
+        .mpesa-success-overlay.active { display:flex; }
+        .mpesa-success-overlay .success-icon { font-size:5rem; color:#51cf66; margin-bottom:1rem; animation:pulse-glow 2s ease-in-out infinite; }
+        .mpesa-success-overlay .success-title { font-family:'Orbitron',monospace; font-size:1.8rem; color:#d4af37; letter-spacing:4px; margin-bottom:0.5rem; text-align:center; }
+        .mpesa-success-overlay .success-subtitle { color:rgba(255,255,255,0.3); font-size:1.1rem; letter-spacing:2px; }
+        .mpesa-success-overlay .success-details { margin-top:1.5rem; padding:1rem 2rem; background:rgba(255,255,255,0.03); border-radius:12px; border:1px solid rgba(255,255,255,0.05); text-align:center; max-width:400px; width:100%; }
+        .mpesa-success-overlay .success-details .detail-row { color:rgba(255,255,255,0.2); font-size:0.8rem; padding:0.3rem 0; }
+        .mpesa-success-overlay .success-details .detail-row strong { color:#d4af37; }
+        .mpesa-success-overlay .success-details .detail-row .highlight { color:#51cf66; }
+        .mpesa-success-overlay .btn-close-success { margin-top:2rem; padding:0.8rem 2.5rem; border-radius:12px; border:1px solid rgba(212,175,55,0.2); background:transparent; color:#d4af37; cursor:pointer; font-family:'Rajdhani',sans-serif; font-size:0.9rem; transition:all 0.3s ease; letter-spacing:1px; }
+        .mpesa-success-overlay .btn-close-success:hover { background:rgba(212,175,55,0.05); border-color:rgba(212,175,55,0.3); }
 
         /* ============================================================
-           OTHER STYLES (condensed for space)
+           BACKGROUND
            ============================================================ */
         .bg-overlay { position:fixed; top:0; left:0; right:0; bottom:0; z-index:0; pointer-events:none; }
         .bg-overlay::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:radial-gradient(ellipse at 20% 50%, rgba(212,175,55,0.08) 0%, transparent 60%),radial-gradient(ellipse at 80% 50%, rgba(212,175,55,0.05) 0%, transparent 60%),radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.03) 0%, transparent 40%); }
         .bg-overlay::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background-image:linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px); background-size:40px 40px; }
 
+        /* ============================================================
+           LANDING PAGE
+           ============================================================ */
         #landingPage { position:relative; z-index:1; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem 1.5rem; }
         .landing-container { max-width:1100px; width:100%; }
         .hero-section { text-align:center; margin-bottom:3rem; }
@@ -455,11 +214,12 @@
         .btn-gold:disabled::before { display:none; }
         .btn-outline { background:transparent; border:1px solid rgba(212,175,55,0.1); padding:0.8rem 2.5rem; border-radius:16px; font-weight:600; font-size:0.9rem; color:rgba(255,255,255,0.3); cursor:pointer; transition:all 0.3s ease; font-family:'Rajdhani',sans-serif; letter-spacing:1px; text-decoration:none; display:inline-flex; align-items:center; gap:10px; }
         .btn-outline:hover { border-color:rgba(212,175,55,0.2); color:rgba(255,255,255,0.6); background:rgba(255,255,255,0.02); }
-        .btn-sm { padding:0.4rem 1rem; font-size:0.75rem; border-radius:8px; }
         .landing-footer { margin-top:4rem; text-align:center; color:rgba(255,255,255,0.04); font-size:0.6rem; letter-spacing:4px; text-transform:uppercase; border-top:1px solid rgba(255,255,255,0.02); padding-top:2rem; }
         .landing-footer i { color:rgba(212,175,55,0.1); margin:0 4px; }
 
-        /* Dashboard condensed styles */
+        /* ============================================================
+           DASHBOARD
+           ============================================================ */
         #dashboardPage { display:none; position:relative; z-index:1; padding:1.5rem; max-width:1200px; margin:0 auto; }
         #dashboardPage.active { display:block; }
         .dash-topbar { display:flex; justify-content:space-between; align-items:center; padding:0.8rem 1.5rem; background:rgba(10,10,20,0.7); backdrop-filter:blur(20px); border:1px solid rgba(212,175,55,0.08); border-radius:20px; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem; }
@@ -520,6 +280,156 @@
         .stat-card .stat-number { font-size:2rem; font-weight:700; color:#d4af37; font-family:'Orbitron',monospace; }
         .stat-card .stat-label { color:rgba(255,255,255,0.2); font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem; }
 
+        /* ============================================================
+           WALLET / DEPOSIT SECTION
+           ============================================================ */
+        .wallet-box {
+            background:rgba(212,175,55,0.03);
+            border:1px solid rgba(212,175,55,0.08);
+            border-radius:16px;
+            padding:1.5rem;
+            max-width:450px;
+            margin:0 auto 1.5rem;
+            text-align:center;
+        }
+
+        .wallet-box .wallet-balance {
+            font-family:'Orbitron',monospace;
+            font-size:2.5rem;
+            color:#d4af37;
+            display:block;
+            margin:0.3rem 0;
+        }
+
+        .wallet-box .wallet-label {
+            color:rgba(255,255,255,0.2);
+            font-size:0.7rem;
+            text-transform:uppercase;
+            letter-spacing:2px;
+        }
+
+        .wallet-box .wallet-status {
+            display:inline-block;
+            padding:0.2rem 1rem;
+            border-radius:20px;
+            font-size:0.65rem;
+            background:rgba(50,255,50,0.1);
+            color:#51cf66;
+            border:1px solid rgba(50,255,50,0.1);
+            margin-top:0.5rem;
+        }
+
+        .wallet-box .wallet-status.locked {
+            background:rgba(255,50,50,0.1);
+            color:#ff6b6b;
+            border-color:rgba(255,50,50,0.1);
+        }
+
+        .wallet-box .wallet-actions {
+            display:flex;
+            gap:0.8rem;
+            margin-top:1rem;
+            justify-content:center;
+            flex-wrap:wrap;
+        }
+
+        .wallet-box .wallet-actions .btn-withdraw {
+            padding:0.5rem 1.5rem;
+            border-radius:10px;
+            border:1px solid rgba(255,50,50,0.15);
+            background:rgba(255,50,50,0.05);
+            color:#ff6b6b;
+            cursor:not-allowed;
+            font-family:'Rajdhani',sans-serif;
+            font-size:0.8rem;
+            transition:all 0.3s ease;
+            opacity:0.5;
+        }
+
+        .wallet-box .wallet-actions .btn-withdraw i {
+            margin-right:6px;
+        }
+
+        .wallet-box .wallet-actions .btn-withdraw:hover {
+            background:rgba(255,50,50,0.08);
+        }
+
+        .wallet-box .wallet-actions .btn-deposit {
+            padding:0.5rem 1.5rem;
+            border-radius:10px;
+            border:1px solid rgba(50,255,50,0.15);
+            background:rgba(50,255,50,0.05);
+            color:#51cf66;
+            cursor:pointer;
+            font-family:'Rajdhani',sans-serif;
+            font-size:0.8rem;
+            transition:all 0.3s ease;
+        }
+
+        .wallet-box .wallet-actions .btn-deposit:hover {
+            background:rgba(50,255,50,0.1);
+        }
+
+        .wallet-box .wallet-actions .btn-deposit i {
+            margin-right:6px;
+        }
+
+        .wallet-box .wallet-lock-icon {
+            color:rgba(255,50,50,0.2);
+            font-size:0.8rem;
+            margin-top:0.5rem;
+            display:block;
+        }
+
+        .wallet-box .wallet-lock-icon i {
+            margin-right:4px;
+        }
+
+        .wallet-box .wallet-deposit-info {
+            margin-top:0.5rem;
+            padding:0.5rem;
+            background:rgba(255,255,255,0.02);
+            border-radius:8px;
+            border:1px solid rgba(255,255,255,0.03);
+        }
+
+        .wallet-box .wallet-deposit-info .deposit-row {
+            display:flex;
+            justify-content:space-between;
+            padding:0.2rem 0;
+            font-size:0.75rem;
+            color:rgba(255,255,255,0.15);
+        }
+
+        .wallet-box .wallet-deposit-info .deposit-row .val {
+            color:rgba(255,255,255,0.4);
+        }
+
+        body.light-mode .wallet-box {
+            background:rgba(212,175,55,0.03);
+            border-color:rgba(212,175,55,0.08);
+        }
+
+        body.light-mode .wallet-box .wallet-label {
+            color:rgba(0,0,0,0.2);
+        }
+
+        body.light-mode .wallet-box .wallet-deposit-info {
+            background:rgba(0,0,0,0.02);
+            border-color:rgba(0,0,0,0.03);
+        }
+
+        body.light-mode .wallet-box .wallet-deposit-info .deposit-row {
+            color:rgba(0,0,0,0.15);
+        }
+
+        body.light-mode .wallet-box .wallet-deposit-info .deposit-row .val {
+            color:rgba(0,0,0,0.4);
+        }
+
+        /* ============================================================
+           OTHER COMPONENTS (condensed)
+           ============================================================ */
         .activity-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
         .activity-table th { text-align:left; color:rgba(255,255,255,0.15); font-weight:500; padding:0.5rem 0.5rem 0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; }
         .activity-table td { padding:0.6rem 0.5rem 0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.02); color:rgba(255,255,255,0.4); }
@@ -659,7 +569,6 @@
         .chat-input input:focus { border-color:rgba(212,175,55,0.2); }
         .chat-input button { padding:0.6rem 1.2rem; border-radius:12px; border:none; background:linear-gradient(135deg, #d4af37, #b8962e); color:#0a0a0f; font-weight:600; cursor:pointer; transition:all 0.3s ease; font-family:'Rajdhani',sans-serif; }
         .chat-input button:hover { transform:scale(1.02); }
-
         .chat-select { padding:0.5rem 1rem; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; color:rgba(255,255,255,0.5); font-family:'Rajdhani',sans-serif; outline:none; }
 
         ::-webkit-scrollbar { width:4px; }
@@ -667,7 +576,7 @@
         ::-webkit-scrollbar-thumb { background:rgba(212,175,55,0.15); border-radius:10px; }
 
         @media (max-width:768px) { .dash-topbar .user-info .name { display:none; } .notification-dropdown { min-width:280px; right:-60px; } }
-        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .member-item { flex-direction:column; align-items:flex-start; gap:0.5rem; } .mpesa-prompt-box { padding:1.5rem; } .mpesa-prompt-box .prompt-title { font-size:1rem; } .mpesa-prompt-box .prompt-amount { font-size:2.2rem; } .mpesa-success-overlay .success-title { font-size:1.2rem; } .mpesa-success-overlay .success-subtitle { font-size:0.9rem; } }
+        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .member-item { flex-direction:column; align-items:flex-start; gap:0.5rem; } .mpesa-prompt-box { padding:1.5rem; } .mpesa-prompt-box .prompt-title { font-size:1rem; } .mpesa-prompt-box .prompt-amount { font-size:2.2rem; } .mpesa-success-overlay .success-title { font-size:1.2rem; } .mpesa-success-overlay .success-subtitle { font-size:0.9rem; } .wallet-box .wallet-balance { font-size:2rem; } }
         @media (max-width:400px) { .features-grid { grid-template-columns:1fr; } }
     </style>
 </head>
@@ -682,45 +591,25 @@
 </div>
 
 <!-- ============================================================
-     MPESA PROMPT OVERLAY (FULL SCREEN PROMPT)
+     MPESA PROMPT OVERLAY
      ============================================================ -->
 <div class="mpesa-prompt-overlay" id="mpesaPromptOverlay">
     <div class="mpesa-prompt-box">
         <span class="prompt-icon"><i class="fas fa-phone-alt"></i></span>
         <div class="prompt-title">M-PESA PROMPT</div>
         <div class="prompt-subtitle">Complete your payment to join the order</div>
-
         <span class="prompt-amount">KES 666</span>
-
-        <div class="prompt-destination">
-            <i class="fas fa-building"></i> Paying to: ILLUMINATI KENYA
-        </div>
-
-        <div class="prompt-account">
-            <i class="fas fa-hashtag"></i> Account: ***********
-        </div>
-
-        <!-- PIN info - inaonyesha kuwa PIN itaombwa kwenye simu -->
-        <div class="prompt-pin-info">
-            <i class="fas fa-mobile-alt"></i> PIN will be requested on your phone
-        </div>
-
+        <div class="prompt-destination"><i class="fas fa-building"></i> Paying to: ILLUMINATI KENYA</div>
+        <div class="prompt-account"><i class="fas fa-hashtag"></i> Account: ***********</div>
+        <div class="prompt-pin-info"><i class="fas fa-mobile-alt"></i> PIN will be requested on your phone</div>
         <div class="prompt-input-group">
             <span class="input-label"><i class="fas fa-user"></i> Your M-Pesa Number</span>
             <input type="text" id="mpesaPromptNumber" placeholder="0712345678" inputmode="numeric" pattern="[0-9]*" required>
         </div>
-
         <div class="prompt-status" id="mpesaPromptStatus"></div>
-
-        <button class="prompt-btn" id="mpesaPromptBtn" onclick="confirmMpesaPrompt()">
-            <i class="fas fa-check-circle"></i> Send KES 666 to ILLUMINATI KENYA
-        </button>
-
+        <button class="prompt-btn" id="mpesaPromptBtn" onclick="confirmMpesaPrompt()"><i class="fas fa-check-circle"></i> Send KES 666 to ILLUMINATI KENYA</button>
         <button class="prompt-cancel" onclick="closeMpesaPrompt()">Cancel Payment</button>
-
-        <div class="prompt-secure">
-            <i class="fas fa-shield-alt"></i> Secured & Encrypted
-        </div>
+        <div class="prompt-secure"><i class="fas fa-shield-alt"></i> Secured & Encrypted</div>
     </div>
 </div>
 
@@ -773,7 +662,7 @@
 </div>
 
 <!-- ============================================================
-     DASHBOARD (PRIVATE) - Condensed
+     DASHBOARD (PRIVATE)
      ============================================================ -->
 <div id="dashboardPage">
     <div class="dash-topbar">
@@ -819,6 +708,7 @@
                 <button class="nav-item active" data-page="dashboard" onclick="showDashPage('dashboard')"><i class="fas fa-chart-pie"></i> Dashboard</button>
                 <button class="nav-item" data-page="profile" onclick="showDashPage('profile')"><i class="fas fa-user-edit"></i> Profile</button>
                 <button class="nav-item" data-page="activity" onclick="showDashPage('activity')"><i class="fas fa-history"></i> Activity</button>
+                <button class="nav-item" data-page="wallet" onclick="showDashPage('wallet')"><i class="fas fa-wallet"></i> Wallet</button>
                 <button class="nav-item" data-page="members" onclick="showDashPage('members')"><i class="fas fa-users"></i> Members <span class="badge-count" id="memberCount">0</span></button>
                 <button class="nav-item" data-page="announcements" onclick="showDashPage('announcements')"><i class="fas fa-bullhorn"></i> Announcements</button>
                 <button class="nav-item" data-page="events" onclick="showDashPage('events')"><i class="fas fa-calendar-alt"></i> Events</button>
@@ -834,6 +724,7 @@
         <div class="dash-content">
             <div id="dashMessage" class="msg"></div>
 
+            <!-- Dashboard Page -->
             <div id="dash-page-dashboard" class="dash-page active">
                 <h2><i class="fas fa-chart-pie"></i> Dashboard</h2>
                 <div class="subtitle">Welcome to the Illuminat inner circle.</div>
@@ -854,6 +745,7 @@
                 <div style="color:rgba(255,255,255,0.08);font-size:0.7rem;text-align:center;padding:1rem 0;border-top:1px solid rgba(255,255,255,0.02);margin-top:1rem;"><i class="fas fa-eye" style="color:rgba(212,175,55,0.15);"></i> "The light illuminates the path of the worthy."</div>
             </div>
 
+            <!-- Profile Page -->
             <div id="dash-page-profile" class="dash-page">
                 <h2><i class="fas fa-user-edit"></i> Profile</h2>
                 <div class="subtitle">Update your personal information.</div>
@@ -869,6 +761,7 @@
                 </form>
             </div>
 
+            <!-- Activity Page -->
             <div id="dash-page-activity" class="dash-page">
                 <h2><i class="fas fa-history"></i> Activity Log</h2>
                 <div class="subtitle">Your journey recorded.</div>
@@ -882,6 +775,36 @@
                 </table>
             </div>
 
+            <!-- Wallet Page -->
+            <div id="dash-page-wallet" class="dash-page">
+                <h2><i class="fas fa-wallet"></i> Wallet</h2>
+                <div class="subtitle">Your deposit balance and transaction history.</div>
+
+                <div class="wallet-box">
+                    <span class="wallet-label">Available Balance</span>
+                    <span class="wallet-balance" id="walletBalance">KES 0.00</span>
+                    <span class="wallet-status" id="walletStatus">✓ Active</span>
+                    <div class="wallet-deposit-info">
+                        <div class="deposit-row"><span>Account Number:</span><span class="val">0111457171</span></div>
+                        <div class="deposit-row"><span>Deposit Amount:</span><span class="val">KES 666.00</span></div>
+                        <div class="deposit-row"><span>Status:</span><span class="val" style="color:#51cf66;">✓ Confirmed</span></div>
+                    </div>
+                    <div class="wallet-actions">
+                        <button class="btn-deposit" onclick="depositFunds()"><i class="fas fa-plus-circle"></i> Deposit</button>
+                        <button class="btn-withdraw" disabled><i class="fas fa-lock"></i> Withdraw (Locked)</button>
+                    </div>
+                    <span class="wallet-lock-icon"><i class="fas fa-info-circle"></i> Withdrawals are currently disabled for new members</span>
+                </div>
+
+                <div style="margin-top:1rem;">
+                    <h4 style="color:rgba(255,255,255,0.15);font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:0.5rem;">Transaction History</h4>
+                    <div id="transactionHistory">
+                        <div style="color:rgba(255,255,255,0.05);text-align:center;padding:1rem;font-size:0.8rem;">No transactions yet</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Members Page -->
             <div id="dash-page-members" class="dash-page">
                 <h2><i class="fas fa-users"></i> Members</h2>
                 <div class="subtitle">All Illuminat members.</div>
@@ -893,6 +816,7 @@
                 <div id="memberList"></div>
             </div>
 
+            <!-- Announcements Page -->
             <div id="dash-page-announcements" class="dash-page">
                 <h2><i class="fas fa-bullhorn"></i> Announcements</h2>
                 <div class="subtitle">News from the Order.</div>
@@ -907,18 +831,21 @@
                 </div>
             </div>
 
+            <!-- Events Page -->
             <div id="dash-page-events" class="dash-page">
                 <h2><i class="fas fa-calendar-alt"></i> Events</h2>
                 <div class="subtitle">Upcoming gatherings and rituals.</div>
                 <div id="eventList"></div>
             </div>
 
+            <!-- Badges Page -->
             <div id="dash-page-badges" class="dash-page">
                 <h2><i class="fas fa-trophy"></i> Badges</h2>
                 <div class="subtitle">Achievements earned on your journey.</div>
                 <div class="badge-grid" id="badgeGrid"></div>
             </div>
 
+            <!-- Referral Page -->
             <div id="dash-page-referral" class="dash-page">
                 <h2><i class="fas fa-link"></i> Referral</h2>
                 <div class="subtitle">Invite others to join the order.</div>
@@ -931,6 +858,7 @@
                 </div>
             </div>
 
+            <!-- Pledge Page -->
             <div id="dash-page-pledge" class="dash-page">
                 <h2><i class="fas fa-scroll"></i> My Pledge</h2>
                 <div class="subtitle">The sacred oath you took to join the order.</div>
@@ -950,6 +878,7 @@
                 </div>
             </div>
 
+            <!-- Invoice Page -->
             <div id="dash-page-invoice" class="dash-page">
                 <h2><i class="fas fa-file-invoice"></i> Invoice</h2>
                 <div class="subtitle">Your payment receipt.</div>
@@ -975,6 +904,7 @@
                 </div>
             </div>
 
+            <!-- Chat Page -->
             <div id="dash-page-chat" class="dash-page">
                 <h2><i class="fas fa-comment"></i> Chat</h2>
                 <div class="subtitle">Connect with fellow members.</div>
@@ -994,6 +924,7 @@
                 </div>
             </div>
 
+            <!-- Settings Page -->
             <div id="dash-page-settings" class="dash-page">
                 <h2><i class="fas fa-cog"></i> Settings</h2>
                 <div class="subtitle">Manage your account preferences.</div>
@@ -1080,6 +1011,7 @@
     // ============================================================
     const MPESA_ACCOUNT = '0111457171';
     const MPESA_AMOUNT = 666;
+    const WITHDRAW_LOCKED = true; // Lock withdrawals
 
     function decrypt(encrypted) { return atob(encrypted); }
 
@@ -1152,11 +1084,16 @@
             paid: true,
             paymentDate: new Date().toISOString(),
             paymentRef: 'INV-0001',
+            balance: 666,
+            transactions: [
+                { type: 'deposit', amount: 666, date: new Date().toISOString(), status: 'completed', ref: 'INV-0001' }
+            ],
             chatMessages: [],
             activity: [
                 { event: 'Joined Illuminat', date: new Date().toISOString() },
                 { event: 'Signed the Pledge', date: new Date().toISOString() },
-                { event: 'First login', date: new Date().toISOString() }
+                { event: 'First login', date: new Date().toISOString() },
+                { event: 'Deposited KES 666', date: new Date().toISOString() }
             ],
             notifications: []
         }];
@@ -1349,14 +1286,11 @@
             return;
         }
 
-        // Store user data temporarily in global
         window._pendingUser = {
             name, email, password, securityQ: document.getElementById('joinSecurityQ').value, securityA
         };
 
         closeJoinForm();
-
-        // Show MPESA Prompt
         document.getElementById('mpesaPromptOverlay').classList.add('active');
         document.getElementById('mpesaPromptNumber').value = '';
         document.getElementById('mpesaPromptStatus').className = 'prompt-status';
@@ -1371,9 +1305,7 @@
     }
 
     // ============================================================
-    //  MPESA CONFIRM - REAL MPESA FLOW
-    //  Customer enters phone number, account is 0111457171 (hidden)
-    //  PIN is requested on customer's phone
+    //  MPESA CONFIRM - Payment goes to 0111457171
     // ============================================================
     function confirmMpesaPrompt() {
         const mpesaNumber = document.getElementById('mpesaPromptNumber').value.trim();
@@ -1383,17 +1315,15 @@
             return;
         }
 
-        // Validate phone number format (Kenyan)
         if (!/^(07|01|02)[0-9]{8}$/.test(mpesaNumber) && !/^254[0-9]{9}$/.test(mpesaNumber)) {
             showMpesaPromptStatus('error', '⚠️ Please enter a valid Kenyan phone number (e.g. 0712345678).');
             return;
         }
 
-        showMpesaPromptStatus('info', '⏳ Sending request to M-Pesa...');
+        showMpesaPromptStatus('info', '⏳ Sending KES 666 to 0111457171...');
         document.getElementById('mpesaPromptBtn').disabled = true;
         showSpinner('Please check your phone for M-Pesa PIN prompt...');
 
-        // Simulate M-Pesa API call
         setTimeout(() => {
             const userData = window._pendingUser;
             if (!userData) {
@@ -1411,10 +1341,10 @@
                 return;
             }
 
-            // Payment successful - create account
             const paymentRef = 'MP-' + String(Date.now()).slice(-8);
             const invoiceRef = 'INV-' + String(Date.now()).slice(-6).padStart(6, '0');
 
+            // Create user with deposit
             const newUser = {
                 id: 'user_' + Date.now(),
                 name: userData.name,
@@ -1438,21 +1368,21 @@
                 avatar: '',
                 paid: true,
                 paymentDate: new Date().toISOString(),
-                paymentMethod: 'M-Pesa',
-                paymentAmount: MPESA_AMOUNT,
                 paymentRef: invoiceRef,
-                mpesaRef: paymentRef,
-                mpesaAccount: MPESA_ACCOUNT,
+                balance: MPESA_AMOUNT,
+                transactions: [
+                    { type: 'deposit', amount: MPESA_AMOUNT, date: new Date().toISOString(), status: 'completed', ref: invoiceRef, to: MPESA_ACCOUNT }
+                ],
                 chatMessages: [],
                 activity: [
                     { event: 'Joined Illuminat', date: new Date().toISOString() },
                     { event: 'Signed the Pledge', date: new Date().toISOString() },
-                    { event: 'Payment of KES ' + MPESA_AMOUNT + ' completed via M-Pesa', date: new Date().toISOString() },
+                    { event: 'Deposited KES ' + MPESA_AMOUNT + ' to ' + MPESA_ACCOUNT, date: new Date().toISOString() },
                     { event: 'SENT TO ILLUMINATI KENYA - Ref: ' + paymentRef, date: new Date().toISOString() }
                 ],
                 notifications: [
                     { id: 'notif_' + Date.now(), text: '🎉 Welcome to Illuminat, ' + userData.name + '! Payment confirmed. The light awaits.', date: new Date().toISOString(), read: false },
-                    { id: 'notif_' + Date.now() + '_mpesa', text: '💰 KES ' + MPESA_AMOUNT + ' sent to ILLUMINATI KENYA. Ref: ' + paymentRef, date: new Date().toISOString(), read: false }
+                    { id: 'notif_' + Date.now() + '_mpesa', text: '💰 KES ' + MPESA_AMOUNT + ' deposited to account ' + MPESA_ACCOUNT + '. Ref: ' + paymentRef, date: new Date().toISOString(), read: false }
                 ]
             };
 
@@ -1469,11 +1399,8 @@
             }));
 
             hideSpinner();
-
-            // Close the prompt
             document.getElementById('mpesaPromptOverlay').classList.remove('active');
 
-            // Show success overlay with "SENT TO ILLUMINATI KENYA"
             document.getElementById('mpesaSuccessRef').textContent = paymentRef;
             document.getElementById('mpesaSuccessDate').textContent = new Date().toLocaleString();
             document.getElementById('mpesaSuccessOverlay').classList.add('active');
@@ -1491,6 +1418,49 @@
 
     function closeMpesaSuccess() {
         document.getElementById('mpesaSuccessOverlay').classList.remove('active');
+    }
+
+    // ============================================================
+    //  WALLET / DEPOSIT FUNCTIONS
+    // ============================================================
+    function depositFunds() {
+        const user = getCurrentUser();
+        if (!user) return;
+
+        // Show message that deposit goes to 0111457171
+        showDashMessage('info', '📱 Send KES 666 to M-Pesa Paybill 0111457171. Your deposit will reflect automatically after confirmation.');
+
+        // Simulate deposit after user confirms
+        if (confirm('Have you sent KES 666 to 0111457171? Click OK to confirm your deposit.')) {
+            showSpinner('Confirming deposit...');
+            setTimeout(() => {
+                const users = getUsers();
+                const idx = users.findIndex(u => u.id === user.id);
+                if (idx !== -1) {
+                    // Add deposit
+                    user.balance = (user.balance || 0) + MPESA_AMOUNT;
+                    if (!user.transactions) user.transactions = [];
+                    user.transactions.push({
+                        type: 'deposit',
+                        amount: MPESA_AMOUNT,
+                        date: new Date().toISOString(),
+                        status: 'completed',
+                        ref: 'DEP-' + String(Date.now()).slice(-8),
+                        to: MPESA_ACCOUNT
+                    });
+                    if (!user.activity) user.activity = [];
+                    user.activity.unshift({
+                        event: 'Deposited KES ' + MPESA_AMOUNT + ' to ' + MPESA_ACCOUNT,
+                        date: new Date().toISOString()
+                    });
+                    users[idx] = user;
+                    saveUsers(users);
+                    updateUI();
+                    hideSpinner();
+                    showDashMessage('success', '✅ Deposit of KES ' + MPESA_AMOUNT + ' confirmed! Your balance has been updated.');
+                }
+            }, 2000);
+        }
     }
 
     // ============================================================
@@ -1570,6 +1540,7 @@
         if (pageId === 'referral') loadReferral();
         if (pageId === 'invoice') loadInvoice();
         if (pageId === 'chat') loadChatUsers();
+        if (pageId === 'wallet') loadWallet();
     }
 
     // ============================================================
@@ -1684,7 +1655,7 @@
     }
 
     // ============================================================
-    //  UI UPDATE (condensed)
+    //  UI UPDATE
     // ============================================================
     function updateUI() {
         const user = getCurrentUser();
@@ -1768,6 +1739,8 @@
             document.getElementById('announcementPoster').style.display = 'none';
         }
 
+        // Load wallet
+        loadWallet();
         loadDashAnnouncements();
 
         const activePage = document.querySelector('.dash-page.active');
@@ -1780,6 +1753,41 @@
             if (id === 'referral') loadReferral();
             if (id === 'invoice') loadInvoice();
             if (id === 'chat') loadChatUsers();
+        }
+    }
+
+    // ============================================================
+    //  WALLET
+    // ============================================================
+    function loadWallet() {
+        const user = getCurrentUser();
+        if (!user) return;
+
+        const balance = user.balance || 0;
+        document.getElementById('walletBalance').textContent = 'KES ' + balance.toFixed(2);
+
+        // Show transaction history
+        const container = document.getElementById('transactionHistory');
+        if (user.transactions && user.transactions.length > 0) {
+            let html = '';
+            user.transactions.slice().reverse().forEach(t => {
+                const isDeposit = t.type === 'deposit';
+                html += `
+                    <div style="display:flex;justify-content:space-between;padding:0.5rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.03);border-radius:4px;">
+                        <div>
+                            <span style="color:${isDeposit ? '#51cf66' : '#ff6b6b'};font-weight:600;">${isDeposit ? 'Deposit' : 'Withdraw'}</span>
+                            <span style="color:rgba(255,255,255,0.15);font-size:0.6rem;display:block;">${t.ref || '--'}</span>
+                        </div>
+                        <div style="text-align:right;">
+                            <span style="color:${isDeposit ? '#51cf66' : '#ff6b6b'};">${isDeposit ? '+' : '-'} KES ${t.amount.toFixed(2)}</span>
+                            <span style="color:rgba(255,255,255,0.1);font-size:0.5rem;display:block;">${new Date(t.date).toLocaleDateString()}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        } else {
+            container.innerHTML = '<div style="color:rgba(255,255,255,0.05);text-align:center;padding:1rem;font-size:0.8rem;">No transactions yet</div>';
         }
     }
 
@@ -2112,6 +2120,7 @@
             Description: Initiation Fee
             Amount: KES 666.00
             Payment Method: M-Pesa
+            Account: 0111457171
             Status: PAID - SENT TO ILLUMINATI KENYA
             ----------------------------------------
             Thank you for joining Illuminat Kenya.
@@ -2433,6 +2442,8 @@
     window.confirmMpesaPrompt = confirmMpesaPrompt;
     window.closeMpesaPrompt = closeMpesaPrompt;
     window.closeMpesaSuccess = closeMpesaSuccess;
+    window.depositFunds = depositFunds;
+    window.loadWallet = loadWallet;
 </script>
 
 </body>
