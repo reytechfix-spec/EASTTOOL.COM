@@ -24,64 +24,379 @@
         @keyframes spin { to { transform:rotate(360deg); } }
 
         /* ============================================================
-           LIGHT MODE OVERRIDES
+           MPESA PROMPT OVERLAY (FULL SCREEN PROMPT)
            ============================================================ */
-        body.light-mode .bg-overlay::before { background:radial-gradient(ellipse at 20% 50%, rgba(212,175,55,0.12) 0%, transparent 60%),radial-gradient(ellipse at 80% 50%, rgba(212,175,55,0.08) 0%, transparent 60%); }
-        body.light-mode .glass-card,body.light-mode .dash-topbar,body.light-mode .dash-sidebar,body.light-mode .dash-content,body.light-mode .feature-card,body.light-mode .stat-card,body.light-mode .contract-box,body.light-mode .announcement-card,body.light-mode .payment-box,body.light-mode .invoice-box,body.light-mode .chat-box { background:rgba(255,255,255,0.7)!important; backdrop-filter:blur(20px)!important; border-color:rgba(212,175,55,0.15)!important; }
-        body.light-mode .hero-title,body.light-mode .logo-text { background:linear-gradient(135deg, #b8962e, #8a7510)!important; -webkit-background-clip:text!important; background-clip:text!important; color:transparent!important; }
-        body.light-mode .hero-subtitle,body.light-mode .logo-sub { color:rgba(0,0,0,0.3)!important; }
-        body.light-mode .hero-tagline { color:rgba(0,0,0,0.4)!important; }
-        body.light-mode .feature-card h4 { color:rgba(0,0,0,0.5)!important; }
-        body.light-mode .feature-card p { color:rgba(0,0,0,0.2)!important; }
-        body.light-mode .dash-topbar .brand span { background:linear-gradient(135deg, #b8962e, #8a7510)!important; -webkit-background-clip:text!important; background-clip:text!important; color:transparent!important; }
-        body.light-mode .dash-topbar .user-info .name { color:rgba(0,0,0,0.7)!important; }
-        body.light-mode .dash-sidebar .profile-card .display-name { color:rgba(0,0,0,0.8)!important; }
-        body.light-mode .dash-sidebar .profile-card .display-email { color:rgba(0,0,0,0.2)!important; }
-        body.light-mode .dash-sidebar .profile-card .member-since { color:rgba(0,0,0,0.15)!important; }
-        body.light-mode .dash-sidebar .nav-menu .nav-item { color:rgba(0,0,0,0.3)!important; }
-        body.light-mode .dash-sidebar .nav-menu .nav-item i { color:rgba(0,0,0,0.2)!important; }
-        body.light-mode .dash-sidebar .nav-menu .nav-item.active { background:rgba(212,175,55,0.1)!important; color:#b8962e!important; }
-        body.light-mode .dash-sidebar .nav-menu .nav-item.active i { color:#b8962e!important; }
-        body.light-mode .dash-page h2 { color:rgba(0,0,0,0.7)!important; }
-        body.light-mode .dash-page .subtitle { color:rgba(0,0,0,0.15)!important; }
-        body.light-mode .stat-card .stat-label { color:rgba(0,0,0,0.2)!important; }
-        body.light-mode .activity-table th { color:rgba(0,0,0,0.15)!important; }
-        body.light-mode .activity-table td { color:rgba(0,0,0,0.4)!important; }
-        body.light-mode .activity-table .time { color:rgba(0,0,0,0.15)!important; }
-        body.light-mode .profile-form .form-group label { color:rgba(0,0,0,0.2)!important; }
-        body.light-mode .profile-form .form-group input,body.light-mode .profile-form .form-group textarea { background:rgba(0,0,0,0.03)!important; border-color:rgba(0,0,0,0.06)!important; color:rgba(0,0,0,0.7)!important; }
-        body.light-mode .profile-form .form-group input:focus,body.light-mode .profile-form .form-group textarea:focus { border-color:rgba(212,175,55,0.3)!important; background:rgba(0,0,0,0.05)!important; }
-        body.light-mode .contract-text { color:rgba(0,0,0,0.4)!important; }
-        body.light-mode .contract-text strong { color:#b8962e!important; }
-        body.light-mode .contract-questions li { color:rgba(0,0,0,0.3)!important; }
-        body.light-mode .contract-questions li .q { color:rgba(0,0,0,0.5)!important; }
-        body.light-mode .contract-questions li .a { color:rgba(0,0,0,0.2)!important; }
-        body.light-mode .contract-accept label { color:rgba(0,0,0,0.3)!important; }
-        body.light-mode .contract-accept label strong { color:#b8962e!important; }
-        body.light-mode .payment-box .payment-number-hidden { color:rgba(0,0,0,0.2)!important; }
-        body.light-mode .payment-box .payment-subtitle { color:rgba(0,0,0,0.2)!important; }
-        body.light-mode .payment-box .payment-input-group input { background:rgba(0,0,0,0.03)!important; border-color:rgba(0,0,0,0.06)!important; color:rgba(0,0,0,0.7)!important; }
-        body.light-mode .msg.error { background:rgba(255,50,50,0.08)!important; border-color:rgba(255,50,50,0.15)!important; color:#dc3545!important; }
-        body.light-mode .msg.success { background:rgba(50,200,50,0.08)!important; border-color:rgba(50,200,50,0.1)!important; color:#28a745!important; }
-        body.light-mode .msg.info { background:rgba(212,175,55,0.08)!important; border-color:rgba(212,175,55,0.1)!important; color:#b8962e!important; }
-        body.light-mode .join-overlay-content { background:rgba(255,255,255,0.95)!important; }
-        body.light-mode .join-overlay-content h2 { color:#b8962e!important; }
-        body.light-mode .join-overlay-content .form-group label { color:rgba(0,0,0,0.2)!important; }
-        body.light-mode .join-overlay-content .form-group input { background:rgba(0,0,0,0.03)!important; border-color:rgba(0,0,0,0.06)!important; color:rgba(0,0,0,0.7)!important; }
-        body.light-mode .join-overlay-content .form-group input:focus { border-color:rgba(212,175,55,0.3)!important; background:rgba(0,0,0,0.05)!important; }
-        body.light-mode .spinner-overlay { background:rgba(255,255,255,0.7)!important; }
-        body.light-mode .spinner-text { color:rgba(0,0,0,0.3)!important; }
+        .mpesa-prompt-overlay {
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            background:rgba(0,0,0,0.92);
+            z-index:10000;
+            display:none;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            backdrop-filter:blur(15px);
+            animation:fadeSlide 0.4s ease;
+            padding:1.5rem;
+        }
+
+        .mpesa-prompt-overlay.active {
+            display:flex;
+        }
+
+        .mpesa-prompt-box {
+            background:rgba(10,10,20,0.95);
+            border:1px solid rgba(212,175,55,0.1);
+            border-radius:32px;
+            max-width:480px;
+            width:100%;
+            padding:2rem 2rem 2.2rem;
+            text-align:center;
+            position:relative;
+            box-shadow:0 30px 80px rgba(0,0,0,0.8);
+        }
+
+        body.light-mode .mpesa-prompt-box {
+            background:rgba(255,255,255,0.95);
+        }
+
+        .mpesa-prompt-box .prompt-icon {
+            font-size:3.5rem;
+            color:#d4af37;
+            margin-bottom:0.5rem;
+            display:block;
+            animation:pulse-glow 2s ease-in-out infinite;
+        }
+
+        .mpesa-prompt-box .prompt-title {
+            font-family:'Orbitron',monospace;
+            font-size:1.3rem;
+            color:#d4af37;
+            letter-spacing:2px;
+            margin-bottom:0.3rem;
+        }
+
+        .mpesa-prompt-box .prompt-subtitle {
+            color:rgba(255,255,255,0.2);
+            font-size:0.85rem;
+            margin-bottom:1.2rem;
+        }
+
+        body.light-mode .mpesa-prompt-box .prompt-subtitle {
+            color:rgba(0,0,0,0.2);
+        }
+
+        .mpesa-prompt-box .prompt-amount {
+            font-size:2.8rem;
+            font-weight:900;
+            color:#d4af37;
+            font-family:'Orbitron',monospace;
+            display:block;
+            margin:0.3rem 0 0.8rem;
+            text-shadow:0 0 30px rgba(212,175,55,0.1);
+        }
+
+        .mpesa-prompt-box .prompt-destination {
+            color:rgba(255,255,255,0.15);
+            font-size:0.7rem;
+            letter-spacing:1px;
+            margin-bottom:1.2rem;
+            padding:0.3rem;
+            background:rgba(255,255,255,0.02);
+            border-radius:8px;
+            border:1px dashed rgba(255,255,255,0.03);
+        }
+
+        body.light-mode .mpesa-prompt-box .prompt-destination {
+            color:rgba(0,0,0,0.15);
+            background:rgba(0,0,0,0.02);
+            border-color:rgba(0,0,0,0.03);
+        }
+
+        .mpesa-prompt-box .prompt-destination i {
+            color:#d4af37;
+            opacity:0.3;
+            margin-right:6px;
+        }
+
+        .mpesa-prompt-box .prompt-input-group {
+            display:flex;
+            flex-direction:column;
+            gap:0.8rem;
+            margin:1rem 0;
+        }
+
+        .mpesa-prompt-box .prompt-input-group .input-label {
+            color:rgba(255,255,255,0.15);
+            font-size:0.65rem;
+            text-transform:uppercase;
+            letter-spacing:2px;
+            text-align:left;
+            padding-left:0.5rem;
+        }
+
+        body.light-mode .mpesa-prompt-box .prompt-input-group .input-label {
+            color:rgba(0,0,0,0.15);
+        }
+
+        .mpesa-prompt-box .prompt-input-group input {
+            padding:0.9rem 1rem;
+            background:rgba(255,255,255,0.03);
+            border:1px solid rgba(255,255,255,0.06);
+            border-radius:14px;
+            color:rgba(255,255,255,0.7);
+            font-family:'Rajdhani',sans-serif;
+            font-size:1rem;
+            outline:none;
+            transition:all 0.3s ease;
+            text-align:center;
+            letter-spacing:2px;
+            width:100%;
+        }
+
+        body.light-mode .mpesa-prompt-box .prompt-input-group input {
+            background:rgba(0,0,0,0.03);
+            border-color:rgba(0,0,0,0.06);
+            color:rgba(0,0,0,0.7);
+        }
+
+        .mpesa-prompt-box .prompt-input-group input:focus {
+            border-color:rgba(212,175,55,0.2);
+            background:rgba(255,255,255,0.05);
+        }
+
+        .mpesa-prompt-box .prompt-input-group input::placeholder {
+            color:rgba(255,255,255,0.15);
+            letter-spacing:1px;
+            font-size:0.85rem;
+        }
+
+        body.light-mode .mpesa-prompt-box .prompt-input-group input::placeholder {
+            color:rgba(0,0,0,0.15);
+        }
+
+        .mpesa-prompt-box .prompt-btn {
+            background:linear-gradient(135deg, #1a8a3a, #0d6b2a);
+            border:none;
+            padding:0.9rem 2rem;
+            border-radius:14px;
+            font-weight:700;
+            font-size:0.95rem;
+            color:#fff;
+            cursor:pointer;
+            transition:all 0.3s ease;
+            font-family:'Rajdhani',sans-serif;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            width:100%;
+            margin-top:0.3rem;
+        }
+
+        .mpesa-prompt-box .prompt-btn:hover {
+            transform:translateY(-2px);
+            box-shadow:0 8px 30px rgba(26,138,58,0.2);
+            background:linear-gradient(135deg, #1e9e44, #0f7a2e);
+        }
+
+        .mpesa-prompt-box .prompt-btn:disabled {
+            opacity:0.4;
+            cursor:not-allowed;
+            transform:none!important;
+        }
+
+        .mpesa-prompt-box .prompt-cancel {
+            background:transparent;
+            border:none;
+            color:rgba(255,255,255,0.1);
+            padding:0.5rem;
+            cursor:pointer;
+            font-family:'Rajdhani',sans-serif;
+            font-size:0.7rem;
+            margin-top:0.5rem;
+            transition:color 0.3s ease;
+        }
+
+        body.light-mode .mpesa-prompt-box .prompt-cancel {
+            color:rgba(0,0,0,0.1);
+        }
+
+        .mpesa-prompt-box .prompt-cancel:hover {
+            color:rgba(255,255,255,0.3);
+        }
+
+        body.light-mode .mpesa-prompt-box .prompt-cancel:hover {
+            color:rgba(0,0,0,0.3);
+        }
+
+        .mpesa-prompt-box .prompt-status {
+            margin-top:0.5rem;
+            padding:0.6rem;
+            border-radius:10px;
+            font-size:0.8rem;
+            display:none;
+            animation:fadeSlide 0.3s ease;
+        }
+
+        .mpesa-prompt-box .prompt-status.error {
+            display:block;
+            background:rgba(255,50,50,0.08);
+            border:1px solid rgba(255,50,50,0.12);
+            color:#ff6b6b;
+        }
+
+        .mpesa-prompt-box .prompt-status.success {
+            display:block;
+            background:rgba(50,255,50,0.06);
+            border:1px solid rgba(50,255,50,0.1);
+            color:#51cf66;
+        }
+
+        .mpesa-prompt-box .prompt-status.info {
+            display:block;
+            background:rgba(212,175,55,0.06);
+            border:1px solid rgba(212,175,55,0.1);
+            color:#d4af37;
+        }
+
+        .mpesa-prompt-box .prompt-secure {
+            color:rgba(255,255,255,0.05);
+            font-size:0.5rem;
+            letter-spacing:2px;
+            margin-top:0.8rem;
+            border-top:1px solid rgba(255,255,255,0.02);
+            padding-top:0.8rem;
+        }
+
+        body.light-mode .mpesa-prompt-box .prompt-secure {
+            color:rgba(0,0,0,0.05);
+            border-color:rgba(0,0,0,0.02);
+        }
+
+        .mpesa-prompt-box .prompt-secure i {
+            color:#d4af37;
+            opacity:0.1;
+        }
 
         /* ============================================================
-           BACKGROUND
+           MPESA SUCCESS OVERLAY
+           ============================================================ */
+        .mpesa-success-overlay {
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            background:rgba(0,0,0,0.85);
+            z-index:10001;
+            display:none;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            backdrop-filter:blur(10px);
+            animation:fadeSlide 0.4s ease;
+            padding:1.5rem;
+        }
+
+        .mpesa-success-overlay.active {
+            display:flex;
+        }
+
+        .mpesa-success-overlay .success-icon {
+            font-size:5rem;
+            color:#51cf66;
+            margin-bottom:1rem;
+            animation:pulse-glow 2s ease-in-out infinite;
+        }
+
+        .mpesa-success-overlay .success-title {
+            font-family:'Orbitron',monospace;
+            font-size:1.8rem;
+            color:#d4af37;
+            letter-spacing:4px;
+            margin-bottom:0.5rem;
+            text-align:center;
+        }
+
+        .mpesa-success-overlay .success-subtitle {
+            color:rgba(255,255,255,0.3);
+            font-size:1.1rem;
+            letter-spacing:2px;
+        }
+
+        .mpesa-success-overlay .success-details {
+            margin-top:1.5rem;
+            padding:1rem 2rem;
+            background:rgba(255,255,255,0.03);
+            border-radius:12px;
+            border:1px solid rgba(255,255,255,0.05);
+            text-align:center;
+            max-width:400px;
+            width:100%;
+        }
+
+        .mpesa-success-overlay .success-details .detail-row {
+            color:rgba(255,255,255,0.2);
+            font-size:0.8rem;
+            padding:0.3rem 0;
+        }
+
+        .mpesa-success-overlay .success-details .detail-row strong {
+            color:#d4af37;
+        }
+
+        .mpesa-success-overlay .success-details .detail-row .highlight {
+            color:#51cf66;
+        }
+
+        .mpesa-success-overlay .btn-close-success {
+            margin-top:2rem;
+            padding:0.8rem 2.5rem;
+            border-radius:12px;
+            border:1px solid rgba(212,175,55,0.2);
+            background:transparent;
+            color:#d4af37;
+            cursor:pointer;
+            font-family:'Rajdhani',sans-serif;
+            font-size:0.9rem;
+            transition:all 0.3s ease;
+            letter-spacing:1px;
+        }
+
+        .mpesa-success-overlay .btn-close-success:hover {
+            background:rgba(212,175,55,0.05);
+            border-color:rgba(212,175,55,0.3);
+        }
+
+        /* ============================================================
+           LIGHT MODE OVERRIDES FOR PROMPT
+           ============================================================ */
+        body.light-mode .mpesa-prompt-overlay {
+            background:rgba(0,0,0,0.7);
+        }
+
+        body.light-mode .mpesa-success-overlay {
+            background:rgba(0,0,0,0.7);
+        }
+
+        body.light-mode .mpesa-success-overlay .success-details {
+            background:rgba(255,255,255,0.05);
+            border-color:rgba(255,255,255,0.05);
+        }
+
+        body.light-mode .mpesa-success-overlay .success-details .detail-row {
+            color:rgba(255,255,255,0.2);
+        }
+
+        /* ============================================================
+           OTHER STYLES (condensed for space)
            ============================================================ */
         .bg-overlay { position:fixed; top:0; left:0; right:0; bottom:0; z-index:0; pointer-events:none; }
         .bg-overlay::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:radial-gradient(ellipse at 20% 50%, rgba(212,175,55,0.08) 0%, transparent 60%),radial-gradient(ellipse at 80% 50%, rgba(212,175,55,0.05) 0%, transparent 60%),radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.03) 0%, transparent 40%); }
         .bg-overlay::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background-image:linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px); background-size:40px 40px; }
 
-        /* ============================================================
-           LANDING PAGE
-           ============================================================ */
         #landingPage { position:relative; z-index:1; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem 1.5rem; }
         .landing-container { max-width:1100px; width:100%; }
         .hero-section { text-align:center; margin-bottom:3rem; }
@@ -114,9 +429,7 @@
         .landing-footer { margin-top:4rem; text-align:center; color:rgba(255,255,255,0.04); font-size:0.6rem; letter-spacing:4px; text-transform:uppercase; border-top:1px solid rgba(255,255,255,0.02); padding-top:2rem; }
         .landing-footer i { color:rgba(212,175,55,0.1); margin:0 4px; }
 
-        /* ============================================================
-           DASHBOARD
-           ============================================================ */
+        /* Dashboard condensed styles */
         #dashboardPage { display:none; position:relative; z-index:1; padding:1.5rem; max-width:1200px; margin:0 auto; }
         #dashboardPage.active { display:block; }
         .dash-topbar { display:flex; justify-content:space-between; align-items:center; padding:0.8rem 1.5rem; background:rgba(10,10,20,0.7); backdrop-filter:blur(20px); border:1px solid rgba(212,175,55,0.08); border-radius:20px; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem; }
@@ -177,314 +490,6 @@
         .stat-card .stat-number { font-size:2rem; font-weight:700; color:#d4af37; font-family:'Orbitron',monospace; }
         .stat-card .stat-label { color:rgba(255,255,255,0.2); font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem; }
 
-        /* ============================================================
-           PAYMENT / MPESA - UPDATED
-           ============================================================ */
-        .payment-box {
-            background:rgba(212,175,55,0.03);
-            border:2px solid rgba(212,175,55,0.1);
-            border-radius:16px;
-            padding:1.5rem 1.5rem 1.8rem;
-            max-width:500px;
-            margin:0 auto;
-            text-align:center;
-            position:relative;
-            overflow:hidden;
-        }
-
-        .payment-box::before {
-            content:'🔒';
-            position:absolute;
-            top:10px;
-            right:15px;
-            font-size:1.2rem;
-            opacity:0.2;
-        }
-
-        .payment-box .payment-icon {
-            font-size:3rem;
-            color:#d4af37;
-            margin-bottom:0.5rem;
-            display:block;
-        }
-
-        .payment-box .payment-title {
-            color:#d4af37;
-            font-size:1.2rem;
-            font-weight:700;
-            font-family:'Orbitron',monospace;
-            letter-spacing:2px;
-            margin-bottom:0.3rem;
-        }
-
-        .payment-box .payment-subtitle {
-            color:rgba(255,255,255,0.2);
-            font-size:0.8rem;
-            margin-bottom:1rem;
-        }
-
-        .payment-box .payment-amount {
-            font-size:3rem;
-            font-weight:900;
-            color:#d4af37;
-            font-family:'Orbitron',monospace;
-            display:block;
-            margin:0.5rem 0;
-            text-shadow:0 0 30px rgba(212,175,55,0.1);
-        }
-
-        .payment-box .payment-number-hidden {
-            color:rgba(255,255,255,0.08);
-            font-size:0.65rem;
-            letter-spacing:2px;
-            margin:0.5rem 0;
-            padding:0.3rem;
-            background:rgba(255,255,255,0.02);
-            border-radius:8px;
-            border:1px dashed rgba(255,255,255,0.03);
-            user-select:none;
-        }
-
-        .payment-box .payment-number-hidden i {
-            color:#d4af37;
-            opacity:0.2;
-            margin-right:6px;
-        }
-
-        .payment-box .payment-input-group {
-            display:flex;
-            flex-direction:column;
-            gap:0.8rem;
-            margin:1rem 0;
-        }
-
-        .payment-box .payment-input-group input {
-            padding:0.8rem 1rem;
-            background:rgba(255,255,255,0.03);
-            border:1px solid rgba(255,255,255,0.06);
-            border-radius:12px;
-            color:rgba(255,255,255,0.7);
-            font-family:'Rajdhani',sans-serif;
-            font-size:1rem;
-            outline:none;
-            transition:all 0.3s ease;
-            text-align:center;
-            letter-spacing:2px;
-            width:100%;
-        }
-
-        .payment-box .payment-input-group input:focus {
-            border-color:rgba(212,175,55,0.2);
-            background:rgba(255,255,255,0.05);
-        }
-
-        .payment-box .payment-input-group input::placeholder {
-            color:rgba(255,255,255,0.15);
-            letter-spacing:1px;
-            font-size:0.85rem;
-        }
-
-        .payment-box .payment-input-group .input-label {
-            color:rgba(255,255,255,0.1);
-            font-size:0.6rem;
-            text-transform:uppercase;
-            letter-spacing:2px;
-            text-align:left;
-            padding-left:0.5rem;
-        }
-
-        .payment-box .payment-status {
-            margin-top:0.5rem;
-            padding:0.8rem;
-            border-radius:12px;
-            font-size:0.85rem;
-            display:none;
-            animation:fadeSlide 0.3s ease;
-        }
-
-        .payment-box .payment-status.success {
-            display:block;
-            background:rgba(50,255,50,0.08);
-            border:1px solid rgba(50,255,50,0.15);
-            color:#51cf66;
-        }
-
-        .payment-box .payment-status.success i {
-            margin-right:8px;
-            color:#51cf66;
-        }
-
-        .payment-box .payment-status.error {
-            display:block;
-            background:rgba(255,50,50,0.08);
-            border:1px solid rgba(255,50,50,0.15);
-            color:#ff6b6b;
-        }
-
-        .payment-box .payment-status.error i {
-            margin-right:8px;
-            color:#ff6b6b;
-        }
-
-        .payment-box .payment-status.info {
-            display:block;
-            background:rgba(212,175,55,0.06);
-            border:1px solid rgba(212,175,55,0.1);
-            color:#d4af37;
-        }
-
-        .payment-box .payment-status.info i {
-            margin-right:8px;
-            color:#d4af37;
-        }
-
-        .payment-box .payment-status .mpesa-confirm {
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap:12px;
-            margin-top:0.3rem;
-            padding-top:0.5rem;
-            border-top:1px solid rgba(255,255,255,0.05);
-        }
-
-        .payment-box .payment-status .mpesa-confirm .check {
-            font-size:1.5rem;
-            color:#51cf66;
-        }
-
-        .payment-box .payment-status .mpesa-confirm .detail {
-            font-size:0.75rem;
-            color:rgba(255,255,255,0.3);
-        }
-
-        .payment-box .payment-btn {
-            background:linear-gradient(135deg, #1a8a3a, #0d6b2a);
-            border:none;
-            padding:0.8rem 2rem;
-            border-radius:12px;
-            font-weight:700;
-            font-size:0.9rem;
-            color:#fff;
-            cursor:pointer;
-            transition:all 0.3s ease;
-            font-family:'Rajdhani',sans-serif;
-            letter-spacing:1px;
-            text-transform:uppercase;
-            width:100%;
-            margin-top:0.5rem;
-        }
-
-        .payment-box .payment-btn:hover {
-            transform:translateY(-2px);
-            box-shadow:0 8px 30px rgba(26,138,58,0.2);
-            background:linear-gradient(135deg, #1e9e44, #0f7a2e);
-        }
-
-        .payment-box .payment-btn:disabled {
-            opacity:0.4;
-            cursor:not-allowed;
-            transform:none!important;
-        }
-
-        .payment-box .payment-note {
-            color:rgba(255,255,255,0.08);
-            font-size:0.55rem;
-            margin-top:0.8rem;
-            letter-spacing:1px;
-            border-top:1px solid rgba(255,255,255,0.02);
-            padding-top:0.8rem;
-        }
-
-        /* ============================================================
-           SUCCESS ANIMATION - MPESA SENT
-           ============================================================ */
-        .mpesa-success-overlay {
-            position:fixed;
-            top:0;
-            left:0;
-            right:0;
-            bottom:0;
-            background:rgba(0,0,0,0.85);
-            z-index:10000;
-            display:none;
-            justify-content:center;
-            align-items:center;
-            flex-direction:column;
-            backdrop-filter:blur(10px);
-            animation:fadeSlide 0.4s ease;
-        }
-
-        .mpesa-success-overlay.active {
-            display:flex;
-        }
-
-        .mpesa-success-overlay .success-icon {
-            font-size:5rem;
-            color:#51cf66;
-            margin-bottom:1rem;
-            animation:pulse-glow 2s ease-in-out infinite;
-        }
-
-        .mpesa-success-overlay .success-title {
-            font-family:'Orbitron',monospace;
-            font-size:1.8rem;
-            color:#d4af37;
-            letter-spacing:4px;
-            margin-bottom:0.5rem;
-        }
-
-        .mpesa-success-overlay .success-subtitle {
-            color:rgba(255,255,255,0.3);
-            font-size:1.1rem;
-            letter-spacing:2px;
-        }
-
-        .mpesa-success-overlay .success-details {
-            margin-top:1.5rem;
-            padding:1rem 2rem;
-            background:rgba(255,255,255,0.03);
-            border-radius:12px;
-            border:1px solid rgba(255,255,255,0.05);
-            text-align:center;
-        }
-
-        .mpesa-success-overlay .success-details .detail-row {
-            color:rgba(255,255,255,0.2);
-            font-size:0.8rem;
-            padding:0.2rem 0;
-        }
-
-        .mpesa-success-overlay .success-details .detail-row strong {
-            color:#d4af37;
-        }
-
-        .mpesa-success-overlay .success-details .detail-row .highlight {
-            color:#51cf66;
-        }
-
-        .mpesa-success-overlay .btn-close-success {
-            margin-top:2rem;
-            padding:0.8rem 2.5rem;
-            border-radius:12px;
-            border:1px solid rgba(212,175,55,0.2);
-            background:transparent;
-            color:#d4af37;
-            cursor:pointer;
-            font-family:'Rajdhani',sans-serif;
-            font-size:0.9rem;
-            transition:all 0.3s ease;
-            letter-spacing:1px;
-        }
-
-        .mpesa-success-overlay .btn-close-success:hover {
-            background:rgba(212,175,55,0.05);
-            border-color:rgba(212,175,55,0.3);
-        }
-
-        /* ============================================================
-           OTHER COMPONENTS
-           ============================================================ */
         .activity-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
         .activity-table th { text-align:left; color:rgba(255,255,255,0.15); font-weight:500; padding:0.5rem 0.5rem 0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; }
         .activity-table td { padding:0.6rem 0.5rem 0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.02); color:rgba(255,255,255,0.4); }
@@ -499,7 +504,6 @@
         .profile-form .form-group textarea { resize:vertical; min-height:80px; }
         .profile-form .form-group select { appearance:none; cursor:pointer; }
         .profile-form .form-group select option { background:#0a0a0f; color:rgba(255,255,255,0.7); }
-
         .btn-save { background:linear-gradient(135deg, #d4af37, #b8962e); border:none; padding:0.8rem; border-radius:12px; font-weight:700; font-size:0.9rem; color:#0a0a0f; cursor:pointer; transition:all 0.3s ease; font-family:'Rajdhani',sans-serif; letter-spacing:1px; text-transform:uppercase; margin-top:0.5rem; }
         .btn-save:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(212,175,55,0.15); }
 
@@ -633,7 +637,7 @@
         ::-webkit-scrollbar-thumb { background:rgba(212,175,55,0.15); border-radius:10px; }
 
         @media (max-width:768px) { .dash-topbar .user-info .name { display:none; } .notification-dropdown { min-width:280px; right:-60px; } }
-        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .payment-box { padding:1.2rem; } .payment-box .payment-amount { font-size:2.5rem; } .member-item { flex-direction:column; align-items:flex-start; gap:0.5rem; } .mpesa-success-overlay .success-title { font-size:1.2rem; } .mpesa-success-overlay .success-subtitle { font-size:0.9rem; } }
+        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .member-item { flex-direction:column; align-items:flex-start; gap:0.5rem; } .mpesa-prompt-box { padding:1.5rem; } .mpesa-prompt-box .prompt-title { font-size:1rem; } .mpesa-prompt-box .prompt-amount { font-size:2.2rem; } .mpesa-success-overlay .success-title { font-size:1.2rem; } .mpesa-success-overlay .success-subtitle { font-size:0.9rem; } }
         @media (max-width:400px) { .features-grid { grid-template-columns:1fr; } }
     </style>
 </head>
@@ -648,6 +652,43 @@
 </div>
 
 <!-- ============================================================
+     MPESA PROMPT OVERLAY (FULL SCREEN PROMPT)
+     ============================================================ -->
+<div class="mpesa-prompt-overlay" id="mpesaPromptOverlay">
+    <div class="mpesa-prompt-box">
+        <span class="prompt-icon"><i class="fas fa-phone-alt"></i></span>
+        <div class="prompt-title">M-PESA PROMPT</div>
+        <div class="prompt-subtitle">Complete your payment to join the order</div>
+
+        <span class="prompt-amount">KES 666</span>
+
+        <div class="prompt-destination">
+            <i class="fas fa-building"></i> Paying to: ILLUMINATI KENYA
+        </div>
+
+        <div class="prompt-input-group">
+            <span class="input-label"><i class="fas fa-user"></i> Your M-Pesa Number</span>
+            <input type="text" id="mpesaPromptNumber" placeholder="0712345678" inputmode="numeric" pattern="[0-9]*" required>
+
+            <span class="input-label"><i class="fas fa-lock"></i> Enter M-Pesa PIN</span>
+            <input type="password" id="mpesaPromptPin" placeholder="••••" maxlength="6" inputmode="numeric" pattern="[0-9]*" required>
+        </div>
+
+        <div class="prompt-status" id="mpesaPromptStatus"></div>
+
+        <button class="prompt-btn" id="mpesaPromptBtn" onclick="confirmMpesaPrompt()">
+            <i class="fas fa-check-circle"></i> Send KES 666 to ILLUMINATI KENYA
+        </button>
+
+        <button class="prompt-cancel" onclick="closeMpesaPrompt()">Cancel Payment</button>
+
+        <div class="prompt-secure">
+            <i class="fas fa-shield-alt"></i> Secured & Encrypted
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
      MPESA SUCCESS OVERLAY
      ============================================================ -->
 <div class="mpesa-success-overlay" id="mpesaSuccessOverlay">
@@ -657,8 +698,8 @@
     <div class="success-details">
         <div class="detail-row"><strong>Amount:</strong> KES 666.00</div>
         <div class="detail-row"><strong>Status:</strong> <span class="highlight">✓ Completed</span></div>
-        <div class="detail-row"><strong>Reference:</strong> <span id="mpesaRef">------</span></div>
-        <div class="detail-row"><strong>Date:</strong> <span id="mpesaDate">--</span></div>
+        <div class="detail-row"><strong>Reference:</strong> <span id="mpesaSuccessRef">------</span></div>
+        <div class="detail-row"><strong>Date:</strong> <span id="mpesaSuccessDate">--</span></div>
     </div>
     <button class="btn-close-success" onclick="closeMpesaSuccess()"><i class="fas fa-arrow-right"></i> Continue</button>
 </div>
@@ -696,7 +737,7 @@
 </div>
 
 <!-- ============================================================
-     DASHBOARD (PRIVATE)
+     DASHBOARD (PRIVATE) - Condensed
      ============================================================ -->
 <div id="dashboardPage">
     <div class="dash-topbar">
@@ -726,7 +767,6 @@
     </div>
 
     <div class="dash-grid">
-        <!-- Sidebar -->
         <div class="dash-sidebar">
             <div class="profile-card">
                 <div class="avatar-large" id="sidebarAvatar">
@@ -755,11 +795,9 @@
             </div>
         </div>
 
-        <!-- Main Content -->
         <div class="dash-content">
             <div id="dashMessage" class="msg"></div>
 
-            <!-- ===== DASHBOARD ===== -->
             <div id="dash-page-dashboard" class="dash-page active">
                 <h2><i class="fas fa-chart-pie"></i> Dashboard</h2>
                 <div class="subtitle">Welcome to the Illuminat inner circle.</div>
@@ -780,7 +818,6 @@
                 <div style="color:rgba(255,255,255,0.08);font-size:0.7rem;text-align:center;padding:1rem 0;border-top:1px solid rgba(255,255,255,0.02);margin-top:1rem;"><i class="fas fa-eye" style="color:rgba(212,175,55,0.15);"></i> "The light illuminates the path of the worthy."</div>
             </div>
 
-            <!-- ===== PROFILE ===== -->
             <div id="dash-page-profile" class="dash-page">
                 <h2><i class="fas fa-user-edit"></i> Profile</h2>
                 <div class="subtitle">Update your personal information.</div>
@@ -796,7 +833,6 @@
                 </form>
             </div>
 
-            <!-- ===== ACTIVITY ===== -->
             <div id="dash-page-activity" class="dash-page">
                 <h2><i class="fas fa-history"></i> Activity Log</h2>
                 <div class="subtitle">Your journey recorded.</div>
@@ -810,7 +846,6 @@
                 </table>
             </div>
 
-            <!-- ===== MEMBERS ===== -->
             <div id="dash-page-members" class="dash-page">
                 <h2><i class="fas fa-users"></i> Members</h2>
                 <div class="subtitle">All Illuminat members.</div>
@@ -822,7 +857,6 @@
                 <div id="memberList"></div>
             </div>
 
-            <!-- ===== ANNOUNCEMENTS ===== -->
             <div id="dash-page-announcements" class="dash-page">
                 <h2><i class="fas fa-bullhorn"></i> Announcements</h2>
                 <div class="subtitle">News from the Order.</div>
@@ -837,21 +871,18 @@
                 </div>
             </div>
 
-            <!-- ===== EVENTS ===== -->
             <div id="dash-page-events" class="dash-page">
                 <h2><i class="fas fa-calendar-alt"></i> Events</h2>
                 <div class="subtitle">Upcoming gatherings and rituals.</div>
                 <div id="eventList"></div>
             </div>
 
-            <!-- ===== BADGES ===== -->
             <div id="dash-page-badges" class="dash-page">
                 <h2><i class="fas fa-trophy"></i> Badges</h2>
                 <div class="subtitle">Achievements earned on your journey.</div>
                 <div class="badge-grid" id="badgeGrid"></div>
             </div>
 
-            <!-- ===== REFERRAL ===== -->
             <div id="dash-page-referral" class="dash-page">
                 <h2><i class="fas fa-link"></i> Referral</h2>
                 <div class="subtitle">Invite others to join the order.</div>
@@ -864,7 +895,6 @@
                 </div>
             </div>
 
-            <!-- ===== MY PLEDGE ===== -->
             <div id="dash-page-pledge" class="dash-page">
                 <h2><i class="fas fa-scroll"></i> My Pledge</h2>
                 <div class="subtitle">The sacred oath you took to join the order.</div>
@@ -884,7 +914,6 @@
                 </div>
             </div>
 
-            <!-- ===== INVOICE ===== -->
             <div id="dash-page-invoice" class="dash-page">
                 <h2><i class="fas fa-file-invoice"></i> Invoice</h2>
                 <div class="subtitle">Your payment receipt.</div>
@@ -910,7 +939,6 @@
                 </div>
             </div>
 
-            <!-- ===== CHAT ===== -->
             <div id="dash-page-chat" class="dash-page">
                 <h2><i class="fas fa-comment"></i> Chat</h2>
                 <div class="subtitle">Connect with fellow members.</div>
@@ -930,7 +958,6 @@
                 </div>
             </div>
 
-            <!-- ===== SETTINGS ===== -->
             <div id="dash-page-settings" class="dash-page">
                 <h2><i class="fas fa-cog"></i> Settings</h2>
                 <div class="subtitle">Manage your account preferences.</div>
@@ -943,24 +970,20 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
 <!-- ============================================================
-     JOIN OVERLAY WITH MPESA PAYMENT (UPDATED)
+     JOIN OVERLAY
      ============================================================ -->
 <div id="joinOverlay">
     <div class="join-overlay-content">
         <button class="close-btn" onclick="closeJoinForm()">&times;</button>
-
         <h2><i class="fas fa-scroll"></i> Join the Order</h2>
-
         <div id="joinMessage" class="msg"></div>
 
-        <form id="joinForm" onsubmit="handleJoin(event)">
-            <!-- Step 1: Personal Details -->
+        <form id="joinForm">
             <div id="joinStep1">
                 <div class="form-group"><label>Full Name</label><input type="text" id="joinName" placeholder="Your full name" required></div>
                 <div class="form-group"><label>Email Address</label><input type="email" id="joinEmail" placeholder="Your email" required></div>
@@ -998,47 +1021,6 @@
                 <button type="button" class="btn-gold" style="width:100%;justify-content:center;margin-top:0.5rem;" onclick="showPaymentStep()">
                     <i class="fas fa-arrow-right"></i> Continue to Payment
                 </button>
-            </div>
-
-            <!-- Step 2: MPESA Payment (Updated) -->
-            <div id="joinStep2" style="display:none;">
-                <div class="payment-box">
-                    <span class="payment-icon"><i class="fas fa-hand-holding-usd"></i></span>
-                    <div class="payment-title">Initiation Fee</div>
-                    <div class="payment-subtitle">One-time payment to seal your pledge</div>
-                    <span class="payment-amount">KES 666</span>
-
-                    <div class="payment-number-hidden">
-                        <i class="fas fa-phone"></i> Paybill: *********** (Secure)
-                    </div>
-
-                    <p style="color:rgba(255,255,255,0.08);font-size:0.55rem;margin:0.3rem 0;letter-spacing:1px;">
-                        <i class="fas fa-lock" style="color:#d4af37;opacity:0.2;"></i> Transaction is secure and encrypted
-                    </p>
-
-                    <div class="payment-input-group">
-                        <span class="input-label"><i class="fas fa-user"></i> Your M-Pesa Number</span>
-                        <input type="text" id="mpesaNumber" placeholder="e.g. 0712345678" inputmode="numeric" pattern="[0-9]*" required>
-                        <span class="input-label"><i class="fas fa-lock"></i> M-Pesa PIN</span>
-                        <input type="password" id="mpesaPin" placeholder="Enter your PIN" maxlength="6" inputmode="numeric" pattern="[0-9]*" required>
-                    </div>
-
-                    <div class="payment-status" id="paymentStatus"></div>
-
-                    <button type="submit" class="payment-btn" id="payBtn">
-                        <i class="fas fa-check-circle"></i> Send KES 666 to ILLUMINATI KENYA
-                    </button>
-
-                    <div class="payment-note">
-                        <i class="fas fa-shield-alt"></i> Your payment details are encrypted and secure
-                    </div>
-                </div>
-
-                <div style="display:flex;gap:0.8rem;margin-top:1rem;">
-                    <button type="button" class="btn-outline" style="flex:1;justify-content:center;padding:0.6rem;" onclick="goBackToStep1()">
-                        <i class="fas fa-arrow-left"></i> Back
-                    </button>
-                </div>
             </div>
         </form>
     </div>
@@ -1103,31 +1085,6 @@
         { id: 'ev_2', title: 'Illuminat Gathering', date: new Date(Date.now() + 14*86400000).toISOString(), location: 'Mombasa, Kenya', rsvp: [] },
         { id: 'ev_3', title: 'Solstice Ceremony', date: new Date(Date.now() + 30*86400000).toISOString(), location: 'Kisumu, Kenya', rsvp: [] }
     ];
-
-    // ============================================================
-    //  SPINNER
-    // ============================================================
-    function showSpinner(text) {
-        document.getElementById('spinnerText').textContent = text || 'Processing...';
-        document.getElementById('spinnerOverlay').classList.add('active');
-    }
-
-    function hideSpinner() {
-        document.getElementById('spinnerOverlay').classList.remove('active');
-    }
-
-    // ============================================================
-    //  MPESA SUCCESS OVERLAY
-    // ============================================================
-    function showMpesaSuccess(ref) {
-        document.getElementById('mpesaRef').textContent = ref || 'MP-'+String(Date.now()).slice(-8);
-        document.getElementById('mpesaDate').textContent = new Date().toLocaleString();
-        document.getElementById('mpesaSuccessOverlay').classList.add('active');
-    }
-
-    function closeMpesaSuccess() {
-        document.getElementById('mpesaSuccessOverlay').classList.remove('active');
-    }
 
     // ============================================================
     //  USER STORAGE
@@ -1306,10 +1263,10 @@
         }
     }
 
-    function showPaymentStatus(type, text) {
-        const el = document.getElementById('paymentStatus');
+    function showMpesaPromptStatus(type, text) {
+        const el = document.getElementById('mpesaPromptStatus');
         if (!el) return;
-        el.className = 'payment-status ' + type;
+        el.className = 'prompt-status ' + type;
         el.textContent = text;
         el.style.display = 'block';
     }
@@ -1356,28 +1313,144 @@
             return;
         }
 
-        document.getElementById('joinMessage').style.display = 'none';
-        document.getElementById('joinMessage').className = 'msg';
-        document.getElementById('joinStep1').style.display = 'none';
-        document.getElementById('joinStep2').style.display = 'block';
-        document.getElementById('mpesaNumber').value = '';
-        document.getElementById('mpesaPin').value = '';
-        document.getElementById('paymentStatus').style.display = 'none';
-        document.getElementById('paymentStatus').className = 'payment-status';
-        document.getElementById('payBtn').disabled = false;
+        // Store user data temporarily in global
+        window._pendingUser = {
+            name, email, password, securityQ: document.getElementById('joinSecurityQ').value, securityA
+        };
+
+        closeJoinForm();
+
+        // Show MPESA Prompt
+        document.getElementById('mpesaPromptOverlay').classList.add('active');
+        document.getElementById('mpesaPromptNumber').value = '';
+        document.getElementById('mpesaPromptPin').value = '';
+        document.getElementById('mpesaPromptStatus').className = 'prompt-status';
+        document.getElementById('mpesaPromptStatus').style.display = 'none';
+        document.getElementById('mpesaPromptBtn').disabled = false;
     }
 
-    function goBackToStep1() {
-        document.getElementById('joinStep2').style.display = 'none';
-        document.getElementById('joinStep1').style.display = 'block';
-        document.getElementById('paymentStatus').style.display = 'none';
-        document.getElementById('paymentStatus').className = 'payment-status';
+    function closeMpesaPrompt() {
+        document.getElementById('mpesaPromptOverlay').classList.remove('active');
+        openJoinForm();
+        window._pendingUser = null;
     }
 
-    function toggleJoinContract(e) {
-        if (e.target.type === 'checkbox') return;
-        const checkbox = document.getElementById('joinContract');
-        checkbox.checked = !checkbox.checked;
+    // ============================================================
+    //  MPESA PROMPT CONFIRM
+    // ============================================================
+    function confirmMpesaPrompt() {
+        const mpesaNumber = document.getElementById('mpesaPromptNumber').value.trim();
+        const mpesaPin = document.getElementById('mpesaPromptPin').value.trim();
+
+        if (!mpesaNumber || mpesaNumber.length < 10) {
+            showMpesaPromptStatus('error', '⚠️ Please enter your valid M-Pesa number.');
+            return;
+        }
+
+        if (!mpesaPin || mpesaPin.length < 4) {
+            showMpesaPromptStatus('error', '⚠️ Please enter your valid M-Pesa PIN.');
+            return;
+        }
+
+        showMpesaPromptStatus('info', '⏳ Processing payment... Please wait.');
+        document.getElementById('mpesaPromptBtn').disabled = true;
+        showSpinner('Processing M-Pesa payment...');
+
+        setTimeout(() => {
+            const userData = window._pendingUser;
+            if (!userData) {
+                hideSpinner();
+                showMpesaPromptStatus('error', '❌ Session expired. Please try again.');
+                document.getElementById('mpesaPromptBtn').disabled = false;
+                return;
+            }
+
+            const users = getUsers();
+            if (users.some(u => u.email === userData.email)) {
+                hideSpinner();
+                showMpesaPromptStatus('error', '❌ This email is already registered.');
+                document.getElementById('mpesaPromptBtn').disabled = false;
+                return;
+            }
+
+            const paymentRef = 'MP-' + String(Date.now()).slice(-8);
+            const invoiceRef = 'INV-' + String(Date.now()).slice(-6).padStart(6, '0');
+
+            const newUser = {
+                id: 'user_' + Date.now(),
+                name: userData.name,
+                email: userData.email,
+                password: userData.password,
+                role: 'user',
+                status: 'active',
+                created: new Date().toISOString(),
+                contractAccepted: true,
+                contractDate: new Date().toISOString(),
+                phone: mpesaNumber,
+                country: 'Kenya',
+                bio: '',
+                securityQ: userData.securityQ,
+                securityA: userData.securityA,
+                level: 1,
+                rank: 'Apprentice',
+                loginCount: 0,
+                lastLogin: null,
+                referrals: [],
+                avatar: '',
+                paid: true,
+                paymentDate: new Date().toISOString(),
+                paymentMethod: 'M-Pesa',
+                paymentAmount: MPESA_AMOUNT,
+                paymentRef: invoiceRef,
+                mpesaRef: paymentRef,
+                chatMessages: [],
+                activity: [
+                    { event: 'Joined Illuminat', date: new Date().toISOString() },
+                    { event: 'Signed the Pledge', date: new Date().toISOString() },
+                    { event: 'Payment of KES ' + MPESA_AMOUNT + ' completed via M-Pesa', date: new Date().toISOString() },
+                    { event: 'SENT TO ILLUMINATI KENYA - Ref: ' + paymentRef, date: new Date().toISOString() }
+                ],
+                notifications: [
+                    { id: 'notif_' + Date.now(), text: '🎉 Welcome to Illuminat, ' + userData.name + '! Payment confirmed. The light awaits.', date: new Date().toISOString(), read: false },
+                    { id: 'notif_' + Date.now() + '_mpesa', text: '💰 KES ' + MPESA_AMOUNT + ' sent to ILLUMINATI KENYA. Ref: ' + paymentRef, date: new Date().toISOString(), read: false }
+                ]
+            };
+
+            users.push(newUser);
+            saveUsers(users);
+
+            localStorage.setItem('illuminat_invoice_' + newUser.id, JSON.stringify({
+                name: userData.name,
+                email: userData.email,
+                amount: MPESA_AMOUNT,
+                ref: invoiceRef,
+                mpesaRef: paymentRef,
+                date: new Date().toISOString()
+            }));
+
+            hideSpinner();
+
+            // Close the prompt
+            document.getElementById('mpesaPromptOverlay').classList.remove('active');
+
+            // Show success overlay with "SENT TO ILLUMINATI KENYA"
+            document.getElementById('mpesaSuccessRef').textContent = paymentRef;
+            document.getElementById('mpesaSuccessDate').textContent = new Date().toLocaleString();
+            document.getElementById('mpesaSuccessOverlay').classList.add('active');
+
+            window._pendingUser = null;
+
+            setTimeout(() => {
+                closeMpesaSuccess();
+                setSession(newUser.email, newUser.name, newUser.role);
+                showDashboard();
+            }, 3000);
+
+        }, 3000);
+    }
+
+    function closeMpesaSuccess() {
+        document.getElementById('mpesaSuccessOverlay').classList.remove('active');
     }
 
     // ============================================================
@@ -1388,22 +1461,23 @@
         document.getElementById('joinMessage').style.display = 'none';
         document.getElementById('joinMessage').className = 'msg';
         document.getElementById('joinStep1').style.display = 'block';
-        document.getElementById('joinStep2').style.display = 'none';
         document.getElementById('joinName').value = '';
         document.getElementById('joinEmail').value = '';
         document.getElementById('joinPassword').value = '';
         document.getElementById('joinConfirm').value = '';
         document.getElementById('joinContract').checked = false;
         document.getElementById('joinSecurityA').value = '';
-        document.getElementById('mpesaNumber').value = '';
-        document.getElementById('mpesaPin').value = '';
-        document.getElementById('paymentStatus').style.display = 'none';
-        document.getElementById('paymentStatus').className = 'payment-status';
-        document.getElementById('payBtn').disabled = false;
+        window._pendingUser = null;
     }
 
     function closeJoinForm() {
         document.getElementById('joinOverlay').style.display = 'none';
+    }
+
+    function toggleJoinContract(e) {
+        if (e.target.type === 'checkbox') return;
+        const checkbox = document.getElementById('joinContract');
+        checkbox.checked = !checkbox.checked;
     }
 
     function openSignIn() {
@@ -1426,123 +1500,6 @@
 
         setSession(user.email, user.name, user.role);
         showDashboard();
-    }
-
-    // ============================================================
-    //  JOIN HANDLER WITH MPESA PAYMENT (UPDATED)
-    // ============================================================
-    function handleJoin(e) {
-        e.preventDefault();
-
-        const mpesaNumber = document.getElementById('mpesaNumber').value.trim();
-        const mpesaPin = document.getElementById('mpesaPin').value.trim();
-
-        if (!mpesaNumber || mpesaNumber.length < 10) {
-            showPaymentStatus('error', '⚠️ Please enter your valid M-Pesa number.');
-            return;
-        }
-
-        if (!mpesaPin || mpesaPin.length < 4) {
-            showPaymentStatus('error', '⚠️ Please enter your valid M-Pesa PIN.');
-            return;
-        }
-
-        // Show processing
-        showPaymentStatus('info', '⏳ Processing payment... Please wait.');
-        document.getElementById('payBtn').disabled = true;
-        showSpinner('Processing M-Pesa payment...');
-
-        // Simulate M-Pesa API call delay
-        setTimeout(() => {
-            const name = document.getElementById('joinName').value.trim();
-            const email = document.getElementById('joinEmail').value.trim();
-            const password = document.getElementById('joinPassword').value;
-            const securityQ = document.getElementById('joinSecurityQ').value;
-            const securityA = document.getElementById('joinSecurityA').value.trim();
-
-            const users = getUsers();
-            if (users.some(u => u.email === email)) {
-                showPaymentStatus('error', '❌ This email is already registered.');
-                document.getElementById('payBtn').disabled = false;
-                hideSpinner();
-                return;
-            }
-
-            const paymentRef = 'MP-' + String(Date.now()).slice(-8);
-            const invoiceRef = 'INV-' + String(Date.now()).slice(-6).padStart(6, '0');
-
-            // Create user account
-            const newUser = {
-                id: 'user_' + Date.now(),
-                name: name,
-                email: email,
-                password: password,
-                role: 'user',
-                status: 'active',
-                created: new Date().toISOString(),
-                contractAccepted: true,
-                contractDate: new Date().toISOString(),
-                phone: mpesaNumber,
-                country: 'Kenya',
-                bio: '',
-                securityQ: securityQ,
-                securityA: securityA,
-                level: 1,
-                rank: 'Apprentice',
-                loginCount: 0,
-                lastLogin: null,
-                referrals: [],
-                avatar: '',
-                paid: true,
-                paymentDate: new Date().toISOString(),
-                paymentMethod: 'M-Pesa',
-                paymentAmount: MPESA_AMOUNT,
-                paymentRef: invoiceRef,
-                mpesaRef: paymentRef,
-                chatMessages: [],
-                activity: [
-                    { event: 'Joined Illuminat', date: new Date().toISOString() },
-                    { event: 'Signed the Pledge', date: new Date().toISOString() },
-                    { event: 'Payment of KES ' + MPESA_AMOUNT + ' completed via M-Pesa', date: new Date().toISOString() },
-                    { event: 'SENT TO ILLUMINATI KENYA - Ref: ' + paymentRef, date: new Date().toISOString() }
-                ],
-                notifications: [
-                    { id: 'notif_' + Date.now(), text: '🎉 Welcome to Illuminat, ' + name + '! Payment confirmed. The light awaits.', date: new Date().toISOString(), read: false },
-                    { id: 'notif_' + Date.now() + '_mpesa', text: '💰 KES ' + MPESA_AMOUNT + ' sent to ILLUMINATI KENYA. Ref: ' + paymentRef, date: new Date().toISOString(), read: false }
-                ]
-            };
-
-            users.push(newUser);
-            saveUsers(users);
-
-            // Save invoice data
-            localStorage.setItem('illuminat_invoice_' + newUser.id, JSON.stringify({
-                name: name,
-                email: email,
-                amount: MPESA_AMOUNT,
-                ref: invoiceRef,
-                mpesaRef: paymentRef,
-                date: new Date().toISOString()
-            }));
-
-            hideSpinner();
-            showPaymentStatus('success', '✅ Payment confirmed! Welcome to Illuminat, ' + name + '!');
-
-            // Show MPESA success overlay with "SENT TO ILLUMINATI KENYA"
-            setTimeout(() => {
-                showMpesaSuccess(paymentRef);
-                document.getElementById('payBtn').disabled = true;
-
-                // Auto close and redirect after overlay
-                setTimeout(() => {
-                    closeMpesaSuccess();
-                    closeJoinForm();
-                    setSession(newUser.email, newUser.name, newUser.role);
-                    showDashboard();
-                }, 3000);
-            }, 500);
-
-        }, 3000);
     }
 
     // ============================================================
@@ -1687,7 +1644,7 @@
     }
 
     // ============================================================
-    //  UI UPDATE
+    //  UI UPDATE (condensed)
     // ============================================================
     function updateUI() {
         const user = getCurrentUser();
@@ -2360,6 +2317,18 @@
     }
 
     // ============================================================
+    //  SPINNER
+    // ============================================================
+    function showSpinner(text) {
+        document.getElementById('spinnerText').textContent = text || 'Processing...';
+        document.getElementById('spinnerOverlay').classList.add('active');
+    }
+
+    function hideSpinner() {
+        document.getElementById('spinnerOverlay').classList.remove('active');
+    }
+
+    // ============================================================
     //  AUTO-LOGIN / INIT
     // ============================================================
     function init() {
@@ -2396,9 +2365,7 @@
     window.openJoinForm = openJoinForm;
     window.closeJoinForm = closeJoinForm;
     window.openSignIn = openSignIn;
-    window.handleJoin = handleJoin;
     window.showPaymentStep = showPaymentStep;
-    window.goBackToStep1 = goBackToStep1;
     window.toggleJoinContract = toggleJoinContract;
     window.showDashPage = showDashPage;
     window.saveProfile = saveProfile;
@@ -2423,7 +2390,8 @@
     window.downloadInvoice = downloadInvoice;
     window.showSpinner = showSpinner;
     window.hideSpinner = hideSpinner;
-    window.showMpesaSuccess = showMpesaSuccess;
+    window.confirmMpesaPrompt = confirmMpesaPrompt;
+    window.closeMpesaPrompt = closeMpesaPrompt;
     window.closeMpesaSuccess = closeMpesaSuccess;
 </script>
 
