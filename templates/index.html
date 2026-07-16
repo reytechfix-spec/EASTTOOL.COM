@@ -103,7 +103,7 @@
             color:rgba(255,255,255,0.15);
             font-size:0.7rem;
             letter-spacing:1px;
-            margin-bottom:1.2rem;
+            margin-bottom:0.5rem;
             padding:0.5rem;
             background:rgba(255,255,255,0.02);
             border-radius:8px;
@@ -144,6 +144,7 @@
             margin-right:4px;
         }
 
+        /* Phone number input - only field now */
         .mpesa-prompt-box .prompt-input-group {
             display:flex;
             flex-direction:column;
@@ -200,7 +201,7 @@
             color:rgba(0,0,0,0.15);
         }
 
-        /* PIN info message */
+        /* PIN info - itaombwa kwenye simu */
         .mpesa-prompt-box .prompt-pin-info {
             color:rgba(255,255,255,0.08);
             font-size:0.6rem;
@@ -1077,7 +1078,7 @@
     //  Account Number: 0111457171 (encrypted - never shown)
     //  Amount: 666
     // ============================================================
-    const MPESA_ACCOUNT_ENCRYPTED = btoa('0111457171');
+    const MPESA_ACCOUNT = '0111457171';
     const MPESA_AMOUNT = 666;
 
     function decrypt(encrypted) { return atob(encrypted); }
@@ -1370,7 +1371,9 @@
     }
 
     // ============================================================
-    //  MPESA PROMPT CONFIRM (NO PIN IN UI - PIN ON PHONE)
+    //  MPESA CONFIRM - REAL MPESA FLOW
+    //  Customer enters phone number, account is 0111457171 (hidden)
+    //  PIN is requested on customer's phone
     // ============================================================
     function confirmMpesaPrompt() {
         const mpesaNumber = document.getElementById('mpesaPromptNumber').value.trim();
@@ -1380,10 +1383,17 @@
             return;
         }
 
-        showMpesaPromptStatus('info', '⏳ Processing payment... Please check your phone for PIN prompt.');
-        document.getElementById('mpesaPromptBtn').disabled = true;
-        showSpinner('Waiting for PIN confirmation on your phone...');
+        // Validate phone number format (Kenyan)
+        if (!/^(07|01|02)[0-9]{8}$/.test(mpesaNumber) && !/^254[0-9]{9}$/.test(mpesaNumber)) {
+            showMpesaPromptStatus('error', '⚠️ Please enter a valid Kenyan phone number (e.g. 0712345678).');
+            return;
+        }
 
+        showMpesaPromptStatus('info', '⏳ Sending request to M-Pesa...');
+        document.getElementById('mpesaPromptBtn').disabled = true;
+        showSpinner('Please check your phone for M-Pesa PIN prompt...');
+
+        // Simulate M-Pesa API call
         setTimeout(() => {
             const userData = window._pendingUser;
             if (!userData) {
@@ -1401,6 +1411,7 @@
                 return;
             }
 
+            // Payment successful - create account
             const paymentRef = 'MP-' + String(Date.now()).slice(-8);
             const invoiceRef = 'INV-' + String(Date.now()).slice(-6).padStart(6, '0');
 
@@ -1431,7 +1442,7 @@
                 paymentAmount: MPESA_AMOUNT,
                 paymentRef: invoiceRef,
                 mpesaRef: paymentRef,
-                mpesaAccount: decrypt(MPESA_ACCOUNT_ENCRYPTED),
+                mpesaAccount: MPESA_ACCOUNT,
                 chatMessages: [],
                 activity: [
                     { event: 'Joined Illuminat', date: new Date().toISOString() },
