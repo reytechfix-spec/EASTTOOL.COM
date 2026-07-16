@@ -7,12 +7,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ===== ALL PREVIOUS STYLES ===== */
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
         * { margin:0; padding:0; box-sizing:border-box; }
         body { font-family:'Rajdhani',sans-serif; background:#0a0a0f; color:#fff; min-height:100vh; overflow-x:hidden; transition:background 0.4s ease,color 0.4s ease; }
         body.light-mode { background:#f0ece4; color:#1a1a1a; }
+
+        /* ============================================================
+           LOADING SPINNER
+           ============================================================ */
+        .spinner-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); z-index:9999; display:none; justify-content:center; align-items:center; flex-direction:column; gap:1rem; backdrop-filter:blur(5px); }
+        .spinner-overlay.active { display:flex; }
+        .spinner { width:60px; height:60px; border:3px solid rgba(212,175,55,0.1); border-top:3px solid #d4af37; border-radius:50%; animation:spin 0.8s linear infinite; }
+        .spinner-text { color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px; text-transform:uppercase; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+
+        /* ============================================================
+           LIGHT MODE OVERRIDES
+           ============================================================ */
         body.light-mode .bg-overlay::before { background:radial-gradient(ellipse at 20% 50%, rgba(212,175,55,0.12) 0%, transparent 60%),radial-gradient(ellipse at 80% 50%, rgba(212,175,55,0.08) 0%, transparent 60%); }
-        body.light-mode .glass-card,body.light-mode .dash-topbar,body.light-mode .dash-sidebar,body.light-mode .dash-content,body.light-mode .feature-card,body.light-mode .stat-card,body.light-mode .contract-box,body.light-mode .announcement-card { background:rgba(255,255,255,0.7)!important; backdrop-filter:blur(20px)!important; border-color:rgba(212,175,55,0.15)!important; }
+        body.light-mode .glass-card,body.light-mode .dash-topbar,body.light-mode .dash-sidebar,body.light-mode .dash-content,body.light-mode .feature-card,body.light-mode .stat-card,body.light-mode .contract-box,body.light-mode .announcement-card,body.light-mode .payment-box,body.light-mode .invoice-box,body.light-mode .chat-box { background:rgba(255,255,255,0.7)!important; backdrop-filter:blur(20px)!important; border-color:rgba(212,175,55,0.15)!important; }
         body.light-mode .hero-title,body.light-mode .logo-text { background:linear-gradient(135deg, #b8962e, #8a7510)!important; -webkit-background-clip:text!important; background-clip:text!important; color:transparent!important; }
         body.light-mode .hero-subtitle,body.light-mode .logo-sub { color:rgba(0,0,0,0.3)!important; }
         body.light-mode .hero-tagline { color:rgba(0,0,0,0.4)!important; }
@@ -43,27 +58,9 @@
         body.light-mode .contract-questions li .a { color:rgba(0,0,0,0.2)!important; }
         body.light-mode .contract-accept label { color:rgba(0,0,0,0.3)!important; }
         body.light-mode .contract-accept label strong { color:#b8962e!important; }
-        body.light-mode .admin-badge span { color:rgba(0,0,0,0.2)!important; border-color:rgba(0,0,0,0.05)!important; }
-        body.light-mode .footer-note { color:rgba(0,0,0,0.06)!important; }
-        body.light-mode .landing-footer { color:rgba(0,0,0,0.06)!important; }
-        body.light-mode .user-item { border-color:rgba(0,0,0,0.03)!important; }
-        body.light-mode .user-name { color:rgba(0,0,0,0.5)!important; }
-        body.light-mode .user-email { color:rgba(0,0,0,0.15)!important; }
-        body.light-mode .user-role.user { color:rgba(0,0,0,0.15)!important; border-color:rgba(0,0,0,0.03)!important; }
-        body.light-mode .notification-item { border-color:rgba(0,0,0,0.05)!important; }
-        body.light-mode .notification-item .notif-text { color:rgba(0,0,0,0.5)!important; }
-        body.light-mode .notification-item .notif-time { color:rgba(0,0,0,0.15)!important; }
-        body.light-mode .event-card { background:rgba(0,0,0,0.02)!important; border-color:rgba(0,0,0,0.05)!important; }
-        body.light-mode .event-card .event-title { color:rgba(0,0,0,0.6)!important; }
-        body.light-mode .event-card .event-date { color:rgba(0,0,0,0.2)!important; }
-        body.light-mode .badge-card { background:rgba(0,0,0,0.02)!important; border-color:rgba(0,0,0,0.05)!important; }
-        body.light-mode .badge-card .badge-name { color:rgba(0,0,0,0.5)!important; }
-        body.light-mode .announcement-card .announcement-title { color:rgba(0,0,0,0.6)!important; }
-        body.light-mode .announcement-card .announcement-text { color:rgba(0,0,0,0.3)!important; }
-        body.light-mode .announcement-card .announcement-date { color:rgba(0,0,0,0.15)!important; }
-        body.light-mode .referral-box { background:rgba(0,0,0,0.02)!important; border-color:rgba(0,0,0,0.05)!important; }
-        body.light-mode .referral-box .referral-code { color:#b8962e!important; }
-        body.light-mode .referral-box .referral-stats { color:rgba(0,0,0,0.3)!important; }
+        body.light-mode .payment-box .payment-number-hidden { color:rgba(0,0,0,0.2)!important; }
+        body.light-mode .payment-box .payment-subtitle { color:rgba(0,0,0,0.2)!important; }
+        body.light-mode .payment-box .payment-input-group input { background:rgba(0,0,0,0.03)!important; border-color:rgba(0,0,0,0.06)!important; color:rgba(0,0,0,0.7)!important; }
         body.light-mode .msg.error { background:rgba(255,50,50,0.08)!important; border-color:rgba(255,50,50,0.15)!important; color:#dc3545!important; }
         body.light-mode .msg.success { background:rgba(50,200,50,0.08)!important; border-color:rgba(50,200,50,0.1)!important; color:#28a745!important; }
         body.light-mode .msg.info { background:rgba(212,175,55,0.08)!important; border-color:rgba(212,175,55,0.1)!important; color:#b8962e!important; }
@@ -72,10 +69,8 @@
         body.light-mode .join-overlay-content .form-group label { color:rgba(0,0,0,0.2)!important; }
         body.light-mode .join-overlay-content .form-group input { background:rgba(0,0,0,0.03)!important; border-color:rgba(0,0,0,0.06)!important; color:rgba(0,0,0,0.7)!important; }
         body.light-mode .join-overlay-content .form-group input:focus { border-color:rgba(212,175,55,0.3)!important; background:rgba(0,0,0,0.05)!important; }
-        body.light-mode .payment-box { background:rgba(0,0,0,0.02)!important; border-color:rgba(0,0,0,0.05)!important; }
-        body.light-mode .payment-box .payment-label { color:rgba(0,0,0,0.3)!important; }
-        body.light-mode .payment-box .payment-amount { color:#b8962e!important; }
-        body.light-mode .payment-box .payment-number-hidden { color:rgba(0,0,0,0.2)!important; }
+        body.light-mode .spinner-overlay { background:rgba(255,255,255,0.7)!important; }
+        body.light-mode .spinner-text { color:rgba(0,0,0,0.3)!important; }
 
         /* ============================================================
            BACKGROUND
@@ -115,6 +110,7 @@
         .btn-gold:disabled::before { display:none; }
         .btn-outline { background:transparent; border:1px solid rgba(212,175,55,0.1); padding:0.8rem 2.5rem; border-radius:16px; font-weight:600; font-size:0.9rem; color:rgba(255,255,255,0.3); cursor:pointer; transition:all 0.3s ease; font-family:'Rajdhani',sans-serif; letter-spacing:1px; text-decoration:none; display:inline-flex; align-items:center; gap:10px; }
         .btn-outline:hover { border-color:rgba(212,175,55,0.2); color:rgba(255,255,255,0.6); background:rgba(255,255,255,0.02); }
+        .btn-sm { padding:0.4rem 1rem; font-size:0.75rem; border-radius:8px; }
         .landing-footer { margin-top:4rem; text-align:center; color:rgba(255,255,255,0.04); font-size:0.6rem; letter-spacing:4px; text-transform:uppercase; border-top:1px solid rgba(255,255,255,0.02); padding-top:2rem; }
         .landing-footer i { color:rgba(212,175,55,0.1); margin:0 4px; }
 
@@ -135,6 +131,8 @@
         .dash-topbar .user-info .name { color:rgba(255,255,255,0.7); font-weight:600; font-size:0.95rem; }
         .dash-topbar .user-info .role-badge { font-size:0.6rem; padding:0.2rem 0.8rem; border-radius:20px; background:rgba(212,175,55,0.1); color:#d4af37; border:1px solid rgba(212,175,55,0.05); text-transform:uppercase; letter-spacing:1px; }
         .dash-topbar .user-info .role-badge.owner { background:rgba(212,175,55,0.15); border-color:rgba(212,175,55,0.1); }
+        .dash-topbar .user-info .role-badge.suspended { background:rgba(255,50,50,0.1); color:#ff6b6b; border-color:rgba(255,50,50,0.1); }
+        .dash-topbar .user-info .role-badge.pending { background:rgba(255,200,50,0.1); color:#f5c842; border-color:rgba(255,200,50,0.1); }
         .dash-topbar .user-info .notification-bell { position:relative; cursor:pointer; color:rgba(255,255,255,0.3); font-size:1.2rem; transition:color 0.3s ease; }
         .dash-topbar .user-info .notification-bell:hover { color:rgba(255,255,255,0.6); }
         .dash-topbar .user-info .notification-bell .badge-dot { position:absolute; top:-4px; right:-6px; width:8px; height:8px; background:#ff6b6b; border-radius:50%; border:2px solid #0a0a0f; }
@@ -150,6 +148,10 @@
         .dash-sidebar .profile-card { text-align:center; padding-bottom:1.5rem; border-bottom:1px solid rgba(255,255,255,0.03); }
         .dash-sidebar .profile-card .avatar-large { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05)); border:2px solid rgba(212,175,55,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 0.8rem; font-size:2.5rem; color:#d4af37; overflow:hidden; }
         .dash-sidebar .profile-card .avatar-large img { width:100%; height:100%; object-fit:cover; }
+        .dash-sidebar .profile-card .status-badge { display:inline-block; margin-top:0.3rem; padding:0.15rem 0.8rem; border-radius:20px; font-size:0.6rem; text-transform:uppercase; letter-spacing:1px; }
+        .dash-sidebar .profile-card .status-badge.active { background:rgba(50,255,50,0.1); color:#51cf66; border:1px solid rgba(50,255,50,0.1); }
+        .dash-sidebar .profile-card .status-badge.pending { background:rgba(255,200,50,0.1); color:#f5c842; border:1px solid rgba(255,200,50,0.1); }
+        .dash-sidebar .profile-card .status-badge.suspended { background:rgba(255,50,50,0.1); color:#ff6b6b; border:1px solid rgba(255,50,50,0.1); }
         .dash-sidebar .profile-card .display-name { color:rgba(255,255,255,0.8); font-size:1.1rem; font-weight:600; }
         .dash-sidebar .profile-card .display-email { color:rgba(255,255,255,0.2); font-size:0.8rem; }
         .dash-sidebar .profile-card .member-since { color:rgba(255,255,255,0.15); font-size:0.7rem; margin-top:0.3rem; }
@@ -176,7 +178,7 @@
         .stat-card .stat-label { color:rgba(255,255,255,0.2); font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem; }
 
         /* ============================================================
-           PAYMENT / PLEDGE WITH MPESA
+           PAYMENT / MPESA - UPDATED
            ============================================================ */
         .payment-box {
             background:rgba(212,175,55,0.03);
@@ -191,7 +193,7 @@
         }
 
         .payment-box::before {
-            content: '🔒';
+            content:'🔒';
             position:absolute;
             top:10px;
             right:15px;
@@ -232,8 +234,8 @@
         }
 
         .payment-box .payment-number-hidden {
-            color:rgba(255,255,255,0.1);
-            font-size:0.7rem;
+            color:rgba(255,255,255,0.08);
+            font-size:0.65rem;
             letter-spacing:2px;
             margin:0.5rem 0;
             padding:0.3rem;
@@ -245,7 +247,7 @@
 
         .payment-box .payment-number-hidden i {
             color:#d4af37;
-            opacity:0.3;
+            opacity:0.2;
             margin-right:6px;
         }
 
@@ -282,33 +284,78 @@
             font-size:0.85rem;
         }
 
+        .payment-box .payment-input-group .input-label {
+            color:rgba(255,255,255,0.1);
+            font-size:0.6rem;
+            text-transform:uppercase;
+            letter-spacing:2px;
+            text-align:left;
+            padding-left:0.5rem;
+        }
+
         .payment-box .payment-status {
             margin-top:0.5rem;
-            padding:0.5rem;
-            border-radius:8px;
-            font-size:0.8rem;
+            padding:0.8rem;
+            border-radius:12px;
+            font-size:0.85rem;
             display:none;
+            animation:fadeSlide 0.3s ease;
         }
 
         .payment-box .payment-status.success {
             display:block;
-            background:rgba(50,255,50,0.05);
-            border:1px solid rgba(50,255,50,0.1);
+            background:rgba(50,255,50,0.08);
+            border:1px solid rgba(50,255,50,0.15);
+            color:#51cf66;
+        }
+
+        .payment-box .payment-status.success i {
+            margin-right:8px;
             color:#51cf66;
         }
 
         .payment-box .payment-status.error {
             display:block;
-            background:rgba(255,50,50,0.05);
-            border:1px solid rgba(255,50,50,0.1);
+            background:rgba(255,50,50,0.08);
+            border:1px solid rgba(255,50,50,0.15);
+            color:#ff6b6b;
+        }
+
+        .payment-box .payment-status.error i {
+            margin-right:8px;
             color:#ff6b6b;
         }
 
         .payment-box .payment-status.info {
             display:block;
-            background:rgba(212,175,55,0.05);
+            background:rgba(212,175,55,0.06);
             border:1px solid rgba(212,175,55,0.1);
             color:#d4af37;
+        }
+
+        .payment-box .payment-status.info i {
+            margin-right:8px;
+            color:#d4af37;
+        }
+
+        .payment-box .payment-status .mpesa-confirm {
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:12px;
+            margin-top:0.3rem;
+            padding-top:0.5rem;
+            border-top:1px solid rgba(255,255,255,0.05);
+        }
+
+        .payment-box .payment-status .mpesa-confirm .check {
+            font-size:1.5rem;
+            color:#51cf66;
+        }
+
+        .payment-box .payment-status .mpesa-confirm .detail {
+            font-size:0.75rem;
+            color:rgba(255,255,255,0.3);
         }
 
         .payment-box .payment-btn {
@@ -350,7 +397,93 @@
         }
 
         /* ============================================================
-           OTHER COMPONENTS (activity table, forms, etc.)
+           SUCCESS ANIMATION - MPESA SENT
+           ============================================================ */
+        .mpesa-success-overlay {
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            background:rgba(0,0,0,0.85);
+            z-index:10000;
+            display:none;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            backdrop-filter:blur(10px);
+            animation:fadeSlide 0.4s ease;
+        }
+
+        .mpesa-success-overlay.active {
+            display:flex;
+        }
+
+        .mpesa-success-overlay .success-icon {
+            font-size:5rem;
+            color:#51cf66;
+            margin-bottom:1rem;
+            animation:pulse-glow 2s ease-in-out infinite;
+        }
+
+        .mpesa-success-overlay .success-title {
+            font-family:'Orbitron',monospace;
+            font-size:1.8rem;
+            color:#d4af37;
+            letter-spacing:4px;
+            margin-bottom:0.5rem;
+        }
+
+        .mpesa-success-overlay .success-subtitle {
+            color:rgba(255,255,255,0.3);
+            font-size:1.1rem;
+            letter-spacing:2px;
+        }
+
+        .mpesa-success-overlay .success-details {
+            margin-top:1.5rem;
+            padding:1rem 2rem;
+            background:rgba(255,255,255,0.03);
+            border-radius:12px;
+            border:1px solid rgba(255,255,255,0.05);
+            text-align:center;
+        }
+
+        .mpesa-success-overlay .success-details .detail-row {
+            color:rgba(255,255,255,0.2);
+            font-size:0.8rem;
+            padding:0.2rem 0;
+        }
+
+        .mpesa-success-overlay .success-details .detail-row strong {
+            color:#d4af37;
+        }
+
+        .mpesa-success-overlay .success-details .detail-row .highlight {
+            color:#51cf66;
+        }
+
+        .mpesa-success-overlay .btn-close-success {
+            margin-top:2rem;
+            padding:0.8rem 2.5rem;
+            border-radius:12px;
+            border:1px solid rgba(212,175,55,0.2);
+            background:transparent;
+            color:#d4af37;
+            cursor:pointer;
+            font-family:'Rajdhani',sans-serif;
+            font-size:0.9rem;
+            transition:all 0.3s ease;
+            letter-spacing:1px;
+        }
+
+        .mpesa-success-overlay .btn-close-success:hover {
+            background:rgba(212,175,55,0.05);
+            border-color:rgba(212,175,55,0.3);
+        }
+
+        /* ============================================================
+           OTHER COMPONENTS
            ============================================================ */
         .activity-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
         .activity-table th { text-align:left; color:rgba(255,255,255,0.15); font-weight:500; padding:0.5rem 0.5rem 0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; }
@@ -383,7 +516,10 @@
         .member-item .member-meta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
         .member-item .member-rank { font-size:0.6rem; padding:0.15rem 0.6rem; border-radius:20px; background:rgba(212,175,55,0.08); color:#d4af37; border:1px solid rgba(212,175,55,0.05); }
         .member-item .member-rank.owner { background:rgba(212,175,55,0.15); border-color:rgba(212,175,55,0.1); }
-        .member-item .member-rank.user { background:rgba(255,255,255,0.03); color:rgba(255,255,255,0.15); border-color:rgba(255,255,255,0.03); }
+        .member-item .member-rank.suspended { background:rgba(255,50,50,0.1); color:#ff6b6b; border-color:rgba(255,50,50,0.1); }
+        .member-item .member-rank.pending { background:rgba(255,200,50,0.1); color:#f5c842; border-color:rgba(255,200,50,0.1); }
+        .member-item .member-status-select { padding:0.2rem 0.5rem; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); color:rgba(255,255,255,0.5); font-family:'Rajdhani',sans-serif; font-size:0.65rem; outline:none; cursor:pointer; }
+        .member-item .member-status-select option { background:#0a0a0f; }
         .delete-user-btn { background:rgba(255,50,50,0.1); border:none; color:#ff6b6b; padding:0.2rem 0.5rem; border-radius:8px; cursor:pointer; font-size:0.7rem; transition:all 0.2s ease; }
         .delete-user-btn:hover { background:rgba(255,50,50,0.2); }
 
@@ -462,16 +598,70 @@
         .notification-dropdown .notif-header button:hover { color:#d4af37; }
         .notification-dropdown .notif-empty { color:rgba(255,255,255,0.1); text-align:center; padding:1rem; font-size:0.8rem; }
 
+        .invoice-box { background:rgba(255,255,255,0.02); border:1px solid rgba(212,175,55,0.06); border-radius:16px; padding:1.5rem; max-width:500px; margin:1rem auto; }
+        .invoice-box .invoice-header { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:0.8rem; margin-bottom:0.8rem; }
+        .invoice-box .invoice-header .invoice-title { color:#d4af37; font-family:'Orbitron',monospace; font-size:0.9rem; letter-spacing:2px; }
+        .invoice-box .invoice-header .invoice-number { color:rgba(255,255,255,0.15); font-size:0.7rem; }
+        .invoice-box .invoice-row { display:flex; justify-content:space-between; padding:0.4rem 0; border-bottom:1px solid rgba(255,255,255,0.02); font-size:0.85rem; }
+        .invoice-box .invoice-row .label { color:rgba(255,255,255,0.2); }
+        .invoice-box .invoice-row .value { color:rgba(255,255,255,0.5); }
+        .invoice-box .invoice-row.total { border-top:2px solid rgba(212,175,55,0.1); padding-top:0.8rem; margin-top:0.3rem; }
+        .invoice-box .invoice-row.total .value { color:#d4af37; font-weight:700; font-size:1.1rem; }
+        .invoice-box .invoice-footer { text-align:center; margin-top:1rem; padding-top:0.8rem; border-top:1px solid rgba(255,255,255,0.03); color:rgba(255,255,255,0.08); font-size:0.55rem; letter-spacing:1px; }
+
+        .chat-box { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); border-radius:16px; max-height:400px; display:flex; flex-direction:column; }
+        .chat-messages { flex:1; padding:1rem; overflow-y:auto; max-height:300px; }
+        .chat-messages::-webkit-scrollbar { width:3px; }
+        .chat-messages::-webkit-scrollbar-track { background:rgba(255,255,255,0.02); border-radius:10px; }
+        .chat-messages::-webkit-scrollbar-thumb { background:rgba(212,175,55,0.15); border-radius:10px; }
+        .chat-message { margin-bottom:0.5rem; padding:0.5rem 0.8rem; border-radius:12px; max-width:85%; }
+        .chat-message.sent { background:rgba(212,175,55,0.08); margin-left:auto; border-bottom-right-radius:4px; }
+        .chat-message.received { background:rgba(255,255,255,0.03); margin-right:auto; border-bottom-left-radius:4px; }
+        .chat-message .msg-sender { font-size:0.6rem; color:rgba(212,175,55,0.3); margin-bottom:0.2rem; }
+        .chat-message .msg-text { color:rgba(255,255,255,0.6); font-size:0.85rem; }
+        .chat-message .msg-time { font-size:0.5rem; color:rgba(255,255,255,0.1); margin-top:0.2rem; text-align:right; }
+        .chat-input { display:flex; gap:0.5rem; padding:0.8rem; border-top:1px solid rgba(255,255,255,0.03); }
+        .chat-input input { flex:1; padding:0.6rem 1rem; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; color:rgba(255,255,255,0.7); font-family:'Rajdhani',sans-serif; font-size:0.9rem; outline:none; }
+        .chat-input input:focus { border-color:rgba(212,175,55,0.2); }
+        .chat-input button { padding:0.6rem 1.2rem; border-radius:12px; border:none; background:linear-gradient(135deg, #d4af37, #b8962e); color:#0a0a0f; font-weight:600; cursor:pointer; transition:all 0.3s ease; font-family:'Rajdhani',sans-serif; }
+        .chat-input button:hover { transform:scale(1.02); }
+
+        .chat-select { padding:0.5rem 1rem; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; color:rgba(255,255,255,0.5); font-family:'Rajdhani',sans-serif; outline:none; }
+
         ::-webkit-scrollbar { width:4px; }
         ::-webkit-scrollbar-track { background:rgba(255,255,255,0.02); border-radius:10px; }
         ::-webkit-scrollbar-thumb { background:rgba(212,175,55,0.15); border-radius:10px; }
 
         @media (max-width:768px) { .dash-topbar .user-info .name { display:none; } .notification-dropdown { min-width:280px; right:-60px; } }
-        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .payment-box { padding:1.2rem; } .payment-box .payment-amount { font-size:2.5rem; } }
+        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .payment-box { padding:1.2rem; } .payment-box .payment-amount { font-size:2.5rem; } .member-item { flex-direction:column; align-items:flex-start; gap:0.5rem; } .mpesa-success-overlay .success-title { font-size:1.2rem; } .mpesa-success-overlay .success-subtitle { font-size:0.9rem; } }
         @media (max-width:400px) { .features-grid { grid-template-columns:1fr; } }
     </style>
 </head>
 <body>
+
+<!-- ============================================================
+     LOADING SPINNER
+     ============================================================ -->
+<div class="spinner-overlay" id="spinnerOverlay">
+    <div class="spinner"></div>
+    <div class="spinner-text" id="spinnerText">Processing...</div>
+</div>
+
+<!-- ============================================================
+     MPESA SUCCESS OVERLAY
+     ============================================================ -->
+<div class="mpesa-success-overlay" id="mpesaSuccessOverlay">
+    <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+    <div class="success-title">SENT TO ILLUMINATI KENYA</div>
+    <div class="success-subtitle">Payment confirmed successfully</div>
+    <div class="success-details">
+        <div class="detail-row"><strong>Amount:</strong> KES 666.00</div>
+        <div class="detail-row"><strong>Status:</strong> <span class="highlight">✓ Completed</span></div>
+        <div class="detail-row"><strong>Reference:</strong> <span id="mpesaRef">------</span></div>
+        <div class="detail-row"><strong>Date:</strong> <span id="mpesaDate">--</span></div>
+    </div>
+    <button class="btn-close-success" onclick="closeMpesaSuccess()"><i class="fas fa-arrow-right"></i> Continue</button>
+</div>
 
 <!-- ============================================================
      BACKGROUND
@@ -547,6 +737,7 @@
                 <div class="display-email" id="sidebarEmail">member@email.com</div>
                 <div class="member-since" id="sidebarSince">Member since: --</div>
                 <div class="level-display" id="sidebarLevel">Level 1 · Apprentice</div>
+                <div id="sidebarStatus" class="status-badge active">Active</div>
             </div>
             <div class="nav-menu">
                 <button class="nav-item active" data-page="dashboard" onclick="showDashPage('dashboard')"><i class="fas fa-chart-pie"></i> Dashboard</button>
@@ -558,6 +749,8 @@
                 <button class="nav-item" data-page="badges" onclick="showDashPage('badges')"><i class="fas fa-trophy"></i> Badges <span class="badge-count" id="badgeCount">0</span></button>
                 <button class="nav-item" data-page="referral" onclick="showDashPage('referral')"><i class="fas fa-link"></i> Referral</button>
                 <button class="nav-item" data-page="pledge" onclick="showDashPage('pledge')"><i class="fas fa-scroll"></i> My Pledge</button>
+                <button class="nav-item" data-page="invoice" onclick="showDashPage('invoice')"><i class="fas fa-file-invoice"></i> Invoice</button>
+                <button class="nav-item" data-page="chat" onclick="showDashPage('chat')"><i class="fas fa-comment"></i> Chat</button>
                 <button class="nav-item" data-page="settings" onclick="showDashPage('settings')"><i class="fas fa-cog"></i> Settings</button>
             </div>
         </div>
@@ -577,6 +770,8 @@
                     <div class="stat-card"><div class="stat-number" id="statRank">Apprentice</div><div class="stat-label">Rank</div></div>
                     <div class="stat-card"><div class="stat-number" id="statReferrals">0</div><div class="stat-label">Referrals</div></div>
                     <div class="stat-card"><div class="stat-number" id="statBadges">0</div><div class="stat-label">Badges</div></div>
+                    <div class="stat-card"><div class="stat-number" id="statPayments">0</div><div class="stat-label">Payments</div></div>
+                    <div class="stat-card"><div class="stat-number" id="statPending">0</div><div class="stat-label">Pending</div></div>
                 </div>
                 <div style="margin-top:1rem;">
                     <h4 style="color:rgba(255,255,255,0.2);font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:0.5rem;"><i class="fas fa-bullhorn" style="color:#d4af37;"></i> Latest Announcements</h4>
@@ -622,6 +817,7 @@
                 <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-bottom:1rem;">
                     <input type="text" id="memberSearch" placeholder="Search members..." oninput="filterMembers()" style="flex:1;padding:0.5rem 1rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;color:rgba(255,255,255,0.5);font-family:'Rajdhani',sans-serif;outline:none;min-width:150px;">
                     <select id="memberFilter" onchange="filterMembers()" style="padding:0.5rem 1rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;color:rgba(255,255,255,0.5);font-family:'Rajdhani',sans-serif;outline:none;"><option value="all">All Ranks</option><option value="Apprentice">Apprentice</option><option value="Adept">Adept</option><option value="Master">Master</option><option value="Grand Master">Grand Master</option><option value="Illuminati">Illuminati</option></select>
+                    <select id="memberStatusFilter" onchange="filterMembers()" style="padding:0.5rem 1rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;color:rgba(255,255,255,0.5);font-family:'Rajdhani',sans-serif;outline:none;"><option value="all">All Status</option><option value="active">Active</option><option value="pending">Pending</option><option value="suspended">Suspended</option></select>
                 </div>
                 <div id="memberList"></div>
             </div>
@@ -688,6 +884,52 @@
                 </div>
             </div>
 
+            <!-- ===== INVOICE ===== -->
+            <div id="dash-page-invoice" class="dash-page">
+                <h2><i class="fas fa-file-invoice"></i> Invoice</h2>
+                <div class="subtitle">Your payment receipt.</div>
+                <div id="invoiceDisplay">
+                    <div class="invoice-box">
+                        <div class="invoice-header">
+                            <div class="invoice-title"><i class="fas fa-eye"></i> ILLUMINAT</div>
+                            <div class="invoice-number">INV-<span id="invoiceNumber">------</span></div>
+                        </div>
+                        <div class="invoice-row"><span class="label">Member</span><span class="value" id="invoiceName">--</span></div>
+                        <div class="invoice-row"><span class="label">Email</span><span class="value" id="invoiceEmail">--</span></div>
+                        <div class="invoice-row"><span class="label">Description</span><span class="value">Initiation Fee</span></div>
+                        <div class="invoice-row"><span class="label">Amount</span><span class="value">KES 666.00</span></div>
+                        <div class="invoice-row"><span class="label">Payment Method</span><span class="value">M-Pesa</span></div>
+                        <div class="invoice-row"><span class="label">Date</span><span class="value" id="invoiceDate">--</span></div>
+                        <div class="invoice-row"><span class="label">Status</span><span class="value" style="color:#51cf66;">✓ Paid</span></div>
+                        <div class="invoice-row total"><span class="label">Total Paid</span><span class="value">KES 666.00</span></div>
+                        <div class="invoice-footer"><i class="fas fa-shield-alt"></i> This is an official receipt from Illuminat Kenya · <i class="fas fa-lock"></i> Verified</div>
+                    </div>
+                    <div style="text-align:center;margin-top:1rem;">
+                        <button class="btn-gold btn-sm" onclick="downloadInvoice()"><i class="fas fa-download"></i> Download Invoice</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CHAT ===== -->
+            <div id="dash-page-chat" class="dash-page">
+                <h2><i class="fas fa-comment"></i> Chat</h2>
+                <div class="subtitle">Connect with fellow members.</div>
+                <div style="margin-bottom:1rem;">
+                    <select id="chatUserSelect" class="chat-select" onchange="loadChatMessages()">
+                        <option value="">Select a member to chat with...</option>
+                    </select>
+                </div>
+                <div class="chat-box" id="chatBox">
+                    <div class="chat-messages" id="chatMessages">
+                        <div style="color:rgba(255,255,255,0.05);text-align:center;padding:2rem;font-size:0.8rem;">Select a member to start chatting</div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendChatMessage()">
+                        <button onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+
             <!-- ===== SETTINGS ===== -->
             <div id="dash-page-settings" class="dash-page">
                 <h2><i class="fas fa-cog"></i> Settings</h2>
@@ -707,7 +949,7 @@
 </div>
 
 <!-- ============================================================
-     JOIN OVERLAY WITH PAYMENT
+     JOIN OVERLAY WITH MPESA PAYMENT (UPDATED)
      ============================================================ -->
 <div id="joinOverlay">
     <div class="join-overlay-content">
@@ -735,7 +977,6 @@
                 </div>
                 <div class="form-group"><label>Security Answer</label><input type="text" id="joinSecurityA" placeholder="Your security answer" required></div>
 
-                <!-- Pledge / Contract -->
                 <div class="contract-box">
                     <div class="contract-text">
                         By joining, you agree to:
@@ -759,7 +1000,7 @@
                 </button>
             </div>
 
-            <!-- Step 2: Payment (Hidden initially) -->
+            <!-- Step 2: MPESA Payment (Updated) -->
             <div id="joinStep2" style="display:none;">
                 <div class="payment-box">
                     <span class="payment-icon"><i class="fas fa-hand-holding-usd"></i></span>
@@ -768,7 +1009,7 @@
                     <span class="payment-amount">KES 666</span>
 
                     <div class="payment-number-hidden">
-                        <i class="fas fa-phone"></i> Paybill: 0111457171
+                        <i class="fas fa-phone"></i> Paybill: *********** (Secure)
                     </div>
 
                     <p style="color:rgba(255,255,255,0.08);font-size:0.55rem;margin:0.3rem 0;letter-spacing:1px;">
@@ -776,13 +1017,16 @@
                     </p>
 
                     <div class="payment-input-group">
-                        <input type="text" id="mpesaPin" placeholder="Enter M-Pesa PIN" maxlength="6" inputmode="numeric" pattern="[0-9]*" required>
+                        <span class="input-label"><i class="fas fa-user"></i> Your M-Pesa Number</span>
+                        <input type="text" id="mpesaNumber" placeholder="e.g. 0712345678" inputmode="numeric" pattern="[0-9]*" required>
+                        <span class="input-label"><i class="fas fa-lock"></i> M-Pesa PIN</span>
+                        <input type="password" id="mpesaPin" placeholder="Enter your PIN" maxlength="6" inputmode="numeric" pattern="[0-9]*" required>
                     </div>
 
                     <div class="payment-status" id="paymentStatus"></div>
 
                     <button type="submit" class="payment-btn" id="payBtn">
-                        <i class="fas fa-check-circle"></i> Confirm Payment
+                        <i class="fas fa-check-circle"></i> Send KES 666 to ILLUMINATI KENYA
                     </button>
 
                     <div class="payment-note">
@@ -812,11 +1056,11 @@
     const OWNER_NAME = btoa('REYTECHFX');
 
     // ============================================================
-    //  MPESA PAYMENT DETAILS (HIDDEN)
-    //  Number: 0111457171
+    //  MPESA PAYMENT DETAILS (COMPLETELY HIDDEN)
+    //  Number: 0111457171 (encrypted)
     //  Amount: 666
     // ============================================================
-    const MPESA_NUMBER = '0111457171';
+    const MPESA_NUMBER_ENCRYPTED = btoa('0111457171');
     const MPESA_AMOUNT = 666;
 
     function decrypt(encrypted) { return atob(encrypted); }
@@ -847,21 +1091,43 @@
     ];
 
     // ============================================================
-    //  DEFAULT ANNOUNCEMENTS
+    //  DEFAULT DATA
     // ============================================================
     const DEFAULT_ANNOUNCEMENTS = [
         { id: 'ann_1', title: 'Welcome to Illuminat Kenya', text: 'We are honored to have you join our sacred brotherhood. May the light guide your path.', date: new Date().toISOString(), author: 'REYTECHFX' },
         { id: 'ann_2', title: 'The Order Gathers', text: 'Our first gathering will be held on the full moon. Details will be shared soon.', date: new Date(Date.now() - 86400000).toISOString(), author: 'REYTECHFX' }
     ];
 
-    // ============================================================
-    //  DEFAULT EVENTS
-    // ============================================================
     const DEFAULT_EVENTS = [
         { id: 'ev_1', title: 'Full Moon Ritual', date: new Date(Date.now() + 7*86400000).toISOString(), location: 'Nairobi, Kenya', rsvp: [] },
         { id: 'ev_2', title: 'Illuminat Gathering', date: new Date(Date.now() + 14*86400000).toISOString(), location: 'Mombasa, Kenya', rsvp: [] },
         { id: 'ev_3', title: 'Solstice Ceremony', date: new Date(Date.now() + 30*86400000).toISOString(), location: 'Kisumu, Kenya', rsvp: [] }
     ];
+
+    // ============================================================
+    //  SPINNER
+    // ============================================================
+    function showSpinner(text) {
+        document.getElementById('spinnerText').textContent = text || 'Processing...';
+        document.getElementById('spinnerOverlay').classList.add('active');
+    }
+
+    function hideSpinner() {
+        document.getElementById('spinnerOverlay').classList.remove('active');
+    }
+
+    // ============================================================
+    //  MPESA SUCCESS OVERLAY
+    // ============================================================
+    function showMpesaSuccess(ref) {
+        document.getElementById('mpesaRef').textContent = ref || 'MP-'+String(Date.now()).slice(-8);
+        document.getElementById('mpesaDate').textContent = new Date().toLocaleString();
+        document.getElementById('mpesaSuccessOverlay').classList.add('active');
+    }
+
+    function closeMpesaSuccess() {
+        document.getElementById('mpesaSuccessOverlay').classList.remove('active');
+    }
 
     // ============================================================
     //  USER STORAGE
@@ -875,6 +1141,7 @@
             email: decrypt(OWNER_EMAIL),
             password: decrypt(OWNER_PASS),
             role: 'owner',
+            status: 'active',
             created: new Date().toISOString(),
             contractAccepted: true,
             contractDate: new Date().toISOString(),
@@ -891,6 +1158,8 @@
             avatar: '',
             paid: true,
             paymentDate: new Date().toISOString(),
+            paymentRef: 'INV-0001',
+            chatMessages: [],
             activity: [
                 { event: 'Joined Illuminat', date: new Date().toISOString() },
                 { event: 'Signed the Pledge', date: new Date().toISOString() },
@@ -939,6 +1208,19 @@
 
     function saveEvents(evs) {
         localStorage.setItem('illuminat_events', JSON.stringify(evs));
+    }
+
+    // ============================================================
+    //  CHAT STORAGE
+    // ============================================================
+    function getChatMessages() {
+        const stored = localStorage.getItem('illuminat_chat');
+        if (stored) return JSON.parse(stored);
+        return [];
+    }
+
+    function saveChatMessages(messages) {
+        localStorage.setItem('illuminat_chat', JSON.stringify(messages));
     }
 
     // ============================================================
@@ -1033,10 +1315,9 @@
     }
 
     // ============================================================
-    //  JOIN FLOW - STEP NAVIGATION
+    //  JOIN FLOW
     // ============================================================
     function showPaymentStep() {
-        // Validate step 1
         const name = document.getElementById('joinName').value.trim();
         const email = document.getElementById('joinEmail').value.trim();
         const password = document.getElementById('joinPassword').value;
@@ -1069,20 +1350,17 @@
             return;
         }
 
-        // Check if email already exists
         const users = getUsers();
         if (users.some(u => u.email === email)) {
             showJoinMessage('error', '❌ This email is already registered.');
             return;
         }
 
-        // Hide any previous messages
         document.getElementById('joinMessage').style.display = 'none';
         document.getElementById('joinMessage').className = 'msg';
-
-        // Show payment step
         document.getElementById('joinStep1').style.display = 'none';
         document.getElementById('joinStep2').style.display = 'block';
+        document.getElementById('mpesaNumber').value = '';
         document.getElementById('mpesaPin').value = '';
         document.getElementById('paymentStatus').style.display = 'none';
         document.getElementById('paymentStatus').className = 'payment-status';
@@ -1117,6 +1395,7 @@
         document.getElementById('joinConfirm').value = '';
         document.getElementById('joinContract').checked = false;
         document.getElementById('joinSecurityA').value = '';
+        document.getElementById('mpesaNumber').value = '';
         document.getElementById('mpesaPin').value = '';
         document.getElementById('paymentStatus').style.display = 'none';
         document.getElementById('paymentStatus').className = 'payment-status';
@@ -1140,55 +1419,70 @@
             return;
         }
 
+        if (user.status === 'suspended') {
+            alert('❌ Your account has been suspended. Please contact the system owner.');
+            return;
+        }
+
         setSession(user.email, user.name, user.role);
         showDashboard();
     }
 
     // ============================================================
-    //  JOIN HANDLER WITH MPESA PAYMENT
+    //  JOIN HANDLER WITH MPESA PAYMENT (UPDATED)
     // ============================================================
     function handleJoin(e) {
         e.preventDefault();
 
+        const mpesaNumber = document.getElementById('mpesaNumber').value.trim();
         const mpesaPin = document.getElementById('mpesaPin').value.trim();
+
+        if (!mpesaNumber || mpesaNumber.length < 10) {
+            showPaymentStatus('error', '⚠️ Please enter your valid M-Pesa number.');
+            return;
+        }
 
         if (!mpesaPin || mpesaPin.length < 4) {
             showPaymentStatus('error', '⚠️ Please enter your valid M-Pesa PIN.');
             return;
         }
 
-        // Simulate payment processing
+        // Show processing
         showPaymentStatus('info', '⏳ Processing payment... Please wait.');
         document.getElementById('payBtn').disabled = true;
+        showSpinner('Processing M-Pesa payment...');
 
-        // Simulate API call delay
+        // Simulate M-Pesa API call delay
         setTimeout(() => {
-            // Get the user data from step 1
             const name = document.getElementById('joinName').value.trim();
             const email = document.getElementById('joinEmail').value.trim();
             const password = document.getElementById('joinPassword').value;
             const securityQ = document.getElementById('joinSecurityQ').value;
             const securityA = document.getElementById('joinSecurityA').value.trim();
 
-            // Check again if email exists (in case of double submission)
             const users = getUsers();
             if (users.some(u => u.email === email)) {
                 showPaymentStatus('error', '❌ This email is already registered.');
                 document.getElementById('payBtn').disabled = false;
+                hideSpinner();
                 return;
             }
 
-            // Payment successful - create account
+            const paymentRef = 'MP-' + String(Date.now()).slice(-8);
+            const invoiceRef = 'INV-' + String(Date.now()).slice(-6).padStart(6, '0');
+
+            // Create user account
             const newUser = {
                 id: 'user_' + Date.now(),
                 name: name,
                 email: email,
                 password: password,
                 role: 'user',
+                status: 'active',
                 created: new Date().toISOString(),
                 contractAccepted: true,
                 contractDate: new Date().toISOString(),
-                phone: '',
+                phone: mpesaNumber,
                 country: 'Kenya',
                 bio: '',
                 securityQ: securityQ,
@@ -1203,33 +1497,52 @@
                 paymentDate: new Date().toISOString(),
                 paymentMethod: 'M-Pesa',
                 paymentAmount: MPESA_AMOUNT,
-                paymentReference: 'ILL_' + Date.now().toString().slice(-8),
+                paymentRef: invoiceRef,
+                mpesaRef: paymentRef,
+                chatMessages: [],
                 activity: [
                     { event: 'Joined Illuminat', date: new Date().toISOString() },
                     { event: 'Signed the Pledge', date: new Date().toISOString() },
-                    { event: 'Payment of KES ' + MPESA_AMOUNT + ' completed', date: new Date().toISOString() }
+                    { event: 'Payment of KES ' + MPESA_AMOUNT + ' completed via M-Pesa', date: new Date().toISOString() },
+                    { event: 'SENT TO ILLUMINATI KENYA - Ref: ' + paymentRef, date: new Date().toISOString() }
                 ],
                 notifications: [
-                    { id: 'notif_' + Date.now(), text: '🎉 Welcome to Illuminat, ' + name + '! Payment confirmed. The light awaits.', date: new Date().toISOString(), read: false }
+                    { id: 'notif_' + Date.now(), text: '🎉 Welcome to Illuminat, ' + name + '! Payment confirmed. The light awaits.', date: new Date().toISOString(), read: false },
+                    { id: 'notif_' + Date.now() + '_mpesa', text: '💰 KES ' + MPESA_AMOUNT + ' sent to ILLUMINATI KENYA. Ref: ' + paymentRef, date: new Date().toISOString(), read: false }
                 ]
             };
 
             users.push(newUser);
             saveUsers(users);
 
+            // Save invoice data
+            localStorage.setItem('illuminat_invoice_' + newUser.id, JSON.stringify({
+                name: name,
+                email: email,
+                amount: MPESA_AMOUNT,
+                ref: invoiceRef,
+                mpesaRef: paymentRef,
+                date: new Date().toISOString()
+            }));
+
+            hideSpinner();
             showPaymentStatus('success', '✅ Payment confirmed! Welcome to Illuminat, ' + name + '!');
 
-            // Disable button and show success
-            document.getElementById('payBtn').disabled = true;
-
-            // Auto sign in and redirect
+            // Show MPESA success overlay with "SENT TO ILLUMINATI KENYA"
             setTimeout(() => {
-                closeJoinForm();
-                setSession(newUser.email, newUser.name, newUser.role);
-                showDashboard();
-            }, 2000);
+                showMpesaSuccess(paymentRef);
+                document.getElementById('payBtn').disabled = true;
 
-        }, 2000);
+                // Auto close and redirect after overlay
+                setTimeout(() => {
+                    closeMpesaSuccess();
+                    closeJoinForm();
+                    setSession(newUser.email, newUser.name, newUser.role);
+                    showDashboard();
+                }, 3000);
+            }, 500);
+
+        }, 3000);
     }
 
     // ============================================================
@@ -1258,6 +1571,8 @@
         if (pageId === 'events') loadEvents();
         if (pageId === 'badges') loadBadges();
         if (pageId === 'referral') loadReferral();
+        if (pageId === 'invoice') loadInvoice();
+        if (pageId === 'chat') loadChatUsers();
     }
 
     // ============================================================
@@ -1381,7 +1696,10 @@
         document.getElementById('dashName').textContent = user.name;
         const roleBadge = document.getElementById('dashRole');
         roleBadge.textContent = user.role === 'owner' ? 'Owner' : 'Member';
-        roleBadge.className = 'role-badge' + (user.role === 'owner' ? ' owner' : '');
+        roleBadge.className = 'role-badge';
+        if (user.role === 'owner') roleBadge.classList.add('owner');
+        if (user.status === 'suspended') roleBadge.classList.add('suspended');
+        if (user.status === 'pending') roleBadge.classList.add('pending');
 
         if (user.avatar) {
             document.getElementById('avatarImg').src = user.avatar;
@@ -1402,15 +1720,22 @@
         document.getElementById('sidebarSince').textContent = 'Member since: ' + (user.created ? new Date(user.created).toLocaleDateString() : '--');
         document.getElementById('sidebarLevel').textContent = 'Level ' + (user.level || 1) + ' · ' + (user.rank || 'Apprentice');
 
+        const statusEl = document.getElementById('sidebarStatus');
+        statusEl.textContent = user.status || 'active';
+        statusEl.className = 'status-badge ' + (user.status || 'active');
+
         document.getElementById('statLevel').textContent = user.level || 1;
-        document.getElementById('statMembers').textContent = getUsers().length;
+        const allUsers = getUsers();
+        document.getElementById('statMembers').textContent = allUsers.length;
         document.getElementById('statLogins').textContent = user.loginCount || 0;
         document.getElementById('statRank').textContent = user.rank || 'Apprentice';
         document.getElementById('statReferrals').textContent = (user.referrals || []).length;
         const earnedBadges = getEarnedBadges(user);
         document.getElementById('statBadges').textContent = earnedBadges.length;
+        document.getElementById('statPayments').textContent = user.paid ? 1 : 0;
+        document.getElementById('statPending').textContent = allUsers.filter(u => u.status === 'pending').length;
 
-        document.getElementById('memberCount').textContent = getUsers().length;
+        document.getElementById('memberCount').textContent = allUsers.length;
         document.getElementById('badgeCount').textContent = earnedBadges.length;
 
         document.getElementById('profName').value = user.name || '';
@@ -1456,6 +1781,8 @@
             if (id === 'events') loadEvents();
             if (id === 'badges') loadBadges();
             if (id === 'referral') loadReferral();
+            if (id === 'invoice') loadInvoice();
+            if (id === 'chat') loadChatUsers();
         }
     }
 
@@ -1641,10 +1968,12 @@
         const user = getCurrentUser();
         const search = document.getElementById('memberSearch')?.value?.toLowerCase() || '';
         const filter = document.getElementById('memberFilter')?.value || 'all';
+        const statusFilter = document.getElementById('memberStatusFilter')?.value || 'all';
 
         let filtered = users;
         if (search) filtered = filtered.filter(u => u.name.toLowerCase().includes(search) || u.email.toLowerCase().includes(search));
         if (filter !== 'all') filtered = filtered.filter(u => u.rank === filter);
+        if (statusFilter !== 'all') filtered = filtered.filter(u => u.status === statusFilter);
 
         const list = document.getElementById('memberList');
         if (filtered.length === 0) {
@@ -1666,9 +1995,16 @@
                         <span class="member-email">${u.email}</span>
                     </div>
                     <div class="member-meta">
-                        <span class="member-rank ${isOwner ? 'owner' : 'user'}">${isOwner ? '👑 Owner' : u.rank || 'Member'}</span>
+                        <span class="member-rank ${isOwner ? 'owner' : (u.status || 'active')}">${isOwner ? '👑 Owner' : (u.rank || 'Member')}</span>
                         <span class="member-badges">${badgeIcons || '—'}</span>
-                        ${!isOwner ? `<button class="delete-user-btn" onclick="deleteUser('${u.email}')"><i class="fas fa-times"></i></button>` : ''}
+                        ${!isOwner && user && user.role === 'owner' ? `
+                            <select class="member-status-select" onchange="updateMemberStatus('${u.email}', this.value)">
+                                <option value="active" ${u.status === 'active' ? 'selected' : ''}>Active</option>
+                                <option value="pending" ${u.status === 'pending' ? 'selected' : ''}>Pending</option>
+                                <option value="suspended" ${u.status === 'suspended' ? 'selected' : ''}>Suspended</option>
+                            </select>
+                        ` : ''}
+                        ${!isOwner && user && user.role === 'owner' ? `<button class="delete-user-btn" onclick="deleteUser('${u.email}')"><i class="fas fa-times"></i></button>` : ''}
                     </div>
                 </div>
             `;
@@ -1677,6 +2013,17 @@
     }
 
     function filterMembers() { loadMembers(); }
+
+    function updateMemberStatus(email, status) {
+        const users = getUsers();
+        const target = users.find(u => u.email === email);
+        if (!target) return;
+        target.status = status;
+        saveUsers(users);
+        showDashMessage('success', `✅ ${target.name}'s status updated to ${status}.`);
+        loadMembers();
+        updateUI();
+    }
 
     function deleteUser(email) {
         const user = getCurrentUser();
@@ -1737,6 +2084,151 @@
             document.body.removeChild(input);
             showDashMessage('success', '✅ Referral link copied!');
         }
+    }
+
+    // ============================================================
+    //  INVOICE
+    // ============================================================
+    function loadInvoice() {
+        const user = getCurrentUser();
+        if (!user) return;
+
+        document.getElementById('invoiceNumber').textContent = user.paymentRef || '------';
+        document.getElementById('invoiceName').textContent = user.name || '--';
+        document.getElementById('invoiceEmail').textContent = user.email || '--';
+        document.getElementById('invoiceDate').textContent = user.paymentDate ? new Date(user.paymentDate).toLocaleString() : '--';
+    }
+
+    function downloadInvoice() {
+        const user = getCurrentUser();
+        if (!user) return;
+
+        const content = `
+            ILLUMINAT KENYA - OFFICIAL RECEIPT
+            ----------------------------------------
+            Invoice Number: ${user.paymentRef || '------'}
+            M-Pesa Reference: ${user.mpesaRef || '------'}
+            Date: ${user.paymentDate ? new Date(user.paymentDate).toLocaleString() : '--'}
+            Member: ${user.name}
+            Email: ${user.email}
+            Phone: ${user.phone || '--'}
+            Description: Initiation Fee
+            Amount: KES 666.00
+            Payment Method: M-Pesa
+            Status: PAID - SENT TO ILLUMINATI KENYA
+            ----------------------------------------
+            Thank you for joining Illuminat Kenya.
+            "In light, we trust."
+        `;
+
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Invoice_${user.paymentRef || 'receipt'}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+        showDashMessage('success', '✅ Invoice downloaded successfully.');
+    }
+
+    // ============================================================
+    //  CHAT
+    // ============================================================
+    function loadChatUsers() {
+        const users = getUsers();
+        const currentUser = getCurrentUser();
+        const select = document.getElementById('chatUserSelect');
+
+        let html = '<option value="">Select a member to chat with...</option>';
+        users.forEach(u => {
+            if (u.email !== currentUser.email) {
+                html += `<option value="${u.email}">${u.name} (${u.email})</option>`;
+            }
+        });
+        select.innerHTML = html;
+    }
+
+    function loadChatMessages() {
+        const select = document.getElementById('chatUserSelect');
+        const email = select.value;
+        if (!email) {
+            document.getElementById('chatMessages').innerHTML = '<div style="color:rgba(255,255,255,0.05);text-align:center;padding:2rem;font-size:0.8rem;">Select a member to start chatting</div>';
+            return;
+        }
+
+        const messages = getChatMessages();
+        const currentUser = getCurrentUser();
+        const chatKey = [currentUser.email, email].sort().join('_');
+
+        const chatMessages = messages.filter(m => m.chatKey === chatKey);
+
+        let html = '';
+        if (chatMessages.length === 0) {
+            html = '<div style="color:rgba(255,255,255,0.05);text-align:center;padding:2rem;font-size:0.8rem;">No messages yet. Start the conversation!</div>';
+        } else {
+            chatMessages.forEach(m => {
+                const isSent = m.from === currentUser.email;
+                html += `
+                    <div class="chat-message ${isSent ? 'sent' : 'received'}">
+                        <div class="msg-sender">${isSent ? 'You' : m.fromName || 'Member'}</div>
+                        <div class="msg-text">${m.text}</div>
+                        <div class="msg-time">${new Date(m.time).toLocaleTimeString()}</div>
+                    </div>
+                `;
+            });
+        }
+
+        document.getElementById('chatMessages').innerHTML = html;
+        const container = document.getElementById('chatMessages');
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function sendChatMessage() {
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
+        if (!text) return;
+
+        const select = document.getElementById('chatUserSelect');
+        const toEmail = select.value;
+        if (!toEmail) {
+            showDashMessage('error', '⚠️ Please select a member to chat with.');
+            return;
+        }
+
+        const currentUser = getCurrentUser();
+        const messages = getChatMessages();
+        const chatKey = [currentUser.email, toEmail].sort().join('_');
+
+        const users = getUsers();
+        const toUser = users.find(u => u.email === toEmail);
+
+        messages.push({
+            chatKey: chatKey,
+            from: currentUser.email,
+            fromName: currentUser.name,
+            to: toEmail,
+            toName: toUser ? toUser.name : 'Member',
+            text: text,
+            time: new Date().toISOString()
+        });
+
+        saveChatMessages(messages);
+
+        if (toUser) {
+            if (!toUser.notifications) toUser.notifications = [];
+            toUser.notifications.unshift({
+                id: 'notif_' + Date.now(),
+                text: '💬 New message from ' + currentUser.name + ': ' + text.substring(0, 50) + (text.length > 50 ? '...' : ''),
+                date: new Date().toISOString(),
+                read: false
+            });
+            const idx = users.findIndex(u => u.email === toEmail);
+            if (idx !== -1) users[idx] = toUser;
+            saveUsers(users);
+        }
+
+        input.value = '';
+        loadChatMessages();
     }
 
     // ============================================================
@@ -1877,6 +2369,12 @@
             const users = getUsers();
             const user = users.find(u => u.email === session.email);
             if (user) {
+                if (user.status === 'suspended') {
+                    alert('❌ Your account has been suspended. Please contact the system owner.');
+                    clearSession();
+                    window.location.reload();
+                    return;
+                }
                 updateUserLevel(user);
                 saveUsers(users);
                 showDashboard();
@@ -1918,6 +2416,15 @@
     window.deleteUser = deleteUser;
     window.filterMembers = filterMembers;
     window.copyReferral = copyReferral;
+    window.updateMemberStatus = updateMemberStatus;
+    window.loadChatUsers = loadChatUsers;
+    window.loadChatMessages = loadChatMessages;
+    window.sendChatMessage = sendChatMessage;
+    window.downloadInvoice = downloadInvoice;
+    window.showSpinner = showSpinner;
+    window.hideSpinner = hideSpinner;
+    window.showMpesaSuccess = showMpesaSuccess;
+    window.closeMpesaSuccess = closeMpesaSuccess;
 </script>
 
 </body>
