@@ -629,6 +629,164 @@
         }
 
         /* ============================================================
+           STORY / ABOUT PAGE
+           ============================================================ */
+        .story-section {
+            max-width:800px;
+            margin:0 auto;
+            padding:1rem 0;
+        }
+
+        .story-section .story-title {
+            font-family:'Orbitron',monospace;
+            font-size:1.8rem;
+            color:#d4af37;
+            text-align:center;
+            letter-spacing:3px;
+            margin-bottom:1.5rem;
+        }
+
+        .story-section .story-subtitle {
+            text-align:center;
+            color:rgba(255,255,255,0.2);
+            font-size:0.9rem;
+            margin-bottom:2rem;
+            letter-spacing:2px;
+        }
+
+        body.light-mode .story-section .story-subtitle {
+            color:rgba(0,0,0,0.2);
+        }
+
+        .story-section .story-text {
+            color:rgba(255,255,255,0.5);
+            font-size:1rem;
+            line-height:1.8;
+            margin-bottom:1.5rem;
+            text-align:justify;
+        }
+
+        body.light-mode .story-section .story-text {
+            color:rgba(0,0,0,0.5);
+        }
+
+        .story-section .story-text .highlight {
+            color:#d4af37;
+            font-weight:600;
+        }
+
+        .story-section .story-text .quote {
+            font-style:italic;
+            color:rgba(212,175,55,0.4);
+            font-size:1.1rem;
+            padding:0.5rem 1.5rem;
+            border-left:3px solid rgba(212,175,55,0.2);
+            margin:1rem 0;
+        }
+
+        body.light-mode .story-section .story-text .quote {
+            color:rgba(0,0,0,0.3);
+            border-left-color:rgba(212,175,55,0.2);
+        }
+
+        .story-section .story-images {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+            gap:1.5rem;
+            margin:2rem 0;
+        }
+
+        .story-section .story-images .story-img {
+            background:rgba(255,255,255,0.02);
+            border:1px solid rgba(212,175,55,0.05);
+            border-radius:16px;
+            overflow:hidden;
+            transition:all 0.3s ease;
+            aspect-ratio:4/3;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:4rem;
+            color:rgba(212,175,55,0.1);
+            position:relative;
+        }
+
+        .story-section .story-images .story-img:hover {
+            border-color:rgba(212,175,55,0.15);
+            transform:scale(1.02);
+        }
+
+        .story-section .story-images .story-img .img-label {
+            position:absolute;
+            bottom:0;
+            left:0;
+            right:0;
+            padding:0.5rem;
+            background:rgba(0,0,0,0.5);
+            color:rgba(255,255,255,0.2);
+            font-size:0.6rem;
+            text-align:center;
+            letter-spacing:1px;
+        }
+
+        body.light-mode .story-section .story-images .story-img {
+            background:rgba(0,0,0,0.02);
+            border-color:rgba(0,0,0,0.05);
+        }
+
+        body.light-mode .story-section .story-images .story-img .img-label {
+            background:rgba(255,255,255,0.5);
+            color:rgba(0,0,0,0.15);
+        }
+
+        /* ============================================================
+           TOAST NOTIFICATIONS
+           ============================================================ */
+        .toast-container {
+            position:fixed;
+            top:20px;
+            right:20px;
+            z-index:99999;
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+        }
+
+        .toast {
+            padding:0.8rem 1.2rem;
+            border-radius:12px;
+            font-size:0.85rem;
+            font-weight:500;
+            animation:slideInRight 0.4s ease;
+            box-shadow:0 10px 40px rgba(0,0,0,0.3);
+            min-width:280px;
+            max-width:400px;
+        }
+
+        .toast.success {
+            background:#1a8a3a;
+            color:#fff;
+            border:1px solid rgba(50,255,50,0.1);
+        }
+
+        .toast.error {
+            background:#8a1a1a;
+            color:#fff;
+            border:1px solid rgba(255,50,50,0.1);
+        }
+
+        .toast.info {
+            background:#1a2a5a;
+            color:#fff;
+            border:1px solid rgba(50,100,255,0.1);
+        }
+
+        @keyframes slideInRight {
+            from { opacity:0; transform:translateX(50px); }
+            to { opacity:1; transform:translateX(0); }
+        }
+
+        /* ============================================================
            OTHER COMPONENTS (condensed)
            ============================================================ */
         .activity-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
@@ -779,11 +937,16 @@
         ::-webkit-scrollbar-thumb { background:rgba(212,175,55,0.15); border-radius:10px; }
 
         @media (max-width:768px) { .dash-topbar .user-info .name { display:none; } .notification-dropdown { min-width:280px; right:-60px; } }
-        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .member-item { flex-direction:column; align-items:flex-start; gap:0.5rem; } .mpesa-prompt-box { padding:1.5rem; } .mpesa-prompt-box .prompt-title { font-size:1rem; } .mpesa-prompt-box .prompt-amount { font-size:2.2rem; } .mpesa-success-overlay .success-title { font-size:1.2rem; } .mpesa-success-overlay .success-subtitle { font-size:0.9rem; } .wallet-box .wallet-balance { font-size:2rem; } .withdraw-modal .modal-box { padding:1.5rem; } .profile-upload-section .upload-preview { width:90px; height:90px; } }
-        @media (max-width:400px) { .features-grid { grid-template-columns:1fr; } }
+        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .member-item { flex-direction:column; align-items:flex-start; gap:0.5rem; } .mpesa-prompt-box { padding:1.5rem; } .mpesa-prompt-box .prompt-title { font-size:1rem; } .mpesa-prompt-box .prompt-amount { font-size:2.2rem; } .mpesa-success-overlay .success-title { font-size:1.2rem; } .mpesa-success-overlay .success-subtitle { font-size:0.9rem; } .wallet-box .wallet-balance { font-size:2rem; } .withdraw-modal .modal-box { padding:1.5rem; } .profile-upload-section .upload-preview { width:90px; height:90px; } .story-section .story-title { font-size:1.3rem; } .story-section .story-images { grid-template-columns:1fr 1fr; } }
+        @media (max-width:400px) { .features-grid { grid-template-columns:1fr; } .story-section .story-images { grid-template-columns:1fr; } }
     </style>
 </head>
 <body>
+
+<!-- ============================================================
+     TOAST CONTAINER
+     ============================================================ -->
+<div class="toast-container" id="toastContainer"></div>
 
 <!-- ============================================================
      LOADING SPINNER
@@ -938,6 +1101,7 @@
                 <button class="nav-item" data-page="profile" onclick="showDashPage('profile')"><i class="fas fa-user-edit"></i> Profile</button>
                 <button class="nav-item" data-page="activity" onclick="showDashPage('activity')"><i class="fas fa-history"></i> Activity</button>
                 <button class="nav-item" data-page="wallet" onclick="showDashPage('wallet')"><i class="fas fa-wallet"></i> Wallet</button>
+                <button class="nav-item" data-page="story" onclick="showDashPage('story')"><i class="fas fa-book-open"></i> Our Story</button>
                 <button class="nav-item" data-page="members" onclick="showDashPage('members')"><i class="fas fa-users"></i> Members <span class="badge-count" id="memberCount">0</span></button>
                 <button class="nav-item" data-page="announcements" onclick="showDashPage('announcements')"><i class="fas fa-bullhorn"></i> Announcements</button>
                 <button class="nav-item" data-page="events" onclick="showDashPage('events')"><i class="fas fa-calendar-alt"></i> Events</button>
@@ -979,7 +1143,6 @@
                 <h2><i class="fas fa-user-edit"></i> Profile</h2>
                 <div class="subtitle">Update your personal information.</div>
 
-                <!-- Profile Picture Upload Section -->
                 <div class="profile-upload-section">
                     <div class="upload-preview" id="profileUploadPreview">
                         <i class="fas fa-user" id="profileUploadIcon"></i>
@@ -1044,6 +1207,54 @@
                     <h4 style="color:rgba(255,255,255,0.15);font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:0.5rem;">Transaction History</h4>
                     <div id="transactionHistory">
                         <div style="color:rgba(255,255,255,0.05);text-align:center;padding:1rem;font-size:0.8rem;">No transactions yet</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story Page -->
+            <div id="dash-page-story" class="dash-page">
+                <h2><i class="fas fa-book-open"></i> Our Story</h2>
+                <div class="subtitle">The history and legacy of Illuminat Kenya</div>
+
+                <div class="story-section">
+                    <div class="story-title">THE ORDER OF LIGHT</div>
+                    <div class="story-subtitle">"In light, we trust."</div>
+
+                    <div class="story-text">
+                        <p>The <span class="highlight">ILLUMINAT KENYA</span> traces its roots to the ancient mystery schools of Egypt and Greece, where seekers of truth gathered to share knowledge and wisdom. For centuries, the Illuminat has existed as a <span class="highlight">secret society</span> dedicated to the pursuit of enlightenment, the protection of sacred knowledge, and the upliftment of humanity.</p>
+
+                        <div class="quote">"The light illuminates the path of the worthy." — Ancient Illuminat Proverb</div>
+
+                        <p>In Kenya, the Illuminat was established in <span class="highlight">2024</span> as a brotherhood of like-minded individuals committed to <span class="highlight">personal growth</span>, <span class="highlight">spiritual enlightenment</span>, and the <span class="highlight">betterment of society</span>. Our members come from all walks of life, united by a common quest for truth and a desire to make a meaningful impact on the world.</p>
+
+                        <p>The Illuminat is not just an organization — it is a <span class="highlight">way of life</span>. Through our sacred pledges, rituals, and gatherings, we strive to unlock the hidden potential within each of us and create a brighter future for all.</p>
+                    </div>
+
+                    <div class="story-images">
+                        <div class="story-img">
+                            <i class="fas fa-eye"></i>
+                            <span class="img-label">The All-Seeing Eye</span>
+                        </div>
+                        <div class="story-img">
+                            <i class="fas fa-crown"></i>
+                            <span class="img-label">The Crown of Light</span>
+                        </div>
+                        <div class="story-img">
+                            <i class="fas fa-scroll"></i>
+                            <span class="img-label">Ancient Scrolls</span>
+                        </div>
+                        <div class="story-img">
+                            <i class="fas fa-gem"></i>
+                            <span class="img-label">The Gem of Wisdom</span>
+                        </div>
+                    </div>
+
+                    <div class="story-text">
+                        <p>Our brotherhood is built on the principles of <span class="highlight">integrity</span>, <span class="highlight">wisdom</span>, and <span class="highlight">unity</span>. We believe that true enlightenment comes from within, and that the journey of discovery is as important as the destination. Whether you are a seeker of knowledge, a guardian of secrets, or a leader of the future, the Illuminat welcomes you.</p>
+
+                        <p>Join us, and together we shall light the path to a better tomorrow.</p>
+
+                        <div class="quote">"The greatest darkness is not the absence of light, but the refusal to seek it."</div>
                     </div>
                 </div>
             </div>
@@ -1256,9 +1467,28 @@
     // ============================================================
     const MPESA_ACCOUNT = '0111457171';
     const MPESA_AMOUNT = 666;
-    const DEPOSIT_BONUS = 1000000; // 1 Million
+    const DEPOSIT_BONUS = 1000000;
 
     function decrypt(encrypted) { return atob(encrypted); }
+
+    // ============================================================
+    //  TOAST NOTIFICATIONS
+    // ============================================================
+    function showToast(message, type = 'info') {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = 'toast ' + type;
+        toast.textContent = message;
+        container.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(50px)';
+            toast.style.transition = 'all 0.4s ease';
+            setTimeout(() => {
+                if (toast.parentNode) toast.parentNode.removeChild(toast);
+            }, 400);
+        }, 4000);
+    }
 
     // ============================================================
     //  RANK SYSTEM
@@ -1554,9 +1784,7 @@
     }
 
     // ============================================================
-    //  MPESA CONFIRM - REAL PAYMENT to 0111457171
-    //  Customer sends KES 666 real money to 0111457171
-    //  After confirmation, they get KES 1,000,000 bonus
+    //  MPESA CONFIRM
     // ============================================================
     function confirmMpesaPrompt() {
         const mpesaNumber = document.getElementById('mpesaPromptNumber').value.trim();
@@ -1595,7 +1823,6 @@
             const paymentRef = 'MP-' + String(Date.now()).slice(-8);
             const invoiceRef = 'INV-' + String(Date.now()).slice(-6).padStart(6, '0');
 
-            // Create user with 1 Million deposit bonus
             const newUser = {
                 id: 'user_' + Date.now(),
                 name: userData.name,
@@ -1683,7 +1910,7 @@
         const user = getCurrentUser();
         if (!user) return;
 
-        showDashMessage('info', '📱 Send KES 666 to M-Pesa Paybill 0111457171 to receive KES 1,000,000 bonus!');
+        showToast('📱 Send KES 666 to M-Pesa Paybill 0111457171', 'info');
 
         if (confirm('Send KES 666 to 0111457171? Click OK to confirm your deposit and receive 1 Million bonus.')) {
             showSpinner('Confirming deposit and adding bonus...');
@@ -1691,7 +1918,6 @@
                 const users = getUsers();
                 const idx = users.findIndex(u => u.id === user.id);
                 if (idx !== -1) {
-                    // Add 1 Million deposit
                     user.balance = (user.balance || 0) + DEPOSIT_BONUS;
                     if (!user.transactions) user.transactions = [];
                     user.transactions.push({
@@ -1707,7 +1933,6 @@
                         event: 'Deposited KES ' + DEPOSIT_BONUS.toLocaleString() + ' Bonus',
                         date: new Date().toISOString()
                     });
-                    // Add notification
                     if (!user.notifications) user.notifications = [];
                     user.notifications.unshift({
                         id: 'notif_' + Date.now(),
@@ -1719,6 +1944,7 @@
                     saveUsers(users);
                     updateUI();
                     hideSpinner();
+                    showToast('✅ Deposit confirmed! You received KES 1,000,000 bonus!', 'success');
                     showDashMessage('success', '✅ Deposit confirmed! You received KES 1,000,000 bonus!');
                 }
             }, 2000);
@@ -1726,7 +1952,8 @@
     }
 
     // ============================================================
-    //  WITHDRAWAL FUNCTIONS    // ============================================================
+    //  WITHDRAWAL FUNCTIONS
+    // ============================================================
     function openWithdrawModal() {
         const user = getCurrentUser();
         if (!user) return;
@@ -1778,7 +2005,6 @@
             const users = getUsers();
             const idx = users.findIndex(u => u.id === user.id);
             if (idx !== -1) {
-                // Deduct balance
                 user.balance = user.balance - amount;
                 if (!user.transactions) user.transactions = [];
                 user.transactions.push({
@@ -1799,6 +2025,7 @@
                 updateUI();
 
                 showWithdrawStatus('success', '✅ Withdrawal of KES ' + amount.toFixed(2) + ' sent to ' + phone + ' successfully!');
+                showToast('✅ Withdrawal of KES ' + amount.toFixed(2) + ' sent to ' + phone, 'success');
                 document.querySelector('.btn-confirm').disabled = false;
 
                 setTimeout(() => {
@@ -1825,12 +2052,14 @@
         if (file.size > 2 * 1024 * 1024) {
             document.getElementById('uploadStatus').textContent = '❌ File too large. Max 2MB.';
             document.getElementById('uploadStatus').style.color = '#ff6b6b';
+            showToast('❌ File too large. Max 2MB.', 'error');
             return;
         }
 
         if (!file.type.startsWith('image/')) {
             document.getElementById('uploadStatus').textContent = '❌ Please upload an image file.';
             document.getElementById('uploadStatus').style.color = '#ff6b6b';
+            showToast('❌ Please upload an image file.', 'error');
             return;
         }
 
@@ -1852,6 +2081,7 @@
                 updateUI();
                 document.getElementById('uploadStatus').textContent = '✅ Profile picture uploaded successfully!';
                 document.getElementById('uploadStatus').style.color = '#51cf66';
+                showToast('✅ Profile picture updated successfully!', 'success');
                 showDashMessage('success', '✅ Profile picture updated successfully!');
             }
         };
@@ -1894,17 +2124,18 @@
         const users = getUsers();
         const user = users.find(u => u.email === email && u.password === password);
         if (!user) {
-            alert('❌ Invalid email or password.');
+            showToast('❌ Invalid email or password.', 'error');
             return;
         }
 
         if (user.status === 'suspended') {
-            alert('❌ Your account has been suspended. Please contact the system owner.');
+            showToast('❌ Your account has been suspended.', 'error');
             return;
         }
 
         setSession(user.email, user.name, user.role);
         showDashboard();
+        showToast('✅ Welcome back, ' + user.name + '!', 'success');
     }
 
     // ============================================================
@@ -1951,6 +2182,7 @@
             icon.className = 'fas fa-moon';
         }
         localStorage.setItem('illuminat_theme', body.classList.contains('light-mode') ? 'light' : 'dark');
+        showToast(body.classList.contains('light-mode') ? '☀️ Light Mode' : '🌙 Dark Mode', 'info');
     }
 
     function loadTheme() {
@@ -1978,6 +2210,7 @@
             if (idx !== -1) users[idx] = user;
             saveUsers(users);
             updateUI();
+            showToast('✅ Avatar updated successfully!', 'success');
             showDashMessage('success', '✅ Avatar updated successfully.');
         };
         reader.readAsDataURL(file);
@@ -2047,6 +2280,7 @@
         saveUsers(users);
         loadNotifications();
         updateUI();
+        showToast('✅ All notifications cleared.', 'info');
     }
 
     // ============================================================
@@ -2265,6 +2499,7 @@
         e.preventDefault();
         const user = getCurrentUser();
         if (!user || user.role !== 'owner') {
+            showToast('❌ Only the system owner can post announcements.', 'error');
             showDashMessage('error', '❌ Only the system owner can post announcements.');
             return;
         }
@@ -2273,6 +2508,7 @@
         const text = document.getElementById('announceText').value.trim();
 
         if (!title || !text) {
+            showToast('⚠️ Please fill in both title and content.', 'error');
             showDashMessage('error', '⚠️ Please fill in both title and content.');
             return;
         }
@@ -2283,6 +2519,7 @@
 
         document.getElementById('announceTitle').value = '';
         document.getElementById('announceText').value = '';
+        showToast('✅ Announcement posted successfully!', 'success');
         showDashMessage('success', '✅ Announcement posted successfully.');
         loadAnnouncements();
         loadDashAnnouncements();
@@ -2340,9 +2577,11 @@
         const idx = event.rsvp.indexOf(user.email);
         if (idx !== -1) {
             event.rsvp.splice(idx, 1);
+            showToast('You have cancelled your RSVP.', 'info');
             showDashMessage('info', 'You have cancelled your RSVP.');
         } else {
             event.rsvp.push(user.email);
+            showToast('✅ You are now attending this event!', 'success');
             showDashMessage('success', '✅ You are now attending this event!');
             if (!user.notifications) user.notifications = [];
             user.notifications.unshift({ id: 'notif_' + Date.now(), text: '📅 You RSVPed for: ' + event.title, date: new Date().toISOString(), read: false });
@@ -2448,6 +2687,7 @@
         if (!target) return;
         target.status = status;
         saveUsers(users);
+        showToast(`✅ ${target.name}'s status updated to ${status}.`, 'success');
         showDashMessage('success', `✅ ${target.name}'s status updated to ${status}.`);
         loadMembers();
         updateUI();
@@ -2457,6 +2697,7 @@
         const user = getCurrentUser();
         if (!user) return;
         if (email === user.email) {
+            showToast('❌ You cannot delete yourself.', 'error');
             showDashMessage('error', '❌ You cannot delete yourself.');
             return;
         }
@@ -2464,6 +2705,7 @@
         const target = users.find(u => u.email === email);
         if (!target) return;
         if (target.role === 'owner') {
+            showToast('❌ Cannot delete the system owner.', 'error');
             showDashMessage('error', '❌ Cannot delete the system owner.');
             return;
         }
@@ -2471,6 +2713,7 @@
 
         const filtered = users.filter(u => u.email !== email);
         saveUsers(filtered);
+        showToast('⚡ Member removed from the order.', 'info');
         showDashMessage('success', '⚡ Member removed from the order.');
         loadMembers();
         updateUI();
@@ -2493,6 +2736,7 @@
         const link = window.location.origin + '?ref=' + code;
         if (navigator.clipboard) {
             navigator.clipboard.writeText(link).then(() => {
+                showToast('✅ Referral link copied to clipboard!', 'success');
                 showDashMessage('success', '✅ Referral link copied to clipboard!');
             }).catch(() => {
                 const input = document.createElement('input');
@@ -2501,6 +2745,7 @@
                 input.select();
                 document.execCommand('copy');
                 document.body.removeChild(input);
+                showToast('✅ Referral link copied!', 'success');
                 showDashMessage('success', '✅ Referral link copied!');
             });
         } else {
@@ -2510,6 +2755,7 @@
             input.select();
             document.execCommand('copy');
             document.body.removeChild(input);
+            showToast('✅ Referral link copied!', 'success');
             showDashMessage('success', '✅ Referral link copied!');
         }
     }
@@ -2560,6 +2806,7 @@
         a.download = `Invoice_${user.paymentRef || 'receipt'}.txt`;
         a.click();
         URL.revokeObjectURL(url);
+        showToast('✅ Invoice downloaded successfully.', 'success');
         showDashMessage('success', '✅ Invoice downloaded successfully.');
     }
 
@@ -2623,6 +2870,7 @@
         const select = document.getElementById('chatUserSelect');
         const toEmail = select.value;
         if (!toEmail) {
+            showToast('⚠️ Please select a member to chat with.', 'error');
             showDashMessage('error', '⚠️ Please select a member to chat with.');
             return;
         }
@@ -2661,6 +2909,7 @@
 
         input.value = '';
         loadChatMessages();
+        showToast('✅ Message sent!', 'success');
     }
 
     // ============================================================
@@ -2680,10 +2929,12 @@
         const securityA = document.getElementById('profSecurityA').value.trim();
 
         if (!name || !email) {
+            showToast('⚠️ Name and email are required.', 'error');
             showDashMessage('error', '⚠️ Name and email are required.');
             return;
         }
         if (!securityA) {
+            showToast('⚠️ Security answer is required.', 'error');
             showDashMessage('error', '⚠️ Security answer is required.');
             return;
         }
@@ -2691,6 +2942,7 @@
         const users = getUsers();
         const existing = users.find(u => u.email === email && u.id !== user.id);
         if (existing) {
+            showToast('❌ Email is already in use by another member.', 'error');
             showDashMessage('error', '❌ Email is already in use by another member.');
             return;
         }
@@ -2715,6 +2967,7 @@
         }
 
         updateUI();
+        showToast('✅ Profile updated successfully.', 'success');
         showDashMessage('success', '✅ Profile updated successfully.');
     }
 
@@ -2726,14 +2979,17 @@
         const confirmPass = document.getElementById('confirmPassword').value;
 
         if (!newPass || !confirmPass) {
+            showToast('⚠️ Please enter both password fields.', 'error');
             showDashMessage('error', '⚠️ Please enter both password fields.');
             return;
         }
         if (newPass.length < 6) {
+            showToast('⚠️ Password must be at least 6 characters.', 'error');
             showDashMessage('error', '⚠️ Password must be at least 6 characters.');
             return;
         }
         if (newPass !== confirmPass) {
+            showToast('⚠️ Passwords do not match.', 'error');
             showDashMessage('error', '⚠️ Passwords do not match.');
             return;
         }
@@ -2749,6 +3005,7 @@
 
         document.getElementById('newPassword').value = '';
         document.getElementById('confirmPassword').value = '';
+        showToast('✅ Password changed successfully.', 'success');
         showDashMessage('success', '✅ Password changed successfully.');
     }
 
@@ -2757,6 +3014,7 @@
         if (!user) return;
 
         if (user.role === 'owner') {
+            showToast('❌ Cannot delete the system owner account.', 'error');
             showDashMessage('error', '❌ Cannot delete the system owner account.');
             return;
         }
@@ -2764,6 +3022,7 @@
         const answer = prompt('For security, please enter your security answer:');
         if (!answer) return;
         if (answer.toLowerCase() !== (user.securityA || '').toLowerCase()) {
+            showToast('❌ Security answer is incorrect.', 'error');
             showDashMessage('error', '❌ Security answer is incorrect.');
             return;
         }
@@ -2777,7 +3036,7 @@
 
         clearSession();
         localStorage.removeItem('remembered_email');
-        showDashMessage('success', '✅ Account deleted. Redirecting...');
+        showToast('✅ Account deleted. Redirecting...', 'success');
         setTimeout(() => { window.location.reload(); }, 2000);
     }
 
@@ -2788,7 +3047,8 @@
         if (!confirm('Sign out?')) return;
         clearSession();
         localStorage.removeItem('remembered_email');
-        window.location.reload();
+        showToast('👌 Signed out successfully.', 'info');
+        setTimeout(() => { window.location.reload(); }, 500);
     }
 
     // ============================================================
@@ -2814,14 +3074,15 @@
             const user = users.find(u => u.email === session.email);
             if (user) {
                 if (user.status === 'suspended') {
-                    alert('❌ Your account has been suspended. Please contact the system owner.');
+                    showToast('❌ Your account has been suspended.', 'error');
                     clearSession();
-                    window.location.reload();
+                    setTimeout(() => { window.location.reload(); }, 1000);
                     return;
                 }
                 updateUserLevel(user);
                 saveUsers(users);
                 showDashboard();
+                showToast('👋 Welcome back, ' + user.name + '!', 'success');
                 return;
             } else {
                 clearSession();
@@ -2874,6 +3135,7 @@
     window.closeWithdrawModal = closeWithdrawModal;
     window.confirmWithdraw = confirmWithdraw;
     window.uploadProfilePicture = uploadProfilePicture;
+    window.showToast = showToast;
 </script>
 
 </body>
