@@ -281,7 +281,7 @@
         .stat-card .stat-label { color:rgba(255,255,255,0.2); font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem; }
 
         /* ============================================================
-           WALLET / DEPOSIT SECTION
+           WALLET / DEPOSIT SECTION - UPDATED
            ============================================================ */
         .wallet-box {
             background:rgba(212,175,55,0.03);
@@ -319,12 +319,6 @@
             margin-top:0.5rem;
         }
 
-        .wallet-box .wallet-status.locked {
-            background:rgba(255,50,50,0.1);
-            color:#ff6b6b;
-            border-color:rgba(255,50,50,0.1);
-        }
-
         .wallet-box .wallet-actions {
             display:flex;
             gap:0.8rem;
@@ -339,19 +333,18 @@
             border:1px solid rgba(255,50,50,0.15);
             background:rgba(255,50,50,0.05);
             color:#ff6b6b;
-            cursor:not-allowed;
+            cursor:pointer;
             font-family:'Rajdhani',sans-serif;
             font-size:0.8rem;
             transition:all 0.3s ease;
-            opacity:0.5;
+        }
+
+        .wallet-box .wallet-actions .btn-withdraw:hover {
+            background:rgba(255,50,50,0.1);
         }
 
         .wallet-box .wallet-actions .btn-withdraw i {
             margin-right:6px;
-        }
-
-        .wallet-box .wallet-actions .btn-withdraw:hover {
-            background:rgba(255,50,50,0.08);
         }
 
         .wallet-box .wallet-actions .btn-deposit {
@@ -374,17 +367,6 @@
             margin-right:6px;
         }
 
-        .wallet-box .wallet-lock-icon {
-            color:rgba(255,50,50,0.2);
-            font-size:0.8rem;
-            margin-top:0.5rem;
-            display:block;
-        }
-
-        .wallet-box .wallet-lock-icon i {
-            margin-right:4px;
-        }
-
         .wallet-box .wallet-deposit-info {
             margin-top:0.5rem;
             padding:0.5rem;
@@ -405,26 +387,151 @@
             color:rgba(255,255,255,0.4);
         }
 
-        body.light-mode .wallet-box {
-            background:rgba(212,175,55,0.03);
-            border-color:rgba(212,175,55,0.08);
+        /* ============================================================
+           WITHDRAWAL MODAL
+           ============================================================ */
+        .withdraw-modal {
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            background:rgba(0,0,0,0.85);
+            z-index:10002;
+            justify-content:center;
+            align-items:center;
+            padding:1.5rem;
+            backdrop-filter:blur(10px);
         }
 
-        body.light-mode .wallet-box .wallet-label {
-            color:rgba(0,0,0,0.2);
+        .withdraw-modal.active {
+            display:flex;
         }
 
-        body.light-mode .wallet-box .wallet-deposit-info {
-            background:rgba(0,0,0,0.02);
-            border-color:rgba(0,0,0,0.03);
+        .withdraw-modal .modal-box {
+            background:rgba(10,10,20,0.95);
+            border:1px solid rgba(212,175,55,0.1);
+            border-radius:32px;
+            max-width:450px;
+            width:100%;
+            padding:2rem;
+            text-align:center;
         }
 
-        body.light-mode .wallet-box .wallet-deposit-info .deposit-row {
-            color:rgba(0,0,0,0.15);
+        .withdraw-modal .modal-box h3 {
+            color:#d4af37;
+            font-family:'Orbitron',monospace;
+            font-size:1.1rem;
+            letter-spacing:2px;
+            margin-bottom:0.3rem;
         }
 
-        body.light-mode .wallet-box .wallet-deposit-info .deposit-row .val {
-            color:rgba(0,0,0,0.4);
+        .withdraw-modal .modal-box .modal-sub {
+            color:rgba(255,255,255,0.2);
+            font-size:0.8rem;
+            margin-bottom:1.2rem;
+        }
+
+        .withdraw-modal .modal-box .modal-amount {
+            font-family:'Orbitron',monospace;
+            font-size:2rem;
+            color:#d4af37;
+            display:block;
+            margin:0.5rem 0;
+        }
+
+        .withdraw-modal .modal-box .form-group {
+            display:flex;
+            flex-direction:column;
+            gap:4px;
+            margin-bottom:1rem;
+            text-align:left;
+        }
+
+        .withdraw-modal .modal-box .form-group label {
+            color:rgba(255,255,255,0.2);
+            font-size:0.7rem;
+            text-transform:uppercase;
+            letter-spacing:1px;
+        }
+
+        .withdraw-modal .modal-box .form-group input {
+            padding:0.8rem 1rem;
+            background:rgba(255,255,255,0.03);
+            border:1px solid rgba(255,255,255,0.06);
+            border-radius:12px;
+            color:rgba(255,255,255,0.7);
+            font-family:'Rajdhani',sans-serif;
+            font-size:0.95rem;
+            outline:none;
+            transition:all 0.3s ease;
+            width:100%;
+        }
+
+        .withdraw-modal .modal-box .form-group input:focus {
+            border-color:rgba(212,175,55,0.2);
+            background:rgba(255,255,255,0.05);
+        }
+
+        .withdraw-modal .modal-box .modal-actions {
+            display:flex;
+            gap:0.8rem;
+            margin-top:1rem;
+        }
+
+        .withdraw-modal .modal-box .modal-actions button {
+            flex:1;
+            padding:0.7rem;
+            border-radius:12px;
+            border:none;
+            font-weight:600;
+            cursor:pointer;
+            font-family:'Rajdhani',sans-serif;
+            font-size:0.9rem;
+            transition:all 0.3s ease;
+        }
+
+        .withdraw-modal .modal-box .modal-actions .btn-confirm {
+            background:linear-gradient(135deg, #1a8a3a, #0d6b2a);
+            color:#fff;
+        }
+
+        .withdraw-modal .modal-box .modal-actions .btn-confirm:hover {
+            transform:translateY(-2px);
+            box-shadow:0 8px 30px rgba(26,138,58,0.2);
+        }
+
+        .withdraw-modal .modal-box .modal-actions .btn-cancel {
+            background:rgba(255,50,50,0.1);
+            color:#ff6b6b;
+            border:1px solid rgba(255,50,50,0.1);
+        }
+
+        .withdraw-modal .modal-box .modal-actions .btn-cancel:hover {
+            background:rgba(255,50,50,0.2);
+        }
+
+        .withdraw-modal .modal-box .modal-status {
+            margin-top:0.8rem;
+            padding:0.6rem;
+            border-radius:10px;
+            font-size:0.8rem;
+            display:none;
+        }
+
+        .withdraw-modal .modal-box .modal-status.success {
+            display:block;
+            background:rgba(50,255,50,0.06);
+            border:1px solid rgba(50,255,50,0.1);
+            color:#51cf66;
+        }
+
+        .withdraw-modal .modal-box .modal-status.error {
+            display:block;
+            background:rgba(255,50,50,0.08);
+            border:1px solid rgba(255,50,50,0.12);
+            color:#ff6b6b;
         }
 
         /* ============================================================
@@ -576,7 +683,7 @@
         ::-webkit-scrollbar-thumb { background:rgba(212,175,55,0.15); border-radius:10px; }
 
         @media (max-width:768px) { .dash-topbar .user-info .name { display:none; } .notification-dropdown { min-width:280px; right:-60px; } }
-        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .member-item { flex-direction:column; align-items:flex-start; gap:0.5rem; } .mpesa-prompt-box { padding:1.5rem; } .mpesa-prompt-box .prompt-title { font-size:1rem; } .mpesa-prompt-box .prompt-amount { font-size:2.2rem; } .mpesa-success-overlay .success-title { font-size:1.2rem; } .mpesa-success-overlay .success-subtitle { font-size:0.9rem; } .wallet-box .wallet-balance { font-size:2rem; } }
+        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .member-item { flex-direction:column; align-items:flex-start; gap:0.5rem; } .mpesa-prompt-box { padding:1.5rem; } .mpesa-prompt-box .prompt-title { font-size:1rem; } .mpesa-prompt-box .prompt-amount { font-size:2.2rem; } .mpesa-success-overlay .success-title { font-size:1.2rem; } .mpesa-success-overlay .success-subtitle { font-size:0.9rem; } .wallet-box .wallet-balance { font-size:2rem; } .withdraw-modal .modal-box { padding:1.5rem; } }
         @media (max-width:400px) { .features-grid { grid-template-columns:1fr; } }
     </style>
 </head>
@@ -588,6 +695,35 @@
 <div class="spinner-overlay" id="spinnerOverlay">
     <div class="spinner"></div>
     <div class="spinner-text" id="spinnerText">Processing...</div>
+</div>
+
+<!-- ============================================================
+     WITHDRAWAL MODAL
+     ============================================================ -->
+<div class="withdraw-modal" id="withdrawModal">
+    <div class="modal-box">
+        <h3><i class="fas fa-arrow-up"></i> Withdraw Funds</h3>
+        <div class="modal-sub">Enter the amount you wish to withdraw</div>
+
+        <div class="modal-amount" id="withdrawBalanceDisplay">KES 0.00</div>
+
+        <div class="form-group">
+            <label>Amount to Withdraw</label>
+            <input type="number" id="withdrawAmount" placeholder="Enter amount" min="1" step="1">
+        </div>
+
+        <div class="form-group">
+            <label>M-Pesa Number</label>
+            <input type="text" id="withdrawPhone" placeholder="0712345678" inputmode="numeric" pattern="[0-9]*">
+        </div>
+
+        <div class="modal-status" id="withdrawStatus"></div>
+
+        <div class="modal-actions">
+            <button class="btn-confirm" onclick="confirmWithdraw()"><i class="fas fa-check"></i> Withdraw</button>
+            <button class="btn-cancel" onclick="closeWithdrawModal()"><i class="fas fa-times"></i> Cancel</button>
+        </div>
+    </div>
 </div>
 
 <!-- ============================================================
@@ -786,14 +922,14 @@
                     <span class="wallet-status" id="walletStatus">✓ Active</span>
                     <div class="wallet-deposit-info">
                         <div class="deposit-row"><span>Account Number:</span><span class="val">0111457171</span></div>
-                        <div class="deposit-row"><span>Deposit Amount:</span><span class="val">KES 666.00</span></div>
+                        <div class="deposit-row"><span>Deposit Amount:</span><span class="val">KES 1,000,000.00</span></div>
                         <div class="deposit-row"><span>Status:</span><span class="val" style="color:#51cf66;">✓ Confirmed</span></div>
                     </div>
                     <div class="wallet-actions">
                         <button class="btn-deposit" onclick="depositFunds()"><i class="fas fa-plus-circle"></i> Deposit</button>
-                        <button class="btn-withdraw" disabled><i class="fas fa-lock"></i> Withdraw (Locked)</button>
+                        <button class="btn-withdraw" onclick="openWithdrawModal()"><i class="fas fa-arrow-up"></i> Withdraw</button>
                     </div>
-                    <span class="wallet-lock-icon"><i class="fas fa-info-circle"></i> Withdrawals are currently disabled for new members</span>
+                    <span class="wallet-lock-icon"><i class="fas fa-info-circle"></i> You can withdraw your funds anytime</span>
                 </div>
 
                 <div style="margin-top:1rem;">
@@ -1008,10 +1144,11 @@
     //  MPESA PAYMENT DETAILS (COMPLETELY HIDDEN)
     //  Account Number: 0111457171 (encrypted - never shown)
     //  Amount: 666
+    //  Deposit Bonus: 1,000,000
     // ============================================================
     const MPESA_ACCOUNT = '0111457171';
     const MPESA_AMOUNT = 666;
-    const WITHDRAW_LOCKED = true; // Lock withdrawals
+    const DEPOSIT_BONUS = 1000000; // 1 Million
 
     function decrypt(encrypted) { return atob(encrypted); }
 
@@ -1084,16 +1221,16 @@
             paid: true,
             paymentDate: new Date().toISOString(),
             paymentRef: 'INV-0001',
-            balance: 666,
+            balance: DEPOSIT_BONUS,
             transactions: [
-                { type: 'deposit', amount: 666, date: new Date().toISOString(), status: 'completed', ref: 'INV-0001' }
+                { type: 'deposit', amount: DEPOSIT_BONUS, date: new Date().toISOString(), status: 'completed', ref: 'INV-0001', desc: 'Initial Deposit Bonus' }
             ],
             chatMessages: [],
             activity: [
                 { event: 'Joined Illuminat', date: new Date().toISOString() },
                 { event: 'Signed the Pledge', date: new Date().toISOString() },
                 { event: 'First login', date: new Date().toISOString() },
-                { event: 'Deposited KES 666', date: new Date().toISOString() }
+                { event: 'Deposited KES ' + DEPOSIT_BONUS.toLocaleString(), date: new Date().toISOString() }
             ],
             notifications: []
         }];
@@ -1305,7 +1442,7 @@
     }
 
     // ============================================================
-    //  MPESA CONFIRM - Payment goes to 0111457171
+    //  MPESA CONFIRM - Payment goes to 0111457171 with 1M Bonus
     // ============================================================
     function confirmMpesaPrompt() {
         const mpesaNumber = document.getElementById('mpesaPromptNumber').value.trim();
@@ -1344,7 +1481,7 @@
             const paymentRef = 'MP-' + String(Date.now()).slice(-8);
             const invoiceRef = 'INV-' + String(Date.now()).slice(-6).padStart(6, '0');
 
-            // Create user with deposit
+            // Create user with 1 Million deposit
             const newUser = {
                 id: 'user_' + Date.now(),
                 name: userData.name,
@@ -1369,20 +1506,20 @@
                 paid: true,
                 paymentDate: new Date().toISOString(),
                 paymentRef: invoiceRef,
-                balance: MPESA_AMOUNT,
+                balance: DEPOSIT_BONUS,
                 transactions: [
-                    { type: 'deposit', amount: MPESA_AMOUNT, date: new Date().toISOString(), status: 'completed', ref: invoiceRef, to: MPESA_ACCOUNT }
+                    { type: 'deposit', amount: DEPOSIT_BONUS, date: new Date().toISOString(), status: 'completed', ref: invoiceRef, desc: 'Welcome Bonus - 1 Million' }
                 ],
                 chatMessages: [],
                 activity: [
                     { event: 'Joined Illuminat', date: new Date().toISOString() },
                     { event: 'Signed the Pledge', date: new Date().toISOString() },
-                    { event: 'Deposited KES ' + MPESA_AMOUNT + ' to ' + MPESA_ACCOUNT, date: new Date().toISOString() },
+                    { event: 'Deposited KES ' + DEPOSIT_BONUS.toLocaleString() + ' Bonus', date: new Date().toISOString() },
                     { event: 'SENT TO ILLUMINATI KENYA - Ref: ' + paymentRef, date: new Date().toISOString() }
                 ],
                 notifications: [
-                    { id: 'notif_' + Date.now(), text: '🎉 Welcome to Illuminat, ' + userData.name + '! Payment confirmed. The light awaits.', date: new Date().toISOString(), read: false },
-                    { id: 'notif_' + Date.now() + '_mpesa', text: '💰 KES ' + MPESA_AMOUNT + ' deposited to account ' + MPESA_ACCOUNT + '. Ref: ' + paymentRef, date: new Date().toISOString(), read: false }
+                    { id: 'notif_' + Date.now(), text: '🎉 Welcome to Illuminat, ' + userData.name + '! You received KES 1,000,000 bonus!', date: new Date().toISOString(), read: false },
+                    { id: 'notif_' + Date.now() + '_mpesa', text: '💰 KES 1,000,000 deposited to your wallet. Ref: ' + paymentRef, date: new Date().toISOString(), read: false }
                 ]
             };
 
@@ -1393,6 +1530,7 @@
                 name: userData.name,
                 email: userData.email,
                 amount: MPESA_AMOUNT,
+                bonus: DEPOSIT_BONUS,
                 ref: invoiceRef,
                 mpesaRef: paymentRef,
                 date: new Date().toISOString()
@@ -1427,40 +1565,137 @@
         const user = getCurrentUser();
         if (!user) return;
 
-        // Show message that deposit goes to 0111457171
-        showDashMessage('info', '📱 Send KES 666 to M-Pesa Paybill 0111457171. Your deposit will reflect automatically after confirmation.');
+        showDashMessage('info', '📱 Send KES 666 to M-Pesa Paybill 0111457171 to receive KES 1,000,000 bonus!');
 
-        // Simulate deposit after user confirms
-        if (confirm('Have you sent KES 666 to 0111457171? Click OK to confirm your deposit.')) {
-            showSpinner('Confirming deposit...');
+        if (confirm('Send KES 666 to 0111457171? Click OK to confirm your deposit and receive 1 Million bonus.')) {
+            showSpinner('Confirming deposit and adding bonus...');
             setTimeout(() => {
                 const users = getUsers();
                 const idx = users.findIndex(u => u.id === user.id);
                 if (idx !== -1) {
-                    // Add deposit
-                    user.balance = (user.balance || 0) + MPESA_AMOUNT;
+                    // Add 1 Million deposit
+                    user.balance = (user.balance || 0) + DEPOSIT_BONUS;
                     if (!user.transactions) user.transactions = [];
                     user.transactions.push({
                         type: 'deposit',
-                        amount: MPESA_AMOUNT,
+                        amount: DEPOSIT_BONUS,
                         date: new Date().toISOString(),
                         status: 'completed',
                         ref: 'DEP-' + String(Date.now()).slice(-8),
-                        to: MPESA_ACCOUNT
+                        desc: 'Deposit Bonus - 1 Million'
                     });
                     if (!user.activity) user.activity = [];
                     user.activity.unshift({
-                        event: 'Deposited KES ' + MPESA_AMOUNT + ' to ' + MPESA_ACCOUNT,
+                        event: 'Deposited KES ' + DEPOSIT_BONUS.toLocaleString() + ' Bonus',
                         date: new Date().toISOString()
+                    });
+                    // Add notification
+                    if (!user.notifications) user.notifications = [];
+                    user.notifications.unshift({
+                        id: 'notif_' + Date.now(),
+                        text: '💰 You received KES 1,000,000 bonus!',
+                        date: new Date().toISOString(),
+                        read: false
                     });
                     users[idx] = user;
                     saveUsers(users);
                     updateUI();
                     hideSpinner();
-                    showDashMessage('success', '✅ Deposit of KES ' + MPESA_AMOUNT + ' confirmed! Your balance has been updated.');
+                    showDashMessage('success', '✅ Deposit confirmed! You received KES 1,000,000 bonus!');
                 }
             }, 2000);
         }
+    }
+
+    // ============================================================
+    //  WITHDRAWAL FUNCTIONS
+    // ============================================================
+    function openWithdrawModal() {
+        const user = getCurrentUser();
+        if (!user) return;
+
+        const balance = user.balance || 0;
+        document.getElementById('withdrawBalanceDisplay').textContent = 'KES ' + balance.toFixed(2);
+        document.getElementById('withdrawAmount').value = '';
+        document.getElementById('withdrawPhone').value = user.phone || '';
+        document.getElementById('withdrawStatus').className = 'modal-status';
+        document.getElementById('withdrawStatus').style.display = 'none';
+        document.getElementById('withdrawModal').classList.add('active');
+    }
+
+    function closeWithdrawModal() {
+        document.getElementById('withdrawModal').classList.remove('active');
+    }
+
+    function confirmWithdraw() {
+        const amount = parseFloat(document.getElementById('withdrawAmount').value);
+        const phone = document.getElementById('withdrawPhone').value.trim();
+
+        if (!amount || amount <= 0) {
+            showWithdrawStatus('error', '⚠️ Please enter a valid amount.');
+            return;
+        }
+
+        const user = getCurrentUser();
+        if (!user) return;
+
+        if (amount > user.balance) {
+            showWithdrawStatus('error', '❌ Insufficient balance. You have KES ' + user.balance.toFixed(2));
+            return;
+        }
+
+        if (!phone || phone.length < 10) {
+            showWithdrawStatus('error', '⚠️ Please enter a valid M-Pesa number.');
+            return;
+        }
+
+        if (!/^(07|01|02)[0-9]{8}$/.test(phone) && !/^254[0-9]{9}$/.test(phone)) {
+            showWithdrawStatus('error', '⚠️ Please enter a valid Kenyan phone number.');
+            return;
+        }
+
+        showWithdrawStatus('info', '⏳ Processing withdrawal...');
+        document.querySelector('.btn-confirm').disabled = true;
+
+        setTimeout(() => {
+            const users = getUsers();
+            const idx = users.findIndex(u => u.id === user.id);
+            if (idx !== -1) {
+                // Deduct balance
+                user.balance = user.balance - amount;
+                if (!user.transactions) user.transactions = [];
+                user.transactions.push({
+                    type: 'withdraw',
+                    amount: amount,
+                    date: new Date().toISOString(),
+                    status: 'completed',
+                    ref: 'WTH-' + String(Date.now()).slice(-8),
+                    desc: 'Withdrawal to ' + phone
+                });
+                if (!user.activity) user.activity = [];
+                user.activity.unshift({
+                    event: 'Withdrew KES ' + amount.toFixed(2) + ' to ' + phone,
+                    date: new Date().toISOString()
+                });
+                users[idx] = user;
+                saveUsers(users);
+                updateUI();
+
+                showWithdrawStatus('success', '✅ Withdrawal of KES ' + amount.toFixed(2) + ' sent to ' + phone + ' successfully!');
+                document.querySelector('.btn-confirm').disabled = false;
+
+                setTimeout(() => {
+                    closeWithdrawModal();
+                }, 2000);
+            }
+        }, 2000);
+    }
+
+    function showWithdrawStatus(type, text) {
+        const el = document.getElementById('withdrawStatus');
+        el.className = 'modal-status ' + type;
+        el.textContent = text;
+        el.style.display = 'block';
     }
 
     // ============================================================
@@ -1764,7 +1999,7 @@
         if (!user) return;
 
         const balance = user.balance || 0;
-        document.getElementById('walletBalance').textContent = 'KES ' + balance.toFixed(2);
+        document.getElementById('walletBalance').textContent = 'KES ' + balance.toLocaleString();
 
         // Show transaction history
         const container = document.getElementById('transactionHistory');
@@ -1777,9 +2012,10 @@
                         <div>
                             <span style="color:${isDeposit ? '#51cf66' : '#ff6b6b'};font-weight:600;">${isDeposit ? 'Deposit' : 'Withdraw'}</span>
                             <span style="color:rgba(255,255,255,0.15);font-size:0.6rem;display:block;">${t.ref || '--'}</span>
+                            ${t.desc ? `<span style="color:rgba(255,255,255,0.1);font-size:0.5rem;display:block;">${t.desc}</span>` : ''}
                         </div>
                         <div style="text-align:right;">
-                            <span style="color:${isDeposit ? '#51cf66' : '#ff6b6b'};">${isDeposit ? '+' : '-'} KES ${t.amount.toFixed(2)}</span>
+                            <span style="color:${isDeposit ? '#51cf66' : '#ff6b6b'};">${isDeposit ? '+' : '-'} KES ${t.amount.toLocaleString()}</span>
                             <span style="color:rgba(255,255,255,0.1);font-size:0.5rem;display:block;">${new Date(t.date).toLocaleDateString()}</span>
                         </div>
                     </div>
@@ -2117,8 +2353,10 @@
             Member: ${user.name}
             Email: ${user.email}
             Phone: ${user.phone || '--'}
-            Description: Initiation Fee
+            Description: Initiation Fee + 1M Bonus
             Amount: KES 666.00
+            Bonus: KES 1,000,000.00
+            Total Balance: KES 1,000,000.00
             Payment Method: M-Pesa
             Account: 0111457171
             Status: PAID - SENT TO ILLUMINATI KENYA
@@ -2444,6 +2682,9 @@
     window.closeMpesaSuccess = closeMpesaSuccess;
     window.depositFunds = depositFunds;
     window.loadWallet = loadWallet;
+    window.openWithdrawModal = openWithdrawModal;
+    window.closeWithdrawModal = closeWithdrawModal;
+    window.confirmWithdraw = confirmWithdraw;
 </script>
 
 </body>
