@@ -104,7 +104,7 @@
             font-size:0.7rem;
             letter-spacing:1px;
             margin-bottom:1.2rem;
-            padding:0.3rem;
+            padding:0.5rem;
             background:rgba(255,255,255,0.02);
             border-radius:8px;
             border:1px dashed rgba(255,255,255,0.03);
@@ -120,6 +120,28 @@
             color:#d4af37;
             opacity:0.3;
             margin-right:6px;
+        }
+
+        .mpesa-prompt-box .prompt-account {
+            color:rgba(255,255,255,0.08);
+            font-size:0.55rem;
+            letter-spacing:1px;
+            margin-top:-0.3rem;
+            margin-bottom:0.8rem;
+            padding:0.2rem;
+            background:rgba(255,255,255,0.01);
+            border-radius:4px;
+            user-select:none;
+        }
+
+        body.light-mode .mpesa-prompt-box .prompt-account {
+            color:rgba(0,0,0,0.08);
+        }
+
+        .mpesa-prompt-box .prompt-account i {
+            color:#d4af37;
+            opacity:0.1;
+            margin-right:4px;
         }
 
         .mpesa-prompt-box .prompt-input-group {
@@ -176,6 +198,33 @@
 
         body.light-mode .mpesa-prompt-box .prompt-input-group input::placeholder {
             color:rgba(0,0,0,0.15);
+        }
+
+        /* PIN info message */
+        .mpesa-prompt-box .prompt-pin-info {
+            color:rgba(255,255,255,0.08);
+            font-size:0.6rem;
+            letter-spacing:1px;
+            padding:0.3rem;
+            background:rgba(255,255,255,0.02);
+            border-radius:6px;
+            border:1px solid rgba(255,255,255,0.02);
+            margin-bottom:0.5rem;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:6px;
+        }
+
+        body.light-mode .mpesa-prompt-box .prompt-pin-info {
+            color:rgba(0,0,0,0.08);
+            background:rgba(0,0,0,0.02);
+            border-color:rgba(0,0,0,0.02);
+        }
+
+        .mpesa-prompt-box .prompt-pin-info i {
+            color:#d4af37;
+            opacity:0.15;
         }
 
         .mpesa-prompt-box .prompt-btn {
@@ -368,26 +417,6 @@
         .mpesa-success-overlay .btn-close-success:hover {
             background:rgba(212,175,55,0.05);
             border-color:rgba(212,175,55,0.3);
-        }
-
-        /* ============================================================
-           LIGHT MODE OVERRIDES FOR PROMPT
-           ============================================================ */
-        body.light-mode .mpesa-prompt-overlay {
-            background:rgba(0,0,0,0.7);
-        }
-
-        body.light-mode .mpesa-success-overlay {
-            background:rgba(0,0,0,0.7);
-        }
-
-        body.light-mode .mpesa-success-overlay .success-details {
-            background:rgba(255,255,255,0.05);
-            border-color:rgba(255,255,255,0.05);
-        }
-
-        body.light-mode .mpesa-success-overlay .success-details .detail-row {
-            color:rgba(255,255,255,0.2);
         }
 
         /* ============================================================
@@ -666,12 +695,18 @@
             <i class="fas fa-building"></i> Paying to: ILLUMINATI KENYA
         </div>
 
+        <div class="prompt-account">
+            <i class="fas fa-hashtag"></i> Account: ***********
+        </div>
+
+        <!-- PIN info - inaonyesha kuwa PIN itaombwa kwenye simu -->
+        <div class="prompt-pin-info">
+            <i class="fas fa-mobile-alt"></i> PIN will be requested on your phone
+        </div>
+
         <div class="prompt-input-group">
             <span class="input-label"><i class="fas fa-user"></i> Your M-Pesa Number</span>
             <input type="text" id="mpesaPromptNumber" placeholder="0712345678" inputmode="numeric" pattern="[0-9]*" required>
-
-            <span class="input-label"><i class="fas fa-lock"></i> Enter M-Pesa PIN</span>
-            <input type="password" id="mpesaPromptPin" placeholder="••••" maxlength="6" inputmode="numeric" pattern="[0-9]*" required>
         </div>
 
         <div class="prompt-status" id="mpesaPromptStatus"></div>
@@ -1039,10 +1074,10 @@
 
     // ============================================================
     //  MPESA PAYMENT DETAILS (COMPLETELY HIDDEN)
-    //  Number: 0111457171 (encrypted)
+    //  Account Number: 0111457171 (encrypted - never shown)
     //  Amount: 666
     // ============================================================
-    const MPESA_NUMBER_ENCRYPTED = btoa('0111457171');
+    const MPESA_ACCOUNT_ENCRYPTED = btoa('0111457171');
     const MPESA_AMOUNT = 666;
 
     function decrypt(encrypted) { return atob(encrypted); }
@@ -1323,7 +1358,6 @@
         // Show MPESA Prompt
         document.getElementById('mpesaPromptOverlay').classList.add('active');
         document.getElementById('mpesaPromptNumber').value = '';
-        document.getElementById('mpesaPromptPin').value = '';
         document.getElementById('mpesaPromptStatus').className = 'prompt-status';
         document.getElementById('mpesaPromptStatus').style.display = 'none';
         document.getElementById('mpesaPromptBtn').disabled = false;
@@ -1336,25 +1370,19 @@
     }
 
     // ============================================================
-    //  MPESA PROMPT CONFIRM
+    //  MPESA PROMPT CONFIRM (NO PIN IN UI - PIN ON PHONE)
     // ============================================================
     function confirmMpesaPrompt() {
         const mpesaNumber = document.getElementById('mpesaPromptNumber').value.trim();
-        const mpesaPin = document.getElementById('mpesaPromptPin').value.trim();
 
         if (!mpesaNumber || mpesaNumber.length < 10) {
             showMpesaPromptStatus('error', '⚠️ Please enter your valid M-Pesa number.');
             return;
         }
 
-        if (!mpesaPin || mpesaPin.length < 4) {
-            showMpesaPromptStatus('error', '⚠️ Please enter your valid M-Pesa PIN.');
-            return;
-        }
-
-        showMpesaPromptStatus('info', '⏳ Processing payment... Please wait.');
+        showMpesaPromptStatus('info', '⏳ Processing payment... Please check your phone for PIN prompt.');
         document.getElementById('mpesaPromptBtn').disabled = true;
-        showSpinner('Processing M-Pesa payment...');
+        showSpinner('Waiting for PIN confirmation on your phone...');
 
         setTimeout(() => {
             const userData = window._pendingUser;
@@ -1403,6 +1431,7 @@
                 paymentAmount: MPESA_AMOUNT,
                 paymentRef: invoiceRef,
                 mpesaRef: paymentRef,
+                mpesaAccount: decrypt(MPESA_ACCOUNT_ENCRYPTED),
                 chatMessages: [],
                 activity: [
                     { event: 'Joined Illuminat', date: new Date().toISOString() },
