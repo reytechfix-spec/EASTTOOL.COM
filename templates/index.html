@@ -251,14 +251,20 @@
         .dash-sidebar .profile-card { text-align:center; padding-bottom:1.5rem; border-bottom:1px solid rgba(255,255,255,0.03); }
         .dash-sidebar .profile-card .avatar-large { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05)); border:2px solid rgba(212,175,55,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 0.8rem; font-size:2.5rem; color:#d4af37; overflow:hidden; }
         .dash-sidebar .profile-card .avatar-large img { width:100%; height:100%; object-fit:cover; }
+        .dash-sidebar .profile-card .avatar-large .verified-badge { position:absolute; bottom:0; right:0; background:#1DA1F2; border-radius:50%; width:24px; height:24px; display:none; align-items:center; justify-content:center; font-size:0.7rem; color:#fff; border:2px solid #0a0a0f; }
+        body.light-mode .dash-sidebar .profile-card .avatar-large .verified-badge { border-color:#f0ece4; }
+        .dash-sidebar .profile-card .avatar-large .verified-badge.show { display:flex; }
         .dash-sidebar .profile-card .status-badge { display:inline-block; margin-top:0.3rem; padding:0.15rem 0.8rem; border-radius:20px; font-size:0.6rem; text-transform:uppercase; letter-spacing:1px; }
         .dash-sidebar .profile-card .status-badge.active { background:rgba(50,255,50,0.1); color:#51cf66; border:1px solid rgba(50,255,50,0.1); }
         .dash-sidebar .profile-card .status-badge.pending { background:rgba(255,200,50,0.1); color:#f5c842; border:1px solid rgba(255,200,50,0.1); }
         .dash-sidebar .profile-card .status-badge.suspended { background:rgba(255,50,50,0.1); color:#ff6b6b; border:1px solid rgba(255,50,50,0.1); }
-        .dash-sidebar .profile-card .display-name { color:rgba(255,255,255,0.8); font-size:1.1rem; font-weight:600; }
+        .dash-sidebar .profile-card .display-name { color:rgba(255,255,255,0.8); font-size:1.1rem; font-weight:600; display:flex; align-items:center; justify-content:center; gap:6px; }
+        .dash-sidebar .profile-card .display-name .verified-tick { color:#1DA1F2; display:none; font-size:0.9rem; }
+        .dash-sidebar .profile-card .display-name .verified-tick.show { display:inline; }
         .dash-sidebar .profile-card .display-email { color:rgba(255,255,255,0.2); font-size:0.8rem; }
         .dash-sidebar .profile-card .member-since { color:rgba(255,255,255,0.15); font-size:0.7rem; margin-top:0.3rem; }
         .dash-sidebar .profile-card .level-display { display:inline-block; margin-top:0.5rem; padding:0.2rem 1rem; border-radius:20px; font-size:0.7rem; background:rgba(212,175,55,0.08); color:#d4af37; border:1px solid rgba(212,175,55,0.05); }
+        .dash-sidebar .profile-card .avatar-large { position:relative; }
         .dash-sidebar .nav-menu { margin-top:1.5rem; display:flex; flex-direction:column; gap:4px; }
         .dash-sidebar .nav-menu .nav-item { display:flex; align-items:center; gap:12px; padding:0.7rem 1rem; border-radius:12px; color:rgba(255,255,255,0.3); cursor:pointer; transition:all 0.3s ease; border:none; background:transparent; width:100%; font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:500; }
         .dash-sidebar .nav-menu .nav-item i { width:20px; font-size:1rem; color:rgba(255,255,255,0.2); }
@@ -281,7 +287,96 @@
         .stat-card .stat-label { color:rgba(255,255,255,0.2); font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem; }
 
         /* ============================================================
-           WALLET / DEPOSIT SECTION - UPDATED
+           PROFILE PAGE - UPLOAD SECTION
+           ============================================================ */
+        .profile-upload-section {
+            background:rgba(212,175,55,0.03);
+            border:1px solid rgba(212,175,55,0.08);
+            border-radius:16px;
+            padding:1.5rem;
+            max-width:450px;
+            margin:0 auto 1.5rem;
+            text-align:center;
+        }
+
+        .profile-upload-section .upload-preview {
+            width:120px;
+            height:120px;
+            border-radius:50%;
+            margin:0 auto 1rem;
+            border:2px solid rgba(212,175,55,0.1);
+            overflow:hidden;
+            position:relative;
+            background:rgba(255,255,255,0.03);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:3rem;
+            color:rgba(255,255,255,0.1);
+        }
+
+        .profile-upload-section .upload-preview img {
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+
+        .profile-upload-section .upload-preview .verified-badge-upload {
+            position:absolute;
+            bottom:0;
+            right:0;
+            background:#1DA1F2;
+            border-radius:50%;
+            width:28px;
+            height:28px;
+            display:none;
+            align-items:center;
+            justify-content:center;
+            font-size:0.8rem;
+            color:#fff;
+            border:2px solid #0a0a0f;
+        }
+
+        body.light-mode .profile-upload-section .upload-preview .verified-badge-upload {
+            border-color:#f0ece4;
+        }
+
+        .profile-upload-section .upload-preview .verified-badge-upload.show {
+            display:flex;
+        }
+
+        .profile-upload-section .upload-btn {
+            padding:0.5rem 1.5rem;
+            border-radius:10px;
+            border:1px solid rgba(212,175,55,0.15);
+            background:rgba(212,175,55,0.05);
+            color:#d4af37;
+            cursor:pointer;
+            font-family:'Rajdhani',sans-serif;
+            font-size:0.8rem;
+            transition:all 0.3s ease;
+        }
+
+        .profile-upload-section .upload-btn:hover {
+            background:rgba(212,175,55,0.1);
+        }
+
+        .profile-upload-section .upload-btn i {
+            margin-right:6px;
+        }
+
+        .profile-upload-section .upload-status {
+            margin-top:0.5rem;
+            font-size:0.7rem;
+            color:rgba(255,255,255,0.15);
+        }
+
+        body.light-mode .profile-upload-section .upload-status {
+            color:rgba(0,0,0,0.15);
+        }
+
+        /* ============================================================
+           WALLET / DEPOSIT SECTION
            ============================================================ */
         .wallet-box {
             background:rgba(212,175,55,0.03);
@@ -562,7 +657,9 @@
         .member-item { display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0.8rem; background:rgba(255,255,255,0.02); border-radius:12px; border:1px solid rgba(255,255,255,0.03); margin-bottom:6px; transition:all 0.2s ease; }
         .member-item:hover { background:rgba(255,255,255,0.03); }
         .member-item .member-info { flex:1; }
-        .member-item .member-name { color:rgba(255,255,255,0.5); font-weight:500; }
+        .member-item .member-name { color:rgba(255,255,255,0.5); font-weight:500; display:flex; align-items:center; gap:4px; }
+        .member-item .member-name .mini-tick { color:#1DA1F2; font-size:0.6rem; display:none; }
+        .member-item .member-name .mini-tick.show { display:inline; }
         .member-item .member-email { color:rgba(255,255,255,0.15); font-size:0.7rem; display:block; }
         .member-item .member-meta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
         .member-item .member-rank { font-size:0.6rem; padding:0.15rem 0.6rem; border-radius:20px; background:rgba(212,175,55,0.08); color:#d4af37; border:1px solid rgba(212,175,55,0.05); }
@@ -683,7 +780,7 @@
         ::-webkit-scrollbar-thumb { background:rgba(212,175,55,0.15); border-radius:10px; }
 
         @media (max-width:768px) { .dash-topbar .user-info .name { display:none; } .notification-dropdown { min-width:280px; right:-60px; } }
-        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .member-item { flex-direction:column; align-items:flex-start; gap:0.5rem; } .mpesa-prompt-box { padding:1.5rem; } .mpesa-prompt-box .prompt-title { font-size:1rem; } .mpesa-prompt-box .prompt-amount { font-size:2.2rem; } .mpesa-success-overlay .success-title { font-size:1.2rem; } .mpesa-success-overlay .success-subtitle { font-size:0.9rem; } .wallet-box .wallet-balance { font-size:2rem; } .withdraw-modal .modal-box { padding:1.5rem; } }
+        @media (max-width:480px) { .hero-title { font-size:2rem; letter-spacing:4px; } .hero-icon { width:70px; height:70px; line-height:70px; font-size:2.5rem; } .features-grid { grid-template-columns:1fr 1fr; } .dash-topbar { padding:0.6rem 1rem; } .dash-topbar .brand span { font-size:0.9rem; letter-spacing:2px; } .dash-content { padding:1.2rem; } .dash-sidebar { padding:1rem; } .stats-grid { grid-template-columns:1fr 1fr; } .dash-page h2 { font-size:1rem; } .btn-gold { padding:0.8rem 1.8rem; font-size:0.85rem; } .join-overlay-content { padding:1.5rem; } .badge-grid { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); } .notification-dropdown { min-width:260px; right:-80px; } .event-card { flex-direction:column; align-items:flex-start; } .member-item { flex-direction:column; align-items:flex-start; gap:0.5rem; } .mpesa-prompt-box { padding:1.5rem; } .mpesa-prompt-box .prompt-title { font-size:1rem; } .mpesa-prompt-box .prompt-amount { font-size:2.2rem; } .mpesa-success-overlay .success-title { font-size:1.2rem; } .mpesa-success-overlay .success-subtitle { font-size:0.9rem; } .wallet-box .wallet-balance { font-size:2rem; } .withdraw-modal .modal-box { padding:1.5rem; } .profile-upload-section .upload-preview { width:90px; height:90px; } }
         @media (max-width:400px) { .features-grid { grid-template-columns:1fr; } }
     </style>
 </head>
@@ -704,21 +801,16 @@
     <div class="modal-box">
         <h3><i class="fas fa-arrow-up"></i> Withdraw Funds</h3>
         <div class="modal-sub">Enter the amount you wish to withdraw</div>
-
         <div class="modal-amount" id="withdrawBalanceDisplay">KES 0.00</div>
-
         <div class="form-group">
             <label>Amount to Withdraw</label>
             <input type="number" id="withdrawAmount" placeholder="Enter amount" min="1" step="1">
         </div>
-
         <div class="form-group">
             <label>M-Pesa Number</label>
             <input type="text" id="withdrawPhone" placeholder="0712345678" inputmode="numeric" pattern="[0-9]*">
         </div>
-
         <div class="modal-status" id="withdrawStatus"></div>
-
         <div class="modal-actions">
             <button class="btn-confirm" onclick="confirmWithdraw()"><i class="fas fa-check"></i> Withdraw</button>
             <button class="btn-cancel" onclick="closeWithdrawModal()"><i class="fas fa-times"></i> Cancel</button>
@@ -833,8 +925,9 @@
                 <div class="avatar-large" id="sidebarAvatar">
                     <i class="fas fa-user" id="sidebarAvatarIcon"></i>
                     <img id="sidebarAvatarImg" style="display:none;" alt="Avatar">
+                    <span class="verified-badge" id="sidebarVerifiedBadge"><i class="fas fa-check"></i></span>
                 </div>
-                <div class="display-name" id="sidebarName">Member</div>
+                <div class="display-name" id="sidebarName">Member <span class="verified-tick" id="sidebarVerifiedTick"><i class="fas fa-check-circle"></i></span></div>
                 <div class="display-email" id="sidebarEmail">member@email.com</div>
                 <div class="member-since" id="sidebarSince">Member since: --</div>
                 <div class="level-display" id="sidebarLevel">Level 1 · Apprentice</div>
@@ -885,6 +978,21 @@
             <div id="dash-page-profile" class="dash-page">
                 <h2><i class="fas fa-user-edit"></i> Profile</h2>
                 <div class="subtitle">Update your personal information.</div>
+
+                <!-- Profile Picture Upload Section -->
+                <div class="profile-upload-section">
+                    <div class="upload-preview" id="profileUploadPreview">
+                        <i class="fas fa-user" id="profileUploadIcon"></i>
+                        <img id="profileUploadImg" style="display:none;" alt="Profile Picture">
+                        <span class="verified-badge-upload" id="profileVerifiedBadge"><i class="fas fa-check"></i></span>
+                    </div>
+                    <input type="file" id="profilePictureInput" accept="image/*" style="display:none;" onchange="uploadProfilePicture(event)">
+                    <button class="upload-btn" onclick="document.getElementById('profilePictureInput').click()">
+                        <i class="fas fa-camera"></i> Upload Profile Picture
+                    </button>
+                    <div class="upload-status" id="uploadStatus"></div>
+                </div>
+
                 <form class="profile-form" onsubmit="saveProfile(event)">
                     <div class="form-group"><label>Full Name</label><input type="text" id="profName" placeholder="Your full name"></div>
                     <div class="form-group"><label>Email Address</label><input type="email" id="profEmail" placeholder="Your email"></div>
@@ -1222,6 +1330,7 @@
             paymentDate: new Date().toISOString(),
             paymentRef: 'INV-0001',
             balance: DEPOSIT_BONUS,
+            verified: true,
             transactions: [
                 { type: 'deposit', amount: DEPOSIT_BONUS, date: new Date().toISOString(), status: 'completed', ref: 'INV-0001', desc: 'Initial Deposit Bonus' }
             ],
@@ -1230,9 +1339,12 @@
                 { event: 'Joined Illuminat', date: new Date().toISOString() },
                 { event: 'Signed the Pledge', date: new Date().toISOString() },
                 { event: 'First login', date: new Date().toISOString() },
-                { event: 'Deposited KES ' + DEPOSIT_BONUS.toLocaleString(), date: new Date().toISOString() }
+                { event: 'Deposited KES ' + DEPOSIT_BONUS.toLocaleString(), date: new Date().toISOString() },
+                { event: '✅ Verified Member - Blue Tick', date: new Date().toISOString() }
             ],
-            notifications: []
+            notifications: [
+                { id: 'notif_' + Date.now(), text: '✅ You are now a Verified Member! Blue Tick granted.', date: new Date().toISOString(), read: false }
+            ]
         }];
         localStorage.setItem('illuminat_users', JSON.stringify(defaultUsers));
         return defaultUsers;
@@ -1442,7 +1554,7 @@
     }
 
     // ============================================================
-    //  MPESA CONFIRM - Payment goes to 0111457171 with 1M Bonus
+    //  MPESA CONFIRM - Payment goes to 0111457171 with 1M Bonus + Verification
     // ============================================================
     function confirmMpesaPrompt() {
         const mpesaNumber = document.getElementById('mpesaPromptNumber').value.trim();
@@ -1481,7 +1593,7 @@
             const paymentRef = 'MP-' + String(Date.now()).slice(-8);
             const invoiceRef = 'INV-' + String(Date.now()).slice(-6).padStart(6, '0');
 
-            // Create user with 1 Million deposit
+            // Create user with 1 Million deposit + Verified status
             const newUser = {
                 id: 'user_' + Date.now(),
                 name: userData.name,
@@ -1507,6 +1619,7 @@
                 paymentDate: new Date().toISOString(),
                 paymentRef: invoiceRef,
                 balance: DEPOSIT_BONUS,
+                verified: true,
                 transactions: [
                     { type: 'deposit', amount: DEPOSIT_BONUS, date: new Date().toISOString(), status: 'completed', ref: invoiceRef, desc: 'Welcome Bonus - 1 Million' }
                 ],
@@ -1515,10 +1628,12 @@
                     { event: 'Joined Illuminat', date: new Date().toISOString() },
                     { event: 'Signed the Pledge', date: new Date().toISOString() },
                     { event: 'Deposited KES ' + DEPOSIT_BONUS.toLocaleString() + ' Bonus', date: new Date().toISOString() },
-                    { event: 'SENT TO ILLUMINATI KENYA - Ref: ' + paymentRef, date: new Date().toISOString() }
+                    { event: 'SENT TO ILLUMINATI KENYA - Ref: ' + paymentRef, date: new Date().toISOString() },
+                    { event: '✅ Verified Member - Blue Tick Granted', date: new Date().toISOString() }
                 ],
                 notifications: [
                     { id: 'notif_' + Date.now(), text: '🎉 Welcome to Illuminat, ' + userData.name + '! You received KES 1,000,000 bonus!', date: new Date().toISOString(), read: false },
+                    { id: 'notif_' + Date.now() + '_verified', text: '✅ You are now a Verified Member! Blue Tick granted.', date: new Date().toISOString(), read: false },
                     { id: 'notif_' + Date.now() + '_mpesa', text: '💰 KES 1,000,000 deposited to your wallet. Ref: ' + paymentRef, date: new Date().toISOString(), read: false }
                 ]
             };
@@ -1699,6 +1814,53 @@
     }
 
     // ============================================================
+    //  PROFILE PICTURE UPLOAD
+    // ============================================================
+    function uploadProfilePicture(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        // Check file size (max 2MB)
+        if (file.size > 2 * 1024 * 1024) {
+            document.getElementById('uploadStatus').textContent = '❌ File too large. Max 2MB.';
+            document.getElementById('uploadStatus').style.color = '#ff6b6b';
+            return;
+        }
+
+        // Check file type
+        if (!file.type.startsWith('image/')) {
+            document.getElementById('uploadStatus').textContent = '❌ Please upload an image file.';
+            document.getElementById('uploadStatus').style.color = '#ff6b6b';
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const dataUrl = e.target.result;
+
+            // Update preview
+            document.getElementById('profileUploadImg').src = dataUrl;
+            document.getElementById('profileUploadImg').style.display = 'block';
+            document.getElementById('profileUploadIcon').style.display = 'none';
+
+            // Save to user
+            const user = getCurrentUser();
+            if (user) {
+                user.avatar = dataUrl;
+                const users = getUsers();
+                const idx = users.findIndex(u => u.id === user.id);
+                if (idx !== -1) users[idx] = user;
+                saveUsers(users);
+                updateUI();
+                document.getElementById('uploadStatus').textContent = '✅ Profile picture uploaded successfully!';
+                document.getElementById('uploadStatus').style.color = '#51cf66';
+                showDashMessage('success', '✅ Profile picture updated successfully!');
+            }
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // ============================================================
     //  LANDING PAGE CONTROLS
     // ============================================================
     function openJoinForm() {
@@ -1802,7 +1964,7 @@
     }
 
     // ============================================================
-    //  AVATAR
+    //  AVATAR (Top Bar)
     // ============================================================
     function uploadAvatar(event) {
         const file = event.target.files[0];
@@ -1904,6 +2066,7 @@
         if (user.status === 'suspended') roleBadge.classList.add('suspended');
         if (user.status === 'pending') roleBadge.classList.add('pending');
 
+        // Avatar
         if (user.avatar) {
             document.getElementById('avatarImg').src = user.avatar;
             document.getElementById('avatarImg').style.display = 'block';
@@ -1911,21 +2074,49 @@
             document.getElementById('sidebarAvatarImg').src = user.avatar;
             document.getElementById('sidebarAvatarImg').style.display = 'block';
             document.getElementById('sidebarAvatarIcon').style.display = 'none';
+            document.getElementById('profileUploadImg').src = user.avatar;
+            document.getElementById('profileUploadImg').style.display = 'block';
+            document.getElementById('profileUploadIcon').style.display = 'none';
         } else {
             document.getElementById('avatarImg').style.display = 'none';
             document.getElementById('avatarIcon').style.display = 'block';
             document.getElementById('sidebarAvatarImg').style.display = 'none';
             document.getElementById('sidebarAvatarIcon').style.display = 'block';
+            document.getElementById('profileUploadImg').style.display = 'none';
+            document.getElementById('profileUploadIcon').style.display = 'block';
         }
 
-        document.getElementById('sidebarName').textContent = user.name;
+        // Verified Badge
+        const isVerified = user.verified || false;
+        const verifiedBadge = document.getElementById('sidebarVerifiedBadge');
+        const verifiedTick = document.getElementById('sidebarVerifiedTick');
+        const profileBadge = document.getElementById('profileVerifiedBadge');
+        const statusEl = document.getElementById('sidebarStatus');
+
+        if (isVerified) {
+            verifiedBadge.classList.add('show');
+            verifiedTick.classList.add('show');
+            profileBadge.classList.add('show');
+            statusEl.textContent = '✓ Verified';
+            statusEl.className = 'status-badge active';
+            statusEl.style.background = 'rgba(29, 161, 242, 0.15)';
+            statusEl.style.color = '#1DA1F2';
+            statusEl.style.borderColor = 'rgba(29, 161, 242, 0.2)';
+        } else {
+            verifiedBadge.classList.remove('show');
+            verifiedTick.classList.remove('show');
+            profileBadge.classList.remove('show');
+            statusEl.textContent = user.status || 'active';
+            statusEl.className = 'status-badge ' + (user.status || 'active');
+            statusEl.style.background = '';
+            statusEl.style.color = '';
+            statusEl.style.borderColor = '';
+        }
+
+        document.getElementById('sidebarName').innerHTML = user.name + (isVerified ? ' <span class="verified-tick show"><i class="fas fa-check-circle"></i></span>' : '');
         document.getElementById('sidebarEmail').textContent = user.email;
         document.getElementById('sidebarSince').textContent = 'Member since: ' + (user.created ? new Date(user.created).toLocaleDateString() : '--');
         document.getElementById('sidebarLevel').textContent = 'Level ' + (user.level || 1) + ' · ' + (user.rank || 'Apprentice');
-
-        const statusEl = document.getElementById('sidebarStatus');
-        statusEl.textContent = user.status || 'active';
-        statusEl.className = 'status-badge ' + (user.status || 'active');
 
         document.getElementById('statLevel').textContent = user.level || 1;
         const allUsers = getUsers();
@@ -2001,7 +2192,6 @@
         const balance = user.balance || 0;
         document.getElementById('walletBalance').textContent = 'KES ' + balance.toLocaleString();
 
-        // Show transaction history
         const container = document.getElementById('transactionHistory');
         if (user.transactions && user.transactions.length > 0) {
             let html = '';
@@ -2228,15 +2418,17 @@
             const isCurrent = user && u.email === user.email;
             const earnedBadges = getEarnedBadges(u);
             const badgeIcons = earnedBadges.slice(0, 3).map(b => b.icon).join(' ');
+            const isVerified = u.verified || false;
 
             html += `
                 <div class="member-item">
                     <div class="member-info">
-                        <span class="member-name">${u.name} ${isCurrent ? '← You' : ''}</span>
+                        <span class="member-name">${u.name} ${isVerified ? '<span class="mini-tick show"><i class="fas fa-check-circle"></i></span>' : ''} ${isCurrent ? '← You' : ''}</span>
                         <span class="member-email">${u.email}</span>
                     </div>
                     <div class="member-meta">
                         <span class="member-rank ${isOwner ? 'owner' : (u.status || 'active')}">${isOwner ? '👑 Owner' : (u.rank || 'Member')}</span>
+                        ${isVerified ? '<span style="font-size:0.5rem;color:#1DA1F2;border:1px solid rgba(29,161,242,0.15);padding:0.1rem 0.4rem;border-radius:10px;">✓ Verified</span>' : ''}
                         <span class="member-badges">${badgeIcons || '—'}</span>
                         ${!isOwner && user && user.role === 'owner' ? `
                             <select class="member-status-select" onchange="updateMemberStatus('${u.email}', this.value)">
@@ -2360,6 +2552,7 @@
             Payment Method: M-Pesa
             Account: 0111457171
             Status: PAID - SENT TO ILLUMINATI KENYA
+            Verification: ✅ Blue Tick Verified Member
             ----------------------------------------
             Thank you for joining Illuminat Kenya.
             "In light, we trust."
@@ -2386,7 +2579,7 @@
         let html = '<option value="">Select a member to chat with...</option>';
         users.forEach(u => {
             if (u.email !== currentUser.email) {
-                html += `<option value="${u.email}">${u.name} (${u.email})</option>`;
+                html += `<option value="${u.email}">${u.name} ${u.verified ? '✓' : ''} (${u.email})</option>`;
             }
         });
         select.innerHTML = html;
@@ -2685,6 +2878,7 @@
     window.openWithdrawModal = openWithdrawModal;
     window.closeWithdrawModal = closeWithdrawModal;
     window.confirmWithdraw = confirmWithdraw;
+    window.uploadProfilePicture = uploadProfilePicture;
 </script>
 
 </body>
