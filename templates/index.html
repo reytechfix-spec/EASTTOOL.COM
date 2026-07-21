@@ -45,8 +45,64 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
+        /* ========== LOGO BACKGROUND (EASY TOOL) ========== */
+        .logo-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            opacity: 0.04;
+        }
+
+        .logo-bg .logo-text-bg {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 25vw;
+            letter-spacing: -0.04em;
+            line-height: 0.85;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 0 0 80px rgba(255, 42, 117, 0.1);
+            user-select: none;
+            white-space: nowrap;
+            transform: rotate(-8deg) scale(1.2);
+            animation: floatBg 30s ease-in-out infinite;
+        }
+
+        .logo-bg .logo-text-bg .highlight-bg {
+            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-bg .logo-text-bg .sub-bg {
+            display: block;
+            font-size: 0.2em;
+            font-weight: 300;
+            letter-spacing: 0.5em;
+            color: var(--text-muted);
+            -webkit-text-fill-color: var(--text-muted);
+            margin-top: -0.3em;
+            opacity: 0.6;
+        }
+
+        @keyframes floatBg {
+            0%, 100% { transform: rotate(-8deg) scale(1.2) translateY(0); }
+            50% { transform: rotate(-8deg) scale(1.25) translateY(-20px); }
+        }
+
+        /* ========== SCROLLBAR ========== */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -66,6 +122,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .section-title {
@@ -1084,6 +1142,10 @@
             .section-title {
                 font-size: 2.2rem;
             }
+
+            .logo-bg .logo-text-bg {
+                font-size: 20vw;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1140,6 +1202,11 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .logo-bg .logo-text-bg {
+                font-size: 15vw;
+                transform: rotate(-5deg) scale(1.1);
+            }
         }
 
         @media (max-width: 480px) {
@@ -1170,10 +1237,24 @@
                 width: 100%;
                 justify-content: center;
             }
+
+            .logo-bg .logo-text-bg {
+                font-size: 12vw;
+                transform: rotate(-3deg) scale(1);
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- ==================== LOGO BACKGROUND ==================== -->
+    <div class="logo-bg">
+        <div class="logo-text-bg">
+            EASY
+            <span class="highlight-bg">TOOL</span>
+            <span class="sub-bg">SIMPLE · FAST · POWERFUL</span>
+        </div>
+    </div>
 
     <!-- ==================== NAVBAR ==================== -->
     <nav class="navbar" id="navbar">
@@ -1733,19 +1814,15 @@
         });
 
         // ========== TERMINAL TYPING EFFECT ==========
-        // Simple typing effect for the terminal
         document.addEventListener('DOMContentLoaded', () => {
             const lines = document.querySelectorAll('.terminal-body .line');
             let delay = 0;
             lines.forEach(line => {
-                // Skip the last line with cursor
                 if (line.querySelector('.typing-cursor')) {
                     return;
                 }
                 const text = line.textContent;
                 if (text.trim() === '') return;
-
-                // Only animate if not already visible
                 if (!line.style.opacity) {
                     line.style.opacity = '0';
                     setTimeout(() => {
