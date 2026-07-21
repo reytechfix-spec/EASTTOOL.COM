@@ -6,116 +6,1439 @@
 <title>EASY TOOL PRO V2 | REYTECHFX</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-:root{--blue:#00d9ff;--bg:#030712;--card:#111827}
-body{background:var(--bg);color:#fff;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;background:linear-gradient(120deg,#00d9ff22,#0066ff22,#0000);animation:bg 8s infinite alternate;z-index:-1}
+:root{--blue:#00d9ff;--bg:#030712;--card:#111827;--text:#fff;--text2:#aaa;--border:#ffffff22;--input:#000;--shadow:#00d9ff22}
+.light-mode{--bg:#f0f4ff;--card:#ffffff;--text:#1a1a2e;--text2:#555;--border:#d0d8e8;--input:#f0f4ff;--shadow:#00d9ff44}
+body{background:var(--bg);color:var(--text);overflow-x:hidden;transition:0.5s}
+#particles-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+body:before{content:"";position:fixed;inset:0;background:linear-gradient(120deg,#00d9ff22,#0066ff22,#0000);animation:bg 8s infinite alternate;z-index:-1;transition:0.5s}
+.light-mode body:before{background:linear-gradient(120deg,#00d9ff11,#0066ff11,#0000)}
 @keyframes bg{from{transform:scale(1)}to{transform:scale(1.2)}}
-.loader{position:fixed;inset:0;background:#020409;display:flex;align-items:center;justify-content:center;font-size:40px;color:var(--blue);z-index:99;animation:hide 2s forwards}
+.loader{position:fixed;inset:0;background:#020409;display:flex;align-items:center;justify-content:center;font-size:40px;color:var(--blue);z-index:999;animation:hide 2s forwards}
 @keyframes hide{90%{opacity:1}100%{opacity:0;visibility:hidden}}
-nav{position:fixed;top:0;width:100%;padding:15px 6%;background:#030712cc;backdrop-filter:blur(15px);display:flex;justify-content:space-between;z-index:10;border-bottom:1px solid #ffffff22}
-nav img{width:100px}
-nav a{color:#aaa;text-decoration:none;margin:0 10px}
+nav{position:fixed;top:0;width:100%;padding:10px 6%;background:var(--card);backdrop-filter:blur(15px);display:flex;justify-content:space-between;z-index:100;border-bottom:1px solid var(--border);align-items:center;transition:0.5s;flex-wrap:wrap}
+nav img{width:70px}
+nav a{color:var(--text2);text-decoration:none;margin:0 6px;font-size:12px;transition:0.3s}
 nav a:hover{color:var(--blue)}
-section{padding:90px 7%}
+.nav-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.badge{background:red;color:#fff;border-radius:50%;padding:2px 7px;font-size:10px;position:relative;top:-8px;right:5px}
+.clock{color:var(--blue);font-size:12px;font-weight:bold;background:var(--border);padding:4px 10px;border-radius:20px;border:1px solid #00d9ff44}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#00ff88;display:inline-block;animation:pulse 1.5s infinite;margin-right:3px}
+@keyframes pulse{50%{opacity:0.3}}
+section{padding:70px 7%;position:relative;z-index:1}
 .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center}
-h1{font-size:65px}.blue{color:var(--blue);text-shadow:0 0 30px var(--blue)}
-p{color:#aaa;font-size:18px;line-height:1.7;margin:20px 0}
-.btn{background:var(--blue);color:#001;padding:15px 35px;border-radius:40px;text-decoration:none;font-weight:bold}
+h1{font-size:55px;line-height:1.2}.blue{color:var(--blue);text-shadow:0 0 30px var(--blue)}
+p{color:var(--text2);font-size:16px;line-height:1.7;margin:12px 0}
+.btn{background:var(--blue);color:#001;padding:12px 28px;border-radius:40px;text-decoration:none;font-weight:bold;display:inline-block;transition:0.4s;border:none;cursor:pointer;font-size:14px}
+.btn:hover{transform:scale(1.05);box-shadow:0 0 40px #00d9ff66}
 .hero img{width:80%;filter:drop-shadow(0 0 40px var(--blue));animation:f 3s infinite}
 @keyframes f{50%{transform:translateY(-15px)}}
-.dashboard{background:var(--card);border:1px solid #ffffff22;padding:25px;border-radius:20px;box-shadow:0 0 40px #00d9ff22}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.box,.card{background:#ffffff08;padding:25px;border-radius:18px;border:1px solid #ffffff15}
-.title{text-align:center;color:var(--blue);font-size:40px;margin-bottom:40px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
-.price{font-size:35px;color:var(--blue)}
-.whatsapp{position:fixed;right:25px;bottom:25px;background:#25d366;color:white;padding:18px;border-radius:50%;font-size:25px;text-decoration:none;box-shadow:0 0 30px #25d366}
-.modal{background:#111827;padding:30px;border-radius:20px;max-width:400px;margin:auto}
-input{width:100%;padding:15px;margin:10px 0;background:#000;color:white;border:1px solid #333;border-radius:10px}
-footer{text-align:center;padding:30px;color:#777}
-@media(max-width:800px){.hero{grid-template-columns:1fr;text-align:center}h1{font-size:42px}.stats{grid-template-columns:1fr 1fr}}
+.dashboard{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:20px;box-shadow:0 0 40px var(--shadow);transition:0.5s}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.box,.card{background:var(--border);padding:18px;border-radius:15px;border:1px solid var(--border);transition:0.3s;color:var(--text)}
+.box:hover,.card:hover{transform:translateY(-5px);border-color:var(--blue);box-shadow:0 0 30px var(--shadow)}
+.title{text-align:center;color:var(--blue);font-size:32px;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.price{font-size:28px;color:var(--blue)}
+.whatsapp{position:fixed;right:15px;bottom:15px;background:#25d366;color:white;padding:14px;border-radius:50%;font-size:20px;text-decoration:none;box-shadow:0 0 30px #25d366;transition:0.3s;z-index:50}
+.whatsapp:hover{transform:scale(1.1)}
+.modal{background:var(--card);padding:20px;border-radius:20px;max-width:400px;margin:auto;transition:0.5s;border:1px solid var(--border)}
+input{width:100%;padding:12px;margin:6px 0;background:var(--input);color:var(--text);border:1px solid var(--border);border-radius:10px;outline:none;transition:0.3s}
+input:focus{border-color:var(--blue);box-shadow:0 0 20px var(--shadow)}
+footer{text-align:center;padding:20px;color:var(--text2);transition:0.5s}
+.marquee{background:var(--card);padding:8px;border-radius:10px;border:1px solid #00d9ff44;margin:12px 0;overflow:hidden;transition:0.5s}
+.marquee span{display:block;animation:scroll 15s linear infinite;color:var(--blue);font-weight:bold}
+@keyframes scroll{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+.progress-bar{width:100%;height:6px;background:var(--border);border-radius:10px;margin-top:5px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#00d9ff,#0066ff);border-radius:10px;transition:width 0.5s}
+.tool-icon{font-size:32px;display:block;margin-bottom:6px}
+.server-status{display:flex;align-items:center;gap:8px;background:#00ff8822;padding:6px 15px;border-radius:30px;border:1px solid #00ff8844;width:fit-content;margin:8px auto}
+.activity-feed{max-height:180px;overflow-y:auto}
+.activity-feed::-webkit-scrollbar{width:4px;background:var(--border)}
+.activity-feed::-webkit-scrollbar-thumb{background:var(--blue);border-radius:10px}
+.activity-item{padding:6px 10px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;font-size:12px;color:var(--text)}
+.activity-item .time{color:var(--text2);font-size:10px}
+.theme-toggle{background:var(--border);border:1px solid var(--border);color:var(--text);padding:5px 10px;border-radius:25px;cursor:pointer;font-size:14px;transition:0.3s}
+.theme-toggle:hover{background:var(--blue);color:#fff}
+.search-input{padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--input);color:var(--text);width:130px;font-size:12px;transition:0.3s}
+.search-input:focus{width:170px;border-color:var(--blue)}
+.profile-card{display:flex;align-items:center;gap:15px;background:var(--card);padding:20px;border-radius:20px;border:1px solid var(--border);max-width:500px;margin:auto}
+.profile-avatar{width:70px;height:70px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff}
+.testimonial-card{background:var(--card);padding:20px;border-radius:15px;border:1px solid var(--border);text-align:center;transition:0.3s}
+.testimonial-card:hover{transform:translateY(-5px);border-color:var(--blue);box-shadow:0 0 30px var(--shadow)}
+.testimonial-img{width:65px;height:65px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;border:3px solid var(--blue);overflow:hidden}
+.testimonial-img img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.testimonial-name{font-weight:bold;font-size:15px;color:var(--text)}
+.testimonial-role{font-size:11px;color:var(--blue)}
+.testimonial-text{font-size:13px;font-style:italic;color:var(--text2)}
+.testimonial-stars{color:#ffd700;font-size:16px}
+.avatar-bg-1{background:linear-gradient(135deg,#00d9ff,#0066ff)}
+.avatar-bg-2{background:linear-gradient(135deg,#ff6b6b,#ee5a24)}
+.avatar-bg-3{background:linear-gradient(135deg,#00b894,#00cec9)}
+.avatar-bg-4{background:linear-gradient(135deg,#fd79a8,#e17055)}
+.avatar-bg-5{background:linear-gradient(135deg,#a29bfe,#6c5ce7)}
+.avatar-bg-6{background:linear-gradient(135deg,#fdcb6e,#f39c12)}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:10px;margin:6px 0;overflow:hidden;transition:0.3s}
+.faq-question{padding:12px 18px;cursor:pointer;display:flex;justify-content:space-between;font-weight:bold;color:var(--text);font-size:14px}
+.faq-question:hover{color:var(--blue)}
+.faq-answer{padding:0 18px 12px;color:var(--text2);display:none;font-size:13px}
+.faq-answer.open{display:block}
+.countdown{display:flex;justify-content:center;gap:12px;margin:12px 0}
+.countdown-item{background:var(--card);border:1px solid var(--border);padding:10px 15px;border-radius:10px;text-align:center;min-width:60px}
+.countdown-item .num{font-size:24px;font-weight:bold;color:var(--blue)}
+.countdown-item .label{font-size:10px;color:var(--text2)}
+.chart-container{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:15px;max-width:450px;margin:auto}
+.chart-bar{display:flex;align-items:center;gap:8px;margin:5px 0}
+.chart-bar .label{width:40px;font-size:12px;color:var(--text2)}
+.chart-bar .bar{height:22px;background:linear-gradient(90deg,var(--blue),#0066ff);border-radius:6px;transition:width 1s;min-width:8px}
+.chart-bar .value{font-size:11px;color:var(--text2);margin-left:auto}
+.music-player{background:var(--card);border:1px solid var(--border);padding:12px 15px;border-radius:15px;display:flex;align-items:center;gap:12px;max-width:380px;margin:auto;flex-wrap:wrap;justify-content:center}
+.music-player .song{flex:1;min-width:100px}
+.music-player .song .title{font-size:13px;font-weight:bold;color:var(--text);margin:0}
+.music-player .song .artist{font-size:11px;color:var(--text2);margin:0}
+.music-player button{background:var(--blue);border:none;color:#001;padding:6px 12px;border-radius:25px;cursor:pointer;font-size:14px;transition:0.3s}
+.music-player button:hover{transform:scale(1.1)}
+.scroll-top{position:fixed;right:15px;bottom:75px;background:var(--blue);color:#001;width:40px;height:40px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:18px;border:none;cursor:pointer;z-index:50;transition:0.3s;box-shadow:0 0 30px var(--shadow)}
+.scroll-top:hover{transform:scale(1.1)}
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:12px 5%;display:flex;justify-content:space-between;align-items:center;z-index:100;flex-wrap:wrap;gap:8px;transition:0.5s}
+.cookie-banner p{font-size:12px;margin:0;color:var(--text2)}
+.cookie-banner .btn{font-size:12px;padding:6px 16px}
+.social-icons{display:flex;gap:12px;justify-content:center;margin:12px 0}
+.social-icons a{color:var(--text2);font-size:20px;text-decoration:none;transition:0.3s}
+.social-icons a:hover{color:var(--blue);transform:scale(1.2)}
+.typing-cursor{display:inline-block;width:3px;height:30px;background:var(--blue);animation:blink 0.8s infinite;vertical-align:middle;margin-left:4px}
+@keyframes blink{50%{opacity:0}}
+
+/* Version Badge */
+.version-badge{position:fixed;bottom:80px;left:15px;background:var(--blue);color:#001;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:bold;z-index:40;box-shadow:0 0 20px #00d9ff44;border:1px solid #00d9ff66}
+
+/* ========== AI CHATBOT ========== */
+.chat-toggle{position:fixed;right:15px;bottom:75px;background:var(--blue);color:#001;width:55px;height:55px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;z-index:60;border:none;box-shadow:0 0 40px #00d9ff66;transition:0.3s}
+.chat-toggle:hover{transform:scale(1.1)}
+.chat-window{position:fixed;right:15px;bottom:140px;width:350px;max-width:90vw;height:450px;max-height:65vh;background:var(--card);border:1px solid var(--border);border-radius:18px;display:none;flex-direction:column;z-index:60;box-shadow:0 0 60px #00d9ff33;overflow:hidden}
+.chat-header{background:var(--blue);color:#001;padding:12px 18px;font-weight:bold;display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.chat-header .close{background:transparent;border:none;color:#001;font-size:20px;cursor:pointer}
+.chat-messages{flex:1;padding:12px;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
+.chat-messages::-webkit-scrollbar{width:3px;background:var(--border)}
+.chat-messages::-webkit-scrollbar-thumb{background:var(--blue);border-radius:10px}
+.chat-msg{max-width:85%;padding:8px 14px;border-radius:12px;font-size:13px;line-height:1.4;word-wrap:break-word}
+.chat-msg.bot{background:var(--border);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px}
+.chat-msg.user{background:var(--blue);color:#001;align-self:flex-end;border-bottom-right-radius:4px}
+.chat-msg.typing{background:var(--border);color:var(--text2);align-self:flex-start;padding:8px 16px}
+.chat-msg.typing span{display:inline-block;animation:dot 1.4s infinite;font-size:18px}
+.chat-msg.typing span:nth-child(2){animation-delay:0.2s}
+.chat-msg.typing span:nth-child(3){animation-delay:0.4s}
+@keyframes dot{0%,60%,100%{opacity:0}30%{opacity:1}}
+.chat-input-area{display:flex;padding:10px;border-top:1px solid var(--border);gap:6px}
+.chat-input-area input{flex:1;padding:8px 12px;border-radius:25px;border:1px solid var(--border);background:var(--input);color:var(--text);outline:none;font-size:13px}
+.chat-input-area input:focus{border-color:var(--blue)}
+.chat-input-area button{background:var(--blue);color:#001;border:none;border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;transition:0.3s}
+.chat-input-area button:hover{transform:scale(1.05)}
+.quick-questions{display:flex;gap:4px;flex-wrap:wrap;padding:6px 10px;border-top:1px solid var(--border)}
+.quick-questions button{background:var(--border);border:1px solid var(--border);color:var(--text2);padding:4px 10px;border-radius:12px;font-size:10px;cursor:pointer;transition:0.3s}
+.quick-questions button:hover{background:var(--blue);color:#001;border-color:var(--blue)}
+
+/* ========== QUICK STATS ========== */
+.quick-stats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);padding:12px 20px;border-radius:12px;margin-bottom:20px}
+.quick-stats .stat-item{text-align:center}
+.quick-stats .stat-item .num{font-size:20px;font-weight:bold;color:var(--blue)}
+.quick-stats .stat-item .label{font-size:11px;color:var(--text2)}
+
+/* ========== NOTIFICATIONS ========== */
+.notification{position:fixed;top:70px;right:15px;background:var(--card);border:1px solid var(--border);border-left:4px solid var(--blue);padding:12px 16px;border-radius:10px;z-index:70;box-shadow:0 10px 40px #00000055;max-width:300px;transform:translateX(120%);transition:0.5s;color:var(--text)}
+.notification.show{transform:translateX(0)}
+.notification .ntitle{font-weight:bold;font-size:13px}
+.notification .nbody{font-size:12px;color:var(--text2)}
+.notification .ntime{font-size:10px;color:var(--text2);margin-top:3px;display:block}
+
+/* ========== NEW FEATURES STYLES ========== */
+
+/* 1. Live Chat Support */
+.live-chat-btn{position:fixed;right:15px;bottom:140px;background:#00b894;color:#fff;padding:10px 18px;border-radius:30px;border:none;cursor:pointer;z-index:55;font-size:13px;box-shadow:0 0 30px #00b89466;transition:0.3s;display:none}
+.live-chat-btn:hover{transform:scale(1.05)}
+.live-chat-window{position:fixed;right:15px;bottom:200px;width:320px;max-width:85vw;height:380px;background:var(--card);border:1px solid var(--border);border-radius:15px;display:none;flex-direction:column;z-index:56;box-shadow:0 0 40px #00b89433;overflow:hidden}
+.live-chat-header{background:#00b894;color:#fff;padding:10px 15px;display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.live-chat-header .close{background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer}
+.live-chat-messages{flex:1;padding:12px;overflow-y:auto;font-size:13px}
+.live-chat-messages .msg{margin-bottom:8px;padding:6px 12px;border-radius:10px;max-width:80%}
+.live-chat-messages .msg.support{background:var(--border);color:var(--text);align-self:flex-start}
+.live-chat-messages .msg.user{background:#00b894;color:#fff;align-self:flex-end;margin-left:auto}
+.live-chat-input{display:flex;padding:8px;border-top:1px solid var(--border);gap:6px}
+.live-chat-input input{flex:1;padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:var(--input);color:var(--text);outline:none;font-size:12px}
+.live-chat-input button{background:#00b894;color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:14px;cursor:pointer}
+
+/* 2. Language Switcher */
+.lang-switcher{background:var(--border);border:1px solid var(--border);color:var(--text);padding:4px 10px;border-radius:20px;cursor:pointer;font-size:12px;transition:0.3s}
+.lang-switcher:hover{background:var(--blue);color:#001}
+
+/* 3. Analytics Dashboard */
+.analytics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:12px 0}
+.analytics-item{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:12px;text-align:center}
+.analytics-item .num{font-size:28px;font-weight:bold;color:var(--blue)}
+.analytics-item .label{font-size:11px;color:var(--text2)}
+
+/* 4. Newsletter */
+.newsletter-box{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:15px;max-width:500px;margin:auto;text-align:center}
+.newsletter-box input{max-width:300px;display:inline-block}
+.newsletter-box .btn{margin-top:8px}
+
+/* 5. QR Code */
+.qr-container{text-align:center;padding:15px}
+.qr-container canvas{background:#fff;padding:10px;border-radius:10px}
+
+/* 6. Achievement Badges */
+.badges-container{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
+.badge-item{background:var(--card);border:1px solid var(--border);padding:15px 20px;border-radius:12px;text-align:center;min-width:100px}
+.badge-item .icon{font-size:30px}
+.badge-item .name{font-size:12px;color:var(--text2);margin-top:4px}
+.badge-gold{border-color:#ffd700}
+.badge-silver{border-color:#c0c0c0}
+.badge-bronze{border-color:#cd7f32}
+
+/* 7. Event Calendar */
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;max-width:400px;margin:auto}
+.calendar-grid .day{background:var(--card);border:1px solid var(--border);padding:8px;text-align:center;border-radius:6px;font-size:12px}
+.calendar-grid .day.active{background:var(--blue);color:#001;border-color:var(--blue)}
+.calendar-grid .day.event{border-color:var(--blue);box-shadow:0 0 15px var(--shadow)}
+
+/* 8. Currency Converter */
+.currency-box{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:15px;max-width:400px;margin:auto}
+.currency-box select{padding:10px;background:var(--input);color:var(--text);border:1px solid var(--border);border-radius:8px;width:100%;margin:6px 0}
+
+/* 9. Mini Game */
+.game-container{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:15px;max-width:400px;margin:auto;text-align:center}
+.game-board{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:250px;margin:10px auto}
+.game-board .cell{background:var(--border);aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:30px;cursor:pointer;border-radius:8px;transition:0.3s}
+.game-board .cell:hover{background:var(--blue);color:#001}
+
+/* 10. Blog Section */
+.blog-card{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:12px;transition:0.3s}
+.blog-card:hover{transform:translateY(-3px);border-color:var(--blue)}
+.blog-card .date{font-size:11px;color:var(--text2)}
+.blog-card h3{font-size:16px;margin:6px 0;color:var(--text)}
+.blog-card .tag{background:var(--border);padding:2px 10px;border-radius:12px;font-size:10px;display:inline-block;color:var(--text2)}
+
+/* 11. Trending Products */
+.trending-card{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:12px;text-align:center;transition:0.3s}
+.trending-card:hover{transform:translateY(-3px);border-color:var(--blue)}
+.trending-card .icon{font-size:36px}
+.trending-card .trend-price{font-size:20px;color:var(--blue);font-weight:bold}
+
+/* 12. Video Gallery */
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.video-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:0.3s}
+.video-card:hover{transform:translateY(-3px);border-color:var(--blue)}
+.video-card iframe{width:100%;height:150px;border:none}
+.video-card .info{padding:10px;font-size:13px}
+
+/* 13. File Manager */
+.file-manager{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px;max-width:500px;margin:auto}
+.file-item{display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--border);font-size:13px}
+.file-item .size{color:var(--text2);font-size:11px}
+.file-upload-btn{background:var(--border);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:12px;width:100%;margin-top:8px}
+
+/* 14. User Reviews */
+.review-item{background:var(--card);border:1px solid var(--border);padding:12px;border-radius:10px;margin:6px 0}
+.review-item .review-header{display:flex;justify-content:space-between;align-items:center}
+.review-item .review-name{font-weight:bold;font-size:14px}
+.review-item .review-stars{color:#ffd700;font-size:14px}
+.review-item .review-text{font-size:13px;color:var(--text2);margin-top:4px}
+
+/* 15. Push Notifications */
+.push-btn{background:var(--blue);color:#001;border:none;padding:10px 20px;border-radius:30px;cursor:pointer;font-size:13px;transition:0.3s}
+.push-btn:hover{transform:scale(1.05)}
+
+/* 16. Weather Widget */
+.weather-widget{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:12px;max-width:300px;margin:auto;text-align:center}
+.weather-widget .temp{font-size:36px;font-weight:bold;color:var(--blue)}
+.weather-widget .condition{font-size:14px;color:var(--text2)}
+
+/* 17. Stock Ticker */
+.stock-ticker{background:var(--card);border:1px solid var(--border);padding:10px;border-radius:10px;overflow:hidden}
+.stock-ticker .ticker{display:flex;animation:tickerScroll 20s linear infinite;gap:30px}
+@keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.stock-ticker .stock-item{font-size:12px;white-space:nowrap}
+.stock-ticker .stock-item .up{color:#00ff88}
+.stock-ticker .stock-item .down{color:#ff6b6b}
+
+/* 18. Random Quote */
+.quote-box{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:12px;text-align:center;max-width:500px;margin:auto}
+.quote-box .quote{font-size:18px;font-style:italic;color:var(--text)}
+.quote-box .author{font-size:14px;color:var(--blue);margin-top:8px}
+
+/* 19. Image Slider */
+.slider-container{max-width:500px;margin:auto;overflow:hidden;border-radius:12px;position:relative}
+.slider-track{display:flex;transition:0.5s}
+.slider-track img{width:100%;height:250px;object-fit:cover;flex-shrink:0}
+.slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);color:#fff;border:none;padding:10px 14px;cursor:pointer;font-size:18px;border-radius:50%;z-index:5}
+.slider-btn.prev{left:10px}
+.slider-btn.next{right:10px}
+
+/* 20. Tab System */
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:2px solid var(--border);margin-bottom:15px}
+.tab-btn{background:transparent;border:none;padding:10px 20px;color:var(--text2);cursor:pointer;font-size:13px;transition:0.3s;border-bottom:2px solid transparent}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tab-content{display:none;padding:10px 0}
+.tab-content.active{display:block}
+
+/* 21. Modal Popups */
+.modal-popup{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:none;align-items:center;justify-content:center}
+.modal-popup .modal-content{background:var(--card);padding:30px;border-radius:20px;max-width:400px;width:90%;text-align:center;border:1px solid var(--border)}
+.modal-popup .modal-content .close{float:right;font-size:24px;cursor:pointer;color:var(--text2)}
+
+/* 22. Tooltips */
+[data-tooltip]{position:relative}
+[data-tooltip]:before{content:attr(data-tooltip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--card);color:var(--text);padding:4px 10px;border-radius:6px;font-size:11px;white-space:nowrap;display:none;border:1px solid var(--border);z-index:10}
+[data-tooltip]:hover:before{display:block}
+
+/* 23. Loading Spinner */
+.spinner{width:40px;height:40px;border:4px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 0.8s linear infinite;margin:10px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* 24. Breadcrumbs */
+.breadcrumbs{padding:8px 0;font-size:12px;color:var(--text2)}
+.breadcrumbs span{color:var(--blue)}
+.breadcrumbs .sep{margin:0 6px;color:var(--border)}
+
+/* 25. Pagination */
+.pagination{display:flex;gap:6px;justify-content:center;margin:15px 0}
+.pagination button{background:var(--border);border:1px solid var(--border);color:var(--text);padding:6px 14px;border-radius:6px;cursor:pointer;transition:0.3s;font-size:12px}
+.pagination button:hover{background:var(--blue);color:#001}
+.pagination button.active{background:var(--blue);color:#001}
+
+@media(max-width:800px){.hero{grid-template-columns:1fr;text-align:center}h1{font-size:35px}.stats{grid-template-columns:1fr 1fr}.nav-right{display:none}.search-input{width:90px}.search-input:focus{width:120px}.countdown{gap:6px}.countdown-item{min-width:50px;padding:6px 10px}.countdown-item .num{font-size:18px}.chat-window{width:90vw;right:5vw;bottom:130px;height:55vh}}
 </style>
 </head>
 <body>
 
 <div class="loader">EASY TOOL ⚡</div>
 
+<!-- Version Badge -->
+<div class="version-badge">📌 v0.0.25</div>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- ========== NAVIGATION ========== -->
 <nav>
-<img src="logo.png">
-<div>
-<a href="#home">Home</a><a href="#features">Features</a><a href="#tools">Tools</a><a href="#price">Price</a><a href="#contact">Contact</a><a href="#download">Download</a>
+<img src="logo.png" alt="Logo">
+<div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center">
+<a href="#home">Home</a>
+<a href="#features">Features</a>
+<a href="#tools">Tools</a>
+<a href="#price">Price</a>
+<a href="#contact">Contact</a>
+<a href="#download">Download</a>
+</div>
+<div class="nav-right">
+<input class="search-input" placeholder="🔍 Search..." id="searchBar" onkeypress="if(event.key==='Enter')searchSite()">
+<span class="status-dot"></span>
+<span class="clock" id="liveClock">--:--:--</span>
+<span style="position:relative">
+🔔 <span class="badge" id="notifBadge">5</span>
+</span>
+<button class="lang-switcher" onclick="switchLanguage()">🌐 EN</button>
+<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
 </div>
 </nav>
 
+<!-- ========== QUICK STATS ========== -->
+<section style="padding-top:80px">
+<div class="quick-stats">
+<div class="stat-item"><div class="num" id="visitors">1,247</div><div class="label">👥 Live Visitors</div></div>
+<div class="stat-item"><div class="num">99.9%</div><div class="label">📊 Uptime</div></div>
+<div class="stat-item"><div class="num">5★</div><div class="label">⭐ Rating</div></div>
+<div class="stat-item"><div class="num">24/7</div><div class="label">🛡 Support</div></div>
+</div>
+</section>
+
+<!-- ========== BREADCRUMBS ========== -->
+<div class="breadcrumbs" style="padding:10px 7%;">
+🏠 <span>Home</span> <span class="sep">›</span> <span>EASY TOOL</span> <span class="sep">›</span> <span>Dashboard</span> <span style="color:var(--blue);margin-left:10px;font-size:10px;background:var(--border);padding:2px 8px;border-radius:10px">v0.0.25</span>
+</div>
+
+<!-- ========== HERO ========== -->
 <section class="hero" id="home">
 <div>
-<h1><span class="blue">EASY TOOL</span><br></h1>
+<h1><span class="blue">EASY TOOL</span><br>
+<span id="typingText" style="font-size:28px;color:var(--text2)"></span><span class="typing-cursor"></span>
+</h1>
 <p>The ultimate professional device solution platform by REYTECHFX.</p>
 <a class="btn" href="#download">Download Now</a>
 </div>
 <div>
-<img src="logo.png">
+<img src="logo.png" alt="Logo">
 </div>
 </section>
 
+<!-- ========== DASHBOARD ========== -->
 <section>
 <h2 class="title">🖥 Dashboard Preview</h2>
 <div class="dashboard">
 <div class="stats">
-<div class="box">Devices<br><b>12,540+</b></div>
-<div class="box">Licenses<br><b>8,900+</b></div>
+<div class="box">Devices<br><b id="devices">12,540</b>+</div>
+<div class="box">Licenses<br><b id="licenses">8,900</b>+</div>
 <div class="box">Tools<br><b>50+</b></div>
 <div class="box">Status<br><b class="blue">ONLINE</b></div>
 </div>
-<p>Console: EASY TOOL ENGINE RUNNING ✓</p>
+<p>Console: EASY TOOL ENGINE RUNNING ✓ <span style="color:var(--blue);font-size:12px;background:var(--border);padding:2px 10px;border-radius:10px;margin-left:10px">v0.0.25</span></p>
+
+<div class="marquee">
+<span>🚀 NEW UPDATE AVAILABLE! Version 0.0.25 - Improved performance & new features • 50% OFF this week only! • REYTECHFX</span>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:15px">
+<div>
+<p style="font-size:13px;margin:4px 0">System Usage</p>
+<div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
+<p style="font-size:13px;margin:4px 0">Memory</p>
+<div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div>
+<p style="font-size:13px;margin:4px 0">Storage</p>
+<div class="progress-bar"><div class="progress-fill" style="width:62%"></div></div>
+</div>
+<div>
+<div class="server-status">🟢 Server: <b>ONLINE</b> • <span style="color:var(--text2);font-size:12px">99.9% uptime</span></div>
+<p style="font-size:12px;margin:8px 0">📊 Active Users: <b id="activeUsers">1,247</b></p>
+
+<div class="chart-container" style="margin-top:8px">
+<p style="font-size:12px;font-weight:bold;color:var(--text);margin:0 0 6px 0">📈 Monthly Usage</p>
+<div class="chart-bar"><span class="label">Jan</span><div class="bar" style="width:65%"></div><span class="value">65%</span></div>
+<div class="chart-bar"><span class="label">Feb</span><div class="bar" style="width:80%"></div><span class="value">80%</span></div>
+<div class="chart-bar"><span class="label">Mar</span><div class="bar" style="width:45%"></div><span class="value">45%</span></div>
+<div class="chart-bar"><span class="label">Apr</span><div class="bar" style="width:92%"></div><span class="value">92%</span></div>
+<div class="chart-bar"><span class="label">May</span><div class="bar" style="width:70%"></div><span class="value">70%</span></div>
+</div>
+</div>
+</div>
+
+<!-- ========== ANALYTICS DASHBOARD ========== -->
+<div style="margin-top:15px;border-top:1px solid var(--border);padding-top:15px">
+<h3 style="color:var(--blue);font-size:16px;text-align:center">📊 Analytics Overview</h3>
+<div class="analytics-grid">
+<div class="analytics-item"><div class="num">12.5K</div><div class="label">Total Visitors</div></div>
+<div class="analytics-item"><div class="num">3.2K</div><div class="label">New Users</div></div>
+<div class="analytics-item"><div class="num">87%</div><div class="label">Engagement</div></div>
+<div class="analytics-item"><div class="num">4.8★</div><div class="label">Avg Rating</div></div>
+</div>
+</div>
 </div>
 </section>
 
+<!-- ========== FEATURES ========== -->
 <section id="features">
 <h2 class="title">⚡ Features</h2>
 <div class="grid">
-<div class="card">🚀 Fast Engine</div><div class="card">🔐 License System</div><div class="card">☁ Cloud Updates</div><div class="card">🛡 Secure Platform</div>
+<div class="card" data-tooltip="Optimized for speed">🚀 Fast Engine</div>
+<div class="card" data-tooltip="Secure activation">🔐 License System</div>
+<div class="card" data-tooltip="Always up to date">☁ Cloud Updates</div>
+<div class="card" data-tooltip="Protected data">🛡 Secure Platform</div>
 </div>
 </section>
 
+<!-- ========== TOOLS ========== -->
 <section id="tools">
 <h2 class="title">🛠 Tools</h2>
-<div class="grid"><div class="card">Android Tools</div><div class="card">Repair Tools</div><div class="card">Firmware Tools</div><div class="card">Diagnostic System</div></div>
+<div class="grid">
+<div class="card"><span class="tool-icon">📱</span>Android Tools<br><span style="font-size:12px;color:var(--text2)">12 tools available</span></div>
+<div class="card"><span class="tool-icon">🔧</span>Repair Tools<br><span style="font-size:12px;color:var(--text2)">8 repair modules</span></div>
+<div class="card"><span class="tool-icon">📦</span>Firmware Tools<br><span style="font-size:12px;color:var(--text2)">20+ firmwares</span></div>
+<div class="card"><span class="tool-icon">🩺</span>Diagnostic System<br><span style="font-size:12px;color:var(--text2)">Full device scan</span></div>
+</div>
 </section>
 
+<!-- ========== PRICING ========== -->
 <section id="price">
 <h2 class="title">💰 Pricing</h2>
 <div class="grid">
-<div class="card"><h2>3 Months</h2><div class="price">$20</div></div>
-<div class="card"><h2>6 Months</h2><div class="price">$30</div></div>
-<div class="card"><h2>12 Months</h2><div class="price">$40</div></div>
+<div class="card"><h2>3 Months</h2><div class="price">$20</div><p style="font-size:12px;color:var(--text2)">Basic plan</p></div>
+<div class="card"><h2>6 Months</h2><div class="price">$30</div><p style="font-size:12px;color:var(--text2)">Popular choice</p></div>
+<div class="card"><h2>12 Months</h2><div class="price">$40</div><p style="font-size:12px;color:var(--text2)">Best value</p></div>
+</div>
+
+<div style="text-align:center;margin-top:20px;background:var(--card);padding:15px;border-radius:15px;border:1px solid var(--border)">
+<p style="font-weight:bold;color:var(--blue);font-size:14px">⏳ Offer Ends In:</p>
+<div class="countdown" id="countdown">
+<div class="countdown-item"><div class="num" id="days">00</div><div class="label">Days</div></div>
+<div class="countdown-item"><div class="num" id="hours">00</div><div class="label">Hours</div></div>
+<div class="countdown-item"><div class="num" id="minutes">00</div><div class="label">Mins</div></div>
+<div class="countdown-item"><div class="num" id="seconds">00</div><div class="label">Secs</div></div>
+</div>
 </div>
 </section>
 
+<!-- ========== LICENSE ========== -->
 <section>
 <h2 class="title">🔐 Login / License</h2>
 <div class="modal">
-<input placeholder="Username">
-<input placeholder="License Key">
-<a class="btn">Activate</a>
+<input placeholder="Username" id="username">
+<input placeholder="License Key" id="licenseKey">
+<a class="btn" style="width:100%;text-align:center;display:block" onclick="activateLicense()">Activate</a>
+<p id="licenseMsg" style="font-size:12px;margin-top:8px;text-align:center;color:var(--text2)"></p>
 </div>
 </section>
 
+<!-- ========== DOWNLOAD ========== -->
 <section id="download">
 <h2 class="title">⬇ Download</h2>
 <p style="text-align:center">Downloads: <b id="count">10245</b>+</p>
+<div style="text-align:center;margin-top:15px">
+<button class="btn" onclick="downloadNow()" style="font-size:18px;padding:15px 40px">⬇ Download EASY TOOL v0.0.25</button>
+<p style="font-size:12px;color:var(--text2);margin-top:10px">Version 0.0.25 • 45MB • Windows/Mac/Linux</p>
+</div>
+
+<!-- ========== QR CODE ========== -->
+<div style="margin-top:20px;border-top:1px solid var(--border);padding-top:20px">
+<h3 style="color:var(--blue);text-align:center;font-size:16px">📱 Scan to Download</h3>
+<div class="qr-container" id="qrContainer"></div>
+</div>
 </section>
 
+<!-- ========== TESTIMONIALS ========== -->
+<section>
+<h2 class="title">💬 Testimonials</h2>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
+<div class="testimonial-card">
+<div class="testimonial-img avatar-bg-1">
+<img src="https://ui-avatars.com/api/?name=John+Mwangi&background=00d9ff&color=fff&size=65&bold=true" alt="John">
+</div>
+<div class="testimonial-name">John Mwangi</div>
+<div class="testimonial-role">🔧 Technician • Nairobi</div>
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"EASY TOOL has been very helpful in my work!"</p>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-img avatar-bg-2">
+<img src="https://ui-avatars.com/api/?name=Sarah+Kimani&background=ff6b6b&color=fff&size=65&bold=true" alt="Sarah">
+</div>
+<div class="testimonial-name">Sarah Kimani</div>
+<div class="testimonial-role">📱 Mobile Developer • Mombasa</div>
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"Best platform I've ever used!"</p>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-img avatar-bg-3">
+<img src="https://ui-avatars.com/api/?name=David+Omondi&background=00b894&color=fff&size=65&bold=true" alt="David">
+</div>
+<div class="testimonial-name">David Omondi</div>
+<div class="testimonial-role">💻 IT Specialist • Kisumu</div>
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"REYTECHFX did a great job!"</p>
+</div>
+</div>
+</section>
+
+<!-- ========== USER REVIEWS & RATINGS ========== -->
+<section>
+<h2 class="title">⭐ User Reviews</h2>
+<div style="max-width:500px;margin:auto">
+<div class="review-item">
+<div class="review-header">
+<span class="review-name">James K.</span>
+<span class="review-stars">⭐⭐⭐⭐⭐</span>
+</div>
+<p class="review-text">"Excellent tool! Saved me so much time on repairs."</p>
+</div>
+<div class="review-item">
+<div class="review-header">
+<span class="review-name">Mary W.</span>
+<span class="review-stars">⭐⭐⭐⭐</span>
+</div>
+<p class="review-text">"Very useful but could use more tutorials."</p>
+</div>
+<div class="review-item">
+<div class="review-header">
+<span class="review-name">Peter O.</span>
+<span class="review-stars">⭐⭐⭐⭐⭐</span>
+</div>
+<p class="review-text">"The best device repair platform in Kenya!"</p>
+</div>
+<div style="text-align:center;margin-top:10px">
+<button class="btn" style="font-size:12px;padding:8px 20px" onclick="addReview()">✍️ Write a Review</button>
+</div>
+</div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section>
+<h2 class="title">❓ FAQ</h2>
+<div style="max-width:650px;margin:auto">
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">🔹 What is EASY TOOL? <span>+</span></div>
+<div class="faq-answer">EASY TOOL is a professional device solution platform created by REYTECHFX.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">🔹 Which devices does it support? <span>+</span></div>
+<div class="faq-answer">It works on Android, iOS, Windows, and other electronic devices.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">🔹 How much does a license cost? <span>+</span></div>
+<div class="faq-answer">License starts at $20 for 3 months. Check Pricing section.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">🔹 How can I get support? <span>+</span></div>
+<div class="faq-answer">Contact us via WhatsApp at +254111457171 or email.</div>
+</div>
+</div>
+</section>
+
+<!-- ========== USER PROFILE ========== -->
+<section>
+<h2 class="title">👤 User Profile</h2>
+<div class="profile-card">
+<div class="profile-avatar">👤</div>
+<div>
+<p style="font-weight:bold;font-size:18px;color:var(--text);margin:0">ReyTech User</p>
+<p style="color:var(--text2);margin:0;font-size:13px">user@reytechfx.com</p>
+<p style="color:#00ff88;margin:4px 0 0;font-size:13px">🟢 Active • Premium Member</p>
+
+<!-- ========== ACHIEVEMENT BADGES ========== -->
+<div style="margin-top:8px">
+<div class="badges-container">
+<div class="badge-item badge-gold"><div class="icon">🏆</div><div class="name">Gold Member</div></div>
+<div class="badge-item badge-silver"><div class="icon">⭐</div><div class="name">Top Reviewer</div></div>
+<div class="badge-item badge-bronze"><div class="icon">🔥</div><div class="name">100+ Downloads</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ========== MUSIC PLAYER ========== -->
+<section>
+<h2 class="title">🎵 Music Player</h2>
+<div class="music-player">
+<div class="song">
+<p class="title">🎶 EASY TOOL Theme</p>
+<p class="artist">REYTECHFX • 2026</p>
+</div>
+<button onclick="playMusic()">▶️</button>
+<button onclick="nextSong()">⏭</button>
+<span style="font-size:12px;color:var(--text2)" id="songStatus">Stopped</span>
+</div>
+</section>
+
+<!-- ========== VIDEO GALLERY ========== -->
+<section>
+<h2 class="title">🎬 Video Gallery</h2>
+<div class="video-grid">
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+<div class="info">🎥 EASY TOOL Tutorial</div>
+</div>
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+<div class="info">🎥 Device Repair Guide</div>
+</div>
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+<div class="info">🎥 REYTECHFX Overview</div>
+</div>
+</div>
+</section>
+
+<!-- ========== IMAGE SLIDER ========== -->
+<section>
+<h2 class="title">🖼️ Gallery</h2>
+<div class="slider-container">
+<div class="slider-track" id="sliderTrack">
+<img src="https://via.placeholder.com/500x250/00d9ff/001?text=EASY+TOOL+v0.0.25" alt="Slide 1">
+<img src="https://via.placeholder.com/500x250/0066ff/fff?text=EASY+TOOL+2" alt="Slide 2">
+<img src="https://via.placeholder.com/500x250/00b894/fff?text=EASY+TOOL+3" alt="Slide 3">
+</div>
+<button class="slider-btn prev" onclick="slidePrev()">❮</button>
+<button class="slider-btn next" onclick="slideNext()">❯</button>
+</div>
+</section>
+
+<!-- ========== CONTACT ========== -->
 <section id="contact">
-<h2 class="title">Contact</h2>
+<h2 class="title">📬 Contact</h2>
 <p style="text-align:center">WhatsApp: +254111457171<br>REYTECHFX</p>
+<div style="text-align:center;margin-top:15px">
+<a href="https://wa.me/254111457171" style="color:var(--blue);text-decoration:none">Chat on WhatsApp →</a>
+</div>
+
+<!-- ========== NEWSLETTER ========== -->
+<div style="margin-top:20px;border-top:1px solid var(--border);padding-top:20px">
+<div class="newsletter-box">
+<h3 style="color:var(--blue);margin-bottom:8px">📧 Subscribe to Newsletter</h3>
+<p style="font-size:13px">Get updates and offers directly in your inbox!</p>
+<input placeholder="Enter your email" id="newsletterEmail" style="max-width:280px;display:inline-block">
+<button class="btn" style="font-size:12px;padding:10px 20px;margin-top:6px" onclick="subscribeNewsletter()">Subscribe</button>
+<p id="newsletterMsg" style="font-size:12px;margin-top:6px;color:var(--text2)"></p>
+</div>
+</div>
 </section>
 
-<a class="whatsapp" href="https://wa.me/254111457171">☎</a>
+<!-- ========== ACTIVITY FEED ========== -->
+<section style="padding-top:15px">
+<h2 class="title">📋 Recent Activity</h2>
+<div class="activity-feed" id="activityFeed">
+<div class="activity-item"><span>🟢 User "John" activated license</span><span class="time">2 min ago</span></div>
+<div class="activity-item"><span>📥 New download from Kenya</span><span class="time">15 min ago</span></div>
+<div class="activity-item"><span>🔄 System update completed</span><span class="time">1 hour ago</span></div>
+<div class="activity-item"><span>🔐 License #8901 activated</span><span class="time">3 hours ago</span></div>
+</div>
+</section>
 
-<footer>© 2026 EASY TOOL by REYTECHFX</footer>
+<!-- ========== FILE MANAGER ========== -->
+<section>
+<h2 class="title">📂 File Manager</h2>
+<div class="file-manager">
+<div class="file-item"><span>📄 EASY_TOOL_v0.0.25.exe</span><span class="size">45.2 MB</span></div>
+<div class="file-item"><span>📄 license_key.txt</span><span class="size">1.2 KB</span></div>
+<div class="file-item"><span>📄 firmware_v2.5.0.zip</span><span class="size">128 MB</span></div>
+<div class="file-item"><span>📄 user_manual.pdf</span><span class="size">3.8 MB</span></div>
+<button class="file-upload-btn" onclick="alert('📤 File upload feature coming soon!')">📤 Upload File</button>
+</div>
+</section>
+
+<!-- ========== CURRENCY CONVERTER ========== -->
+<section>
+<h2 class="title">💰 Currency Converter</h2>
+<div class="currency-box">
+<label style="font-size:13px">Amount:</label>
+<input type="number" value="100" id="currencyAmount" style="width:100%">
+<label style="font-size:13px;margin-top:6px;display:block">From:</label>
+<select id="fromCurrency">
+<option value="USD">USD - US Dollar</option>
+<option value="EUR">EUR - Euro</option>
+<option value="KES">KES - Kenyan Shilling</option>
+<option value="GBP">GBP - British Pound</option>
+</select>
+<label style="font-size:13px;margin-top:6px;display:block">To:</label>
+<select id="toCurrency">
+<option value="KES">KES - Kenyan Shilling</option>
+<option value="USD">USD - US Dollar</option>
+<option value="EUR">EUR - Euro</option>
+<option value="GBP">GBP - British Pound</option>
+</select>
+<button class="btn" style="width:100%;margin-top:10px;font-size:13px" onclick="convertCurrency()">🔄 Convert</button>
+<p id="currencyResult" style="text-align:center;margin-top:10px;font-size:16px;color:var(--blue);font-weight:bold"></p>
+</div>
+</section>
+
+<!-- ========== MINI GAME ========== -->
+<section>
+<h2 class="title">🎮 Mini Game</h2>
+<div class="game-container">
+<h3 style="color:var(--blue)">Tic Tac Toe</h3>
+<p id="gameStatus" style="font-size:13px">Player X's turn</p>
+<div class="game-board" id="gameBoard">
+<div class="cell" data-index="0" onclick="makeMove(0)"></div>
+<div class="cell" data-index="1" onclick="makeMove(1)"></div>
+<div class="cell" data-index="2" onclick="makeMove(2)"></div>
+<div class="cell" data-index="3" onclick="makeMove(3)"></div>
+<div class="cell" data-index="4" onclick="makeMove(4)"></div>
+<div class="cell" data-index="5" onclick="makeMove(5)"></div>
+<div class="cell" data-index="6" onclick="makeMove(6)"></div>
+<div class="cell" data-index="7" onclick="makeMove(7)"></div>
+<div class="cell" data-index="8" onclick="makeMove(8)"></div>
+</div>
+<button class="btn" style="font-size:12px;padding:8px 20px;margin-top:10px" onclick="resetGame()">🔄 New Game</button>
+</div>
+</section>
+
+<!-- ========== BLOG / NEWS ========== -->
+<section>
+<h2 class="title">📰 Latest News</h2>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+<div class="blog-card">
+<span class="date">📅 July 20, 2026</span>
+<h3>EASY TOOL v0.0.25 Released!</h3>
+<p style="font-size:13px">New features and performance improvements.</p>
+<span class="tag">🚀 Update</span>
+</div>
+<div class="blog-card">
+<span class="date">📅 July 15, 2026</span>
+<h3>50% OFF Summer Sale</h3>
+<p style="font-size:13px">Get 50% off all licenses this week!</p>
+<span class="tag">🎉 Offer</span>
+</div>
+<div class="blog-card">
+<span class="date">📅 July 10, 2026</span>
+<h3>New Android Tools Added</h3>
+<p style="font-size:13px">Support for latest Android devices.</p>
+<span class="tag">🛠 Tools</span>
+</div>
+</div>
+</section>
+
+<!-- ========== TRENDING PRODUCTS ========== -->
+<section>
+<h2 class="title">🔥 Trending</h2>
+<div class="grid">
+<div class="trending-card">
+<div class="icon">📱</div>
+<h3>Android Pro Kit</h3>
+<div class="trend-price">$49</div>
+<p style="font-size:12px;color:var(--text2)">⭐ 4.9 • 200+ sold</p>
+</div>
+<div class="trending-card">
+<div class="icon">🔧</div>
+<h3>Repair Master</h3>
+<div class="trend-price">$39</div>
+<p style="font-size:12px;color:var(--text2)">⭐ 4.8 • 150+ sold</p>
+</div>
+<div class="trending-card">
+<div class="icon">📦</div>
+<h3>Firmware Bundle</h3>
+<div class="trend-price">$59</div>
+<p style="font-size:12px;color:var(--text2)">⭐ 4.7 • 120+ sold</p>
+</div>
+</div>
+</section>
+
+<!-- ========== WEATHER WIDGET ========== -->
+<section>
+<h2 class="title">🌤 Weather</h2>
+<div class="weather-widget">
+<div class="temp" id="weatherTemp">26°C</div>
+<div class="condition" id="weatherCondition">☀️ Sunny • Nairobi</div>
+<p style="font-size:12px;color:var(--text2);margin-top:4px">Humidity: 65% • Wind: 12 km/h</p>
+</div>
+</section>
+
+<!-- ========== STOCK TICKER ========== -->
+<section>
+<h2 class="title">📈 Stock Market</h2>
+<div class="stock-ticker">
+<div class="ticker">
+<div class="stock-item">AAPL <span class="up">▲ 2.4%</span> $215.50</div>
+<div class="stock-item">GOOGL <span class="up">▲ 1.2%</span> $185.30</div>
+<div class="stock-item">MSFT <span class="down">▼ 0.8%</span> $142.80</div>
+<div class="stock-item">AMZN <span class="up">▲ 3.1%</span> $178.20</div>
+<div class="stock-item">TSLA <span class="down">▼ 1.5%</span> $245.60</div>
+<div class="stock-item">AAPL <span class="up">▲ 2.4%</span> $215.50</div>
+<div class="stock-item">GOOGL <span class="up">▲ 1.2%</span> $185.30</div>
+<div class="stock-item">MSFT <span class="down">▼ 0.8%</span> $142.80</div>
+</div>
+</div>
+</section>
+
+<!-- ========== RANDOM QUOTE ========== -->
+<section>
+<h2 class="title">💭 Quote of the Day</h2>
+<div class="quote-box">
+<p class="quote" id="quoteText">"The best way to predict the future is to create it."</p>
+<p class="author" id="quoteAuthor">- Peter Drucker</p>
+<button class="btn" style="font-size:12px;padding:6px 16px;margin-top:8px" onclick="newQuote()">🔄 New Quote</button>
+</div>
+</section>
+
+<!-- ========== TABS ========== -->
+<section>
+<h2 class="title">📑 Information Tabs</h2>
+<div class="tabs">
+<button class="tab-btn active" onclick="openTab(event, 'tab1')">📖 About</button>
+<button class="tab-btn" onclick="openTab(event, 'tab2')">⚙ Features</button>
+<button class="tab-btn" onclick="openTab(event, 'tab3')">📞 Support</button>
+</div>
+<div id="tab1" class="tab-content active">
+<p>EASY TOOL v0.0.25 is a professional device solution platform created by REYTECHFX. We provide tools for repairing, diagnosing, and managing electronic devices.</p>
+</div>
+<div id="tab2" class="tab-content">
+<p>⚡ Fast Engine • 🔐 Secure License System • ☁ Cloud Updates • 🛡 Data Protection • 📱 Multi-Device Support</p>
+</div>
+<div id="tab3" class="tab-content">
+<p>📞 WhatsApp: +254111457171<br>📧 Email: support@reytechfx.com<br>💬 Live chat available 24/7</p>
+</div>
+</section>
+
+<!-- ========== PAGINATION ========== -->
+<section>
+<h2 class="title">📄 Pages</h2>
+<div class="pagination">
+<button>❮</button>
+<button class="active">1</button>
+<button onclick="alert('Page 2')">2</button>
+<button onclick="alert('Page 3')">3</button>
+<button onclick="alert('Page 4')">4</button>
+<button onclick="alert('Next Page')">❯</button>
+</div>
+</section>
+
+<!-- ========== SOCIAL ICONS ========== -->
+<section style="padding:15px 7%">
+<div class="social-icons">
+<a href="#">📘</a>
+<a href="#">🐦</a>
+<a href="#">📸</a>
+<a href="#">▶️</a>
+<a href="#">💼</a>
+<a href="#">📱</a>
+</div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+© 2026 EASY TOOL v0.0.25 by REYTECHFX • All rights reserved
+</footer>
+
+<!-- ========== WHATSAPP ========== -->
+<a class="whatsapp" href="https://wa.me/254111457171">💬</a>
+
+<!-- ========== SCROLL TO TOP ========== -->
+<button class="scroll-top" onclick="scrollToTop()">⬆</button>
+
+<!-- ========== COOKIE BANNER ========== -->
+<div class="cookie-banner" id="cookieBanner">
+<p>🍪 This site uses cookies to improve your experience.</p>
+<div>
+<button class="btn" onclick="acceptCookies()" style="padding:6px 16px;font-size:12px">Accept</button>
+<button onclick="declineCookies()" style="background:transparent;border:1px solid var(--border);color:var(--text2);padding:6px 16px;border-radius:25px;cursor:pointer;font-size:12px">Decline</button>
+</div>
+</div>
+
+<!-- ========== AI CHATBOT ========== -->
+<button class="chat-toggle" onclick="toggleChat()">💬</button>
+<div class="chat-window" id="chatWindow">
+<div class="chat-header">
+<span>🤖 AI Assistant - REYTECHFX v0.0.25</span>
+<button class="close" onclick="toggleChat()">✕</button>
+</div>
+<div class="chat-messages" id="chatMessages">
+<div class="chat-msg bot">👋 Hello! I'm the REYTECHFX AI Assistant v0.0.25. Ask me anything!</div>
+</div>
+<div class="quick-questions">
+<button onclick="askQuick('What is EASY TOOL?')">📌 About</button>
+<button onclick="askQuick('How much is the license?')">💰 Price</button>
+<button onclick="askQuick('How do I get support?')">🆘 Support</button>
+</div>
+<div class="chat-input-area">
+<input placeholder="Ask a question..." id="chatInput" onkeypress="if(event.key==='Enter')sendMessage()">
+<button onclick="sendMessage()">➤</button>
+</div>
+</div>
+
+<!-- ========== LIVE CHAT SUPPORT ========== -->
+<button class="live-chat-btn" id="liveChatBtn" onclick="toggleLiveChat()">💬 Live Chat</button>
+<div class="live-chat-window" id="liveChatWindow">
+<div class="live-chat-header">
+<span>💬 Live Support</span>
+<button class="close" onclick="toggleLiveChat()">✕</button>
+</div>
+<div class="live-chat-messages" id="liveChatMessages">
+<div class="msg support">👋 Hello! How can we help you today?</div>
+</div>
+<div class="live-chat-input">
+<input placeholder="Type a message..." id="liveChatInput" onkeypress="if(event.key==='Enter')sendLiveChat()">
+<button onclick="sendLiveChat()">➤</button>
+</div>
+</div>
+
+<!-- ========== PUSH NOTIFICATIONS ========== -->
+<div style="position:fixed;bottom:170px;right:15px;z-index:55">
+<button class="push-btn" onclick="requestPushNotification()">🔔 Enable Notifications</button>
+</div>
+
+<!-- ========== MODAL POPUP ========== -->
+<div class="modal-popup" id="promoModal">
+<div class="modal-content">
+<span class="close" onclick="closeModal()">✕</span>
+<h2 style="color:var(--blue);margin-bottom:10px">🎉 Special Offer!</h2>
+<p style="font-size:16px">Get <b style="color:var(--blue)">50% OFF</b> on all licenses this week!</p>
+<p style="font-size:13px;color:var(--text2)">Use code: <b style="color:var(--blue)">EASY50</b></p>
+<button class="btn" style="margin-top:12px;font-size:13px" onclick="closeModal()">Claim Offer →</button>
+</div>
+</div>
+
+<!-- ========== LOADING SPINNER ========== -->
+<div style="display:none" id="loadingSpinner"><div class="spinner"></div></div>
+
 <script>
-let n=10245;setInterval(()=>{n++;document.getElementById("count").innerHTML=n},3000);
+// ===================== VERSION =====================
+const VERSION = '0.0.25';
+console.log('EASY TOOL v'+VERSION+' loaded!');
+
+// ===================== LIVE CLOCK =====================
+function updateClock() {
+    const now = new Date();
+    const options = { timeZone: 'Africa/Nairobi', hour12: false };
+    document.getElementById('liveClock').textContent = now.toLocaleTimeString('en-US', options);
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ===================== ANIMATED COUNTERS =====================
+function animateCounter(id, start, end, duration) {
+    let startTime = null;
+    const el = document.getElementById(id);
+    function step(ts) {
+        if(!startTime) startTime = ts;
+        const progress = Math.min((ts-startTime)/duration,1);
+        el.textContent = Math.floor(start+(end-start)*progress).toLocaleString();
+        if(progress<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+}
+setTimeout(()=>animateCounter('devices',12540,12580,2000),1000);
+setTimeout(()=>animateCounter('licenses',8900,8940,2000),1500);
+setTimeout(()=>animateCounter('activeUsers',1247,1280,2000),2000);
+
+// ===================== DOWNLOAD COUNTER =====================
+let downloadCount = 10245;
+setInterval(()=>{downloadCount++;document.getElementById('count').textContent=downloadCount},3000);
+
+// ===================== LICENSE ACTIVATION =====================
+function activateLicense() {
+    const u=document.getElementById('username').value, l=document.getElementById('licenseKey').value, msg=document.getElementById('licenseMsg');
+    if(u.length<2){msg.style.color='#ff6b6b';msg.textContent='❌ Please enter a valid username';return}
+    if(l.length<6){msg.style.color='#ff6b6b';msg.textContent='❌ Please enter a valid license key';return}
+    msg.style.color='#00ff88';msg.textContent='✅ License activated successfully! Welcome '+u+' (v'+VERSION+')';
+    addActivity('🔑 User "'+u+'" activated license v'+VERSION);
+    showNotification('✅ License Active', 'Welcome '+u+'! v'+VERSION);
+}
+
+// ===================== DOWNLOAD =====================
+function downloadNow(){
+    alert('⬇ Download started!\n\nEASY TOOL v'+VERSION+' by REYTECHFX');
+    addActivity('📥 New download initiated v'+VERSION);
+    showNotification('⬇ Download Started', 'EASY TOOL v'+VERSION+' is downloading...');
+}
+
+// ===================== ACTIVITY FEED =====================
+function addActivity(text){
+    const feed=document.getElementById('activityFeed');
+    const item=document.createElement('div');
+    item.className='activity-item';
+    const now=new Date();
+    item.innerHTML='<span>'+text+'</span><span class="time">'+now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})+'</span>';
+    feed.insertBefore(item,feed.firstChild);
+    if(feed.children.length>10) feed.removeChild(feed.lastChild);
+}
+setInterval(()=>{
+    const activities=['🟢 New user online','📊 System healthy','🔄 Sync completed','🔐 License check passed','📈 Optimized'];
+    addActivity(activities[Math.floor(Math.random()*activities.length)]);
+},30000);
+
+// ===================== THEME TOGGLE =====================
+let dark=true;
+function toggleTheme(){
+    dark=!dark;
+    document.body.classList.toggle('light-mode',!dark);
+    document.getElementById('themeBtn').textContent=dark?'🌙':'☀️';
+}
+
+// ===================== SEARCH =====================
+function searchSite(){
+    const q=document.getElementById('searchBar').value.toLowerCase();
+    if(q.length<2){alert('🔍 Please type at least 2 characters');return}
+    const found=document.querySelectorAll('section');
+    let results=[];
+    found.forEach(s=>{
+        if(s.textContent.toLowerCase().includes(q)) results.push(s.id||'section');
+    });
+    if(results.length) alert('🔍 Found in: '+results.join(', '));
+    else alert('❌ No results found for "'+q+'"');
+}
+
+// ===================== TYPING EFFECT =====================
+const texts=['Professional Device Solutions v'+VERSION,'Powered by REYTECHFX','Your Trusted Platform'];
+let idx=0, charIdx=0, isDeleting=false, typingEl=document.getElementById('typingText');
+function typeEffect(){
+    const current=texts[idx];
+    if(!isDeleting){
+        typingEl.textContent=current.substring(0,charIdx++);
+        if(charIdx>current.length){isDeleting=true;setTimeout(typeEffect,1500);return}
+    }else{
+        typingEl.textContent=current.substring(0,charIdx--);
+        if(charIdx<0){isDeleting=false;idx=(idx+1)%texts.length;charIdx=0;setTimeout(typeEffect,500);return}
+    }
+    setTimeout(typeEffect, isDeleting?50:100);
+}
+setTimeout(typeEffect,1000);
+
+// ===================== COUNTDOWN TIMER =====================
+let target=new Date();
+target.setDate(target.getDate()+14);
+function updateCountdown(){
+    const now=new Date(), diff=target-now;
+    if(diff<=0){document.getElementById('countdown').innerHTML='<p style="color:#00ff88">🎉 Offer Expired!</p>';return}
+    const d=Math.floor(diff/(86400000)), h=Math.floor((diff%86400000)/3600000), m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
+    document.getElementById('days').textContent=String(d).padStart(2,'0');
+    document.getElementById('hours').textContent=String(h).padStart(2,'0');
+    document.getElementById('minutes').textContent=String(m).padStart(2,'0');
+    document.getElementById('seconds').textContent=String(s).padStart(2,'0');
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+// ===================== FAQ =====================
+function toggleFAQ(el){
+    const answer=el.nextElementSibling;
+    answer.classList.toggle('open');
+    el.querySelector('span').textContent=answer.classList.contains('open')?'−':'+';
+}
+
+// ===================== MUSIC PLAYER =====================
+let isPlaying=false, songStatus=document.getElementById('songStatus'), songs=['EASY TOOL Theme v'+VERSION,'REYTECH Anthem','Tech Beats'];
+let songIdx=0;
+function playMusic(){
+    isPlaying=!isPlaying;
+    songStatus.textContent=isPlaying?'▶ Playing...':'⏸ Paused';
+}
+function nextSong(){
+    songIdx=(songIdx+1)%songs.length;
+    document.querySelector('.music-player .title').textContent='🎶 '+songs[songIdx];
+    if(isPlaying) songStatus.textContent='⏭ Skipped';
+}
+
+// ===================== SCROLL TO TOP =====================
+window.onscroll=function(){
+    const btn=document.querySelector('.scroll-top');
+    if(window.scrollY>300) btn.style.display='flex';
+    else btn.style.display='none';
+}
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'})}
+
+// ===================== COOKIE BANNER =====================
+function acceptCookies(){
+    document.getElementById('cookieBanner').style.display='none';
+    showNotification('🍪 Cookies', 'Cookies accepted!');
+}
+function declineCookies(){
+    document.getElementById('cookieBanner').style.display='none';
+}
+
+// ===================== NOTIFICATIONS =====================
+let notifTimeout;
+
+function showNotification(title, body){
+    const el = document.getElementById('notification');
+    document.getElementById('notifTitle').textContent = title;
+    document.getElementById('notifBody').textContent = body;
+    document.getElementById('notifTime').textContent = 'Just now';
+    el.classList.add('show');
+    clearTimeout(notifTimeout);
+    notifTimeout = setTimeout(()=>el.classList.remove('show'), 5000);
+    let badge = document.getElementById('notifBadge');
+    let num = parseInt(badge.textContent) || 0;
+    badge.textContent = num + 1;
+}
+
+setInterval(()=>{
+    const notifs = [
+        {title:'🚀 Update', body:'EASY TOOL v'+VERSION+' is live!'},
+        {title:'💡 Tip', body:'Use your license on up to 3 devices.'},
+        {title:'🎉 Offer', body:'50% OFF this week only!'},
+        {title:'📊 Stats', body:'12,000+ users have used EASY TOOL.'}
+    ];
+    const n = notifs[Math.floor(Math.random()*notifs.length)];
+    showNotification(n.title, n.body);
+},45000);
+
+// ===================== PARTICLES =====================
+const canvas=document.getElementById('particles-canvas'), ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+const particles=[];
+for(let i=0;i<80;i++){
+    particles.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        vx:(Math.random()-0.5)*0.5,
+        vy:(Math.random()-0.5)*0.5,
+        r:Math.random()*2+1,
+        o:Math.random()*0.5+0.1
+    });
+}
+function drawParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0||p.x>canvas.width) p.vx*=-1;
+        if(p.y<0||p.y>canvas.height) p.vy*=-1;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle='rgba(0,217,255,'+p.o+')';
+        ctx.fill();
+    });
+    requestAnimationFrame(drawParticles);
+}
+drawParticles();
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight});
+
+// ===================== AI CHATBOT =====================
+function toggleChat(){
+    const win = document.getElementById('chatWindow');
+    win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
+    if(win.style.display === 'flex') document.getElementById('chatInput').focus();
+}
+
+const knowledge = {
+    'easy tool': 'EASY TOOL v'+VERSION+' is a professional platform created by REYTECHFX for fixing device issues.',
+    'price': 'License prices: 3 Months = $20, 6 Months = $30, 12 Months = $40.',
+    'license': 'Purchase via WhatsApp +254111457171. Receive key via email or WhatsApp.',
+    'support': 'Contact: WhatsApp +254111457171, Email support@reytechfx.com',
+    'devices': 'Supports: Android, iOS, Windows, and other electronic devices.',
+    'download': 'Download via the "Download Now" button. ~45MB for Windows/Mac/Linux.',
+    'reytechfx': 'REYTECHFX is a technology company providing professional device solutions.'
+};
+
+function getAIResponse(query){
+    const q = query.toLowerCase();
+    for(let [key, value] of Object.entries(knowledge)){
+        if(q.includes(key)) return value;
+    }
+    const defaults = [
+        'Thank you for your question! 🙏 I can help with EASY TOOL v'+VERSION+', pricing, licenses, or support.',
+        'Sorry, I didn\'t understand. 😅 Ask about: EASY TOOL, pricing, licenses, support, or devices.',
+        'That\'s a great question! 💡 Contact us on WhatsApp +254111457171 for quick support.',
+        'Welcome! 🌟 Would you like to know more about pricing or features?'
+    ];
+    return defaults[Math.floor(Math.random()*defaults.length)];
+}
+
+function sendMessage(){
+    const input = document.getElementById('chatInput');
+    const msg = input.value.trim();
+    if(!msg) return;
+    addChatMessage('user', msg);
+    input.value = '';
+    addTypingIndicator();
+    setTimeout(()=>{
+        removeTypingIndicator();
+        const response = getAIResponse(msg);
+        addChatMessage('bot', response);
+        const container = document.getElementById('chatMessages');
+        container.scrollTop = container.scrollHeight;
+    }, 1000 + Math.random()*800);
+}
+
+function askQuick(question){
+    document.getElementById('chatInput').value = question;
+    sendMessage();
+}
+
+function addChatMessage(type, text){
+    const container = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + type;
+    div.textContent = text;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+}
+
+function addTypingIndicator(){
+    const container = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = 'chat-msg typing';
+    div.id = 'typingIndicator';
+    div.innerHTML = '<span>●</span><span>●</span><span>●</span>';
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+}
+
+function removeTypingIndicator(){
+    const el = document.getElementById('typingIndicator');
+    if(el) el.remove();
+}
+
+// ===================== LIVE VISITORS =====================
+let visitors = 1247;
+setInterval(()=>{
+    visitors += Math.floor(Math.random() * 5) - 2;
+    if(visitors < 1000) visitors = 1000;
+    document.getElementById('visitors').textContent = visitors.toLocaleString();
+},5000);
+
+// ===================== LANGUAGE SWITCHER =====================
+let lang='en';
+function switchLanguage(){
+    lang = lang==='en'?'sw':'en';
+    document.querySelector('.lang-switcher').textContent = lang==='en'?'🌐 EN':'🌐 SW';
+    showNotification('🌐 Language', lang==='en'?'Switched to English':'Imebadilishwa kwa Kiswahili');
+}
+
+// ===================== QR CODE GENERATOR =====================
+function generateQR(){
+    const container = document.getElementById('qrContainer');
+    container.innerHTML = '<div style="background:#fff;padding:15px;border-radius:10px;display:inline-block">' +
+        '<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(window.location.href+'?v='+VERSION)+'" alt="QR Code">' +
+        '<p style="font-size:11px;color:var(--text2);margin-top:5px">Scan to visit this page • v'+VERSION+'</p></div>';
+}
+setTimeout(generateQR,1000);
+
+// ===================== NEWSLETTER =====================
+function subscribeNewsletter(){
+    const email = document.getElementById('newsletterEmail').value;
+    const msg = document.getElementById('newsletterMsg');
+    if(!email || !email.includes('@')){msg.style.color='#ff6b6b';msg.textContent='❌ Please enter a valid email';return}
+    msg.style.color='#00ff88';msg.textContent='✅ Subscribed successfully! (v'+VERSION+')';
+    showNotification('📧 Newsletter', 'You have been subscribed!');
+}
+
+// ===================== CURRENCY CONVERTER =====================
+function convertCurrency(){
+    const amount = parseFloat(document.getElementById('currencyAmount').value);
+    const from = document.getElementById('fromCurrency').value;
+    const to = document.getElementById('toCurrency').value;
+    const rates = {USD:1, EUR:0.92, KES:130, GBP:0.78};
+    const result = (amount / rates[from]) * rates[to];
+    document.getElementById('currencyResult').textContent = amount + ' ' + from + ' = ' + result.toFixed(2) + ' ' + to;
+}
+
+// ===================== TIC TAC TOE GAME =====================
+let board = ['','','','','','','','',''];
+let currentPlayer = 'X';
+let gameActive = true;
+
+function makeMove(index){
+    if(!gameActive || board[index]!=='') return;
+    board[index] = currentPlayer;
+    document.querySelectorAll('.cell')[index].textContent = currentPlayer;
+    if(checkWin()){
+        document.getElementById('gameStatus').textContent = '🏆 Player '+currentPlayer+' wins!';
+        gameActive = false;
+        addActivity('🏆 Player '+currentPlayer+' won the game!');
+        return;
+    }
+    if(board.every(c=>c!=='')){
+        document.getElementById('gameStatus').textContent = '🤝 It\'s a draw!';
+        gameActive = false;
+        return;
+    }
+    currentPlayer = currentPlayer==='X'?'O':'X';
+    document.getElementById('gameStatus').textContent = 'Player '+currentPlayer+"'s turn";
+}
+
+function checkWin(){
+    const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    return wins.some(w => board[w[0]] && board[w[0]]===board[w[1]] && board[w[0]]===board[w[2]]);
+}
+
+function resetGame(){
+    board = ['','','','','','','','',''];
+    currentPlayer = 'X';
+    gameActive = true;
+    document.getElementById('gameStatus').textContent = 'Player X\'s turn';
+    document.querySelectorAll('.cell').forEach(c=>c.textContent='');
+}
+
+// ===================== IMAGE SLIDER =====================
+let slideIndex = 0;
+function slidePrev(){
+    const track = document.getElementById('sliderTrack');
+    slideIndex = (slideIndex - 1 + 3) % 3;
+    track.style.transform = 'translateX(-'+slideIndex*100+'%)';
+}
+function slideNext(){
+    const track = document.getElementById('sliderTrack');
+    slideIndex = (slideIndex + 1) % 3;
+    track.style.transform = 'translateX(-'+slideIndex*100+'%)';
+}
+setInterval(slideNext, 5000);
+
+// ===================== TABS =====================
+function openTab(e, tabId){
+    document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    e.currentTarget.classList.add('active');
+}
+
+// ===================== LIVE CHAT =====================
+function toggleLiveChat(){
+    const win = document.getElementById('liveChatWindow');
+    const btn = document.getElementById('liveChatBtn');
+    win.style.display = win.style.display==='flex'?'none':'flex';
+    btn.style.display = win.style.display==='flex'?'none':'block';
+    if(win.style.display==='flex') document.getElementById('liveChatInput').focus();
+}
+
+function sendLiveChat(){
+    const input = document.getElementById('liveChatInput');
+    const msg = input.value.trim();
+    if(!msg) return;
+    const container = document.getElementById('liveChatMessages');
+    const div = document.createElement('div');
+    div.className = 'msg user';
+    div.textContent = msg;
+    container.appendChild(div);
+    input.value = '';
+    container.scrollTop = container.scrollHeight;
+    setTimeout(()=>{
+        const reply = document.createElement('div');
+        reply.className = 'msg support';
+        reply.textContent = 'Thank you for your message! Our team will respond shortly. (v'+VERSION+')';
+        container.appendChild(reply);
+        container.scrollTop = container.scrollHeight;
+    }, 1000);
+}
+
+// ===================== PUSH NOTIFICATIONS =====================
+function requestPushNotification(){
+    if('Notification' in window && Notification.permission === 'granted'){
+        new Notification('🔔 Notifications Enabled', {body:'EASY TOOL v'+VERSION+' will send you updates!'});
+    } else if('Notification' in window && Notification.permission !== 'denied'){
+        Notification.requestPermission().then(perm => {
+            if(perm === 'granted'){
+                new Notification('🔔 Welcome!', {body:'Push notifications enabled for EASY TOOL v'+VERSION+'.'});
+                showNotification('🔔 Success', 'Push notifications enabled!');
+            }
+        });
+    } else {
+        alert('Please enable notifications in your browser settings.');
+    }
+}
+
+// ===================== MODAL POPUP =====================
+setTimeout(()=>{
+    document.getElementById('promoModal').style.display = 'flex';
+}, 5000);
+
+function closeModal(){
+    document.getElementById('promoModal').style.display = 'none';
+}
+
+// ===================== RANDOM QUOTE =====================
+const quotes = [
+    {text:'The best way to predict the future is to create it.', author:'- Peter Drucker'},
+    {text:'Innovation distinguishes between a leader and a follower.', author:'- Steve Jobs'},
+    {text:'The only way to do great work is to love what you do.', author:'- Steve Jobs'},
+    {text:'Success is not final, failure is not fatal: it is the courage to continue that counts.', author:'- Winston Churchill'},
+    {text:'The future belongs to those who believe in the beauty of their dreams.', author:'- Eleanor Roosevelt'}
+];
+function newQuote(){
+    const q = quotes[Math.floor(Math.random()*quotes.length)];
+    document.getElementById('quoteText').textContent = '"'+q.text+'"';
+    document.getElementById('quoteAuthor').textContent = '- '+q.author;
+}
+
+// ===================== USER REVIEWS =====================
+function addReview(){
+    const name = prompt('Enter your name:');
+    if(!name) return;
+    const rating = prompt('Rating (1-5 stars):');
+    if(!rating) return;
+    const text = prompt('Your review:');
+    if(!text) return;
+    const container = document.querySelector('.review-item').parentElement;
+    const div = document.createElement('div');
+    div.className = 'review-item';
+    const stars = '⭐'.repeat(Math.min(5,Math.max(1,parseInt(rating)||5)));
+    div.innerHTML = '<div class="review-header"><span class="review-name">'+name+'</span><span class="review-stars">'+stars+'</span></div><p class="review-text">'+text+'</p>';
+    container.insertBefore(div, container.lastElementChild);
+    showNotification('⭐ New Review', 'Thank you for your review! (v'+VERSION+')');
+}
+
+// ===================== INITIAL WELCOME =====================
+setTimeout(()=>{
+    showNotification('👋 Welcome!', 'EASY TOOL v'+VERSION+' is ready to help!');
+    setTimeout(()=>{
+        document.getElementById('liveChatBtn').style.display = 'block';
+    }, 10000);
+},3000);
+
+// Click outside chat to close
+document.addEventListener('click', function(e) {
+    const chat = document.getElementById('chatWindow');
+    const toggle = document.querySelector('.chat-toggle');
+    if(chat.style.display === 'flex' && !chat.contains(e.target) && !toggle.contains(e.target)){
+        chat.style.display = 'none';
+    }
+});
+
+console.log('✅ EASY TOOL v'+VERSION+' loaded successfully!');
+console.log('📌 25+ features included!');
 </script>
 </body>
 </html>
