@@ -150,9 +150,18 @@ footer{text-align:center;padding:20px;color:var(--text2);transition:0.5s}
 .notification .nbody{font-size:12px;color:var(--text2)}
 .notification .ntime{font-size:10px;color:var(--text2);margin-top:3px;display:block}
 
-/* ========== NEW FEATURES STYLES ========== */
+/* ========== DOWNLOAD SECTION STYLES ========== */
+.download-card{background:var(--card);border:1px solid var(--border);padding:25px;border-radius:18px;max-width:600px;margin:auto;text-align:center;transition:0.5s}
+.download-card:hover{box-shadow:0 0 40px var(--shadow);border-color:var(--blue)}
+.download-card .file-info{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:15px 0;font-size:13px}
+.download-card .file-info span{background:var(--border);padding:4px 14px;border-radius:15px;color:var(--text2)}
+.download-card .file-icon{font-size:60px;margin:10px 0;display:block}
+.download-btn-main{background:var(--blue);color:#001;padding:16px 50px;border-radius:50px;font-size:18px;font-weight:bold;text-decoration:none;display:inline-block;transition:0.4s;border:none;cursor:pointer}
+.download-btn-main:hover{transform:scale(1.05);box-shadow:0 0 50px #00d9ff66}
+.download-btn-main i{margin-right:10px}
+.download-alt{font-size:12px;color:var(--text2);margin-top:10px}
 
-/* 1. Live Chat Support */
+/* New Features Styles */
 .live-chat-btn{position:fixed;right:15px;bottom:140px;background:#00b894;color:#fff;padding:10px 18px;border-radius:30px;border:none;cursor:pointer;z-index:55;font-size:13px;box-shadow:0 0 30px #00b89466;transition:0.3s;display:none}
 .live-chat-btn:hover{transform:scale(1.05)}
 .live-chat-window{position:fixed;right:15px;bottom:200px;width:320px;max-width:85vw;height:380px;background:var(--card);border:1px solid var(--border);border-radius:15px;display:none;flex-direction:column;z-index:56;box-shadow:0 0 40px #00b89433;overflow:hidden}
@@ -165,27 +174,17 @@ footer{text-align:center;padding:20px;color:var(--text2);transition:0.5s}
 .live-chat-input{display:flex;padding:8px;border-top:1px solid var(--border);gap:6px}
 .live-chat-input input{flex:1;padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:var(--input);color:var(--text);outline:none;font-size:12px}
 .live-chat-input button{background:#00b894;color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:14px;cursor:pointer}
-
-/* 2. Language Switcher */
 .lang-switcher{background:var(--border);border:1px solid var(--border);color:var(--text);padding:4px 10px;border-radius:20px;cursor:pointer;font-size:12px;transition:0.3s}
 .lang-switcher:hover{background:var(--blue);color:#001}
-
-/* 3. Analytics Dashboard */
 .analytics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:12px 0}
 .analytics-item{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:12px;text-align:center}
 .analytics-item .num{font-size:28px;font-weight:bold;color:var(--blue)}
 .analytics-item .label{font-size:11px;color:var(--text2)}
-
-/* 4. Newsletter */
 .newsletter-box{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:15px;max-width:500px;margin:auto;text-align:center}
 .newsletter-box input{max-width:300px;display:inline-block}
 .newsletter-box .btn{margin-top:8px}
-
-/* 5. QR Code */
 .qr-container{text-align:center;padding:15px}
 .qr-container canvas{background:#fff;padding:10px;border-radius:10px}
-
-/* 6. Achievement Badges */
 .badges-container{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
 .badge-item{background:var(--card);border:1px solid var(--border);padding:15px 20px;border-radius:12px;text-align:center;min-width:100px}
 .badge-item .icon{font-size:30px}
@@ -193,113 +192,71 @@ footer{text-align:center;padding:20px;color:var(--text2);transition:0.5s}
 .badge-gold{border-color:#ffd700}
 .badge-silver{border-color:#c0c0c0}
 .badge-bronze{border-color:#cd7f32}
-
-/* 7. Event Calendar */
-.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;max-width:400px;margin:auto}
-.calendar-grid .day{background:var(--card);border:1px solid var(--border);padding:8px;text-align:center;border-radius:6px;font-size:12px}
-.calendar-grid .day.active{background:var(--blue);color:#001;border-color:var(--blue)}
-.calendar-grid .day.event{border-color:var(--blue);box-shadow:0 0 15px var(--shadow)}
-
-/* 8. Currency Converter */
 .currency-box{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:15px;max-width:400px;margin:auto}
 .currency-box select{padding:10px;background:var(--input);color:var(--text);border:1px solid var(--border);border-radius:8px;width:100%;margin:6px 0}
-
-/* 9. Mini Game */
 .game-container{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:15px;max-width:400px;margin:auto;text-align:center}
 .game-board{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:250px;margin:10px auto}
 .game-board .cell{background:var(--border);aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:30px;cursor:pointer;border-radius:8px;transition:0.3s}
 .game-board .cell:hover{background:var(--blue);color:#001}
-
-/* 10. Blog Section */
 .blog-card{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:12px;transition:0.3s}
 .blog-card:hover{transform:translateY(-3px);border-color:var(--blue)}
 .blog-card .date{font-size:11px;color:var(--text2)}
 .blog-card h3{font-size:16px;margin:6px 0;color:var(--text)}
 .blog-card .tag{background:var(--border);padding:2px 10px;border-radius:12px;font-size:10px;display:inline-block;color:var(--text2)}
-
-/* 11. Trending Products */
 .trending-card{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:12px;text-align:center;transition:0.3s}
 .trending-card:hover{transform:translateY(-3px);border-color:var(--blue)}
 .trending-card .icon{font-size:36px}
 .trending-card .trend-price{font-size:20px;color:var(--blue);font-weight:bold}
-
-/* 12. Video Gallery */
 .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
 .video-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:0.3s}
 .video-card:hover{transform:translateY(-3px);border-color:var(--blue)}
 .video-card iframe{width:100%;height:150px;border:none}
 .video-card .info{padding:10px;font-size:13px}
-
-/* 13. File Manager */
 .file-manager{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px;max-width:500px;margin:auto}
 .file-item{display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--border);font-size:13px}
 .file-item .size{color:var(--text2);font-size:11px}
 .file-upload-btn{background:var(--border);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:12px;width:100%;margin-top:8px}
-
-/* 14. User Reviews */
 .review-item{background:var(--card);border:1px solid var(--border);padding:12px;border-radius:10px;margin:6px 0}
 .review-item .review-header{display:flex;justify-content:space-between;align-items:center}
 .review-item .review-name{font-weight:bold;font-size:14px}
 .review-item .review-stars{color:#ffd700;font-size:14px}
 .review-item .review-text{font-size:13px;color:var(--text2);margin-top:4px}
-
-/* 15. Push Notifications */
 .push-btn{background:var(--blue);color:#001;border:none;padding:10px 20px;border-radius:30px;cursor:pointer;font-size:13px;transition:0.3s}
 .push-btn:hover{transform:scale(1.05)}
-
-/* 16. Weather Widget */
 .weather-widget{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:12px;max-width:300px;margin:auto;text-align:center}
 .weather-widget .temp{font-size:36px;font-weight:bold;color:var(--blue)}
 .weather-widget .condition{font-size:14px;color:var(--text2)}
-
-/* 17. Stock Ticker */
 .stock-ticker{background:var(--card);border:1px solid var(--border);padding:10px;border-radius:10px;overflow:hidden}
 .stock-ticker .ticker{display:flex;animation:tickerScroll 20s linear infinite;gap:30px}
 @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .stock-ticker .stock-item{font-size:12px;white-space:nowrap}
 .stock-ticker .stock-item .up{color:#00ff88}
 .stock-ticker .stock-item .down{color:#ff6b6b}
-
-/* 18. Random Quote */
 .quote-box{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:12px;text-align:center;max-width:500px;margin:auto}
 .quote-box .quote{font-size:18px;font-style:italic;color:var(--text)}
 .quote-box .author{font-size:14px;color:var(--blue);margin-top:8px}
-
-/* 19. Image Slider */
 .slider-container{max-width:500px;margin:auto;overflow:hidden;border-radius:12px;position:relative}
 .slider-track{display:flex;transition:0.5s}
 .slider-track img{width:100%;height:250px;object-fit:cover;flex-shrink:0}
 .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);color:#fff;border:none;padding:10px 14px;cursor:pointer;font-size:18px;border-radius:50%;z-index:5}
 .slider-btn.prev{left:10px}
 .slider-btn.next{right:10px}
-
-/* 20. Tab System */
 .tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:2px solid var(--border);margin-bottom:15px}
 .tab-btn{background:transparent;border:none;padding:10px 20px;color:var(--text2);cursor:pointer;font-size:13px;transition:0.3s;border-bottom:2px solid transparent}
 .tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
 .tab-content{display:none;padding:10px 0}
 .tab-content.active{display:block}
-
-/* 21. Modal Popups */
 .modal-popup{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:none;align-items:center;justify-content:center}
 .modal-popup .modal-content{background:var(--card);padding:30px;border-radius:20px;max-width:400px;width:90%;text-align:center;border:1px solid var(--border)}
 .modal-popup .modal-content .close{float:right;font-size:24px;cursor:pointer;color:var(--text2)}
-
-/* 22. Tooltips */
 [data-tooltip]{position:relative}
 [data-tooltip]:before{content:attr(data-tooltip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--card);color:var(--text);padding:4px 10px;border-radius:6px;font-size:11px;white-space:nowrap;display:none;border:1px solid var(--border);z-index:10}
 [data-tooltip]:hover:before{display:block}
-
-/* 23. Loading Spinner */
 .spinner{width:40px;height:40px;border:4px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 0.8s linear infinite;margin:10px auto}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* 24. Breadcrumbs */
 .breadcrumbs{padding:8px 0;font-size:12px;color:var(--text2)}
 .breadcrumbs span{color:var(--blue)}
 .breadcrumbs .sep{margin:0 6px;color:var(--border)}
-
-/* 25. Pagination */
 .pagination{display:flex;gap:6px;justify-content:center;margin:15px 0}
 .pagination button{background:var(--border);border:1px solid var(--border);color:var(--text);padding:6px 14px;border-radius:6px;cursor:pointer;transition:0.3s;font-size:12px}
 .pagination button:hover{background:var(--blue);color:#001}
@@ -352,7 +309,7 @@ footer{text-align:center;padding:20px;color:var(--text2);transition:0.5s}
 
 <!-- ========== BREADCRUMBS ========== -->
 <div class="breadcrumbs" style="padding:10px 7%;">
-🏠 <span>Home</span> <span class="sep">›</span> <span>EASY TOOL</span> <span class="sep">›</span> <span>Dashboard</span> <span style="color:var(--blue);margin-left:10px;font-size:10px;background:var(--border);padding:2px 8px;border-radius:10px">v0.0.25</span>
+🏠 <span>Home</span> <span class="sep">›</span> <span>EASY TOOL</span> <span class="sep">›</span> <span>Download</span> <span style="color:var(--blue);margin-left:10px;font-size:10px;background:var(--border);padding:2px 8px;border-radius:10px">v0.0.25</span>
 </div>
 
 <!-- ========== HERO ========== -->
@@ -477,17 +434,39 @@ footer{text-align:center;padding:20px;color:var(--text2);transition:0.5s}
 
 <!-- ========== DOWNLOAD ========== -->
 <section id="download">
-<h2 class="title">⬇ Download</h2>
-<p style="text-align:center">Downloads: <b id="count">10245</b>+</p>
-<div style="text-align:center;margin-top:15px">
-<button class="btn" onclick="downloadNow()" style="font-size:18px;padding:15px 40px">⬇ Download EASY TOOL v0.0.25</button>
-<p style="font-size:12px;color:var(--text2);margin-top:10px">Version 0.0.25 • 45MB • Windows/Mac/Linux</p>
+<h2 class="title">⬇ Download EASY TOOL</h2>
+
+<div class="download-card">
+<span class="file-icon">📦</span>
+<h3 style="color:var(--text);font-size:22px;margin:5px 0">EASY TOOL v0.0.25</h3>
+<p style="font-size:14px;color:var(--text2)">Professional Device Solution Platform</p>
+
+<div class="file-info">
+<span>📄 Format: .RAR</span>
+<span>💾 Size: 197.6 MB</span>
+<span>📅 Uploaded: July 22, 2026</span>
+<span>🌍 Region: Kenya</span>
 </div>
 
-<!-- ========== QR CODE ========== -->
-<div style="margin-top:20px;border-top:1px solid var(--border);padding-top:20px">
-<h3 style="color:var(--blue);text-align:center;font-size:16px">📱 Scan to Download</h3>
+<a href="https://www.mediafire.com/file/f94h0bhczqubct6/EASY+TOOL.rar/file" target="_blank" class="download-btn-main" onclick="trackDownload()">
+⬇ Download Now
+</a>
+
+<p class="download-alt">🔒 Secure download via MediaFire • VirusTotal scanned</p>
+
+<div style="margin-top:15px;font-size:12px;color:var(--text2);border-top:1px solid var(--border);padding-top:12px">
+<p>📌 Includes: Android Tools • Repair Modules • Firmware • Diagnostic System</p>
+<p>🖥 Compatible: Windows 10/11 • Mac OS • Linux</p>
+</div>
+</div>
+
+<!-- Download Counter & QR -->
+<div style="text-align:center;margin-top:20px">
+<p>Total Downloads: <b id="count">10,245</b>+</p>
+<div style="margin-top:15px;border-top:1px solid var(--border);padding-top:15px">
+<h3 style="color:var(--blue);font-size:16px">📱 Scan to Download</h3>
 <div class="qr-container" id="qrContainer"></div>
+</div>
 </div>
 </section>
 
@@ -525,7 +504,7 @@ footer{text-align:center;padding:20px;color:var(--text2);transition:0.5s}
 </div>
 </section>
 
-<!-- ========== USER REVIEWS & RATINGS ========== -->
+<!-- ========== USER REVIEWS ========== -->
 <section>
 <h2 class="title">⭐ User Reviews</h2>
 <div style="max-width:500px;margin:auto">
@@ -588,8 +567,6 @@ footer{text-align:center;padding:20px;color:var(--text2);transition:0.5s}
 <p style="font-weight:bold;font-size:18px;color:var(--text);margin:0">ReyTech User</p>
 <p style="color:var(--text2);margin:0;font-size:13px">user@reytechfx.com</p>
 <p style="color:#00ff88;margin:4px 0 0;font-size:13px">🟢 Active • Premium Member</p>
-
-<!-- ========== ACHIEVEMENT BADGES ========== -->
 <div style="margin-top:8px">
 <div class="badges-container">
 <div class="badge-item badge-gold"><div class="icon">🏆</div><div class="name">Gold Member</div></div>
@@ -683,7 +660,7 @@ footer{text-align:center;padding:20px;color:var(--text2);transition:0.5s}
 <section>
 <h2 class="title">📂 File Manager</h2>
 <div class="file-manager">
-<div class="file-item"><span>📄 EASY_TOOL_v0.0.25.exe</span><span class="size">45.2 MB</span></div>
+<div class="file-item"><span>📄 EASY_TOOL_v0.0.25.rar</span><span class="size">197.6 MB</span></div>
 <div class="file-item"><span>📄 license_key.txt</span><span class="size">1.2 KB</span></div>
 <div class="file-item"><span>📄 firmware_v2.5.0.zip</span><span class="size">128 MB</span></div>
 <div class="file-item"><span>📄 user_manual.pdf</span><span class="size">3.8 MB</span></div>
@@ -742,19 +719,19 @@ footer{text-align:center;padding:20px;color:var(--text2);transition:0.5s}
 <h2 class="title">📰 Latest News</h2>
 <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
 <div class="blog-card">
-<span class="date">📅 July 20, 2026</span>
+<span class="date">📅 July 22, 2026</span>
 <h3>EASY TOOL v0.0.25 Released!</h3>
-<p style="font-size:13px">New features and performance improvements.</p>
+<p style="font-size:13px">New features and performance improvements. Download now!</p>
 <span class="tag">🚀 Update</span>
 </div>
 <div class="blog-card">
-<span class="date">📅 July 15, 2026</span>
+<span class="date">📅 July 20, 2026</span>
 <h3>50% OFF Summer Sale</h3>
 <p style="font-size:13px">Get 50% off all licenses this week!</p>
 <span class="tag">🎉 Offer</span>
 </div>
 <div class="blog-card">
-<span class="date">📅 July 10, 2026</span>
+<span class="date">📅 July 15, 2026</span>
 <h3>New Android Tools Added</h3>
 <p style="font-size:13px">Support for latest Android devices.</p>
 <span class="tag">🛠 Tools</span>
@@ -947,6 +924,7 @@ footer{text-align:center;padding:20px;color:var(--text2);transition:0.5s}
 <script>
 // ===================== VERSION =====================
 const VERSION = '0.0.25';
+const DOWNLOAD_URL = 'https://www.mediafire.com/file/f94h0bhczqubct6/EASY+TOOL.rar/file';
 console.log('EASY TOOL v'+VERSION+' loaded!');
 
 // ===================== LIVE CLOCK =====================
@@ -978,6 +956,14 @@ setTimeout(()=>animateCounter('activeUsers',1247,1280,2000),2000);
 let downloadCount = 10245;
 setInterval(()=>{downloadCount++;document.getElementById('count').textContent=downloadCount},3000);
 
+// ===================== TRACK DOWNLOAD =====================
+function trackDownload() {
+    downloadCount++;
+    document.getElementById('count').textContent = downloadCount;
+    addActivity('📥 New download from ' + (navigator.userAgent.includes('Mobile') ? 'Mobile' : 'Desktop'));
+    showNotification('⬇ Download Started', 'EASY TOOL v'+VERSION+' is downloading from MediaFire...');
+}
+
 // ===================== LICENSE ACTIVATION =====================
 function activateLicense() {
     const u=document.getElementById('username').value, l=document.getElementById('licenseKey').value, msg=document.getElementById('licenseMsg');
@@ -990,9 +976,8 @@ function activateLicense() {
 
 // ===================== DOWNLOAD =====================
 function downloadNow(){
-    alert('⬇ Download started!\n\nEASY TOOL v'+VERSION+' by REYTECHFX');
-    addActivity('📥 New download initiated v'+VERSION);
-    showNotification('⬇ Download Started', 'EASY TOOL v'+VERSION+' is downloading...');
+    window.open(DOWNLOAD_URL, '_blank');
+    trackDownload();
 }
 
 // ===================== ACTIVITY FEED =====================
@@ -1117,7 +1102,7 @@ function showNotification(title, body){
 
 setInterval(()=>{
     const notifs = [
-        {title:'🚀 Update', body:'EASY TOOL v'+VERSION+' is live!'},
+        {title:'🚀 Update', body:'EASY TOOL v'+VERSION+' is live! Download now!'},
         {title:'💡 Tip', body:'Use your license on up to 3 devices.'},
         {title:'🎉 Offer', body:'50% OFF this week only!'},
         {title:'📊 Stats', body:'12,000+ users have used EASY TOOL.'}
@@ -1169,7 +1154,7 @@ const knowledge = {
     'license': 'Purchase via WhatsApp +254111457171. Receive key via email or WhatsApp.',
     'support': 'Contact: WhatsApp +254111457171, Email support@reytechfx.com',
     'devices': 'Supports: Android, iOS, Windows, and other electronic devices.',
-    'download': 'Download via the "Download Now" button. ~45MB for Windows/Mac/Linux.',
+    'download': 'Download via the "Download Now" button. File size: 197.6 MB (MediaFire)',
     'reytechfx': 'REYTECHFX is a technology company providing professional device solutions.'
 };
 
@@ -1252,8 +1237,8 @@ function switchLanguage(){
 function generateQR(){
     const container = document.getElementById('qrContainer');
     container.innerHTML = '<div style="background:#fff;padding:15px;border-radius:10px;display:inline-block">' +
-        '<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(window.location.href+'?v='+VERSION)+'" alt="QR Code">' +
-        '<p style="font-size:11px;color:var(--text2);margin-top:5px">Scan to visit this page • v'+VERSION+'</p></div>';
+        '<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(DOWNLOAD_URL)+'" alt="QR Code">' +
+        '<p style="font-size:11px;color:var(--text2);margin-top:5px">Scan to download EASY TOOL v'+VERSION+'</p></div>';
 }
 setTimeout(generateQR,1000);
 
@@ -1422,7 +1407,7 @@ function addReview(){
 
 // ===================== INITIAL WELCOME =====================
 setTimeout(()=>{
-    showNotification('👋 Welcome!', 'EASY TOOL v'+VERSION+' is ready to help!');
+    showNotification('👋 Welcome!', 'EASY TOOL v'+VERSION+' is ready to download!');
     setTimeout(()=>{
         document.getElementById('liveChatBtn').style.display = 'block';
     }, 10000);
@@ -1438,7 +1423,8 @@ document.addEventListener('click', function(e) {
 });
 
 console.log('✅ EASY TOOL v'+VERSION+' loaded successfully!');
-console.log('📌 25+ features included!');
+console.log('📌 Download URL: '+DOWNLOAD_URL);
+console.log('📦 File: EASY TOOL.rar (197.6 MB)');
 </script>
 </body>
 </html>
