@@ -1,9 +1,4 @@
-{
-  "version": "v0.0.33",
-  "minimum_version": "v0.0.33",
-  "force_update": true,
-  "download_url": "DIRECT_EXE_DOWNLOAD_URL",
-  "client_download_url": "DIRECT_EXE_DOWNLOAD_URL",
-  "release_date": "2026-08-11",
-  "description": "Latest EASY TOOL update"
-}
+VERSION_CHECK_URL = os.getenv(
+    "EASYTOOL_VERSION_URL",
+    "https://raw.githubusercontent.com/reytechfix-spec/EASTTOOL.COM/main/version.json"
+)
