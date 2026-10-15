@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#020b18">
-<meta name="description" content="EASY TOOL — Simple, Fast, Powerful mobile servicing solution.">
+<meta name="description" content="EASY TOOL — Simple, Fast, Powerful mobile servicing solution with Supabase-powered account authentication.">
 <title>EASY TOOL | Simple · Fast · Powerful</title>
 <style>
 :root{color-scheme:dark;--bg:#020b18;--panel:#041326;--cyan:#04c8ff;--blue:#057aff;--ink:#f3f8ff;--muted:#9db6d0;--line:#17466d}
@@ -67,19 +67,19 @@
    <div class="field"><label for="dSignupEmail">Email address</label><input id="dSignupEmail" type="email" required autocomplete="email" placeholder="you@example.com"></div>
    <div class="field"><label for="dSignupPassword">Password</label><div class="pw-wrap"><input id="dSignupPassword" type="password" required minlength="8" autocomplete="new-password" placeholder="At least 8 characters"><button class="eye-btn" type="button" data-eye="dSignupPassword">SHOW</button></div></div>
    <div class="field"><label for="dSignupConfirm">Confirm password</label><input id="dSignupConfirm" type="password" required minlength="8" autocomplete="new-password" placeholder="Repeat your password"></div>
-   <div class="form-checks"><label><input id="dTerms" type="checkbox" required> I agree to the terms</label><span>Account demo</span></div>
+   <div class="form-checks"><label><input id="dTerms" type="checkbox" required> I agree to the terms</label><span>Secure account</span></div>
    <button class="primary-btn" type="submit" style="width:100%">Create Account &nbsp; →</button>
    <div class="form-notice" id="dSignupNotice" role="status" aria-live="polite"></div>
   </form>
   <div class="overlay-footer">Already have an account? <button type="button" class="plain-link" id="dSignupLoginLink">Log in</button></div>
-  <div class="demo-note">Standalone demo. Connect a secure authentication backend before accepting real customers.</div>
+  <div class="demo-note">EASY TOOL account security powered by Supabase Auth.</div>
  </section>
 
  <section class="overlay-card" id="dDashboard" hidden aria-labelledby="dDashTitle">
   <div style="color:#43d9ff;letter-spacing:.2em;font-size:11px;margin:4px 0 18px">EASY TOOL · USER ACCESS</div>
-  <h2 id="dDashTitle">Welcome to EASY TOOL</h2><p class="sub">You are signed in to this browser demo.</p>
-  <div style="border:1px solid #184c70;background:#04172b;border-radius:12px;padding:18px;margin:8px 0 18px"><div style="font-size:10px;color:#89aac7;margin-bottom:8px">SIGNED-IN ACCOUNT</div><strong id="dAccountEmail" style="overflow-wrap:anywhere"></strong><div style="font-size:10px;color:#89aac7;margin:16px 0 7px">STATUS</div><span style="color:#65f4bb">● Active demo session</span></div>
-  <p class="sub">Your login form is connected to a browser-only demo account store. Device-independent accounts require a backend.</p><button class="primary-btn" id="dDashLogout" type="button">Log out</button><div class="demo-note">EASY TOOL · Simple · Fast · Powerful</div>
+  <h2 id="dDashTitle">Welcome to EASY TOOL</h2><p class="sub">You are signed in to your EASY TOOL account.</p>
+  <div style="border:1px solid #184c70;background:#04172b;border-radius:12px;padding:18px;margin:8px 0 18px"><div style="font-size:10px;color:#89aac7;margin-bottom:8px">SIGNED-IN ACCOUNT</div><strong id="dAccountEmail" style="overflow-wrap:anywhere"></strong><div style="font-size:10px;color:#89aac7;margin:16px 0 7px">STATUS</div><span style="color:#65f4bb">● Authenticated session</span></div>
+  <p class="sub">Your account is authenticated through Supabase. You can safely sign out when finished.</p><button class="primary-btn" id="dDashLogout" type="button">Log out</button><div class="demo-note">EASY TOOL · Simple · Fast · Powerful</div>
  </section>
  <div class="form-notice" id="dMainNotice" role="status" aria-live="polite" style="position:absolute;z-index:15;left:55.7%;top:66.5%;width:32.3%;font-size:clamp(11px,.8vw,14px)"></div>
  <div class="modal-backdrop" id="dModal" hidden><div class="info-modal" role="dialog" aria-modal="true" aria-labelledby="dModalTitle"><button class="close-modal" id="dCloseModal" aria-label="Close">×</button><h2 id="dModalTitle">EASY TOOL</h2><div id="dModalContent"></div></div></div>
@@ -92,121 +92,385 @@
   <div class="m-tabs"><button class="active" id="mLoginTab" type="button">⇥ &nbsp; Login</button><button id="mSignupTab" type="button">♙ &nbsp; Create Account</button></div>
   <div id="mLoginView"><h2>Welcome Back!</h2><p class="sub">Login to your <span style="color:#00caff">EASY TOOL</span> account</p><form id="mLoginForm"><div class="field"><label for="mEmail">Email address</label><input id="mEmail" type="email" required autocomplete="email" placeholder="Email Address"></div><div class="field"><label for="mPassword">Password</label><div class="pw-wrap"><input id="mPassword" type="password" required autocomplete="current-password" placeholder="Password"><button class="eye-btn" type="button" data-eye="mPassword">SHOW</button></div></div><div class="form-checks"><label><input id="mRemember" type="checkbox" checked> Remember me</label><button class="plain-link" id="mForgot" type="button">Forgot password?</button></div><button class="primary-btn" type="submit">→ &nbsp; Login</button><div class="divider">OR</div><button class="outline-btn" id="mGoogle" type="button">🌐 &nbsp; Continue with Google</button><div class="overlay-footer">Don't have an account? <button type="button" class="plain-link" id="mInlineSignup">Create Account</button></div><div class="form-notice" id="mLoginNotice" role="status" aria-live="polite"></div></form></div>
   <div id="mSignupView" hidden><h2>Create Account</h2><p class="sub">Join EASY TOOL and get started.</p><form id="mSignupForm"><div class="field"><label for="mName">Full name</label><input id="mName" required minlength="2" autocomplete="name" placeholder="Your full name"></div><div class="field"><label for="mSignupEmail">Email address</label><input id="mSignupEmail" type="email" required autocomplete="email" placeholder="you@example.com"></div><div class="field"><label for="mSignupPassword">Password</label><div class="pw-wrap"><input id="mSignupPassword" type="password" required minlength="8" autocomplete="new-password" placeholder="At least 8 characters"><button class="eye-btn" type="button" data-eye="mSignupPassword">SHOW</button></div></div><div class="field"><label for="mSignupConfirm">Confirm password</label><input id="mSignupConfirm" type="password" required minlength="8" autocomplete="new-password" placeholder="Repeat your password"></div><div class="form-checks"><label><input id="mTerms" type="checkbox" required> I agree to the terms</label></div><button class="primary-btn" type="submit">Create Account →</button><div class="overlay-footer">Already registered? <button type="button" class="plain-link" id="mBackLogin">Log in</button></div><div class="form-notice" id="mSignupNotice" role="status" aria-live="polite"></div></form></div>
-  <div class="mobile-dashboard" id="mDashboard"><div style="font-size:11px;letter-spacing:.17em;color:#37d4ff;margin-bottom:16px">EASY TOOL · USER ACCESS</div><h2>Welcome!</h2><p class="sub">Your browser demo session is active.</p><div style="border:1px solid #184c70;border-radius:11px;background:#04172b;padding:14px;margin-bottom:17px"><div style="font-size:10px;color:#89aac7;margin-bottom:8px">ACCOUNT EMAIL</div><strong id="mAccountEmail" style="overflow-wrap:anywhere"></strong><div style="font-size:10px;color:#89aac7;margin:15px 0 6px">STATUS</div><span style="color:#65f4bb">● Active demo session</span></div><button type="button" class="primary-btn" id="mLogout" style="width:100%">Log out</button></div>
-  <p class="demo-note">This standalone HTML uses a browser-only demo. Connect a secure backend before using real customer accounts.</p>
+  <div class="mobile-dashboard" id="mDashboard"><div style="font-size:11px;letter-spacing:.17em;color:#37d4ff;margin-bottom:16px">EASY TOOL · USER ACCESS</div><h2>Welcome!</h2><p class="sub">You are signed in to your EASY TOOL account.</p><div style="border:1px solid #184c70;border-radius:11px;background:#04172b;padding:14px;margin-bottom:17px"><div style="font-size:10px;color:#89aac7;margin-bottom:8px">ACCOUNT EMAIL</div><strong id="mAccountEmail" style="overflow-wrap:anywhere"></strong><div style="font-size:10px;color:#89aac7;margin:15px 0 6px">STATUS</div><span style="color:#65f4bb">● Authenticated session</span></div><button type="button" class="primary-btn" id="mLogout" style="width:100%">Log out</button></div>
+  <p class="demo-note">EASY TOOL account security powered by Supabase Auth.</p>
  </section>
  <p class="m-footer">EASY TOOL · SIMPLE · FAST · POWERFUL</p>
  <div class="modal-backdrop" id="mModal" hidden><div class="info-modal" role="dialog" aria-modal="true" aria-labelledby="mModalTitle"><button class="close-modal" id="mCloseModal" aria-label="Close">×</button><h2 id="mModalTitle">EASY TOOL</h2><div id="mModalContent"></div></div></div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (() => {
- const $ = id => document.getElementById(id);
- const ACCOUNTS_KEY = 'easytool_demo_accounts_v1';
- const REMEMBER_KEY = 'easytool_demo_remembered_email';
- const SESSION_KEY = 'easytool_demo_session_email';
- const isDesktop = () => window.matchMedia('(min-width: 801px)').matches;
- const getAccounts = () => { try { const x = JSON.parse(localStorage.getItem(ACCOUNTS_KEY) || '{}'); return x && typeof x === 'object' ? x : {}; } catch { return {}; } };
- const putAccounts = value => localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(value));
- const hashPassword = async value => {
-   if (!window.crypto || !crypto.subtle) throw new Error('Secure browser hashing is unavailable here. Open this page in a modern browser through HTTPS or localhost.');
-   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value));
-   return [...new Uint8Array(digest)].map(x => x.toString(16).padStart(2,'0')).join('');
- };
- const notice = (el, msg, error=false) => { if (!el) return; el.textContent = msg; el.className = 'form-notice show' + (error ? ' error' : ''); };
- const clearNotice = el => { if (el) { el.textContent=''; el.className='form-notice'; } };
- const mainNotice = (msg, error=false) => {
-   const el = $('dMainNotice'); if (!el) return;
-   notice(el,msg,error); clearTimeout(mainNotice.timer); mainNotice.timer=setTimeout(()=>clearNotice(el),6000);
- };
- const panelIds = ['dSignupPanel','dDashboard'];
- function closeDesktopPanels(){panelIds.forEach(id=>$(id).hidden=true);}
- function openDesktopSignup(){closeDesktopPanels();$('dSignupPanel').hidden=false;clearNotice($('dSignupNotice'));}
- function setMobileMode(mode){
-   const signup=mode==='signup';
-   $('mLoginView').hidden=signup; $('mSignupView').hidden=!signup; $('mDashboard').classList.remove('show');
-   $('mLoginTab').classList.toggle('active',!signup); $('mSignupTab').classList.toggle('active',signup);
-   clearNotice($('mLoginNotice')); clearNotice($('mSignupNotice'));
- }
- function openSignup(){if(isDesktop())openDesktopSignup();else{ $('mAuthCard').classList.remove('hide');setMobileMode('signup');$('mAuthCard').scrollIntoView({behavior:'smooth',block:'center'});}}
- function openLogin(){closeDesktopPanels();if(!isDesktop()){ $('mAuthCard').classList.remove('hide');setMobileMode('login');}}
- function showDashboard(email, account){
-   sessionStorage.setItem(SESSION_KEY,email);
-   if(isDesktop()){
-     closeDesktopPanels(); $('dDashboard').hidden=false; $('dAccountEmail').textContent=email;
-   } else {
-     $('mAuthCard').classList.remove('hide'); $('mLoginView').hidden=true; $('mSignupView').hidden=true; $('mDashboard').classList.add('show'); $('mAccountEmail').textContent=email;
-     $('mAuthCard').scrollIntoView({behavior:'smooth',block:'center'});
-   }
- }
- function logOut(){sessionStorage.removeItem(SESSION_KEY);localStorage.removeItem(REMEMBER_KEY);closeDesktopPanels();if(!isDesktop())setMobileMode('login');}
- async function createAccount({name,email,password,confirm,terms,noticeEl,signupEmailEl,desktop}){
-   clearNotice(noticeEl);
-   name=(name||'').trim(); email=(email||'').trim().toLowerCase();
-   if(name.length<2)return notice(noticeEl,'Please enter your full name.',true);
-   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return notice(noticeEl,'Enter a valid email address.',true);
-   if(password.length<8)return notice(noticeEl,'Password must contain at least 8 characters.',true);
-   if(password!==confirm)return notice(noticeEl,'The passwords do not match.',true);
-   if(!terms)return notice(noticeEl,'Please agree to the terms to continue.',true);
-   const accounts=getAccounts(); if(accounts[email])return notice(noticeEl,'An account with this email already exists. Please log in.',true);
-   try {
-     const passwordHash=await hashPassword(password);
-     accounts[email]={name,passwordHash,createdAt:new Date().toISOString()}; putAccounts(accounts);
-     notice(noticeEl,'Account created. You can now log in with your email and password.');
-     if(desktop){$('dEmail').value=email;setTimeout(()=>{closeDesktopPanels();mainNotice('Account created successfully. Please log in.');},900);}
-     else{$('mEmail').value=email;setTimeout(()=>setMobileMode('login'),1000);}
-   } catch(e){notice(noticeEl,e.message || 'Unable to create account in this browser.',true);}
- }
- async function loginAccount(email,password,remember,noticeEl){
-   clearNotice(noticeEl); email=(email||'').trim().toLowerCase();
-   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return notice(noticeEl,'Enter a valid email address.',true);
-   if(!password)return notice(noticeEl,'Enter your password.',true);
-   const account=getAccounts()[email];
-   if(!account)return notice(noticeEl,'No demo account found for this email. Select Create Account first.',true);
-   try{
-     const digest=await hashPassword(password);
-     if(digest!==account.passwordHash)return notice(noticeEl,'Email or password is incorrect.',true);
-     if(remember)localStorage.setItem(REMEMBER_KEY,email); else localStorage.removeItem(REMEMBER_KEY);
-     showDashboard(email,account);
-   } catch(e){notice(noticeEl,e.message || 'Unable to verify this login.',true);}
- }
- // Desktop controls overlay the matching fields in the supplied screenshot.
- $('dLoginTab').addEventListener('click',openLogin); $('dSignupTab').addEventListener('click',openDesktopSignup);
- $('dRegister').addEventListener('click',openDesktopSignup); $('dFooterSignup').addEventListener('click',openDesktopSignup);
- $('dSignupLoginSwitch').addEventListener('click',openLogin); $('dSignupLoginLink').addEventListener('click',openLogin);
- $('dEye').addEventListener('click',()=>{$('dPassword').type=$('dPassword').type==='password'?'text':'password'; mainNotice($('dPassword').type==='text'?'Password is visible.':'Password is hidden.');});
- document.querySelectorAll('[data-eye]').forEach(btn=>btn.addEventListener('click',()=>{const input=$(btn.dataset.eye);if(input){input.type=input.type==='password'?'text':'password';btn.textContent=input.type==='text'?'HIDE':'SHOW';}}));
- $('dSubmit').addEventListener('click',()=>loginAccount($('dEmail').value,$('dPassword').value,$('dRemember').checked,$('dMainNotice')).catch(e=>mainNotice(e.message,true)));
- $('dEmail').addEventListener('keydown',e=>{if(e.key==='Enter')$('dPassword').focus();});$('dPassword').addEventListener('keydown',e=>{if(e.key==='Enter')$('dSubmit').click();});
- $('dForgot').addEventListener('click',()=>mainNotice('Password reset needs a connected backend and email service. This standalone demo cannot send reset emails.',true));
- $('dGoogle').addEventListener('click',()=>mainNotice('Google sign-in is a visual placeholder until an OAuth client and secure backend are configured.',true));
- $('dSignupForm').addEventListener('submit',e=>{e.preventDefault();createAccount({name:$('dName').value,email:$('dSignupEmail').value,password:$('dSignupPassword').value,confirm:$('dSignupConfirm').value,terms:$('dTerms').checked,noticeEl:$('dSignupNotice'),desktop:true});});
- $('dDashLogout').addEventListener('click',()=>{logOut();mainNotice('You have logged out.');});
- $('dTheme').addEventListener('click',()=>{$('desktopView').classList.toggle('dim');mainNotice($('desktopView').classList.contains('dim')?'Low-glow display enabled.':'Neon display restored.');});
- // Mobile controls use a fully responsive HTML version.
- $('mLoginTab').addEventListener('click',()=>setMobileMode('login')); $('mSignupTab').addEventListener('click',()=>setMobileMode('signup')); $('mInlineSignup').addEventListener('click',()=>setMobileMode('signup')); $('mBackLogin').addEventListener('click',()=>setMobileMode('login'));
- $('mLoginForm').addEventListener('submit',e=>{e.preventDefault();loginAccount($('mEmail').value,$('mPassword').value,$('mRemember').checked,$('mLoginNotice'));});
- $('mSignupForm').addEventListener('submit',e=>{e.preventDefault();createAccount({name:$('mName').value,email:$('mSignupEmail').value,password:$('mSignupPassword').value,confirm:$('mSignupConfirm').value,terms:$('mTerms').checked,noticeEl:$('mSignupNotice'),desktop:false});});
- $('mForgot').addEventListener('click',()=>notice($('mLoginNotice'),'Password reset requires a connected backend and email service.',true)); $('mGoogle').addEventListener('click',()=>notice($('mLoginNotice'),'Google sign-in needs OAuth and a secure backend; it is not enabled in this standalone demo.',true)); $('mLogout').addEventListener('click',logOut);
- const modalContent={
-   Features:'<p>Designed around a simple, fast workflow for mobile servicing.</p><ul><li>Fast performance</li><li>Safety-focused workflow</li><li>Clear and easy-to-use interface</li><li>Support-ready experience</li></ul>',
-   Tools:'<p>EASY TOOL is presented as an all-in-one mobile servicing solution. Connect this menu to the tools and actions available in your actual application.</p>',
-   Price:'<p>License plans and activation details can be published here. Connect this section to your current pricing and payment/activation process before launch.</p>',
-   About:'<p>EASY TOOL is a mobile servicing solution with the promise: <strong>Simple · Fast · Powerful.</strong></p>',
-   Contact:'<p>For the live website, connect this section to your official support contact and links.</p>'
- };
- function openModal(name,mobile=false){if(name==='Home'){const el=mobile?$('mModal'):$('dModal');el.hidden=true;return;}
-   const target=mobile?$('mModal'):$('dModal'); $(mobile?'mModalTitle':'dModalTitle').textContent=name==='Price'?'EASY TOOL Pricing':name==='Contact'?'Contact EASY TOOL':`EASY TOOL ${name}`; $(mobile?'mModalContent':'dModalContent').innerHTML=modalContent[name]||'<p>More information coming soon.</p>';target.hidden=false;
- }
- document.querySelectorAll('.desktop [data-section]').forEach(btn=>btn.addEventListener('click',()=>openModal(btn.dataset.section,false)));
- $('dCloseModal').addEventListener('click',()=>$('dModal').hidden=true);$('mCloseModal').addEventListener('click',()=>$('mModal').hidden=true);
- $('mMenu').addEventListener('click',()=>openModal('Features',true));
- $('dModal').addEventListener('click',e=>{if(e.target===$('dModal'))$('dModal').hidden=true;});$('mModal').addEventListener('click',e=>{if(e.target===$('mModal'))$('mModal').hidden=true;});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('dModal').hidden=true;$('mModal').hidden=true;}});
- // Restore a remembered browser demo session when present.
- const remembered=localStorage.getItem(REMEMBER_KEY); const session=sessionStorage.getItem(SESSION_KEY); const returning=remembered||session;
- if(returning && getAccounts()[returning]){ if(isDesktop()){$('dDashboard').hidden=false;$('dAccountEmail').textContent=returning;}else{ $('mLoginView').hidden=true;$('mSignupView').hidden=true;$('mDashboard').classList.add('show');$('mAccountEmail').textContent=returning;}}
- // Maintain the correct dashboard surface if the viewport is resized across the mobile breakpoint.
- window.addEventListener('resize',()=>{const email=sessionStorage.getItem(SESSION_KEY)||localStorage.getItem(REMEMBER_KEY);if(email&&getAccounts()[email]){if(isDesktop()){$('dDashboard').hidden=false;$('dAccountEmail').textContent=email;}else{$('mLoginView').hidden=true;$('mSignupView').hidden=true;$('mDashboard').classList.add('show');$('mAccountEmail').textContent=email;}}});
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const SUPABASE_URL = 'https://ojhrtumsancubzqfcusk.supabase.co';
+  // Publishable key: intended for browser clients. Never place a service_role/secret key here.
+  const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_8EOgYI7qEAP8CWku2kjzSg_t1_zwMDP';
+  const REMEMBER_MODE_KEY = 'easytool_auth_remember_mode';
+  let authStorageMode = localStorage.getItem(REMEMBER_MODE_KEY) || 'local';
+
+  // Supabase remains responsible for authentication/password hashing. This storage adapter
+  // only controls whether the authenticated session persists across browser restarts.
+  const authStorage = {
+    getItem(key) {
+      // PKCE verifiers must survive a confirmation/reset link opening in a new tab.
+      if (key.endsWith('-code-verifier')) return localStorage.getItem(key);
+      return authStorageMode === 'session' ? sessionStorage.getItem(key) : localStorage.getItem(key);
+    },
+    setItem(key, value) {
+      // Keep the short-lived verifier in shared browser storage; session tokens still respect Remember Me.
+      if (key.endsWith('-code-verifier')) {
+        localStorage.setItem(key, value);
+      } else if (authStorageMode === 'session') {
+        sessionStorage.setItem(key, value);
+        localStorage.removeItem(key);
+      } else {
+        localStorage.setItem(key, value);
+        sessionStorage.removeItem(key);
+      }
+    },
+    removeItem(key) {
+      localStorage.removeItem(key);
+      sessionStorage.removeItem(key);
+    }
+  };
+
+  const isDesktop = () => window.matchMedia('(min-width: 801px)').matches;
+  const notice = (el, msg, error=false) => {
+    if (!el) return;
+    el.textContent = msg;
+    el.className = 'form-notice show' + (error ? ' error' : '');
+  };
+  const clearNotice = el => { if (el) { el.textContent=''; el.className='form-notice'; } };
+  const mainNotice = (msg, error=false) => {
+    const el = $('dMainNotice');
+    if (!el) return;
+    notice(el, msg, error);
+    clearTimeout(mainNotice.timer);
+    mainNotice.timer = setTimeout(() => clearNotice(el), 8000);
+  };
+  function friendlyError(error) {
+    const msg = (error && error.message ? error.message : String(error || 'Unknown error')).trim();
+    const lower = msg.toLowerCase();
+    if (lower.includes('invalid login credentials')) return 'Email or password is incorrect.';
+    if (lower.includes('email not confirmed')) return 'Please confirm your email using the message sent to your inbox, then log in.';
+    if (lower.includes('user already registered')) return 'This email already has an account. Please log in instead.';
+    if (lower.includes('password should be at least')) return 'Choose a password with at least 8 characters.';
+    if (lower.includes('rate limit') || lower.includes('too many requests')) return 'Too many attempts. Please wait a little before trying again.';
+    if (lower.includes('failed to fetch') || lower.includes('networkerror') || lower.includes('fetch')) return 'Could not reach Supabase. Check your internet connection and try again.';
+    if (lower.includes('redirect') && lower.includes('allow')) return 'This website URL is not allowed by Supabase yet. Add it under Authentication → URL Configuration → Redirect URLs.';
+    return msg || 'Authentication failed. Please try again.';
+  }
+  function ensureReady(noticeEl) {
+    if (window.location.protocol === 'file:') {
+      notice(noticeEl, 'Real account authentication needs the page hosted on HTTPS or opened through localhost. Upload this HTML to your website, then try again.', true);
+      return false;
+    }
+    if (window.location.protocol !== 'https:' && !['localhost', '127.0.0.1'].includes(window.location.hostname)) {
+      notice(noticeEl, 'For account security, open EASY TOOL over HTTPS. Configure an SSL-enabled website URL before using real accounts.', true);
+      return false;
+    }
+    if (!window.supabase || typeof window.supabase.createClient !== 'function') {
+      notice(noticeEl, 'Supabase client could not load. Check your internet connection and allow the Supabase CDN.', true);
+      return false;
+    }
+    if (!client) {
+      notice(noticeEl, 'Supabase authentication is not initialized. Reload the page and try again.', true);
+      return false;
+    }
+    return true;
+  }
+  function redirectUrl() {
+    return window.location.origin + window.location.pathname;
+  }
+
+  let client = null;
+  if (window.supabase && typeof window.supabase.createClient === 'function') {
+    client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+      auth: {
+        storage: authStorage,
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+        flowType: 'pkce'
+      }
+    });
+  }
+
+  const panelIds = ['dSignupPanel','dDashboard'];
+  function closeDesktopPanels() { panelIds.forEach(id => { if ($(id)) $(id).hidden = true; }); }
+  function openDesktopSignup() { closeDesktopPanels(); $('dSignupPanel').hidden = false; clearNotice($('dSignupNotice')); }
+  function setMobileMode(mode) {
+    const signup = mode === 'signup';
+    $('mLoginView').hidden = signup;
+    $('mSignupView').hidden = !signup;
+    $('mDashboard').classList.remove('show');
+    $('mLoginTab').classList.toggle('active', !signup);
+    $('mSignupTab').classList.toggle('active', signup);
+    clearNotice($('mLoginNotice'));
+    clearNotice($('mSignupNotice'));
+  }
+  function openSignup() {
+    if (isDesktop()) openDesktopSignup();
+    else {
+      $('mAuthCard').classList.remove('hide');
+      setMobileMode('signup');
+      $('mAuthCard').scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  }
+  function openLogin() {
+    closeDesktopPanels();
+    if (!isDesktop()) {
+      $('mAuthCard').classList.remove('hide');
+      setMobileMode('login');
+    }
+  }
+  function showDashboard(user) {
+    if (!user) return;
+    const email = user.email || 'Authenticated user';
+    const fullName = (user.user_metadata && (user.user_metadata.full_name || user.user_metadata.name)) || '';
+    if (isDesktop()) {
+      closeDesktopPanels();
+      $('dDashboard').hidden = false;
+      $('dAccountEmail').textContent = email;
+      $('dDashTitle').textContent = fullName ? `Welcome, ${fullName.split(' ')[0]}` : 'Welcome to EASY TOOL';
+    } else {
+      $('mAuthCard').classList.remove('hide');
+      $('mLoginView').hidden = true;
+      $('mSignupView').hidden = true;
+      $('mDashboard').classList.add('show');
+      $('mAccountEmail').textContent = email;
+      const title = $('mDashboard').querySelector('h2');
+      if (title) title.textContent = fullName ? `Welcome, ${fullName.split(' ')[0]}` : 'Welcome to EASY TOOL';
+      $('mAuthCard').scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  }
+  async function logOut() {
+    if (!ensureReady(isDesktop() ? $('dMainNotice') : $('mLoginNotice'))) return;
+    const { error } = await client.auth.signOut();
+    if (error) {
+      const target = isDesktop() ? $('dMainNotice') : $('mLoginNotice');
+      notice(target, friendlyError(error), true);
+      return;
+    }
+    closeDesktopPanels();
+    if (!isDesktop()) setMobileMode('login');
+    mainNotice('You have logged out of EASY TOOL.');
+  }
+  async function createAccount({name,email,password,confirm,terms,noticeEl,desktop}) {
+    clearNotice(noticeEl);
+    name = (name || '').trim();
+    email = (email || '').trim().toLowerCase();
+    if (!ensureReady(noticeEl)) return;
+    if (name.length < 2) return notice(noticeEl, 'Please enter your full name.', true);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return notice(noticeEl, 'Enter a valid email address.', true);
+    if (!password || password.length < 8) return notice(noticeEl, 'Password must contain at least 8 characters.', true);
+    if (password !== confirm) return notice(noticeEl, 'The passwords do not match.', true);
+    if (!terms) return notice(noticeEl, 'Please agree to the terms to continue.', true);
+    const button = noticeEl.closest('form')?.querySelector('button[type="submit"]');
+    if (button) { button.disabled = true; button.dataset.oldText = button.textContent; button.textContent = 'Creating account…'; }
+    try {
+      const { data, error } = await client.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { full_name: name, name },
+          emailRedirectTo: redirectUrl()
+        }
+      });
+      if (error) throw error;
+      if (data.session && data.user) {
+        notice(noticeEl, 'Your EASY TOOL account was created successfully.', false);
+        showDashboard(data.user);
+      } else {
+        notice(noticeEl, 'Account created. Check your email and confirm the address before logging in. If no message arrives, check spam or the email settings on your Supabase project.', false);
+        if (desktop) $('dEmail').value = email;
+        else { $('mEmail').value = email; setTimeout(() => setMobileMode('login'), 1500); }
+      }
+    } catch (e) {
+      notice(noticeEl, friendlyError(e), true);
+    } finally {
+      if (button) { button.disabled = false; button.textContent = button.dataset.oldText || 'Create Account'; }
+    }
+  }
+  async function loginAccount(email,password,remember,noticeEl) {
+    clearNotice(noticeEl);
+    email = (email || '').trim().toLowerCase();
+    if (!ensureReady(noticeEl)) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return notice(noticeEl, 'Enter a valid email address.', true);
+    if (!password) return notice(noticeEl, 'Enter your password.', true);
+    authStorageMode = remember ? 'local' : 'session';
+    localStorage.setItem(REMEMBER_MODE_KEY, authStorageMode);
+    const button = noticeEl === $('dMainNotice') ? $('dSubmit') : noticeEl.closest('form')?.querySelector('button[type="submit"]');
+    if (button) { button.disabled = true; button.dataset.oldText = button.textContent; }
+    try {
+      const { data, error } = await client.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      showDashboard(data.user);
+    } catch (e) {
+      notice(noticeEl, friendlyError(e), true);
+    } finally {
+      if (button) { button.disabled = false; }
+    }
+  }
+  async function forgotPassword(email, noticeEl) {
+    clearNotice(noticeEl);
+    email = (email || '').trim().toLowerCase();
+    if (!ensureReady(noticeEl)) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return notice(noticeEl, 'Enter your email address in the Email Address field first.', true);
+    try {
+      const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo: redirectUrl() });
+      if (error) throw error;
+      notice(noticeEl, 'If this email belongs to an account, Supabase will send a password-reset link. Check your inbox and spam folder.', false);
+    } catch (e) {
+      notice(noticeEl, friendlyError(e), true);
+    }
+  }
+  async function googleLogin(noticeEl) {
+    if (!ensureReady(noticeEl)) return;
+    try {
+      const { error } = await client.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: redirectUrl() } });
+      if (error) throw error;
+    } catch (e) {
+      notice(noticeEl, friendlyError(e) + ' Google sign-in also requires Google to be enabled under Supabase Authentication → Providers.', true);
+    }
+  }
+  function showPasswordRecovery() {
+    const mobile = !isDesktop();
+    const titleId = mobile ? 'mModalTitle' : 'dModalTitle';
+    const contentId = mobile ? 'mModalContent' : 'dModalContent';
+    const modalId = mobile ? 'mModal' : 'dModal';
+    $(titleId).textContent = 'Reset your EASY TOOL password';
+    $(contentId).innerHTML = `
+      <p>Choose a new password for your EASY TOOL account.</p>
+      <form id="passwordRecoveryForm">
+        <div class="field"><label for="newRecoveryPassword">New password</label><input id="newRecoveryPassword" type="password" minlength="8" required autocomplete="new-password" placeholder="At least 8 characters"></div>
+        <div class="field"><label for="confirmRecoveryPassword">Confirm new password</label><input id="confirmRecoveryPassword" type="password" minlength="8" required autocomplete="new-password" placeholder="Enter it again"></div>
+        <button class="primary-btn" style="width:100%;margin-top:8px" type="submit">Update password</button>
+        <div class="form-notice" id="recoveryNotice" role="status" aria-live="polite"></div>
+      </form>`;
+    $(modalId).hidden = false;
+    $('passwordRecoveryForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      const pass = $('newRecoveryPassword').value;
+      const confirm = $('confirmRecoveryPassword').value;
+      const noticeEl = $('recoveryNotice');
+      clearNotice(noticeEl);
+      if (pass.length < 8) return notice(noticeEl, 'Password must contain at least 8 characters.', true);
+      if (pass !== confirm) return notice(noticeEl, 'The passwords do not match.', true);
+      const submit = $('passwordRecoveryForm').querySelector('button[type="submit"]');
+      submit.disabled = true;
+      try {
+        const { error } = await client.auth.updateUser({ password: pass });
+        if (error) throw error;
+        notice(noticeEl, 'Password updated successfully. Your EASY TOOL account is ready.', false);
+        setTimeout(() => {
+          $(modalId).hidden = true;
+          client.auth.getUser().then(({data}) => { if (data && data.user) showDashboard(data.user); });
+        }, 1200);
+      } catch (e) {
+        notice(noticeEl, friendlyError(e), true);
+      } finally { submit.disabled = false; }
+    });
+  }
+
+  // Desktop controls overlay the matching fields in the supplied reference design.
+  $('dLoginTab').addEventListener('click', openLogin);
+  $('dSignupTab').addEventListener('click', openDesktopSignup);
+  $('dRegister').addEventListener('click', openDesktopSignup);
+  $('dFooterSignup').addEventListener('click', openDesktopSignup);
+  $('dSignupLoginSwitch').addEventListener('click', openLogin);
+  $('dSignupLoginLink').addEventListener('click', openLogin);
+  $('dEye').addEventListener('click', () => {
+    $('dPassword').type = $('dPassword').type === 'password' ? 'text' : 'password';
+    mainNotice($('dPassword').type === 'text' ? 'Password is visible.' : 'Password is hidden.');
+  });
+  document.querySelectorAll('[data-eye]').forEach(btn => btn.addEventListener('click', () => {
+    const input = $(btn.dataset.eye);
+    if (input) { input.type = input.type === 'password' ? 'text' : 'password'; btn.textContent = input.type === 'text' ? 'HIDE' : 'SHOW'; }
+  }));
+  $('dSubmit').addEventListener('click', () => loginAccount($('dEmail').value, $('dPassword').value, $('dRemember').checked, $('dMainNotice')));
+  $('dEmail').addEventListener('keydown', e => { if (e.key === 'Enter') $('dPassword').focus(); });
+  $('dPassword').addEventListener('keydown', e => { if (e.key === 'Enter') $('dSubmit').click(); });
+  $('dForgot').addEventListener('click', () => forgotPassword($('dEmail').value, $('dMainNotice')));
+  $('dGoogle').addEventListener('click', () => googleLogin($('dMainNotice')));
+  $('dSignupForm').addEventListener('submit', e => {
+    e.preventDefault();
+    createAccount({name:$('dName').value,email:$('dSignupEmail').value,password:$('dSignupPassword').value,confirm:$('dSignupConfirm').value,terms:$('dTerms').checked,noticeEl:$('dSignupNotice'),desktop:true});
+  });
+  $('dDashLogout').addEventListener('click', logOut);
+  $('dTheme').addEventListener('click', () => {
+    $('desktopView').classList.toggle('dim');
+    mainNotice($('desktopView').classList.contains('dim') ? 'Low-glow display enabled.' : 'Neon display restored.');
+  });
+
+  // Mobile controls use the same Supabase project and auth provider.
+  $('mLoginTab').addEventListener('click', () => setMobileMode('login'));
+  $('mSignupTab').addEventListener('click', () => setMobileMode('signup'));
+  $('mInlineSignup').addEventListener('click', () => setMobileMode('signup'));
+  $('mBackLogin').addEventListener('click', () => setMobileMode('login'));
+  $('mLoginForm').addEventListener('submit', e => {
+    e.preventDefault();
+    loginAccount($('mEmail').value, $('mPassword').value, $('mRemember').checked, $('mLoginNotice'));
+  });
+  $('mSignupForm').addEventListener('submit', e => {
+    e.preventDefault();
+    createAccount({name:$('mName').value,email:$('mSignupEmail').value,password:$('mSignupPassword').value,confirm:$('mSignupConfirm').value,terms:$('mTerms').checked,noticeEl:$('mSignupNotice'),desktop:false});
+  });
+  $('mForgot').addEventListener('click', () => forgotPassword($('mEmail').value, $('mLoginNotice')));
+  $('mGoogle').addEventListener('click', () => googleLogin($('mLoginNotice')));
+  $('mLogout').addEventListener('click', logOut);
+
+  const modalContent = {
+    Features: '<p>Designed around a simple, fast workflow for mobile servicing.</p><ul><li>Fast performance</li><li>Safety-focused workflow</li><li>Clear and easy-to-use interface</li><li>Support-ready experience</li></ul>',
+    Tools: '<p>EASY TOOL is presented as an all-in-one mobile servicing solution. Connect this menu to the tools and actions available in your actual application.</p>',
+    Price: '<p>License plans and activation details can be published here. Connect this section to your current pricing and payment/activation process before launch.</p>',
+    About: '<p>EASY TOOL is a mobile servicing solution with the promise: <strong>Simple · Fast · Powerful.</strong></p>',
+    Contact: '<p>For support, use your official EASY TOOL contact channels.</p>'
+  };
+  function openModal(name, mobile=false) {
+    if (name === 'Home') { (mobile ? $('mModal') : $('dModal')).hidden = true; return; }
+    const target = mobile ? $('mModal') : $('dModal');
+    $(mobile ? 'mModalTitle' : 'dModalTitle').textContent = name === 'Price' ? 'EASY TOOL Pricing' : name === 'Contact' ? 'Contact EASY TOOL' : `EASY TOOL ${name}`;
+    $(mobile ? 'mModalContent' : 'dModalContent').innerHTML = modalContent[name] || '<p>More information coming soon.</p>';
+    target.hidden = false;
+  }
+  document.querySelectorAll('.desktop [data-section]').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.section, false)));
+  $('dCloseModal').addEventListener('click', () => $('dModal').hidden = true);
+  $('mCloseModal').addEventListener('click', () => $('mModal').hidden = true);
+  $('mMenu').addEventListener('click', () => openModal('Features', true));
+  $('dModal').addEventListener('click', e => { if (e.target === $('dModal')) $('dModal').hidden = true; });
+  $('mModal').addEventListener('click', e => { if (e.target === $('mModal')) $('mModal').hidden = true; });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { $('dModal').hidden = true; $('mModal').hidden = true; } });
+
+  if (client) {
+    client.auth.onAuthStateChange((event, session) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        showPasswordRecovery();
+        return;
+      }
+      if (session && session.user && ['INITIAL_SESSION','SIGNED_IN','TOKEN_REFRESHED','USER_UPDATED'].includes(event)) {
+        showDashboard(session.user);
+      } else if (event === 'SIGNED_OUT') {
+        closeDesktopPanels();
+        if (!isDesktop()) setMobileMode('login');
+      }
+    });
+  }
+  // Surface failures returned in the URL after email confirmation, OAuth, or recovery redirects.
+  const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+  const callbackError = hashParams.get('error_description') || hashParams.get('error');
+  if (callbackError) {
+    const msg = decodeURIComponent(callbackError.replace(/\+/g, ' '));
+    if (isDesktop()) mainNotice('Authentication callback: ' + msg, true);
+    else notice($('mLoginNotice'), 'Authentication callback: ' + msg, true);
+  }
+  // Keep the signed-in page aligned when resizing from desktop to mobile and back.
+  window.addEventListener('resize', async () => {
+    if (!client) return;
+    const { data } = await client.auth.getSession();
+    if (data && data.session && data.session.user) showDashboard(data.session.user);
+  });
 })();
 </script>
 </body>
