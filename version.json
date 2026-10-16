@@ -1,7 +1,15 @@
 {
-  "version": "v0.0.33",
-  "minimum_version": "v0.0.33",
-  "force_update": true,
-  "release_date": "2026-08-11",
-  "description": "Latest EASY TOOL update"
+  "version": "v0.0.35",
+  "minimum_version": "v0.0.35",
+  "release_date": "2026-10-16",
+  "size": "See MediaFire",
+  "description": "EASY TOOL v0.0.35 updater and release-page improvements.",
+  "changes": [
+    "Update Now opens the release page specified in the hosted manifest.",
+    "The updater no longer relies on the old v0.0.34 MediaFire URL embedded in the source.",
+    "The update dialog shows release notes before customers leave the app."
+  ],
+  "download_url": "REPLACE_ME_WITH_NEW_V0.0.35_MEDIAFIRE_RELEASE_PAGE_URL",
+  "client_download_url": "REPLACE_ME_WITH_NEW_V0.0.35_MEDIAFIRE_RELEASE_PAGE_URL",
+  "force_update": true
 }
