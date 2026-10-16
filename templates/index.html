@@ -309,18 +309,45 @@
   }
   async function refreshAccessState(user, desktop) {
     const prefix = desktop ? 'd' : 'm';
+    const adminPanel = $(prefix + 'AdminPanel');
+    const adminList = $(prefix + 'AdminList');
+    const configuredAdminEmail = String(user?.email || '').trim().toLowerCase() === 'reytechfix@gmail.com';
     setAccessState(desktop, 'pending', 'Checking your account approval with the EASY TOOL backend…');
+
+    // Check the trusted admin membership first. If this succeeds and confirms the user is an
+    // admin, keep the panel visible even when a later access-request query encounters a missing
+    // schema column; show the database error inside the panel instead of silently hiding it.
+    let isAdmin = false;
     try {
-      const { data: adminRow, error: adminError } = await client.from('easytool_admins').select('user_id').eq('user_id', user.id).maybeSingle();
+      const { data: adminRow, error: adminError } = await client.from('easytool_admins')
+        .select('user_id').eq('user_id', user.id).maybeSingle();
       if (adminError) throw adminError;
-      const isAdmin = !!adminRow;
-      const { data: req, error } = await client.from('easytool_access_requests').select('user_id,email,username,full_name,status,note,requested_at,access_expires_at').eq('user_id', user.id).maybeSingle();
+      isAdmin = !!adminRow;
+    } catch (e) {
+      console.error('EASY TOOL admin membership check failed:', e);
+      if (adminPanel) adminPanel.hidden = true;
+      setAccessState(desktop, 'setup', 'Could not verify administrator access. Run EASY_TOOL_ADMIN_PANEL_FIX.sql in the same Supabase project used by this website. Details: ' + (e?.message || 'unknown backend error'));
+      return;
+    }
+
+    if (adminPanel) adminPanel.hidden = !isAdmin;
+    if (!isAdmin && configuredAdminEmail) {
+      setAccessState(desktop, 'setup', 'You are signed in with reytechfix@gmail.com, but this account is not yet registered as a website administrator. Run EASY_TOOL_ADMIN_PANEL_FIX.sql, confirm that the SQL result says ADMIN READY, then sign out and sign in again.');
+    }
+
+    try {
+      const { data: req, error } = await client.from('easytool_access_requests')
+        .select('user_id,email,username,full_name,status,note,requested_at,access_expires_at')
+        .eq('user_id', user.id).maybeSingle();
       if (error) throw error;
-      if (!req && !isAdmin) {
-        setAccessState(desktop, 'setup', 'No access-request record was found. Run the supplied EASY TOOL Supabase SQL setup and make sure the new-user trigger is enabled.');
+
+      if (!isAdmin && configuredAdminEmail) {
+        setAccessState(desktop, 'setup', 'You are signed in with reytechfix@gmail.com, but this account is not yet registered as a website administrator. Run EASY_TOOL_ADMIN_PANEL_FIX.sql, confirm that the SQL result says ADMIN READY, then sign out and sign in again.');
+      } else if (!req && !isAdmin) {
+        setAccessState(desktop, 'setup', 'No access-request record was found. Run EASY_TOOL_SUPABASE_SETUP.sql and make sure the new-user trigger is enabled.');
       } else {
-        let status = isAdmin ? 'active' : (req.status || 'pending');
-        if (!isAdmin && status === 'active' && req.access_expires_at && new Date(req.access_expires_at).getTime() <= Date.now()) status = 'expired';
+        let status = isAdmin ? 'active' : (req?.status || 'pending');
+        if (!isAdmin && status === 'active' && req?.access_expires_at && new Date(req.access_expires_at).getTime() <= Date.now()) status = 'expired';
         const messages = {
           active: isAdmin ? 'Administrator access is active. You can manage account approvals below.' : 'Your account is approved. The website workspace is available. Phone servicing protocols still require a dedicated local device bridge.',
           pending: 'Your account has been created. An EASY TOOL administrator must approve it before the workspace can be used.',
@@ -330,14 +357,17 @@
         };
         setAccessState(desktop, status, messages[status] || 'Access status returned by the backend: ' + status);
       }
-      const adminPanel = $(prefix + 'AdminPanel');
-      if (adminPanel) adminPanel.hidden = !isAdmin;
       if (isAdmin) await loadAdminRequests(user, desktop);
     } catch (e) {
-      console.error('EASY TOOL access check failed:', e);
-      setAccessState(desktop, 'setup', 'Cannot check approval. Confirm the EASY TOOL SQL setup has been installed in Supabase and that RLS policies are enabled. Details: ' + (e?.message || 'unknown backend error'));
-      const adminPanel = $(prefix + 'AdminPanel');
-      if (adminPanel) adminPanel.hidden = true;
+      console.error('EASY TOOL access request lookup failed:', e);
+      setAccessState(desktop, 'setup', 'The administrator role was checked, but account requests could not be loaded. Run EASY_TOOL_ADMIN_PANEL_FIX.sql in this Supabase project. Details: ' + (e?.message || 'unknown backend error'));
+      if (isAdmin && adminList) {
+        adminList.replaceChildren();
+        const err = document.createElement('div');
+        err.className = 'access-copy access-warning';
+        err.textContent = 'Admin access is recognized, but the requests table needs setup: ' + (e?.message || 'unknown backend error');
+        adminList.appendChild(err);
+      }
     }
   }
   function addMonthsClamped(date, months) {
