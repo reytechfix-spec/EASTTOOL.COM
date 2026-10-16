@@ -314,12 +314,13 @@
       const { data: adminRow, error: adminError } = await client.from('easytool_admins').select('user_id').eq('user_id', user.id).maybeSingle();
       if (adminError) throw adminError;
       const isAdmin = !!adminRow;
-      const { data: req, error } = await client.from('easytool_access_requests').select('user_id,email,username,full_name,status,note,requested_at').eq('user_id', user.id).maybeSingle();
+      const { data: req, error } = await client.from('easytool_access_requests').select('user_id,email,username,full_name,status,note,requested_at,access_expires_at').eq('user_id', user.id).maybeSingle();
       if (error) throw error;
       if (!req && !isAdmin) {
         setAccessState(desktop, 'setup', 'No access-request record was found. Run the supplied EASY TOOL Supabase SQL setup and make sure the new-user trigger is enabled.');
       } else {
-        const status = isAdmin ? 'active' : (req.status || 'pending');
+        let status = isAdmin ? 'active' : (req.status || 'pending');
+        if (!isAdmin && status === 'active' && req.access_expires_at && new Date(req.access_expires_at).getTime() <= Date.now()) status = 'expired';
         const messages = {
           active: isAdmin ? 'Administrator access is active. You can manage account approvals below.' : 'Your account is approved. The website workspace is available. Phone servicing protocols still require a dedicated local device bridge.',
           pending: 'Your account has been created. An EASY TOOL administrator must approve it before the workspace can be used.',
@@ -339,15 +340,39 @@
       if (adminPanel) adminPanel.hidden = true;
     }
   }
+  function addMonthsClamped(date, months) {
+    const day = date.getDate();
+    date.setDate(1);
+    date.setMonth(date.getMonth() + months);
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    date.setDate(Math.min(day, lastDay));
+    return date;
+  }
+  function accessExpiryFor(duration) {
+    if (duration === 'unlimited') return null;
+    const d = new Date();
+    if (duration === '6h') d.setHours(d.getHours() + 6);
+    else if (duration === '1d') d.setDate(d.getDate() + 1);
+    else if (duration === '3m') addMonthsClamped(d, 3);
+    else if (duration === '6m') addMonthsClamped(d, 6);
+    else if (duration === '1y') addMonthsClamped(d, 12);
+    else if (duration === '2y') addMonthsClamped(d, 24);
+    else throw new Error('Choose an access duration first.');
+    return d.toISOString();
+  }
   function makeAdminRequestCard(req, desktop) {
     const card = document.createElement('div');
     card.className = 'admin-request';
     const title = document.createElement('strong');
     title.textContent = req.full_name || req.username || req.email || 'EASY TOOL user';
     card.appendChild(title);
+    const expired = req.status === 'active' && req.access_expires_at && new Date(req.access_expires_at).getTime() <= Date.now();
+    const expiryText = req.access_expires_at
+      ? ('Access expires: ' + new Date(req.access_expires_at).toLocaleString() + (expired ? ' · EXPIRED' : ''))
+      : 'Access duration: No expiry (unlimited)';
     const meta = document.createElement('div');
     meta.className = 'meta';
-    meta.textContent = [req.username ? '@' + req.username : '', req.email || '', 'Status: ' + (req.status || 'pending'), req.requested_at ? new Date(req.requested_at).toLocaleString() : ''].filter(Boolean).join(' · ');
+    meta.textContent = [req.username ? '@' + req.username : '', req.email || '', 'Status: ' + (expired ? 'expired' : (req.status || 'pending')), req.requested_at ? new Date(req.requested_at).toLocaleString() : '', expiryText].filter(Boolean).join(' · ');
     card.appendChild(meta);
     if (req.note) {
       const note = document.createElement('div'); note.className = 'meta'; note.textContent = 'Note: ' + req.note; card.appendChild(note);
@@ -357,20 +382,49 @@
     for (const [value,label] of [['pending','Pending'],['active','Approve / active'],['rejected','Reject'],['blocked','Block']]) {
       const option = document.createElement('option'); option.value = value; option.textContent = label; option.selected = (req.status || 'pending') === value; select.appendChild(option);
     }
-    select.addEventListener('change', async () => {
-      const next = select.value;
-      select.disabled = true;
+    const duration = document.createElement('select');
+    duration.setAttribute('aria-label', 'Set access duration for ' + (req.email || req.username || req.user_id));
+    const durationOptions = [['','Choose access duration…'],['6h','6 hours'],['1d','1 day'],['3m','3 months'],['6m','6 months'],['1y','1 year'],['2y','2 years'],['unlimited','Unlimited / no expiry']];
+    for (const [value,label] of durationOptions) {
+      const option = document.createElement('option'); option.value = value; option.textContent = label; duration.appendChild(option);
+    }
+    card.appendChild(select);
+    card.appendChild(duration);
+    let busy = false;
+    async function saveStatus(next) {
+      if (busy) return;
+      const prior = req.status || 'pending';
+      let expiry = null;
+      if (next === 'active') {
+        if (!duration.value) {
+          if (select.value !== prior) select.value = prior;
+          alert('Choose the access duration first, then choose Approve / active.');
+          return;
+        }
+        try { expiry = accessExpiryFor(duration.value); }
+        catch (e) { alert(e?.message || 'Invalid duration.'); select.value = prior; return; }
+      }
+      busy = true; select.disabled = true; duration.disabled = true;
       try {
-        const { error } = await client.from('easytool_access_requests').update({status:next, reviewed_at:new Date().toISOString(), reviewed_by:currentUserForAccess.id}).eq('user_id', req.user_id);
+        const { error } = await client.from('easytool_access_requests').update({
+          status: next,
+          access_expires_at: expiry,
+          reviewed_at: new Date().toISOString(),
+          reviewed_by: currentUserForAccess.id
+        }).eq('user_id', req.user_id);
         if (error) throw error;
         await loadAdminRequests(currentUserForAccess, desktop);
         if (currentUserForAccess?.id === req.user_id) await refreshAccessState(currentUserForAccess, desktop);
       } catch (e) {
         alert('Could not update account status: ' + (e?.message || 'backend error'));
-        select.disabled = false;
+        select.value = prior;
+        select.disabled = false; duration.disabled = false; busy = false;
       }
+    }
+    select.addEventListener('change', async () => saveStatus(select.value));
+    duration.addEventListener('change', async () => {
+      if (select.value === 'active') await saveStatus('active');
     });
-    card.appendChild(select);
     return card;
   }
   async function loadAdminRequests(user, desktop) {
@@ -381,7 +435,7 @@
     list.replaceChildren();
     const loading = document.createElement('div'); loading.className = 'access-copy'; loading.textContent = 'Loading access requests…'; list.appendChild(loading);
     try {
-      const { data, error } = await client.from('easytool_access_requests').select('user_id,email,username,full_name,status,requested_at,note').order('requested_at', {ascending:false}).limit(100);
+      const { data, error } = await client.from('easytool_access_requests').select('user_id,email,username,full_name,status,requested_at,note,access_expires_at').order('requested_at', {ascending:false}).limit(100);
       if (error) throw error;
       list.replaceChildren();
       if (!data || !data.length) { const empty = document.createElement('div'); empty.className='access-copy'; empty.textContent='No requests found yet.'; list.appendChild(empty); return; }
